@@ -78,7 +78,7 @@ export default function WithSubnavigation() {
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
-            href={"#"}
+            href={"https://launching-soon-shikshafinder.my.canva.site/"}
           >
             Sign In
           </Button>
@@ -89,7 +89,7 @@ export default function WithSubnavigation() {
             fontWeight={600}
             color={"white"}
             bg={"blue"}
-            href={"#"}
+            href={"https://launching-soon-shikshafinder.my.canva.site/"}
             _hover={{
               bg: "blue.300",
             }}
@@ -120,7 +120,10 @@ const DesktopNav = () => {
               <Box
                 as="a"
                 p={2}
-                href={navItem.href ?? "#"}
+                href={
+                  navItem.href ??
+                  "https://launching-soon-shikshafinder.my.canva.site/"
+                }
                 fontSize={"sm"}
                 fontWeight={500}
                 color={linkColor}
@@ -216,7 +219,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
       <Box
         py={2}
         as="a"
-        href={href ?? "#"}
+        href={href ?? "https://launching-soon-shikshafinder.my.canva.site/"}
         justifyContent="space-between"
         alignItems="center"
         _hover={{
@@ -275,12 +278,12 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Register as a school",
         subLabel: "Register your self and dive in to journey of marketing",
-        href: "#",
+        href: "https://launching-soon-shikshafinder.my.canva.site/",
       },
       {
         label: "Register as a Coaching class",
         subLabel: "Let's get Started!",
-        href: "#",
+        href: "https://launching-soon-shikshafinder.my.canva.site/",
       },
     ],
   },
@@ -290,21 +293,21 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Our Team",
         subLabel: "Know about our team",
-        href: "#",
+        href: "https://launching-soon-shikshafinder.my.canva.site/",
       },
       {
         label: "Our Vision",
         subLabel: "Our vision is to help you out",
-        href: "#",
+        href: "https://launching-soon-shikshafinder.my.canva.site/",
       },
     ],
   },
   {
     label: "Solve My Doubts",
-    href: "#",
+    href: "https://launching-soon-shikshafinder.my.canva.site/",
   },
   {
     label: "Explore Quiz",
-    href: "#",
+    href: "https://launching-soon-shikshafinder.my.canva.site/",
   },
 ];
