@@ -1,4 +1,7 @@
 "use client";
+import { collection, addDoc } from "firebase/firestore";
+// import DB from "../../../firebase";
+import Head from "next/head";
 
 import {
   Flex,
@@ -11,8 +14,20 @@ import {
   useColorModeValue,
   createIcon,
 } from "@chakra-ui/react";
+import { useState } from "react";
+// const [newMail, setNewMail] = useState({ mail: "" });
 
 export default function CardWithIllustration() {
+  // const addMail = async (e) => {
+  //   e.preventDefault();
+  //   if (newMail.mail !== "") {
+  //     // setNewMail([...])
+  //     await addDoc(collection(DB, "items"), {
+  //       hello: "world",
+  //     });
+  //   }
+  // };
+
   return (
     <Flex
       minH={"100vh"}
@@ -21,6 +36,10 @@ export default function CardWithIllustration() {
       py={12}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
+      <Head>
+        <meta name="keywords" content="education, school ,how to find best school?,shikshafinder" />
+        
+      </Head>
       <Stack
         boxShadow={"2xl"}
         bg={useColorModeValue("white", "gray.700")}
@@ -44,8 +63,14 @@ export default function CardWithIllustration() {
         </Stack>
         <Stack spacing={4} direction={{ base: "column", md: "row" }} w={"full"}>
           <Input
+            // value={newMail.mail}
+            // onChange={(e) =>
+            //   setNewMail({
+            //     ...newMail,
+            //   })
+            // }
             type={"text"}
-            placeholder={"john@doe.net"}
+            placeholder={"add your mail here to get latest updates"}
             color={useColorModeValue("gray.800", "gray.200")}
             bg={useColorModeValue("gray.100", "gray.600")}
             rounded={"full"}
@@ -56,6 +81,7 @@ export default function CardWithIllustration() {
             }}
           />
           <Button
+            // onClick={addMail}
             bg={"blue.400"}
             rounded={"full"}
             color={"white"}
