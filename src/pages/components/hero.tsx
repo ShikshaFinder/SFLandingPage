@@ -46,6 +46,7 @@ export default function CallToActionWithVideo() {
              Shiksha Finder
             </Text>
             <br />
+            <link rel="stylesheet" href="/login" />
             <Text as={"span"} color={"blue.400"}>
               Let's Explore!
             </Text>
