@@ -15,6 +15,7 @@ import {
   Container,
   VStack,
 } from "@chakra-ui/react";
+
 interface IBlogTags {
   tags: Array<string>;
   marginTop?: SpaceProps["marginTop"];
@@ -53,19 +54,22 @@ const BlogAuthor = (props: BlogAuthorProps) => {
         borderRadius="full"
         boxSize="40px"
         src="https://100k-faces.glitch.me/random-image"
-        alt={`Avatar of ${props.name}`}
+        alt={`Avatar of hetal jani`}
       />
-      <Text fontWeight="medium">{props.name}</Text>
+      <Text fontWeight="medium">"hetal jani"</Text>
       <Text>—</Text>
       <Text>{props.date.toLocaleDateString()}</Text>
     </HStack>
   );
 };
 
-const ArticleList = () => {
+const Parent = () => {
   return (
     <Container maxW={"7xl"} p="12">
-      <Heading as="h1">Stories by Chakra Templates</Heading>
+      <Heading as="h1">
+        {" "}
+        Finding the Right School for Our Little Explorer: A Mom's Guide
+      </Heading>
       <Box
         marginTop={{ base: "1", sm: "5" }}
         display="flex"
@@ -96,12 +100,11 @@ const ArticleList = () => {
               />
             </Box>
           </Box>
-
           <Box zIndex="1" width="100%" position="absolute" height="100%">
             <Box
               bgGradient={useColorModeValue(
-                "radial(orange 1px, transparent 1px)",
-                "radial(orange 1px, transparent 1px)"
+                "radial(orange.600 1px, transparent 1px)",
+                "radial(orange.300 1px, transparent 1px)"
               )}
               backgroundSize="20px 20px"
               opacity="0.4"
@@ -116,10 +119,10 @@ const ArticleList = () => {
           justifyContent="center"
           marginTop={{ base: "3", sm: "0" }}
         >
-          <BlogTags tags={["Engineering", "Product"]} />
+          <BlogTags tags={["Student", "Education"]} />
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: "none" }}>
-              Blog article title
+            As i am also a mother i can understand..
             </Text>
           </Heading>
           <Text
@@ -128,86 +131,69 @@ const ArticleList = () => {
             color={useColorModeValue("gray.700", "gray.200")}
             fontSize="lg"
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&apos;s standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make a type specimen book.
+            I know how tricky it is to pick the perfect school for our little
+            ones. It's like trying to find the best ice cream flavor—everyone
+            has a favorite, but what really matters is what makes our kids light
+            up. So, let's chat about why picking a school with heart & brain,
+            not just fancy words, is so important.
           </Text>
           <BlogAuthor name="John Doe" date={new Date("2021-04-06T19:01:27Z")} />
         </Box>
       </Box>
       <Heading as="h2" marginTop="5">
-        Latest articles
+        How to choose a right school
       </Heading>
-      <Divider marginTop="5" />
-      <Wrap spacing="30px" marginTop="5">
-        <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
-          <Box w="100%">
-            <Box borderRadius="lg" overflow="hidden">
-              <Box textDecoration="none" _hover={{ textDecoration: "none" }}>
-                <Image
-                  transform="scale(1.0)"
-                  src={
-                    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                  }
-                  alt="some text"
-                  objectFit="contain"
-                  width="100%"
-                  transition="0.3s ease-in-out"
-                  _hover={{
-                    transform: "scale(1.05)",
-                  }}
-                />
-              </Box>
-            </Box>
-            <BlogTags tags={["Engineering", "Product"]} marginTop={3} />
-            <Heading fontSize="xl" marginTop="2">
-              <Text textDecoration="none" _hover={{ textDecoration: "none" }}>
-                Some blog title
-              </Text>
-            </Heading>
-            <Text as="p" fontSize="md" marginTop="2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry&apos;s standard dummy
-              text ever since the 1500s, when an unknown printer took a galley
-              of type and scrambled it to make a type specimen book.
-            </Text>
-            <BlogAuthor
-              name="John Doe"
-              date={new Date("2021-04-06T19:01:27Z")}
-            />
-          </Box>
-        </WrapItem>
-      </Wrap>
-      <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2">What we write about</Heading>
+      <VStack paddingTop="20px" spacing="2" alignItems="flex-start">
         <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-          pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-          imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-          sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-          tortor, mattis nec lacus non, placerat congue elit.
+          <b>
+            {" "}
+            Here are some key data points to examine for potential schools:
+          </b>
+          <br />
+          <b> Standardized test scores </b> - How do students at the school
+          perform on state tests compared to district and statewide averages?
+          Better scores indicate stronger academic programs.
+          <br /> <b>Individual student growth </b> - Are students improving
+          year-over-year according to standardized test results? Schools that
+          support student growth are doing their job.
+          <br /> <b>Graduation and college acceptance rates</b> - How many
+          students graduate on time and get into college? Higher rates
+          demonstrate college preparedness.
+          <br /> <b>Teacher qualifications </b>- What percentage of teachers are
+          fully certified and have advanced degrees? Well-qualified teachers
+          lead to better instruction.
+          <br />
+          <b> Class sizes</b> - How large are classes? Smaller class sizes allow
+          for more individualized attention.
+          <br />
+          <b> Student demographics</b> - Does the student body reflect the
+          diversity of the community? A diverse school provides social-emotional
+          benefits. <br />
+          <b> Resources and facilities</b> - Does the school offer science labs,
+          computers, arts programs, and extracurriculars? Access to resources
+          impacts learning.
         </Text>
         <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-          pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-          imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-          sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-          tortor, mattis nec lacus non, placerat congue elit.
+          The most important thing for acadmics and for finding a best school is
+          none other than quality of education provided by schools and other
+          coaching classes ,not numbers. but i am sure you will definetly ask me
+          that ,it is easy to ask that focus upon quality of education but do
+          you know how i can measure quality of education??? Till date i did not
+          have an answer but i thought that if i can find the answer to this
+          questions. That's why i introduced shiksha finder: a platform where
+          you can find demo lecture of any platform in including dance class ,
+          schools and coaching classes. you can watch the demo lecture with your
+          child and than decide where you want to put your child.
         </Text>
         <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-          pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-          imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-          sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-          tortor, mattis nec lacus non, placerat congue elit.
+          So making a great future of a children doesn't always depend upon the
+          parents but also schools they both are molders of the future of a
+          children. So in Summary <b>Shiksha Finder </b>
+          <i>choose right to make you and your children's future bright</i>
         </Text>
       </VStack>
     </Container>
   );
 };
 
-export default ArticleList;
+export default Parent;
