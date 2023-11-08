@@ -93,9 +93,9 @@ const Parent = () => {
               <Image
                 borderRadius="lg"
                 src={
-                  "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
+                  "https://images.unsplash.com/photo-1629872430082-93d8912beccf?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }
-                alt="some good alt text"
+                alt="Student choosing a good school"
                 objectFit="contain"
               />
             </Box>
@@ -122,7 +122,7 @@ const Parent = () => {
           <BlogTags tags={["Student", "Education"]} />
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: "none" }}>
-            As i am also a mother i can understand..
+              As i am also a mother i can understand..
             </Text>
           </Heading>
           <Text

@@ -4,6 +4,8 @@ import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import Waitlist from "./components/Waitlist";
 import Aboutus from "./components/aboutus";
+import Card from "./components/card";
+
 // import Parentscontent from "./components/Parentscontent";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export default function Home() {
       <Hero />
       <Waitlist />
       <Aboutus />
+      <Card/>
       {/* <Parentscontent/> */}
     </>
   );

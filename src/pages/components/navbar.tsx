@@ -307,7 +307,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "https://launching-soon-shikshafinder.my.canva.site/",
   },
   {
-    label: "Explore Quiz",
-    href: "https://launching-soon-shikshafinder.my.canva.site/",
+    label: "For parents",
+    href: "/parent",
   },
 ];
