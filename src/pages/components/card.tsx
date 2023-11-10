@@ -22,10 +22,10 @@ const Index = () => {
         bg={useColorModeValue("white", "gray.800")}
       >
         <Image
-          src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80"
+          src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=70"
           objectFit="cover"
           w="100%"
-        />
+           />
         <Box p={{ base: 3, sm: 5 }}>
           <Box mb={6}>
             <chakra.h3
@@ -54,7 +54,7 @@ const Index = () => {
 
           <Stack direction="row">
            
-            <Badge colorScheme="green">Success</Badge>
+            <Badge colorScheme="green">Rating</Badge>
             
           </Stack>
         </Box>

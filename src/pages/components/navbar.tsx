@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from 'react';
+import Link from 'next/link';
 import {
   Box,
   Flex,
@@ -23,7 +25,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
-export default function WithSubnavigation() {
+export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -74,22 +76,24 @@ export default function WithSubnavigation() {
           spacing={6}
         >
           <Button
-            as={"a"}
+            as={Link}
+            href={"https://launching-soon-shikshafinder.my.canva.site/"}
+            passHref
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
-            href={"https://launching-soon-shikshafinder.my.canva.site/"}
           >
             Sign In
           </Button>
           <Button
-            as={"a"}
+            as={Link}
+            href={"https://launching-soon-shikshafinder.my.canva.site/"}
+            passHref
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
             bg={"blue"}
-            href={"https://launching-soon-shikshafinder.my.canva.site/"}
             _hover={{
               bg: "blue.300",
             }}
@@ -118,12 +122,10 @@ const DesktopNav = () => {
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
               <Box
-                as="a"
+                as={Link}
+                href={navItem.href ?? "/School"}
+                passHref
                 p={2}
-                href={
-                  navItem.href ??
-                  "https://launching-soon-shikshafinder.my.canva.site/"
-                }
                 fontSize={"sm"}
                 fontWeight={500}
                 color={linkColor}
@@ -162,8 +164,9 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Box
-      as="a"
+      as={Link}
       href={href}
+      passHref
       role={"group"}
       display={"block"}
       p={2}
@@ -218,8 +221,9 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Box
         py={2}
-        as="a"
-        href={href ?? "https://launching-soon-shikshafinder.my.canva.site/"}
+        as={Link}
+        href={href ?? "/School"}
+        passHref
         justifyContent="space-between"
         alignItems="center"
         _hover={{
@@ -254,8 +258,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
-                {child.label}
+              <Box as={Link} key={child.label} href={child.href} passHref>
+                <Box py={2}>{child.label}</Box>
               </Box>
             ))}
         </Stack>
@@ -273,31 +277,31 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Register Now",
+    label: "School & Coaching Classes",
     children: [
       {
-        label: "Register as a school",
-        subLabel: "Register your self and dive in to journey of marketing",
-        href: "https://launching-soon-shikshafinder.my.canva.site/",
+        label: "Schools",
+        subLabel: "Choose the right school For the best future of yours",
+        href: "/School",
       },
       {
-        label: "Register as a Coaching class",
+        label: "Coaching classes",
         subLabel: "Let's get Started!",
-        href: "https://launching-soon-shikshafinder.my.canva.site/",
+        href: "/Coaching",
       },
     ],
   },
   {
-    label: "About us",
+    label: "Skill classes & Online Platforms",
     children: [
       {
-        label: "Our Team",
-        subLabel: "Know about our team",
-        href: "https://launching-soon-shikshafinder.my.canva.site/",
+        label: "Skill Classes",
+        subLabel: "Learn what you Love",
+        href: "/skillclass",
       },
       {
-        label: "Our Vision",
-        subLabel: "Our vision is to help you out",
+        label: "Online Platform",
+        subLabel: "Find out best",
         href: "https://launching-soon-shikshafinder.my.canva.site/",
       },
     ],
@@ -311,3 +315,6 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/parent",
   },
 ];
+
+// export default Navbar;
+
