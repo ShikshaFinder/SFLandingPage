@@ -27,7 +27,7 @@ import {
 } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import { RiFlashlightFill } from "react-icons/ri";
-import Parent from "./components/Parentscontent";
+import Card from "./components/card";
 
 export default function Index() {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -93,11 +93,11 @@ export default function Index() {
           {/* insert */}
           {/* <Hero />
           <Aboutus /> */}
-          <Parent />
+          <Card /> <Card /> <Card /> <Card /> <Card /> <Card /> <Card />{" "}
+          <Card />
         </Box>
       </Box>
     </Box>
-
   );
 }
 
@@ -136,6 +136,7 @@ const SidebarContent = ({ ...props }: BoxProps) => (
       color="gray.600"
       aria-label="Main Navigation"
     >
+      {" "}
       <Link href={"./School"}>
         <NavItem icon={BsHospitalFill}>Schools</NavItem>
       </Link>

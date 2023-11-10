@@ -1,10 +1,11 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import Navbar from "./components/navbar";
-import Hero from "./components/hero";
+// import Navbar from "./components/navbar";
+// import Hero from "./components/hero";
 import Waitlist from "./components/Waitlist";
 import Aboutus from "./components/aboutus";
-import Card from "./components/card";
+// import Card from "./components/card";
+import Slidebar from "./sidebar";
 
 // import Parentscontent from "./components/Parentscontent";
 const inter = Inter({ subsets: ["latin"] });
@@ -20,11 +21,12 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Navbar />
-      <Hero />
+      <Slidebar />
+      {/* <Navbar /> */}
+      {/* <Hero /> */}
       <Waitlist />
-      <Aboutus />
-      <Card/>
+      {/* <Aboutus /> */}
+     {/* <card/> */}
       {/* <Parentscontent/> */}
     </>
   );

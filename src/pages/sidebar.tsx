@@ -13,7 +13,7 @@ import {
   DrawerOverlay,
   useColorModeValue,
 } from "@chakra-ui/react";
-// import Aboutus from "./components/aboutus";
+import Aboutus from "./components/aboutus";
 
 import Link from "next/link";
 // Here we have used react-icons package for the icons
@@ -23,11 +23,11 @@ import {
   BsFillPaletteFill,
   BsHousesFill,
   BsPerson,
-  BsHospitalFill,
+  BsHospitalFill
 } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import { RiFlashlightFill } from "react-icons/ri";
-import Parent from "./components/Parentscontent";
+import Hero from "./components/hero";
 
 export default function Index() {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -90,14 +90,12 @@ export default function Index() {
             justifyContent="center"
             h="100%"
           ></Stack>
-          {/* insert */}
-          {/* <Hero />
-          <Aboutus /> */}
-          <Parent />
+     {/* insert */}
+    <Hero/>
+     <Aboutus/>
         </Box>
       </Box>
     </Box>
-
   );
 }
 

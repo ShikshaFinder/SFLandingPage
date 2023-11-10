@@ -33,9 +33,15 @@ const BlogTags = (props: Props) => {
     <HStack spacing={2} marginTop={marginTop}>
       {tags.map((tag) => {
         return (
-          <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
-            {tag}
-          </Tag>
+          <>
+            <meta
+              name="ShikshaFinder"
+              content="Choose Right to make your future bright,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,ShikshaFinder"
+            />
+            <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
+              {tag}
+            </Tag>
+          </>
         );
       })}
     </HStack>
