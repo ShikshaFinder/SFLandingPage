@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import Link from 'next/link';
 import {
   Box,
@@ -61,7 +61,7 @@ export default function Navbar() {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            ShikshaFinder
+            <Link href={"/home"}>ShikshaFinder</Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
