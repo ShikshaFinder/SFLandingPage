@@ -293,6 +293,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Skill classes & Online Platforms",
+    href:"./skillclass",
     children: [
       {
         label: "Skill Classes",
@@ -308,7 +309,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Solve My Doubts",
-    href: "https://launching-soon-shikshafinder.my.canva.site/",
+    href: "./chat",
   },
   {
     label: "For parents",
