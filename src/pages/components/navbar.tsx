@@ -300,9 +300,9 @@ const NAV_ITEMS: Array<NavItem> = [
         subLabel: "Learn what you Love",
         href: "/skillclass",
       },
-      {
+      { 
         label: "Online Platform",
-        subLabel: "Find out best",
+        subLabel: "Find Out The  Best!",
         href: "https://launching-soon-shikshafinder.my.canva.site/",
       },
     ],
