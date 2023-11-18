@@ -43,16 +43,19 @@ export default function CallToActionWithVideo() {
                 zIndex: -1,
               }}
             >
-             Shiksha Finder
+              Shiksha Finder
             </Text>
             <br />
             <link rel="stylesheet" href="/login" />
             <Text as={"span"} color={"blue.400"}>
-              Let's Explore!
+              इमानदार स्कूल की पहचान
             </Text>
           </Heading>
           <Text color={"black"}>
-              here at shiksha finder you can upload demo lecture of your schools and tutions so that students can come and understand the quality of education you are providing.
+            Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
+            schools and Education platform so that students can come and
+            Expore &nbsp;
+            <b>The Quality Of Education </b> You Are Providing.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -121,9 +124,7 @@ export default function CallToActionWithVideo() {
               height="315"
               src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
               title="YouTube video player"
-             
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            
             ></iframe>
           </Box>
         </Flex>
@@ -153,6 +154,7 @@ const Blob = (props: IconProps) => {
         d="M239.184 439.443c-55.13-5.419-110.241-21.365-151.074-58.767C42.307 338.722-7.478 282.729.938 221.217c8.433-61.644 78.896-91.048 126.871-130.712 34.337-28.388 70.198-51.348 112.004-66.78C282.34 8.024 325.382-3.369 370.518.904c54.019 5.115 112.774 10.886 150.881 49.482 39.916 40.427 49.421 100.753 53.385 157.402 4.13 59.015 11.255 128.44-30.444 170.44-41.383 41.683-111.6 19.106-169.213 30.663-46.68 9.364-88.56 35.21-135.943 30.551z"
         fill="currentColor"
       />
+     
     </Icon>
   );
 };
