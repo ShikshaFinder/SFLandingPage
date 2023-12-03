@@ -12,6 +12,7 @@ import {
   createIcon,
   IconProps,
   useColorModeValue,
+  AspectRatio,  
 } from "@chakra-ui/react";
 
 export default function CallToActionWithVideo() {
@@ -52,10 +53,11 @@ export default function CallToActionWithVideo() {
             </Text>
           </Heading>
           <Text color={"black"}>
-            Here at Shiksha Finder You can upload <b>Demo Lecture</b> of your
-            schools and Education platform so that students can come and
-            Expore &nbsp;
-            <b>The Quality Of Education </b> You Are Providing.
+            Here at shiksha finder you can watch &nbsp; <b>Demo lectures</b>&
+            facilities of any school, any coaching classes or any skill classes.
+            you can feel the online admission form of any platform.
+            <br />
+            <b>Admission is this simple!</b>
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -119,13 +121,15 @@ export default function CallToActionWithVideo() {
               top={"50%"}
               transform={"translateX(-50%) translateY(-50%)"}
             /> */}
-            <iframe
-              width="600"
-              height="315"
-              src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            ></iframe>
+            <AspectRatio ratio={16 / 9}>
+              <iframe
+                width="600"
+                height="400"
+                src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              ></iframe>
+            </AspectRatio>
           </Box>
         </Flex>
       </Stack>

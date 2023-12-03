@@ -61,7 +61,7 @@ export default function Navbar() {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            <Link href={"/home"}>ShikshaFinder</Link>
+            <Link href={"/"}>ShikshaFinder</Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -77,7 +77,7 @@ export default function Navbar() {
         >
           <Button
             as={Link}
-            href={"https://launching-soon-shikshafinder.my.canva.site/"}
+            href={"/signin"}
             passHref
             fontSize={"sm"}
             fontWeight={400}
@@ -87,7 +87,7 @@ export default function Navbar() {
           </Button>
           <Button
             as={Link}
-            href={"https://launching-soon-shikshafinder.my.canva.site/"}
+            href={"/signup"}
             passHref
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
@@ -287,7 +287,7 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Coaching classes",
         subLabel: "Let's get Started!",
-        href: "/Coaching",
+        href: "/coaching",
       },
     ],
   },
@@ -303,7 +303,7 @@ const NAV_ITEMS: Array<NavItem> = [
       { 
         label: "Online Platform",
         subLabel: "Find Out The  Best!",
-        href: "https://launching-soon-shikshafinder.my.canva.site/",
+        href: "/onlinepage",
       },
     ],
   },
