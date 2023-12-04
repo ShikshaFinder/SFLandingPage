@@ -1,20 +1,47 @@
 "use client";
-
+import { useRouter } from "next/router"; // Import the useRouter hook
+import supabase from "../../supabase";
 import {
   Flex,
   Box,
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
+  InputGroup,
+  HStack,
+  InputRightElement,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
-export default function SimpleCard() {
+export default function Login() {
+  const router = useRouter(); // Initialize the router
+
+  //   const [firstName, setFirstName] = useState("");
+  //   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const Signin = async () => {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      console.log(data);
+      router.push("/formstudent");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Flex
       minH={"100vh"}
@@ -24,9 +51,11 @@ export default function SimpleCard() {
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
+          <Heading fontSize={"4xl"} textAlign={"center"}>
+            Sign In
+          </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Text color={"blue.400"}>features</Text> ✌️
+            to enjoy all of our cool features ✌️
           </Text>
         </Stack>
         <Box
@@ -36,32 +65,47 @@ export default function SimpleCard() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl id="email">
+            <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" onChange={(e) => setEmail(e.target.value)} />
             </FormControl>
-            <FormControl id="password">
+            <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <InputGroup>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }
+                  >
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Text color={"blue.400"}>Forgot password?</Text>
-              </Stack>
+            <Stack spacing={10} pt={2}>
               <Button
+                onClick={Signin}
+                loadingText="Submitting"
+                size="lg"
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
                   bg: "blue.500",
                 }}
               >
-                Sign in
+                SignIn
               </Button>
+            </Stack>
+            <Stack pt={6}>
+              <Text align={"center"}>
+                Already a user? <Link color={"blue.400"}>Login</Link>
+              </Text>
             </Stack>
           </Stack>
         </Box>

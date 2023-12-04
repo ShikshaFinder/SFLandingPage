@@ -9,13 +9,15 @@ import {
   Heading,
   StackDivider,
   Button,
+  Icon,
   
 } from "@chakra-ui/react";
 import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
-import Cardd from "../components/card"
+import Cardd from "../components/card";
+import { MdOpenInBrowser } from "react-icons/md";
 
 import Link from "next/link";
-import React from 'react'
+import React from "react";
 
 function IntroSchool() {
   return (
@@ -55,9 +57,14 @@ function IntroSchool() {
         </Stack>{" "}
       </Link>
       <Card>
-        <CardHeader>
-          <Heading size="md">School Name</Heading>
-        </CardHeader>
+        <Stack spacing={4} direction="row" align="center">
+          <CardHeader>
+            <Heading size="md">School Name</Heading>
+          </CardHeader>
+          <Link href={"/"}>
+            <Icon as={MdOpenInBrowser} color={"blue"} />
+          </Link>
+        </Stack>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="3">
             <Box>
@@ -111,4 +118,4 @@ function IntroSchool() {
   );
 }
 
-export default IntroSchool
+export default IntroSchool;
