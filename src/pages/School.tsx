@@ -19,7 +19,7 @@ type UserType = {
   id: string;
   identities: Array<any>; // You might want to define a type for this array
   last_sign_in_at: string;
-  phone: string;
+  phone: any;
   role: string;
   updated_at: string;
 };

@@ -6,7 +6,6 @@ import {
   HStack,
   Text,
   useColorModeValue,
-  Button,
   Image,
   Skeleton,
   Box,
