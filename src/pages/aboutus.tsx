@@ -46,7 +46,10 @@ const HeroSection = () => {
               What's new
             </Box>
             <HStack spacing={1} alignItems="center" justifyContent="center">
-              <Text lineHeight={1}>See our recent updates</Text>
+              <Link href="/new">
+                {" "}
+                <Text lineHeight={1}>See our recent updates</Text>
+              </Link>
               <Icon as={GoChevronRight} w={4} h={4} />
             </HStack>
           </HStack>
@@ -129,8 +132,7 @@ const HeroSection = () => {
             h="100%"
             minW={{ base: "auto", md: "30rem" }}
             objectFit="cover"
-            src={`https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&q=80&
-            fm=jpg&crop=entropy&cs=tinysrgb&auto=format&fit=crop&w=334&q=80`}
+            src={`https://images.unsplash.com/photo-1564410267841-915d8e4d71ea?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
             rounded="md"
             fallback={<Skeleton />}
           />

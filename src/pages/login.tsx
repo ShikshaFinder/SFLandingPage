@@ -36,7 +36,7 @@ export default function Login() {
         password,
       });
       console.log(data);
-      router.push("/formstudent");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }

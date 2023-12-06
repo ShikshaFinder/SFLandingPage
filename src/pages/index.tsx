@@ -8,15 +8,20 @@ import Companyreview from "../components/companyreview";
 
 // import Parentscontent from "./components/Parentscontent";
 // const inter = Inter({ subsets: ["latin"] });
+import { useAuthContext } from "@/context";
+
 
 export default function Home() {
+  const { user } = useAuthContext();
   return (
     <>
+      <div>Current user : {user.email}</div>
+
       <Head>
         <title>ShikshaFinder</title>
         <meta
           name="ShikshaFinder"
-          content="Choose Right to make your future bright,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,ShikshaFinder"
+          content="Schools near me,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,ShikshaFinder,top 10 schools in Gujrat"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>

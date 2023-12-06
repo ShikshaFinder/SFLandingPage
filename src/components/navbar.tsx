@@ -77,7 +77,7 @@ export default function Navbar() {
         >
           <Button
             as={Link}
-            href={"/signin"}
+            href={"/login"}
             passHref
             fontSize={"sm"}
             fontWeight={400}
@@ -312,8 +312,8 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "./chat",
   },
   {
-    label: "For parents",
-    href: "/parent",
+    label: "Vote",
+    href: "/vote",
   },
 ];
 
