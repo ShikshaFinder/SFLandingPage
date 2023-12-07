@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
+import Bannerad from "../components/bannerad";
 
 type UserType = {
   app_metadata: {
@@ -48,6 +49,7 @@ export default function skillclass() {
   return (
     <div>
       <Link href={"/introschool"}>
+        <Bannerad />
         <Card /> <Card /> <Card /> <Card /> <Card /> <Card /> <Card />
       </Link>
     </div>
