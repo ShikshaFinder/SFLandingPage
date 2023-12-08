@@ -10,7 +10,6 @@ import {
   StackDivider,
   Button,
   Icon,
-  
 } from "@chakra-ui/react";
 import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
 import Cardd from "../components/card";
@@ -88,8 +87,22 @@ function IntroSchool() {
         </CardBody>
       </Card>
       <Stack direction="row">
-        <Cardd />
-        <Cardd />
+        <Link href={"/introschool"}>
+          <Cardd
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />{" "}
+          <Cardd
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />
+        </Link>
       </Stack>
       <Box
         position="fixed"

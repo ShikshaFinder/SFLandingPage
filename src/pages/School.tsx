@@ -48,10 +48,37 @@ export default function skillclass() {
 
   return (
     <div>
+      <Bannerad />
       <Link href={"/introschool"}>
-        <Bannerad />
-        <Card /> <Card /> <Card /> <Card /> <Card /> <Card /> <Card />
-      </Link>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
+      <Link href={"/introschool"}>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
+      <Link href={"/introschool"}>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
     </div>
   );
 }
