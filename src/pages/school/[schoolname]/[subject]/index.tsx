@@ -11,8 +11,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
-import Cardd from "../components/card";
-
+import Cardd from "../../../../components/card";
+import Link from "next/link"
 import React from "react";
 
 function IntroSchool() {
@@ -66,6 +66,24 @@ function IntroSchool() {
           </Stack>
         </CardBody>
       </Card>
+      <Stack direction="row">
+        <Link href={"../school/schoolname"}>
+          <Cardd
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />{" "}
+          <Cardd
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />
+        </Link>
+      </Stack>
       <Box
         position="fixed"
         bottom={0}
@@ -85,7 +103,6 @@ function IntroSchool() {
             Admission form
           </Button>
           <a href="tel:90000000">
-           
             <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
               Call us
             </Button>

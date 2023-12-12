@@ -1,10 +1,10 @@
-import Card from "../components/card";
+import Card from "../../components/card";
 import React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context";
-import supabase from "../../supabase";
-import Bannerad from "../components/bannerad";
+import supabase from "../../../supabase";
+import Bannerad from "../../components/bannerad";
 
 type UserType = {
   app_metadata: {
@@ -49,7 +49,7 @@ export default function skillclass() {
   return (
     <div>
       <Bannerad />
-      <Link href={"/introschool"}>
+      <Link href={"../school/schoolname"}>
         {" "}
         <Card
           name="Shree Swami"

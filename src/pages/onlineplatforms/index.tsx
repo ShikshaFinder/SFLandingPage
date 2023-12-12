@@ -1,10 +1,10 @@
-import Card from "../components/card";
+import Card from "../../components/card";
 import React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context";
-import supabase from "../../supabase";
-import Bannerad from "../components/bannerad";
+import supabase from "../../../supabase";
+import Bannerad from "../../components/bannerad";
 
 type UserType = {
   app_metadata: {
@@ -47,9 +47,10 @@ export default function skillclass() {
   }, []);
 
   return (
-    <>
-      <Link href={"/introschool"}>
-        <Bannerad />
+    <div>
+      <Bannerad />
+      <Link href={"../onlineplatforms/nameofonlineplatform"}>
+        {" "}
         <Card
           name="Shree Swami"
           imgsrc={
@@ -57,14 +58,27 @@ export default function skillclass() {
           }
           rating={"3.4"}
         />{" "}
+      </Link>{" "}
+      <Link href={"../onlineplatforms/nameofonlineplatform"}>
+        {" "}
         <Card
           name="Shree Swami"
           imgsrc={
             "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           rating={"3.4"}
-        />
-      </Link>
-    </>
+        />{" "}
+      </Link>{" "}
+      <Link href={"../onlineplatforms/nameofonlineplatform"}>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
+    </div>
   );
 }

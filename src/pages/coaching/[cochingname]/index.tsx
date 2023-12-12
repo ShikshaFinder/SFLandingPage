@@ -12,7 +12,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
-import Cardd from "../components/card";
+import Cardd from "../../../components/card";
 import { MdOpenInBrowser } from "react-icons/md";
 
 import Link from "next/link";

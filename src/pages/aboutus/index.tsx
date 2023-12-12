@@ -45,7 +45,7 @@ const HeroSection = () => {
               What's new
             </Box>
             <HStack spacing={1} alignItems="center" justifyContent="center">
-              <Link href="/new">
+              <Link href="/aboutus/new">
                 {" "}
                 <Text lineHeight={1}>See our recent updates</Text>
               </Link>

@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   AspectRatio,  
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function CallToActionWithVideo() {
   return (
@@ -63,26 +64,37 @@ export default function CallToActionWithVideo() {
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
           >
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              colorScheme={"blue"}
-              bg={"blue.400"}
-              _hover={{ bg: "blue.500" }}
+            <Link href={"/signup"}>
+              {" "}
+              <Button
+                rounded={"full"}
+                size={"lg"}
+                fontWeight={"normal"}
+                px={6}
+                colorScheme={"blue"}
+                bg={"blue.400"}
+                _hover={{ bg: "blue.500" }}
+              >
+                Get started
+              </Button>
+            </Link>
+
+            <a
+              href="https://platform.shikshafinder.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Get started
-            </Button>
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"black.300"} />}
-            >
-              How It Works
-            </Button>
+              {" "}
+              <Button
+                rounded={"full"}
+                size={"lg"}
+                fontWeight={"normal"}
+                px={6}
+                leftIcon={<PlayIcon h={4} w={4} color={"black.300"} />}
+              >
+                Register As A Educational Platform
+              </Button>
+            </a>
           </Stack>
         </Stack>
         <Flex

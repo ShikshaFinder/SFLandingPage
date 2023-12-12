@@ -123,7 +123,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Box
                 as={Link}
-                href={navItem.href ?? "/School"}
+                href={navItem.href ?? "../school"}
                 passHref
                 p={2}
                 fontSize={"sm"}
@@ -222,7 +222,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
       <Box
         py={2}
         as={Link}
-        href={href ?? "/School"}
+        href={href ?? "/school"}
         passHref
         justifyContent="space-between"
         alignItems="center"
@@ -282,28 +282,28 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Schools",
         subLabel: "Choose the right school For the best future of yours",
-        href: "/School",
+        href: "../school",
       },
       {
         label: "Coaching classes",
         subLabel: "Let's get Started!",
-        href: "/coaching",
+        href: "../coaching",
       },
     ],
   },
   {
     label: "Skill classes & Online Platforms",
-    href:"./skillclass",
+    href:"../skillclass",
     children: [
       {
         label: "Skill Classes",
         subLabel: "Learn what you Love",
-        href: "/skillclass",
+        href: "../skillclass",
       },
       { 
         label: "Online Platform",
         subLabel: "Find Out The  Best!",
-        href: "/onlinepage",
+        href: "../onlineplatforms",
       },
     ],
   },

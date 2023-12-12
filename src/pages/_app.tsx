@@ -7,6 +7,7 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
@@ -27,6 +28,7 @@ export default function App({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
+      <SpeedInsights />
       <ChakraProvider>
         <AuthContextProvider>
           <div className={inter.className}>
