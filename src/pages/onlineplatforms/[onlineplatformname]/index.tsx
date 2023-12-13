@@ -29,6 +29,7 @@ function IntroSchool() {
         />
       </AspectRatio>
       <br />{" "}
+      
       <Link href={"/sub"}>
         <Stack spacing={4} direction="row" align="center">
           {" "}
@@ -60,6 +61,7 @@ function IntroSchool() {
           <CardHeader>
             <Heading size="md">School Name</Heading>
           </CardHeader>
+          {/* link of school */}
           <Link href={"/"}>
             <Icon as={MdOpenInBrowser} color={"blue"} />
           </Link>
