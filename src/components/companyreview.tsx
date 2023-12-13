@@ -172,11 +172,11 @@ export default function Aboutus() {
           fontWeight={"medium"}
           color={useColorModeValue("gray.500", "gray.400")}
         >
-          See why over{" "}
+          Shiksha Finder{" "}
           <chakra.strong color={useColorModeValue("gray.700", "gray.50")}>
-            150,000+
+            Is a Platform for
           </chakra.strong>{" "}
-          influencers use EEZY to manage their social media content!
+          bridging the gap between Educational Platform and students by taking the quality of education at our first priority.
         </chakra.h2>
       </Box>
       <SimpleGrid
@@ -190,7 +190,6 @@ export default function Aboutus() {
           <TestimonialCard key={index} {...cardInfo} index={index} />
         ))}
       </SimpleGrid>
-  
     </Flex>
   );
 }

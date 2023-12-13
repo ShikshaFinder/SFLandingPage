@@ -8,6 +8,7 @@ import {
   HStack,
   Radio,
   Heading,
+  Button,
 } from "@chakra-ui/react";
 
 function vote() {
@@ -35,7 +36,8 @@ function vote() {
       <FormControl isRequired>
         <FormLabel>Board</FormLabel>
         <Input placeholder="Board" />
-      </FormControl><br />
+      </FormControl>
+      <br />
       <FormControl as="fieldset">
         <FormLabel as="legend">Medium</FormLabel>
         <RadioGroup defaultValue="Itachi">
@@ -45,8 +47,11 @@ function vote() {
             <Radio value="Itachi">Native</Radio>
           </HStack>
         </RadioGroup>
-        
       </FormControl>
+      <br />
+      <Button colorScheme="teal" size="md">
+        Button
+      </Button>
     </>
   );
 }

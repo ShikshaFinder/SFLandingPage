@@ -1,6 +1,4 @@
 "use client";
-import { collection, addDoc } from "firebase/firestore";
-// import DB from "../../../firebase";
 import Head from "next/head";
 
 import {
@@ -15,18 +13,9 @@ import {
   createIcon,
 } from "@chakra-ui/react";
 import { useState } from "react";
-// const [newMail, setNewMail] = useState({ mail: "" });
 
 export default function CardWithIllustration() {
-  // const addMail = async (e) => {
-  //   e.preventDefault();
-  //   if (newMail.mail !== "") {
-  //     // setNewMail([...])
-  //     await addDoc(collection(DB, "items"), {
-  //       hello: "world",
-  //     });
-  //   }
-  // };
+ 
 
   return (
     <Flex
@@ -63,12 +52,7 @@ export default function CardWithIllustration() {
         </Stack>
         <Stack spacing={4} direction={{ base: "column", md: "row" }} w={"full"}>
           <Input
-            // value={newMail.mail}
-            // onChange={(e) =>
-            //   setNewMail({
-            //     ...newMail,
-            //   })
-            // }
+       
             type={"text"}
             placeholder={"add your mail here to get latest updates"}
             color={useColorModeValue("gray.800", "gray.200")}
@@ -81,7 +65,7 @@ export default function CardWithIllustration() {
             }}
           />
           <Button
-            // onClick={addMail}
+        
             bg={"blue.400"}
             rounded={"full"}
             color={"white"}

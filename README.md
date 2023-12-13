@@ -1,1 +1,1 @@
-havitonline
+Shiksha Finder is a platform for students and revolution in education industery
