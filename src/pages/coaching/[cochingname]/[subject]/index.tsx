@@ -9,18 +9,30 @@ import {
   Heading,
   StackDivider,
   Button,
-  Icon,
 } from "@chakra-ui/react";
 import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
-import Cardd from "../../../components/card";
-import { MdOpenInBrowser } from "react-icons/md";
-
+import Cardd from "../../../../components/card";
 import Link from "next/link";
 import React from "react";
 
 function IntroSchool() {
   return (
     <>
+      <Stack spacing={4} direction="row" align="center">
+        <Button colorScheme="teal" size="xs">
+          maths
+        </Button>
+        <Button colorScheme="teal" size="xs">
+          science
+        </Button>
+        <Button colorScheme="teal" size="xs">
+          english
+        </Button>
+        <Button colorScheme="teal" size="xs">
+          social science
+        </Button>
+      </Stack>{" "}
+      <br />
       <AspectRatio maxW="560px" ratio={1.75}>
         <iframe
           title="hihello"
@@ -28,55 +40,23 @@ function IntroSchool() {
           allowFullScreen
         />
       </AspectRatio>
-      <br />{" "}
-      <Link href={"../coaching/cochingname/subject"}>
-        <Stack spacing={4} direction="row" align="center">
-          {" "}
-          <Button colorScheme="teal" size="xs">
-            Std 6
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 7
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 8
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 9
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 10
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 11
-          </Button>{" "}
-          <Button colorScheme="teal" size="xs">
-            Std 12
-          </Button>
-        </Stack>{" "}
-      </Link>
       <Card>
-        <Stack spacing={4} direction="row" align="center">
-          <CardHeader>
-            <Heading size="md">School Name</Heading>
-          </CardHeader>
-          <Link href={"/"}>
-            <Icon as={MdOpenInBrowser} color={"blue"} />
-          </Link>
-        </Stack>
+        <CardHeader>
+          <Heading size="md">Teacher Name</Heading>
+        </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="3">
             <Box>
               <Heading size="xs" textTransform="uppercase">
-                Location
+                Experience & Expertice
               </Heading>
               <Text pt="2" fontSize="sm">
-                Check out the overview of your clients.
+                12 to 13 years ....
               </Text>
             </Box>
             <Box>
               <Heading size="xs" textTransform="uppercase">
-                Information of school
+                more about teacher or extracurricular activities
               </Heading>
               <Text pt="2" fontSize="sm">
                 ye school bhot badhiya hain mujhe ye school bhot pasand hain
@@ -87,7 +67,7 @@ function IntroSchool() {
         </CardBody>
       </Card>
       <Stack direction="row">
-        <Link href={"/introschool"}>
+        <Link href={"../school/schoolname"}>
           <Cardd
             name="Shree Swami"
             imgsrc={
@@ -120,11 +100,13 @@ function IntroSchool() {
             colorScheme="pink"
             variant="solid"
           >
-            Admissoin form
+            Admission form
           </Button>
-          <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
-            Call us
-          </Button>
+          <a href="tel:90000000">
+            <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
+              Call us
+            </Button>
+          </a>
         </Stack>
       </Box>
     </>

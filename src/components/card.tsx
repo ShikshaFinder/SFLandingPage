@@ -6,7 +6,6 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { PropsWithChildren } from "react";
 import { Badge } from "@chakra-ui/react";
 
 const Index = ({
