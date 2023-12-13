@@ -1,7 +1,6 @@
 import Head from "next/head";
 // import { Inter } from "next/font/google";
 import Hero from "../components/hero";
-import Waitlist from "../components/Waitlist";
 import Footer from "../components/footer";
 import { NextSeo } from "next-seo";
 
@@ -46,7 +45,7 @@ export default function Home() {
           description: "  इमानदार स्कूल की पहचान",
           images: [
             {
-              url: "https://images.pexels.com/photos/764681/pexels-photo-764681.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              url: "/sfv1.png",
               alt: "Shiksha Finder == happy students",
             },
           ],
@@ -62,7 +61,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Hero />
-      <Waitlist />
+     
       <Companyreview />
       <Footer />
     </>
