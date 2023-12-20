@@ -7,7 +7,7 @@ export default function ImageInputButton() {
         type="file"
         accept="image/*"
         onChange={(event) => {
-          console.log("image uploaded");
+          console.log("imae uploaded");
         }}
       />
     </Button>

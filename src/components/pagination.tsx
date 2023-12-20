@@ -6,6 +6,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+
+import { useRouter } from "next/router";
+
 const PaginationContainer = () => {
   return (
     <Container
@@ -35,9 +38,9 @@ const Pagination = () => {
       <PaginationButton borderTopLeftRadius="md" borderBottomLeftRadius="md">
         Previous
       </PaginationButton>
-      <PaginationButton>1</PaginationButton>
+      <PaginationButton isActive>1</PaginationButton>
       <PaginationButton>2</PaginationButton>
-      <PaginationButton isActive>3</PaginationButton>
+      <PaginationButton >3</PaginationButton>
       <PaginationButton>4</PaginationButton>
       <PaginationButton>5</PaginationButton>
       <PaginationButton borderTopRightRadius="md" borderBottomRightRadius="md">

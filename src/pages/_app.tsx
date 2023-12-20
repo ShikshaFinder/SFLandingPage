@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
+import Script from "next/script";
+
 import { type AppProps } from "next/app";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
@@ -24,19 +26,30 @@ export default function App({
   );
 
   return (
-    <SessionContextProvider
-      supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
-    >
-      <SpeedInsights />
-      <ChakraProvider>
-        <AuthContextProvider>
-          <div className={inter.className}>
-            <Navbar />
-            <Component {...pageProps} />
-          </div>
-        </AuthContextProvider>
-      </ChakraProvider>
-    </SessionContextProvider>
+    <>
+      <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
+      <noscript>
+      
+        <img
+          src="https://queue.simpleanalyticscdn.com/noscript.gif"
+          alt=""
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </noscript>
+      <SessionContextProvider
+        supabaseClient={supabaseClient}
+        initialSession={pageProps.initialSession}
+      >
+        <SpeedInsights />
+        <ChakraProvider>
+          <AuthContextProvider>
+            <div className={inter.className}>
+              <Navbar />
+              <Component {...pageProps} />
+            </div>
+          </AuthContextProvider>
+        </ChakraProvider>
+      </SessionContextProvider>
+    </>
   );
 }
