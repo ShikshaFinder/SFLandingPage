@@ -51,7 +51,7 @@ export default function skillclass() {
     <>
       <Layout>
         <Bannerad />
-        <Link href={"../school/schoolname"}>
+        <Link href={"../school/2/schoolname"}>
           {" "}
           <Card
             name="Shree Swami"
@@ -61,7 +61,7 @@ export default function skillclass() {
             rating={"3.4"}
           />{" "}
         </Link>{" "}
-        <Link href={"../school/schoolname"}>
+        <Link href={"../school/2/schoolname"}>
           {" "}
           <Card
             name="Shree Swami"
@@ -71,7 +71,7 @@ export default function skillclass() {
             rating={"3.4"}
           />{" "}
         </Link>{" "}
-        <Link href={"../school/schoolname"}>
+        <Link href={"../school/2/schoolname"}>
           {" "}
           <Card
             name="Shree Swami"
