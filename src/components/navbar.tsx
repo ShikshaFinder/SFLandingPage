@@ -306,12 +306,12 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: "My profile",
-    href: "./profile",
+    label: "solve my doubts",
+    href: "./chat",
   },
   {
-    label: "Vote",
-    href: "/vote",
+    label: "profile",
+    href: "/profile",
   },
 ];
 
