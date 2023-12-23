@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context";
 import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
-import Layout from "./Layout";
+import Pagination from "../../components/pagination"
 
 type UserType = {
   app_metadata: {
@@ -49,40 +49,38 @@ export default function skillclass() {
 
   return (
     <>
-      <Layout>
-        <Bannerad />
-        <Link href={"../school/schoolname"}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-        <Link href={"../school/schoolname"}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-        <Link href={"../school/schoolname"}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
+      <Bannerad />
+      <Link href={"../school/schoolname"}>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
+      <Link href={"../school/schoolname"}>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
+      <Link href={"../school/schoolname"}>
+        {" "}
+        <Card
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>{" "}
       
-      </Layout>
     </>
   );
 }

@@ -306,8 +306,8 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: "Solve My Doubts",
-    href: "./chat",
+    label: "My profile",
+    href: "./profile",
   },
   {
     label: "Vote",

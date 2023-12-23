@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
+import Link from "next/link";
 import {
   Flex,
   Box,
@@ -15,7 +16,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
+ 
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -126,7 +127,13 @@ export default function SignupCard() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user?{" "}
+                <Link
+                  href={"/login"}
+                  style={{ color: "blue", textDecoration: "underline" }}
+                >
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Stack>

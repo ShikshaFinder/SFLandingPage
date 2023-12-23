@@ -13,7 +13,7 @@ const Index = ({
   rating,
   imgsrc,
 }: {
-  name: string;
+  name?: string;
   rating?: any;
   imgsrc: any;
 }) => {
