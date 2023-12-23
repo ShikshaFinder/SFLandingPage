@@ -20,9 +20,9 @@ const milestones = [
   {
     id: 1,
     categories: ["Artificial Intelligence"],
-    title: "ShikshaFinder ChatBot",
+    title: "ShikshaFinder Certifications",
     icon: FaRegNewspaper,
-    description: `We have created a whole new chatbot trained on NCERT and we are using GPT4-turbo api to answer your complex queries`,
+    description: `With shiksha finder find out which skills are loved by you and in which thing you find your passion is hidden as well as you understands and create well with it`,
     date: "MARCH 22, 2024",
   },
   {
@@ -30,7 +30,7 @@ const milestones = [
     categories: ["User friendly"],
     title: "Shiksha Coin ",
     icon: BsGithub,
-    description: `Shiksha coin and Shiksha++ coins are there to help you for more usage of ShikshaFinder ChatBot`,
+    description: `Shiksha coins are there to help you for more usage of ShikshaFinder admission form and certifications by shiksha finder`,
     date: "July 30, 2022",
   },
 ];
