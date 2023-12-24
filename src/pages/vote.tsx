@@ -28,7 +28,7 @@ function Vote() {
  
 const onSubmit = async (data: any) => {
   const { error } = await supabase
-    .from("vote") // replace 'votes' with the name of your table
+    .from("votes") // replace 'votes' with the name of your table
     .insert([{ ...data }]);
 
   if (error) {
@@ -82,7 +82,7 @@ const onSubmit = async (data: any) => {
               <FormLabel>Quality of Education</FormLabel>
               <NumberInput max={10} min={0}>
                 <NumberInputField
-                  {...register("qualityOfEducation", {
+                  {...register("qualityofeducation", {
                     required: true,
                   })}
                 />
@@ -97,7 +97,7 @@ const onSubmit = async (data: any) => {
               <FormLabel>Facility Provided</FormLabel>
               <NumberInput max={10} min={0}>
                 <NumberInputField
-                  {...register("facilityProvided", {
+                  {...register("facilityprovided", {
                     required: true,
                   })}
                 />
@@ -127,7 +127,7 @@ const onSubmit = async (data: any) => {
               <FormLabel>Extra Curricular Activity</FormLabel>
               <NumberInput max={10} min={0}>
                 <NumberInputField
-                  {...register("extraCurricularActivity", {
+                  {...register("extracurricular", {
                     required: true,
                   })}
                 />
