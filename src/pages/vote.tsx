@@ -1,5 +1,5 @@
-"use client";
-import { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import {
   FormControl,
   FormLabel,
@@ -13,12 +13,54 @@ import {
   CardBody,
   Stack,
   Card,
+  useToast,
 } from "@chakra-ui/react";
-import { useToast } from "@chakra-ui/react";
+import { useState,useEffect } from "react";
+import supabase from "../../supabase";
 
+function Vote() {
+  const toast = useToast();
+  const form = useForm();
+ const [hasVoted, setHasVoted] = useState(false);
 
-function vote() {
-   const toast = useToast();
+  const { register, handleSubmit } = form;
+
+ 
+const onSubmit = async (data: any) => {
+  const { error } = await supabase
+    .from("vote") // replace 'votes' with the name of your table
+    .insert([{ ...data }]);
+
+  if (error) {
+    console.error("Error submitting vote:", error);
+  } else {
+    handleSubmitt();
+  }
+};
+   useEffect(() => {
+     const voteStatus = localStorage.getItem("hasVoted");
+     if (voteStatus) {
+       setHasVoted(true);
+     }
+   }, []);
+
+  const handleSubmitt = () => {
+        localStorage.setItem("hasVoted", "true");
+            setHasVoted(true);
+
+    toast({
+      title: "Vote submitted!",
+      description: "Thank you for your vote",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+  
+  if (hasVoted) {
+    return <p>Thank you for your vote!</p>;
+  }
+
   return (
     <>
       <Stack spacing="4">
@@ -33,47 +75,62 @@ function vote() {
               Help other students by providing
               <br />
               <chakra.span color="teal">
-                {" "}
                 Honest vote to your learning platform 🫡
               </chakra.span>
-            </chakra.h3>{" "}
+            </chakra.h3>
             <FormControl>
-              <FormLabel>Qulity of Education</FormLabel>
+              <FormLabel>Quality of Education</FormLabel>
               <NumberInput max={10} min={0}>
-                <NumberInputField />
+                <NumberInputField
+                  {...register("qualityOfEducation", {
+                    required: true,
+                  })}
+                />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
             </FormControl>
-            <br />{" "}
-            <FormControl>
-              <FormLabel>Facilty Provided</FormLabel>
-              <NumberInput max={10} min={0}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </FormControl>{" "}
             <br />
             <FormControl>
-              <FormLabel>Managment</FormLabel>
+              <FormLabel>Facility Provided</FormLabel>
               <NumberInput max={10} min={0}>
-                <NumberInputField />
+                <NumberInputField
+                  {...register("facilityProvided", {
+                    required: true,
+                  })}
+                />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
             </FormControl>
-            <br />{" "}
+            <br />
             <FormControl>
-              <FormLabel>Extra curricular activity</FormLabel>
+              <FormLabel>Management</FormLabel>
               <NumberInput max={10} min={0}>
-                <NumberInputField />
+                <NumberInputField
+                  {...register("management", {
+                    required: true,
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+            <br />
+            <FormControl>
+              <FormLabel>Extra Curricular Activity</FormLabel>
+              <NumberInput max={10} min={0}>
+                <NumberInputField
+                  {...register("extraCurricularActivity", {
+                    required: true,
+                  })}
+                />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
@@ -85,15 +142,7 @@ function vote() {
               w="7rem"
               colorScheme="green"
               variant="solid"
-              onClick={() => {
-                toast({
-                  title: "Vote submitted!",
-                  description: "Thank you for your vote",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                });
-              }}
+              onClick={handleSubmit(onSubmit)}
             >
               Submit
             </Button>
@@ -103,6 +152,5 @@ function vote() {
     </>
   );
 }
-import React from "react";
 
-export default vote;
+export default Vote;
