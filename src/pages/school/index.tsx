@@ -6,6 +6,7 @@ import { useAuthContext } from "@/context";
 import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
+import { useRouter } from "next/router";
 
 type UserType = {
   app_metadata: {
@@ -28,6 +29,10 @@ type UserType = {
 export default function skillclass() {
   const [coverImages, setCoverImages] = useState<any[]>([]);
   const { user } = useAuthContext() as { user: UserType };
+const router=useRouter();
+  const pathSegments = router.asPath.split("/");
+
+  const lastSegment = pathSegments[pathSegments.length - 1];
 
   const fetchImages = async () => {
     const { data, error } = await supabase.storage
@@ -51,7 +56,7 @@ export default function skillclass() {
     <>
       <Layout>
         <Bannerad />
-        <Link href={"../school/2/schoolname"}>
+        <Link href={`../school/1/schoolname`}>
           {" "}
           <Card
             name="Shree Swami"
@@ -61,7 +66,7 @@ export default function skillclass() {
             rating={"3.4"}
           />{" "}
         </Link>{" "}
-        <Link href={"../school/2/schoolname"}>
+        <Link href={`../school/1/schoolname`}>
           {" "}
           <Card
             name="Shree Swami"
@@ -71,7 +76,7 @@ export default function skillclass() {
             rating={"3.4"}
           />{" "}
         </Link>{" "}
-        <Link href={"../school/2/schoolname"}>
+        <Link href={`../school/1/schoolname`}>
           {" "}
           <Card
             name="Shree Swami"
