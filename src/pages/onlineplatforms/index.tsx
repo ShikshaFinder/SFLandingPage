@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context";
 import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
+import Layout from "./[page]/Layout";
 
 type UserType = {
   app_metadata: {
@@ -28,6 +29,7 @@ export default function skillclass() {
   const [coverImages, setCoverImages] = useState<any[]>([]);
   const { user } = useAuthContext() as { user: UserType };
 
+
   const fetchImages = async () => {
     const { data, error } = await supabase.storage
       .from("uploads")
@@ -47,38 +49,40 @@ export default function skillclass() {
   }, []);
 
   return (
-    <div>
-      <Bannerad />
-      <Link href={"../onlineplatforms/nameofonlineplatform"}>
-        {" "}
-        <Card
-          name="Shree Swami"
-          imgsrc={
-            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
-          rating={"3.4"}
-        />{" "}
-      </Link>{" "}
-      <Link href={"../onlineplatforms/nameofonlineplatform"}>
-        {" "}
-        <Card
-          name="Shree Swami"
-          imgsrc={
-            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
-          rating={"3.4"}
-        />{" "}
-      </Link>{" "}
-      <Link href={"../onlineplatforms/nameofonlineplatform"}>
-        {" "}
-        <Card
-          name="Shree Swami"
-          imgsrc={
-            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
-          rating={"3.4"}
-        />{" "}
-      </Link>{" "}
-    </div>
+    <>
+      <Layout>
+        <Bannerad />
+        <Link href={`../coaching/1/Coachingname`}>
+          {" "}
+          <Card
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />{" "}
+        </Link>{" "}
+        <Link href={`../coaching/1/schoolname`}>
+          {" "}
+          <Card
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />{" "}
+        </Link>{" "}
+        <Link href={`../coaching/1/schoolname`}>
+          {" "}
+          <Card
+            name="Shree Swami"
+            imgsrc={
+              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            rating={"3.4"}
+          />{" "}
+        </Link>{" "}
+      </Layout>
+    </>
   );
 }

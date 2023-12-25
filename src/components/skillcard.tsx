@@ -2,15 +2,11 @@ import {
   chakra,
   Box,
   Stack,
-  Link,
   HStack,
-  Text,
   Container,
-  Icon,
   Avatar,
   Tooltip,
-  StackProps,
-  Divider,
+ 
   useColorModeValue
 } from '@chakra-ui/react';
 

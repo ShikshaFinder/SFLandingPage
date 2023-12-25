@@ -11,14 +11,21 @@ import {
   Button,
   Icon,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+
 import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
-import Cardd from "../../../components/card";
+import Cardd from "../../../../components/card";
 import { MdOpenInBrowser } from "react-icons/md";
 
 import Link from "next/link";
 import React from "react";
 
 function IntroSchool() {
+  const router = useRouter();
+  const pathSegments = router.asPath.split("/");
+
+  const lastSegment = pathSegments[pathSegments.length - 2];
+
   return (
     <>
       <AspectRatio maxW="560px" ratio={1.75}>
@@ -29,8 +36,7 @@ function IntroSchool() {
         />
       </AspectRatio>
       <br />{" "}
-      
-      <Link href={"/sub"}>
+      <Link href={`../${lastSegment}/schoolname/subject`}>
         <Stack spacing={4} direction="row" align="center">
           {" "}
           <Button colorScheme="teal" size="xs">
@@ -61,7 +67,6 @@ function IntroSchool() {
           <CardHeader>
             <Heading size="md">School Name</Heading>
           </CardHeader>
-          {/* link of school */}
           <Link href={"/"}>
             <Icon as={MdOpenInBrowser} color={"blue"} />
           </Link>
@@ -89,7 +94,7 @@ function IntroSchool() {
         </CardBody>
       </Card>
       <Stack direction="row">
-        <Link href={"/introschool"}>
+        <Link href={`../school/2/schoolname`}>
           <Cardd
             name="Shree Swami"
             imgsrc={
@@ -97,6 +102,10 @@ function IntroSchool() {
             }
             rating={"3.4"}
           />{" "}
+        </Link>
+
+        <Link href={`../school/2/schoolname`}>
+          {" "}
           <Cardd
             name="Shree Swami"
             imgsrc={
@@ -122,7 +131,7 @@ function IntroSchool() {
             colorScheme="pink"
             variant="solid"
           >
-            Admissoin form
+            Admission form{" "}
           </Button>
           <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
             Call us
