@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div>
       <main>{children}</main>
       <footer>
-        <Pagination mainSlug="coaching" />
+        <Pagination mainSlug="onlineplatforms" />
       </footer>
     </div>
   );

@@ -94,7 +94,7 @@ function IntroSchool() {
         </CardBody>
       </Card>
       <Stack direction="row">
-        <Link href={`../school/2/schoolname`}>
+        <Link href={`../onlineplatforms`}>
           <Cardd
             name="Shree Swami"
             imgsrc={
@@ -104,7 +104,7 @@ function IntroSchool() {
           />{" "}
         </Link>
 
-        <Link href={`../school/2/schoolname`}>
+        <Link href={`../onlineplatforms`}>
           {" "}
           <Cardd
             name="Shree Swami"
