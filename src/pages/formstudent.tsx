@@ -15,6 +15,8 @@ import {
 } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
+import { useForm } from "react-hook-form";
+
 
 type ChildDataType = {
   State: string;
@@ -46,64 +48,34 @@ type UserType = {
 function Vote() {
   const toast = useToast();
   const { user } = useAuthContext() as { user: UserType };
-
-  let [FullData, setFullData] = useState<ChildDataType>({
-    State: "",
-    District: "",
-    subDistrict: "",
-    Standard: "",
-    Board: "",
-  });
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    console.log(value);
-
-    setFullData((prevvalue) => {
-      return {
-        ...prevvalue,
-        [name]: value,
-      };
-    });
-  };
-
-  useEffect(() => {
-    User();
-  }, []);
-
+  const form = useForm();
   async function User() {
     const { data } = await supabase.auth.getUser();
     console.log(data);
   }
+  const { register, handleSubmit } = form;
 
-  const submitChildData = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("Student")
-        .insert([
-          {
-            State: FullData?.State ?? "",
-            District: FullData?.District ?? "",
-            subDistrict: FullData?.subDistrict ?? "",
-            Standard: FullData?.Standard ?? "",
-            Board: FullData?.Board ?? "",
-          },
-        ])
-        .select();
-
-      console.log("data inserted successfully");
-      console.log(data, error);
-    } catch (error) {
-      console.log("error : ", error);
-    }
+  const handleSubmitt = () => {
+  
+    toast({
+      title: "Vote submitted!",
+      description: "Thank you for your vote",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
+ 
+const onSubmit = async (data: any) => {
+  const { error } = await supabase
+    .from("Student") 
+    .insert([{ ...data }]);
+  if (error) {
+    console.error("Error submitting vote:", error);
+  } else {
+    handleSubmitt();
+  }
+};
 
   return (
     <>
@@ -117,8 +89,9 @@ function Vote() {
             <FormControl isRequired>
               <FormLabel>State</FormLabel>
               <Input
-                value={FullData.State}
-                onChange={handleChange}
+                {...register("State", {
+                  required: true,
+                })}
                 name="State"
                 placeholder="State"
               />
@@ -127,8 +100,7 @@ function Vote() {
             <FormControl isRequired>
               <FormLabel>District/city</FormLabel>
               <Input
-                value={FullData.District}
-                onChange={handleChange}
+                {...register("District", { required: true })}
                 name="District"
                 placeholder="District/city"
               />
@@ -137,8 +109,7 @@ function Vote() {
             <FormControl isRequired>
               <FormLabel> Sub-District</FormLabel>
               <Input
-                value={FullData.subDistrict}
-                onChange={handleChange}
+                {...register("subDistrict", { required: true })}
                 name="subDistrict"
                 placeholder="If its main district than just put City name here also"
               />
@@ -147,8 +118,7 @@ function Vote() {
             <FormControl isRequired>
               <FormLabel>Standard </FormLabel>
               <Input
-                value={FullData.Standard}
-                onChange={handleChange}
+                {...register("Standard", { required: true })}
                 name="Standard"
                 placeholder="Standard/if more than 10 than write stream"
               />
@@ -157,8 +127,7 @@ function Vote() {
             <FormControl isRequired>
               <FormLabel>Board</FormLabel>
               <Input
-                value={FullData.Board}
-                onChange={handleChange}
+                {...register("Board", { required: true })}
                 name="Board"
                 placeholder="Board"
               />
@@ -178,27 +147,7 @@ function Vote() {
             <Button
               colorScheme="teal"
               size="md"
-              onClick={() => {
-                const examplePromise = new Promise((resolve, reject) => {
-                  setTimeout(() => resolve(200), 5000);
-                });
-                submitChildData();
-
-                toast.promise(examplePromise, {
-                  success: {
-                    title: "Detail Submitted",
-                    description: "Enjoy Learning🥳",
-                  },
-                  error: {
-                    title: "Promise rejected",
-                    description: "Something wrong",
-                  },
-                  loading: {
-                    title: "Promise pending",
-                    description: "Please wait",
-                  },
-                });
-              }}
+              onClick={handleSubmit(onSubmit)}
             >
               Submit
             </Button>
