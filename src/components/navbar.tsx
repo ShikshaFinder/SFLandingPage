@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+import Link from "next/link";
 import {
   Box,
   Flex,
@@ -291,14 +291,14 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Skill classes & Online Platforms",
-    href:"../skillclass",
+    href: "../skillclass",
     children: [
       {
         label: "Skill Classes",
         subLabel: "Learn what you Love",
         href: "../skillclass",
       },
-      { 
+      {
         label: "Online Platform",
         subLabel: "Find Out The  Best!",
         href: "../onlineplatforms",
@@ -314,6 +314,4 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/profile",
   },
 ];
-
-// export default Navbar;
 
