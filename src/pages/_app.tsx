@@ -10,7 +10,7 @@ import AuthContextProvider from "@/context";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
-const supabaseUrl = "https://wexrtlzodmpxquqvjxlo.supabase.co";
+const supabaseUrl = "https://qgkjakomwapzuhvnrvgr.supabase.co";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY ?? "";
 
 export default function App({
