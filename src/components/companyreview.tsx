@@ -37,7 +37,7 @@ const testimonials = [
       "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
   },
   {
-    name: "Ryan International School, Delhi",
+    name: "Shree Swaminarayan Gurukul ,Sardar Nagar Bhavnagar",
     role: "Principal",
     content:
       "I'm impressed with Shiksha Finder's ability to streamline the school selection process. It's an invaluable resource for students and parents alike.",
