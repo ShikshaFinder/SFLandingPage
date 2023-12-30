@@ -53,7 +53,7 @@ export default function CallToActionWithVideo() {
               इमानदार स्कूल की पहचान
             </Text>
           </Heading>
-          <Text color={"black"}>
+          <Text >
             Here at shiksha finder you can watch &nbsp; <b>Demo lectures</b>&
             facilities of any school, any coaching classes or any skill classes.
             you can feel the online admission form of any platform.
@@ -104,8 +104,8 @@ export default function CallToActionWithVideo() {
           w={"full"}
         >
           <Blob
-            w={"150%"}
-            h={"150%"}
+            w={"100%"}
+            h={"100%"}
             position={"absolute"}
             top={"-20%"}
             left={0}

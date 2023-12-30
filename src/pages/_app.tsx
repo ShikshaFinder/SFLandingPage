@@ -1,4 +1,8 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  extendTheme,
+  ThemeConfig,
+} from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
 import Script from "next/script";
@@ -22,7 +26,12 @@ export default function App({
   const [supabaseClient] = useState(() =>
     createPagesBrowserClient({ supabaseUrl, supabaseKey })
   );
+ const config: ThemeConfig = {
+   initialColorMode: "dark",
+   useSystemColorMode: true,
+ };
 
+ const theme = extendTheme({ config });
   return (
     <>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
@@ -33,17 +42,17 @@ export default function App({
           referrerPolicy="no-referrer-when-downgrade"
         />
       </noscript>
+
       <SessionContextProvider
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
         <SpeedInsights />
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           <AuthContextProvider>
             <div className={inter.className}>
-             
-                <Navbar />
-             
+              <Navbar />
+
               <Component {...pageProps} />
             </div>
           </AuthContextProvider>
