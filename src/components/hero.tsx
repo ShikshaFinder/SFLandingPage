@@ -41,7 +41,7 @@ export default function CallToActionWithVideo() {
                 position: "absolute",
                 bottom: 1,
                 left: 0,
-                bg: "blue.300",
+                
                 zIndex: -1,
               }}
             >

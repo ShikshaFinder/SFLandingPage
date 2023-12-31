@@ -183,7 +183,7 @@ const Parent = () => {
             &nbsp;
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >
@@ -204,7 +204,7 @@ const Parent = () => {
             visiting{" "}
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >
@@ -218,7 +218,7 @@ const Parent = () => {
             by visiting &nbsp;
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >
@@ -230,7 +230,7 @@ const Parent = () => {
             you can also find out more skill class names by visiting &nbsp;
             <Text
               as="span"
-              color="blue"
+              color="blue.400"
               textDecoration="underline"
               cursor="pointer"
             >

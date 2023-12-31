@@ -6,7 +6,6 @@ import {
   CardBody,
   Heading,
   Text,
-  CardFooter,
 } from "@chakra-ui/react";
 
 function introcard() {
@@ -53,9 +52,7 @@ function introcard() {
             </Text>
           </CardBody>
 
-          <CardFooter>
-            <h1>hi hello</h1>
-          </CardFooter>
+       
         </Stack>
       </Card>
     </>

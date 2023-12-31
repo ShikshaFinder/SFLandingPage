@@ -13,7 +13,7 @@ import Link from "next/link";
 function profile() {
   return (
     <Container justifyContent={"center"}>
-      <Card bg="gray.100">
+      <Card >
         <CardBody>
           <Wrap justifyContent={"center"} spacing={4} direction="column">
             <WrapItem>
