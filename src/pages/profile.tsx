@@ -48,7 +48,7 @@ function profile() {
             <WrapItem style={{ marginTop: "10px" }}>
               <FaHeart />
               <b
-                color="blue"
+                color="blue.400"
                 style={{
                   textAlign: "center",
                   color: "blue",
