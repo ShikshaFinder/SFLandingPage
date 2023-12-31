@@ -1,33 +1,34 @@
-
+import React from 'react'
+import { useForm, Controller } from "react-hook-form";
+import supabase from "../../supabase";
+import { useToast } from "@chakra-ui/react";
 import {
   FormControl,
   FormLabel,
   Input,
+  Button,
+  Heading,
+  Radio,
   RadioGroup,
   HStack,
-  Radio,
-  Heading,
-  Button,
-  useToast,
+  Stack,
   CardBody,
   Card,
-  Stack,
 } from "@chakra-ui/react";
-import supabase from "../../supabase";
-import { useForm,Controller } from "react-hook-form";
 
 
-function Form() {
-  const toast = useToast();
- 
+function admissionform() {
+     const form = useForm();
+       const toast = useToast();
 
-  const form = useForm();
+  const { register, handleSubmit ,control} = form;
 
+  async function User() {
+    const { data } = await supabase.auth.getUser();
+    console.log(data);
+  }
   
-  const { register, handleSubmit,control } = form;
-
   const handleSubmitt = () => {
-  
     toast({
       title: "Form submitted!",
       description: "Thank you for your Form",
@@ -37,10 +38,9 @@ function Form() {
     });
   };
  
+  
 const onSubmit = async (data: any) => {
-  const { error } = await supabase
-    .from("Student") 
-    .insert([{ ...data }]);
+  const { error } = await supabase.from("admissionform").insert([{ ...data }]);
   if (error) {
     console.error("Error submitting Form:", error);
   } else {
@@ -54,53 +54,63 @@ const onSubmit = async (data: any) => {
         <Card variant="outline">
           <CardBody>
             <Heading size="md" fontSize="26px">
-              We welcome you with full hearts 💓{" "}
+              Let's Begin the journey of Education😎{" "}
             </Heading>
             <br />
             <FormControl isRequired>
-              <FormLabel>State</FormLabel>
+              <FormLabel>Name</FormLabel>
               <Input
-                {...register("State", {
+                {...register("name", {
                   required: true,
                 })}
-                name="State"
-                placeholder="State"
+                name="name"
+                placeholder="name as per your documents"
               />
             </FormControl>
             <br />
             <FormControl isRequired>
-              <FormLabel>District/city</FormLabel>
+              <FormLabel>Mobile Number</FormLabel>
               <Input
-                {...register("District", { required: true })}
-                name="District"
-                placeholder="District/city"
+                type="number"
+                {...register("mobilenumber", { required: true })}
+                name="mobilenumber"
+                placeholder="+91..."
               />
             </FormControl>
             <br />
             <FormControl isRequired>
-              <FormLabel> Sub-District</FormLabel>
+              <FormLabel>Email</FormLabel>
               <Input
-                {...register("subDistrict", { required: true })}
-                name="subDistrict"
-                placeholder="If its main district than just put City name here also"
+                {...register("email", { required: true })}
+                name="email"
+                placeholder="student's mail"
+              />
+            </FormControl>
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Percentage</FormLabel>
+              <Input
+                {...register("percentage", { required: true })}
+                name="percentage"
+                placeholder="Last years percentage/grade"
               />
             </FormControl>
             <br />{" "}
             <FormControl isRequired>
-              <FormLabel>Standard/Exam </FormLabel>
+              <FormLabel>Address</FormLabel>
               <Input
-                {...register("Standard", { required: true })}
-                name="Standard"
-                placeholder="Standard/if for more than 12 the than write name of exam for which you are preparing"
+                {...register("address", { required: true })}
+                name="address"
+                placeholder="Address"
               />
             </FormControl>
             <br />
-            <FormControl>
-              <FormLabel>Board</FormLabel>
+            <FormControl isRequired>
+              <FormLabel>Standard/Exam </FormLabel>
               <Input
-                {...register("Board", { required: false })}
-                name="Board"
-                placeholder="Board"
+                {...register("standard", { required: true })}
+                name="standard"
+                placeholder="standard/if for more than 12  than write name of exam for which you are preparing"
               />
             </FormControl>
             <br />
@@ -110,6 +120,15 @@ const onSubmit = async (data: any) => {
                 {...register("stream", { required: false })}
                 name="stream"
                 placeholder="write science/commerce/arts if you are in 11th or 12th"
+              />
+            </FormControl>
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Board</FormLabel>
+              <Input
+                {...register("board", { required: true })}
+                name="board"
+                placeholder="Board"
               />
             </FormControl>
             <br />
@@ -146,4 +165,4 @@ const onSubmit = async (data: any) => {
   );
 }
 
-export default Form;
+export default admissionform

@@ -37,21 +37,9 @@ const Index = ({
             >
               {name}
             </chakra.h3>
-            {/* <Text fontSize={{ base: "md", sm: "lg" }} noOfLines={2}>
-              How to customize your Github Profile Neque porro quisquam est qui
-              dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-            </Text> */}
+    
           </Box>
-          {/* <Stack
-            justify="space-between"
-            direction={{ base: "column", sm: "row" }}
-            spacing={{ base: 2, sm: 0 }}
-          >
-            <CustomButton variant="outline">Not a member?</CustomButton>
-            <CustomButton colorScheme="teal" variant="solid">
-              Access Now
-            </CustomButton>
-          </Stack> */}
+         
 
           <Stack direction="row">
             <Badge colorScheme="green">{rating}</Badge>
