@@ -10,39 +10,34 @@ import {
   Avatar,
   Text,
 } from "@chakra-ui/react";
-// Here we have used react-icons package for the icon
-import { GoChecklist } from "react-icons/go";
+
 
 interface Notification {
   notification: string;
   School: string;
   userName: string;
   userAvatar: string;
-  isOnline: boolean;
 }
 
 const notifications: Notification[] = [
   {
-    notification: `It's <span style="font-weight: 600">Dan Abrahmov's</span> birthday. Wish him well!`,
-    School: "dbkjdvldnvs ddvbwfvdv ",
+    notification: `Harsh Jani `,
+    School: "LD college of engineering",
     userName: "Dan Abrahmov",
     userAvatar: "https://bit.ly/dan-abramov",
-    isOnline: true,
   },
   {
-    notification: `<span style="font-weight: 600">Kent Dodds</span> liked your photo.`,
-    School: "Shree swami",
+    notification: `Hetal Jani`,
+    School: "Shree swami narayan gurukul",
     userName: "Kent Dodds",
     userAvatar: "https://bit.ly/kent-c-dodds",
-    isOnline: true,
   },
   {
-    notification: `<span style="font-weight: 600">Jena Karlis</span> registered new client as <span style="font-weight: 600">Trilia</span>.`,
-    School: "Shree swaminarayan gurukul",
+    notification: `Naresh Jani`,
+    School: "Shihore school",
     userName: "Jena Karlis",
     userAvatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80",
-    isOnline: false,
   },
 ];
 
@@ -84,18 +79,13 @@ const NotificationsList = () => {
                     }}
                   />
                   <Text
-                    color={useColorModeValue("gray.400", "gray.200")}
+                    color={useColorModeValue("gray.600", "gray.200")}
                     fontSize={{ base: "sm", sm: "md" }}
                   >
                     {notification.School}
                   </Text>
                 </Flex>
               </Stack>
-              {notification.isOnline && (
-                <Flex p={4}>
-                  <Icon as={GoChecklist} w={5} h={5} color="blue.400" />
-                </Flex>
-              )}
             </Flex>
             {notifications.length - 1 !== index && <Divider m={0} />}
           </Fragment>

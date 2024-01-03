@@ -15,11 +15,31 @@ import {
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
 import { useForm,Controller } from "react-hook-form";
+import { useAuthContext } from "@/context";
 
+
+type UserType = {
+  app_metadata: {
+    provider: string;
+    providers: string[];
+  };
+  aud: string;
+  confirmation_sent_at: string;
+  confirmed_at: string;
+  created_at: string;
+  email: string;
+  email_confirmed_at: string;
+  id: string;
+  identities: Array<any>; // You might want to define a type for this array
+  last_sign_in_at: string;
+  phone: any;
+  role: string;
+  updated_at: string;
+};
 
 function Form() {
   const toast = useToast();
- 
+ const { user } = useAuthContext() as { user: UserType };
 
   const form = useForm();
 
@@ -39,8 +59,8 @@ function Form() {
  
 const onSubmit = async (data: any) => {
   const { error } = await supabase
-    .from("Student") 
-    .insert([{ ...data }]);
+    .from("Student")
+    .insert([{ ...data, userid: user.id }]);
   if (error) {
     console.error("Error submitting Form:", error);
   } else {

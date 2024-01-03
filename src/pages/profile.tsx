@@ -1,83 +1,41 @@
-import { Container } from "@chakra-ui/react";
 import React from 'react'
-import {
-  Avatar,
-  WrapItem,
-  Wrap,
-  Card,
-  CardBody,
-  Badge,
-} from "@chakra-ui/react";
-import { FaAlignLeft, FaCoins, FaEdit, FaHeart, FaLanguage, FaMailBulk, FaMailchimp, FaMapMarkerAlt, FaSchool } from "react-icons/fa";
-import Link from "next/link";
-function profile() {
-  return (
-    <Container justifyContent={"center"}>
-      <Card >
-        <CardBody>
-          <Wrap justifyContent={"center"} spacing={4} direction="column">
-            <WrapItem>
-              <Link href={"/formstudent"}>
-                {" "}
-                <Avatar size="2xl" name="harsh" borderRadius={"3xl"} />{" "}
-                <FaEdit size={24} style={{ alignSelf: "flex-end" }} />
-              </Link>
-            </WrapItem>
-            <WrapItem>
-              <big style={{ textAlign: "center" }}>Harsh Jani</big>
-            </WrapItem>
-            <WrapItem>
-              <Badge colorScheme="green" borderRadius={"2xl"}>
-                Good Learner
-              </Badge>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaMapMarkerAlt />
-              <b style={{ textAlign: "center" }}>&nbsp; Ahmedabad, Gujarat</b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaMailBulk />
-              <b style={{ textAlign: "center" }}>
-                &nbsp;janiharsh794@gmail.com
-              </b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaCoins />
-              <b style={{ textAlign: "center" }}> 30 </b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaHeart />
-              <b
-                color="blue.400"
-                style={{
-                  textAlign: "center",
-                  color: "blue",
-                  textDecoration: "underline",
-                }}
-              >
-                <Link href={"/liked"}> &nbsp; Your Liked Institute</Link>
-              </b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaAlignLeft />
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Button, Box, useTab, useMultiStyleConfig } from "@chakra-ui/react"
+import Profilee from "../components/profile"
+import Leaderbord from "../components/Leaderbord"
 
-              <b style={{ textAlign: "center" }}>&nbsp; Board</b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaLanguage />
+function Profile() {
+    const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
+      // 1. Reuse the `useTab` hook
+      const tabProps = useTab({ ...props, ref });
+      const isSelected = !!tabProps["aria-selected"];
 
-              <b style={{ textAlign: "center" }}>&nbsp; Medium</b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaSchool />
-              <b style={{ textAlign: "center" }}>&nbsp; Standard</b>{" "}
-            </WrapItem>
-          </Wrap>
-        </CardBody>
-        {/* Add bg="gray.200" to set the background color */}
-      </Card>
-    </Container>
-  );
+      // 2. Hook into the Tabs `size`, `variant`, props
+      const styles = useMultiStyleConfig("Tabs", tabProps);
+
+      return (
+        <Button __css={styles.tab} {...tabProps}>
+          <Box as="span" mr="2">
+            {isSelected ? "😎" : "😐"}
+          </Box>
+          {tabProps.children}
+        </Button>
+      );
+    });
+
+    return (
+        <>
+            <Tabs>
+                <TabList>
+                    <CustomTab>Profile</CustomTab>
+                    <CustomTab>Leaderbord</CustomTab>
+                </TabList>
+                <TabPanels>
+                    <TabPanel> <Profilee/></TabPanel>
+                    <TabPanel><Leaderbord/></TabPanel>
+                </TabPanels>
+            </Tabs>
+        </>
+    )
 }
 
-export default profile
+export default Profile

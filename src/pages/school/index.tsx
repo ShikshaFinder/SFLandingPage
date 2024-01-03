@@ -8,6 +8,19 @@ import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
 import { useRouter } from "next/router";
 
+async function getSchooldata() {
+  let { data: School, error } = await supabase
+    .from("School")
+    .select("schoolname");
+
+  if (error) {
+    console.error("Error fetching data:", error);
+    return;
+  }
+
+  console.log(School);
+}
+
 type UserType = {
   app_metadata: {
     provider: string;
@@ -29,7 +42,7 @@ type UserType = {
 export default function skillclass() {
   const [coverImages, setCoverImages] = useState<any[]>([]);
   const { user } = useAuthContext() as { user: UserType };
-const router=useRouter();
+  const router = useRouter();
   const pathSegments = router.asPath.split("/");
 
   const lastSegment = pathSegments[pathSegments.length - 1];
@@ -48,8 +61,17 @@ const router=useRouter();
     }
   };
 
+  // const fetchSchools = async () => {
+  //   let { data: School, error } = await supabase
+  //     .from("School")
+  //     .select("*")
+
+  //     // Filters
+  //     .eq("column", "Equal to");
+  // };
+
   useEffect(() => {
-    fetchImages();
+    // fetchImages();
   }, []);
 
   return (
