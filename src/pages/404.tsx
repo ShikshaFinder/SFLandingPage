@@ -17,7 +17,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <meta httpEquiv="refresh" content="10;https://platform.shikshafinder.com/" />
+        <meta httpEquiv="refresh" content="10;https://shikshafinder.com/" />
       </Head>
       <Container maxW="5xl" p={{ base: 5, md: 10 }}>
         <Box

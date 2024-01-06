@@ -4,7 +4,6 @@ import {
   Flex,
   Stack,
   VStack,
-  Icon,
   Divider,
   useColorModeValue,
   Avatar,

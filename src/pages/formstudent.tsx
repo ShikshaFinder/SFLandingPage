@@ -16,7 +16,7 @@ import {
 import supabase from "../../supabase";
 import { useForm,Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
-
+import { useRouter } from "next/router";
 
 type UserType = {
   app_metadata: {
@@ -42,7 +42,7 @@ function Form() {
  const { user } = useAuthContext() as { user: UserType };
 
   const form = useForm();
-
+const router = useRouter();
   
   const { register, handleSubmit,control } = form;
 
@@ -55,6 +55,7 @@ function Form() {
       duration: 3000,
       isClosable: true,
     });
+    router.push("/school");
   };
  
 const onSubmit = async (data: any) => {
