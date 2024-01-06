@@ -136,7 +136,7 @@ export default function CaptionCarousel() {
                 <Link href={"/formstudent"}>
                   {" "}
                   <Button colorScheme="blackAlpha" variant="solid">
-                    Skip
+                    Let's Begin 🚀
                   </Button>
                 </Link>{" "}
               </Stack>
