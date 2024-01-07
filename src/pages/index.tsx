@@ -45,7 +45,7 @@ export default function Home() {
           description: "  इमानदार स्कूल की पहचान",
           images: [
             {
-              url: "/sfv1.png",
+              url: "https://postimg.cc/nXqxc8CG",
               alt: "Shiksha Finder == happy students",
             },
           ],
@@ -61,7 +61,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Hero />
-     
+
       <Companyreview />
       <Footer />
     </>
