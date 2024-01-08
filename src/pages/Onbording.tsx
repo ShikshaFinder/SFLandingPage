@@ -40,19 +40,19 @@ export default function CaptionCarousel() {
   const cards = [
     {
       title: "Explore The Quality Of Education Of Any Learning Platform",
-      text: "You can Find Any School,Any Coaching class ,Any Skill classes here ",
+      text: "You can Find Any School,Any Coaching class,Any Skill classes here ",
       image:
-        "https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+        "https://images.unsplash.com/photo-1443916568596-df5a58c445e9?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "Watch Demo Lectures & Carve Your Future by Yourself😎",
       text: "Explore The Quality Of Education and choose a learning platform where you fill confident!",
       image:
-        "https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80",
+        "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      title: "Its an Important Decision 💪",
-      text: "So take Smart Decisons With ShikshaFinder ",
+      title: "Its an Important Decision ⚠️",
+      text: "So Take Smart Decisons With ShikshaFinder ",
       image:
         "https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
     },

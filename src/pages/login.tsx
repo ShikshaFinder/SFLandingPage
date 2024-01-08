@@ -21,10 +21,9 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 export default function Login() {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter(); 
 
-  //   const [firstName, setFirstName] = useState("");
-  //   const [lastName, setLastName] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
