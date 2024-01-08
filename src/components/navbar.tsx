@@ -23,8 +23,32 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
+import { useAuthContext } from "@/context";
+
+
+type UserType = {
+  app_metadata: {
+    provider: string;
+    providers: string[];
+  };
+  aud: string;
+  confirmation_sent_at: string;
+  confirmed_at: string;
+  created_at: string;
+  email: string;
+  email_confirmed_at: string;
+  id: string;
+  identities: Array<any>;
+  last_sign_in_at: string;
+  phone: any;
+  role: string;
+  updated_at: string;
+};
+
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+   const { user } = useAuthContext() as { user: UserType };
 
   return (
     <Box>
@@ -73,16 +97,29 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={Link}
-            href={"/login"}
-            passHref
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-          >
-            Sign In
-          </Button>
+          {user && user.email ? (
+            <Button
+              as={Link}
+              href={"/profile"}
+              passHref
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+            >
+              Profile
+            </Button>
+          ) : (
+            <Button
+              as={Link}
+              href={"/login"}
+              passHref
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+            >
+              Sign In
+            </Button>
+          )}
           <Button
             as={Link}
             href={"/signup"}

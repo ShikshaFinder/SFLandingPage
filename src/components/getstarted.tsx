@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+
 function Navnew() {
   return (
     <Menu>
