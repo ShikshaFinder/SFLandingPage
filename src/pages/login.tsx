@@ -35,7 +35,7 @@ export default function Login() {
         password,
       });
       console.log(data);
-      router.push("/");
+      router.push("/").then(() => window.location.reload());
     } catch (error) {
       console.log(error);
     }
