@@ -63,7 +63,7 @@ function Profile() {
                     <CustomTab>Leaderbord</CustomTab>
                 </TabList>
                 <TabPanels>
-                    <TabPanel> <Profilee name='harsh' city='bhavnagar' state='Gujrat' email='janiharsh794@gmail.com' coins={39} medium='Gujrati' standard='12' board='CBSE' /></TabPanel>
+                    <TabPanel> <Profilee name='harsh' city='bhavnagar' state='Gujrat' email='janiharsh794@gmail.com' coins={39} medium='Gujrati' standard='standard 12' board='CBSE' /></TabPanel>
                     <TabPanel><Leaderbord/></TabPanel>
                 </TabPanels>
             </Tabs>

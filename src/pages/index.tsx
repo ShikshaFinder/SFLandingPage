@@ -46,7 +46,6 @@ export default function Home() {
   const { user } = useAuthContext() as { user: UserType };
   return (
     <>
-      <div>Current user : {user.email}</div>
 
       <NextSeo
         title="Shiksha Finder"
