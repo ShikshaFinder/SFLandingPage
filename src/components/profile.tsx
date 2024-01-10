@@ -9,9 +9,17 @@ import {
   CardBody,
   Badge,
 } from "@chakra-ui/react";
+
 import { FaAlignLeft, FaCoins, FaEdit, FaHeart, FaLanguage, FaMailBulk, FaMailchimp, FaMapMarkerAlt, FaSchool } from "react-icons/fa";
 import Link from "next/link";
-function profile() {
+
+function profile({name, email, board, medium, standard, city, state, coins}: {name: string, email: string, board: string, medium: string, standard: string, city: string, state: string, coins: number})
+
+   
+
+
+{
+ 
   return (
     <Container justifyContent={"center"}>
       <Card >
@@ -20,12 +28,12 @@ function profile() {
             <WrapItem>
               <Link href={"/formstudent"}>
                 {" "}
-                <Avatar size="2xl" name="harsh" borderRadius={"3xl"} />{" "}
+                <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
                 <FaEdit size={24} style={{ alignSelf: "flex-end" }} />
               </Link>
             </WrapItem>
             <WrapItem>
-              <big style={{ textAlign: "center" }}>Harsh Jani</big>
+              <big style={{ textAlign: "center" }}>{name}</big>
             </WrapItem>
             <WrapItem>
               <Badge colorScheme="green" borderRadius={"2xl"}>
@@ -34,17 +42,17 @@ function profile() {
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaMapMarkerAlt />
-              <b style={{ textAlign: "center" }}>&nbsp; Ahmedabad, Gujarat</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {city},{state} </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaMailBulk />
               <b style={{ textAlign: "center" }}>
-                &nbsp;janiharsh794@gmail.com
+                &nbsp; {email}
               </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaCoins />
-              <b style={{ textAlign: "center" }}> 30 </b>
+              <b style={{ textAlign: "center" }}> {coins} </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaHeart />
@@ -62,16 +70,16 @@ function profile() {
             <WrapItem style={{ marginTop: "10px" }}>
               <FaAlignLeft />
 
-              <b style={{ textAlign: "center" }}>&nbsp; Board</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {board}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaLanguage />
 
-              <b style={{ textAlign: "center" }}>&nbsp; Medium</b>
+              <b style={{ textAlign: "center" }}>&nbsp; {medium}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSchool />
-              <b style={{ textAlign: "center" }}>&nbsp; Standard</b>{" "}
+              <b style={{ textAlign: "center" }}>&nbsp; {standard}</b>{" "}
             </WrapItem>
           </Wrap>
         </CardBody>

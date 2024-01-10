@@ -61,7 +61,7 @@ const router = useRouter();
 const onSubmit = async (data: any) => {
   const { error } = await supabase
     .from("Student")
-    .insert([{ ...data, userid: user.id }]);
+    .insert([{ ...data, user_id: user.id }]);
   if (error) {
     console.error("Error submitting Form:", error);
   } else {
