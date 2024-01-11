@@ -31,7 +31,7 @@ function IntroSchool() {
       <AspectRatio maxW="560px" ratio={1.75}>
         <iframe
           title="hihello"
-          src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+          src="https://youtu.be/pGeHsxjQJXw?si=9asqaN5fjSVqR0dh"
           allowFullScreen
         />
       </AspectRatio>
