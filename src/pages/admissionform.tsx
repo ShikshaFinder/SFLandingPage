@@ -63,7 +63,7 @@ function admissionform() {
 const onSubmit = async (data: any) => {
   const { error } = await supabase
     .from("admissionform")
-    .insert([{ ...data, email: user.email }]);
+    .insert([{ ...data, email: user.email, user_id: user.id }]);
   if (error) {
     console.error("Error submitting Form:", error);
   } else {
