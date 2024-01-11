@@ -15,18 +15,39 @@ import {
   CardBody,
   Card,
 } from "@chakra-ui/react";
+import { useAuthContext } from '@/context';
+// assciate school id with the form filled by the student
+
+
+type UserType = {
+  app_metadata: {
+    provider: string;
+    providers: string[];
+  };
+  aud: string;
+  confirmation_sent_at: string;
+  confirmed_at: string;
+  created_at: string;
+  email: string;
+  email_confirmed_at: string;
+  id: string;
+  identities: Array<any>; // You might want to define a type for this array
+  last_sign_in_at: string;
+  phone: any;
+  role: string;
+  updated_at: string;
+};
 
 
 function admissionform() {
+  const { user } = useAuthContext() as { user: UserType };
+
+
      const form = useForm();
        const toast = useToast();
 
   const { register, handleSubmit ,control} = form;
 
-  async function User() {
-    const { data } = await supabase.auth.getUser();
-    console.log(data);
-  }
   
   const handleSubmitt = () => {
     toast({
@@ -40,7 +61,9 @@ function admissionform() {
  
   
 const onSubmit = async (data: any) => {
-  const { error } = await supabase.from("admissionform").insert([{ ...data }]);
+  const { error } = await supabase
+    .from("admissionform")
+    .insert([{ ...data, email: user.email }]);
   if (error) {
     console.error("Error submitting Form:", error);
   } else {
@@ -75,15 +98,6 @@ const onSubmit = async (data: any) => {
                 {...register("mobilenumber", { required: true })}
                 name="mobilenumber"
                 placeholder="+91..."
-              />
-            </FormControl>
-            <br />
-            <FormControl isRequired>
-              <FormLabel>Email</FormLabel>
-              <Input
-                {...register("email", { required: true })}
-                name="email"
-                placeholder="student's mail"
               />
             </FormControl>
             <br />
