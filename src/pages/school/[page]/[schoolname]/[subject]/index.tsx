@@ -10,7 +10,7 @@ import {
   StackDivider,
   Button,
 } from "@chakra-ui/react";
-import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
+import Admissionform from "../../../../../components/admissionformlink";
 import Cardd from "../../../../../components/card";
 import Link from "next/link";
 import React from "react";
@@ -36,7 +36,7 @@ function IntroSchool() {
       <AspectRatio maxW="560px" ratio={1.75}>
         <iframe
           title="hihello"
-          src="https://youtu.be/pGeHsxjQJXw?si=9asqaN5fjSVqR0dh"
+          src="https://www.youtube.com/embed/pGeHsxjQJXw?si=FLPTuZo-YCnKVMOz"
           allowFullScreen
         />
       </AspectRatio>
@@ -84,31 +84,7 @@ function IntroSchool() {
           />
         </Link>
       </Stack>
-      <Box
-        position="fixed"
-        bottom={0}
-        left={0}
-        right={0}
-        p={4}
-        bg="gray.100"
-        borderTopWidth="1px"
-        borderColor="gray.400"
-      >
-        <Stack direction="row" spacing={100}>
-          <Button
-            leftIcon={<MdOutlineDynamicForm />}
-            colorScheme="pink"
-            variant="solid"
-          >
-            Admission form
-          </Button>
-          <a href="tel:90000000">
-            <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
-              Call us
-            </Button>
-          </a>
-        </Stack>
-      </Box>
+      <Admissionform name="shree swami narayan gurukul" phoneNumber={7984140706}/>
     </>
   );
 }

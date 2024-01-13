@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import {
   Tabs,
@@ -34,6 +33,7 @@ type UserType = {
   role: string;
   updated_at: string;
 };
+
 
 function Profile() {
   const { user } = useAuthContext() as { user: UserType };

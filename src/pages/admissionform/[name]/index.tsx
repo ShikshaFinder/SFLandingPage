@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import supabase from "../../supabase";
+import supabase from "../../../../supabase";
 import { useToast } from "@chakra-ui/react";
 import {
   FormControl,
@@ -15,9 +15,8 @@ import {
   CardBody,
   Card,
 } from "@chakra-ui/react";
-import { useAuthContext } from '@/context';
+import { useAuthContext } from "@/context";
 // assciate school id with the form filled by the student
-
 
 type UserType = {
   app_metadata: {
@@ -38,17 +37,14 @@ type UserType = {
   updated_at: string;
 };
 
-
 function admissionform() {
   const { user } = useAuthContext() as { user: UserType };
 
+  const form = useForm();
+  const toast = useToast();
 
-     const form = useForm();
-       const toast = useToast();
+  const { register, handleSubmit, control } = form;
 
-  const { register, handleSubmit ,control} = form;
-
-  
   const handleSubmitt = () => {
     toast({
       title: "Form submitted!",
@@ -58,18 +54,17 @@ function admissionform() {
       isClosable: true,
     });
   };
- 
-  
-const onSubmit = async (data: any) => {
-  const { error } = await supabase
-    .from("admissionform")
-    .insert([{ ...data, email: user.email, user_id: user.id }]);
-  if (error) {
-    console.error("Error submitting Form:", error);
-  } else {
-    handleSubmitt();
-  }
-};
+
+  const onSubmit = async (data: any) => {
+    const { error } = await supabase
+      .from("admissionform")
+      .insert([{ ...data, email: user.email, user_id: user.id }]);
+    if (error) {
+      console.error("Error submitting Form:", error);
+    } else {
+      handleSubmitt();
+    }
+  };
 
   return (
     <>
@@ -129,7 +124,6 @@ const onSubmit = async (data: any) => {
             </FormControl>
             <br />
             <FormControl>
-              
               <FormLabel>Stream </FormLabel>
               <Input
                 {...register("stream", { required: false })}
@@ -180,4 +174,4 @@ const onSubmit = async (data: any) => {
   );
 }
 
-export default admissionform
+export default admissionform;

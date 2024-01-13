@@ -25,26 +25,26 @@ type UserType = {
   updated_at: string;
 };
 export default function skillclass() {
-  const [coverImages, setCoverImages] = useState<any[]>([]);
-  const { user } = useAuthContext() as { user: UserType };
+  // const [coverImages, setCoverImages] = useState<any[]>([]);
+  // const { user } = useAuthContext() as { user: UserType };
 
-  const fetchImages = async () => {
-    const { data, error } = await supabase.storage
-      .from("uploads")
-      .list(user.id + "/");
+  // const fetchImages = async () => {
+  //   const { data, error } = await supabase.storage
+  //     .from("uploads")
+  //     .list(user.id + "/");
 
-    if (data) {
-      setCoverImages(data);
-      console.log(coverImages);
-    }
-    if (error) {
-      console.log(error);
-    }
-  };
+  //   if (data) {
+  //     setCoverImages(data);
+  //     console.log(coverImages);
+  //   }
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchImages();
-  }, []);
+  // useEffect(() => {
+  //   fetchImages();
+  // }, []);
 
   return (
     <>
