@@ -10,7 +10,7 @@ import {
   StackDivider,
   Button,
 } from "@chakra-ui/react";
-import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
+import Admissionform from "../../../../components/admissionformlink";
 import Cardd from "../../../../components/card";
 import Link from "next/link";
 import React from "react";

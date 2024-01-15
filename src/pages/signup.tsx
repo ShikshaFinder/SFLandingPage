@@ -36,7 +36,7 @@ export default function SignupCard() {
         email,
         password,
         options: {
-          emailRedirectTo: "http://localhost:3000",
+          emailRedirectTo: 'https://shikshafinder.com/whichuser',
         },
       });
       router.push("/checkmail");

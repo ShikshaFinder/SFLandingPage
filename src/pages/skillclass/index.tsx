@@ -3,11 +3,13 @@ import Skillcard from "../../components/skillcard";
 import { Grid } from "@chakra-ui/react";
 import Link from "next/link"
 import Layout from "../Layout";
-
+// import Layoutt from "../../pages/";
 function skillclass() {
   return (
     <>
+    
       <Layout>
+        {/* <Layoutt> */}
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}
