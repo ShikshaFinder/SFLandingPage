@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Pagination from "../../../components/pagination";
+import Bannerad from "../../../components/bannerad";
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,6 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main>{children}</main>
       <footer>
         <Pagination mainSlug="coaching" />
+        <Bannerad />
       </footer>
     </div>
   );

@@ -3,9 +3,10 @@ import React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context";
-import supabase from "../../../supabase";
+// import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
+import Layoutt from "../Layout";
 
 type UserType = {
   app_metadata: {
@@ -26,30 +27,31 @@ type UserType = {
   updated_at: string;
 };
 export default function skillclass() {
-  const [coverImages, setCoverImages] = useState<any[]>([]);
-  const { user } = useAuthContext() as { user: UserType };
+  // const [coverImages, setCoverImages] = useState<any[]>([]);
+  // const { user } = useAuthContext() as { user: UserType };
 
 
-  const fetchImages = async () => {
-    const { data, error } = await supabase.storage
-      .from("uploads")
-      .list(user.id + "/");
+  // const fetchImages = async () => {
+  //   const { data, error } = await supabase.storage
+  //     .from("uploads")
+  //     .list(user.id + "/");
 
-    if (data) {
-      setCoverImages(data);
-      console.log(coverImages);
-    }
-    if (error) {
-      console.log(error);
-    }
-  };
+  //   if (data) {
+  //     setCoverImages(data);
+  //     console.log(coverImages);
+  //   }
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchImages();
-  }, []);
+  // useEffect(() => {
+  //   fetchImages();
+  // }, []);
 
   return (
     <>
+<Layoutt>
       <Layout>
         <Bannerad />
         <Link href={`../coaching/1/Coachingname`}>
@@ -83,6 +85,7 @@ export default function skillclass() {
           />{" "}
         </Link>{" "}
       </Layout>
+      </Layoutt>
     </>
   );
 }

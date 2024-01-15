@@ -7,6 +7,7 @@ import supabase from "../../../../supabase";
 import Bannerad from "../../../components/bannerad";
 import Layout from "../[page]/Layout";
 import { useRouter } from "next/router";
+import Layoutt from "../../Layout";
 
 type UserType = {
   app_metadata: {
@@ -54,6 +55,7 @@ export default function skillclass() {
 
   return (
     <>
+    <Layoutt> 
       <Layout>
         <Bannerad />
         <Link href={`../coaching/${lastSegment}/schoolname`}>
@@ -87,6 +89,7 @@ export default function skillclass() {
           />{" "}
         </Link>{" "}
       </Layout>
+      </Layoutt>
     </>
   );
 }

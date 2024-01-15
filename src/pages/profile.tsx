@@ -14,6 +14,8 @@ import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
 import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
+import Layout from "./Layout";
+
 
 type UserType = {
   app_metadata: {
@@ -75,30 +77,33 @@ function Profile() {
 
   return (
     <>
-      <Tabs>
-        <TabList>
-          <CustomTab>Profile</CustomTab>
-          <CustomTab>Leaderbord</CustomTab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            {" "}
-            <Profilee
-              name="harsh"
-              city={userData[0].District}
-              state={userData[0].State}
-              email={user.email}
-              coins={userData[0].Coins}
-              medium={userData[0].medium}
-              standard={userData[0].Standard}
-              board={userData[0].Board}
-            />
-          </TabPanel>
-          <TabPanel>
-            <Leaderbord />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Layout>
+        {" "}
+        <Tabs>
+          <TabList>
+            <CustomTab>Profile</CustomTab>
+            <CustomTab>Leaderbord</CustomTab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              {" "}
+              <Profilee
+                name="harsh"
+                city={userData[0].District}
+                state={userData[0].State}
+                email={user.email}
+                coins={userData[0].Coins}
+                medium={userData[0].medium}
+                standard={userData[0].Standard}
+                board={userData[0].Board}
+              />
+            </TabPanel>
+            <TabPanel>
+              <Leaderbord />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Layout>
     </>
   );
 }

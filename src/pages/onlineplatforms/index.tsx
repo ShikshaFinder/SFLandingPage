@@ -6,6 +6,7 @@ import { useAuthContext } from "@/context";
 import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
+import Layoutt from "../Layout";
 
 type UserType = {
   app_metadata: {
@@ -50,6 +51,7 @@ export default function skillclass() {
 
   return (
     <>
+    <Layoutt>
       <Layout>
         <Bannerad />
         <Link href={`../onlineplatforms/1/onlineplatforms`}>
@@ -83,6 +85,7 @@ export default function skillclass() {
           />{" "}
         </Link>{" "}
       </Layout>
+      </Layoutt>
     </>
   );
 }

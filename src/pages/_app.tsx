@@ -4,7 +4,6 @@ import {
   ThemeConfig,
 } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
-import Navbar from "../components/navbar";
 import Script from "next/script";
 import { type AppProps } from "next/app";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
@@ -51,8 +50,6 @@ export default function App({
         <ChakraProvider theme={theme}>
           <AuthContextProvider>
             <div className={inter.className}>
-              <Navbar />
-
               <Component {...pageProps} />
             </div>
           </AuthContextProvider>

@@ -2,8 +2,9 @@ import Card from "../../../components/card";
 import React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useAuthContext } from "@/context";
-import supabase from "../../../../supabase";
+// import { useAuthContext } from "@/context";
+// import supabase from "../../../../supabase";
+import Layout from "../../Layout"
 import Bannerad from "../../../components/bannerad";
 
 type UserType = {
@@ -48,6 +49,7 @@ export default function skillclass() {
 
   return (
     <>
+  <Layout>
       <Bannerad />
       <Link href={"../skillclass/skillname/skillclass"}>
         {" "}
@@ -79,6 +81,7 @@ export default function skillclass() {
           rating={"3.4"}
         />{" "}
       </Link>{" "}
+      </Layout>
     </>
   );
 }

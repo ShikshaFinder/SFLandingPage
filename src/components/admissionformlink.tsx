@@ -15,6 +15,7 @@ function admissionformlink({name,phoneNumber}:{name:string,phoneNumber:number}) 
         p={4}
         bg="gray.100"
         borderTopWidth="1px"
+        zIndex={20}
         borderColor="gray.400"
       >
         <Stack direction="row" spacing={100}>

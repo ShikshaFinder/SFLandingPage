@@ -1,5 +1,14 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
+import {
+  FaSchool,
+  FaChalkboardTeacher,
+  FaLaptopCode,
+  FaPaintBrush,
+  FaGlobe,
+} from "react-icons/fa";
+
 import {
   Box,
   Flex,
@@ -19,7 +28,6 @@ import {
 import {
   HamburgerIcon,
   CloseIcon,
-  ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
@@ -47,8 +55,8 @@ type UserType = {
 
 
 export default function Navbar() {
-  const { isOpen, onToggle } = useDisclosure();
-   const { user } = useAuthContext() as { user: UserType };
+  const isMobileNav = useBreakpointValue({ base: true, md: false });
+  const { user } = useAuthContext() as { user: UserType };
 
   return (
     <Box>
@@ -67,16 +75,7 @@ export default function Navbar() {
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-        </Flex>
+        ></Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
@@ -137,10 +136,7 @@ export default function Navbar() {
           </Button>
         </Stack>
       </Flex>
-
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
+      <Box>{isMobileNav ? <MobileNav /> : null}</Box>
     </Box>
   );
 }
@@ -236,72 +232,59 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
-  return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  );
+    const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
+const handleClick = (iconName: string) => {
+  setSelectedIcon(iconName);
 };
-
-const MobileNavItem = ({ label, children, href }: NavItem) => {
-  const { isOpen, onToggle } = useDisclosure();
-
+const boxColor = useColorModeValue("gray.100", "gray.900");
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <>
       <Box
-        py={2}
-        as={Link}
-        href={href ?? "/school"}
-        passHref
-        justifyContent="space-between"
-        alignItems="center"
-        _hover={{
-          textDecoration: "none",
-        }}
+        position="fixed"
+        bottom={0}
+        left={0}
+        right={0}
+        p={4}
+        bg={boxColor}
+        zIndex={10}
+        borderTopWidth="1px"
+        borderColor="gray"
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
-          />
-        )}
-      </Box>
-
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
-        >
-          {children &&
-            children.map((child) => (
-              <Box as={Link} key={child.label} href={child.href} passHref>
-                <Box py={2}>{child.label}</Box>
-              </Box>
-            ))}
+        <Stack direction={"row"} spacing={90}>
+          <Link href={"/school"}>
+            <FaSchool
+              size={20}
+              color={selectedIcon === "school" ? "blue" : "initial"}
+              onClick={() => handleClick("school")}
+            />
+          </Link>
+          <Link href={"coaching"}>
+            <FaChalkboardTeacher
+              size={20}
+              color={selectedIcon === "coaching" ? "blue" : "initial"}
+              onClick={() => handleClick("coaching")}
+            />
+          </Link>
+          <Link href={"onlineplatforms"}>
+            <FaGlobe
+              size={20}
+              color={selectedIcon === "online" ? "blue" : "initial"}
+              onClick={() => handleClick("online")}
+            />
+          </Link>
+          <Link href={"/skillclass"}>
+            <FaPaintBrush
+              size={20}
+              color={selectedIcon === "skill" ? "blue" : "initial"}
+              onClick={() => handleClick("skill")}
+            />
+          </Link>
         </Stack>
-      </Collapse>
-    </Stack>
+      </Box>
+    </>
   );
 };
+
 
 interface NavItem {
   label: string;
@@ -343,8 +326,8 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: "solve my doubts",
-    href: "./chat",
+    label: "aboutus",
+    href: "./aboutus",
   },
   {
     label: "profile",

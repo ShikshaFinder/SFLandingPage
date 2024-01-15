@@ -15,9 +15,11 @@ import {
 // Here we have used react-icons package for the icons
 import { GoChevronRight } from "react-icons/go";
 import { MdBolt } from "react-icons/md";
+import Layout from "../Layout";
 
 const HeroSection = () => {
   return (
+    <Layout>
     <Container maxW="6xl" px={{ base: 6, md: 3 }} py={24}>
       <Stack direction={{ base: "column", md: "row" }} justifyContent="center">
         <Stack
@@ -138,6 +140,7 @@ const HeroSection = () => {
         </Box>
       </Stack>
     </Container>
+    </Layout>
   );
 };
 

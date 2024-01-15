@@ -42,157 +42,162 @@ type UserType = {
   role: string;
   updated_at: string;
 };
+import Layout from "./Layout";
 
 
 export default function Home() {
   const { user } = useAuthContext() as { user: UserType };
   return (
     <>
-
-      <NextSeo
-        title="Shiksha Finder"
-        description="Show case the quality of education"
-        openGraph={{
-          url: "https://shikshafinder.com/",
-          title: "Let's promote Quality of Education",
-          description: "  इमानदार स्कूल की पहचान",
-          images: [
-            {
-              url: "https://postimg.cc/nXqxc8CG",
-              alt: "Shiksha Finder == happy students",
-            },
-          ],
-          site_name: "shikshafinder.com",
-          type: "website",
-        }}
-      />
-      <Head>
-        <meta
-          name="ShikshaFinder"
-          content="Shiksha Finder,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,schools near me"
+      <Layout>
+        <NextSeo
+          title="Shiksha Finder"
+          description="Show case the quality of education"
+          openGraph={{
+            url: "https://shikshafinder.com/",
+            title: "Let's promote Quality of Education",
+            description: "  इमानदार स्कूल की पहचान",
+            images: [
+              {
+                url: "https://postimg.cc/nXqxc8CG",
+                alt: "Shiksha Finder == happy students",
+              },
+            ],
+            site_name: "shikshafinder.com",
+            type: "website",
+          }}
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <Container maxW={"7xl"}>
-        <Stack
-          align={"center"}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 28 }}
-          direction={{ base: "column", md: "row" }}
-        >
-          <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
-            >
-              <Text
-                as={"span"}
-                position={"relative"}
-                _after={{
-                  content: "''",
-                  width: "full",
-                  height: "20%",
-                  position: "absolute",
-                  bottom: 1,
-                  left: 0,
-
-                  zIndex: -1,
-                }}
+        <Head>
+          <meta
+            name="ShikshaFinder"
+            content="Shiksha Finder,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,schools near me"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
+        <Container maxW={"7xl"}>
+          <Stack
+            align={"center"}
+            spacing={{ base: 8, md: 10 }}
+            py={{ base: 20, md: 28 }}
+            direction={{ base: "column", md: "row" }}
+          >
+            <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+              <Heading
+                lineHeight={1.1}
+                fontWeight={600}
+                fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
               >
-                Shiksha Finder
+                <Text
+                  as={"span"}
+                  position={"relative"}
+                  _after={{
+                    content: "''",
+                    width: "full",
+                    height: "20%",
+                    position: "absolute",
+                    bottom: 1,
+                    left: 0,
+
+                    zIndex: -1,
+                  }}
+                >
+                  Shiksha Finder
+                </Text>
+                <br />
+                <link rel="stylesheet" href="/login" />
+                <Text as={"span"} color={"blue.400"}>
+                  इमानदार स्कूल की पहचान
+                </Text>
+              </Heading>
+              <Text>
+                Here at shiksha finder you can watch &nbsp; <b>Demo lectures</b>
+                & facilities of any school, any coaching classes or any skill
+                classes. you can feel the online admission form of any platform.
+                <br />
+                <b>Admission is this simple!</b>
               </Text>
-              <br />
-              <link rel="stylesheet" href="/login" />
-              <Text as={"span"} color={"blue.400"}>
-                इमानदार स्कूल की पहचान
-              </Text>
-            </Heading>
-            <Text>
-              Here at shiksha finder you can watch &nbsp; <b>Demo lectures</b>&
-              facilities of any school, any coaching classes or any skill
-              classes. you can feel the online admission form of any platform.
-              <br />
-              <b>Admission is this simple!</b>
-            </Text>
-            <Stack
-              spacing={{ base: 4, sm: 6 }}
-              direction={{ base: "column", sm: "row" }}
-            >
-              {user && user.email ? (
-                <Getstarted />
-              ) : (
-                <Link href="/signup">
+              <Stack
+                spacing={{ base: 4, sm: 6 }}
+                direction={{ base: "column", sm: "row" }}
+              >
+                {user && user.email ? (
+                  <Getstarted />
+                ) : (
+                  <Link href="/signup">
+                    <Button
+                      rounded={"full"}
+                      size={"lg"}
+                      fontWeight={"normal"}
+                      px={6}
+                      colorScheme={"blue"}
+                      _hover={{ bg: "blue.500" }}
+                    >
+                      Get started
+                    </Button>
+                  </Link>
+                )}
+
+                <a
+                  href="https://platform.shikshafinder.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
                   <Button
                     rounded={"full"}
                     size={"lg"}
                     fontWeight={"normal"}
                     px={6}
-                    colorScheme={"blue"}
-                    _hover={{ bg: "blue.500" }}
                   >
-                    Get started
+                    Educational Platform
                   </Button>
-                </Link>
-              )}
-
-              <a
-                href="https://platform.shikshafinder.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                <Button
-                  rounded={"full"}
-                  size={"lg"}
-                  fontWeight={"normal"}
-                  px={6}
-                >
-                  Educational Platform
-                </Button>
-              </a>
+                </a>
+              </Stack>
             </Stack>
-          </Stack>
-          <Flex
-            flex={1}
-            justify={"center"}
-            align={"center"}
-            position={"relative"}
-            w={"full"}
-          >
-            <Blob
-              w={"100%"}
-              h={"100%"}
-              position={"absolute"}
-              top={"-20%"}
-              left={0}
-              zIndex={-1}
-              color={useColorModeValue("red.50", "red.400")}
-            />
-            <Box
+            <Flex
+              flex={1}
+              justify={"center"}
+              align={"center"}
               position={"relative"}
-              height={"292px"}
-              rounded={"2xl"}
-              boxShadow={"2xl"}
-              width={"full"}
-              overflow={"hidden"}
+              w={"full"}
             >
-              <AspectRatio ratio={14 / 9}>
-                <iframe
-                  width="600"
-                  height="400"
-                  src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
-                  title="Shiksha Finder video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                ></iframe>
-              </AspectRatio>
-            </Box>
-          </Flex>
-        </Stack>
-      </Container>
+              <Blob
+                w={"100%"}
+                h={"100%"}
+                position={"absolute"}
+                top={"-20%"}
+                left={0}
+                zIndex={-1}
+                color={useColorModeValue("red.50", "red.400")}
+              />
+              <Box
+                position={"relative"}
+                height={"292px"}
+                rounded={"2xl"}
+                boxShadow={"2xl"}
+                width={"full"}
+                overflow={"hidden"}
+              >
+                <AspectRatio ratio={14 / 9}>
+                  <iframe
+                    width="600"
+                    height="400"
+                    src="https://www.youtube.com/embed/SSIeK18tkjM?si=zQfs_xRBnKAwl7HL"
+                    title="Shiksha Finder video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  ></iframe>
+                </AspectRatio>
+              </Box>
+            </Flex>
+          </Stack>
+        </Container>
 
-      <Companyreview />
-      <Footer />
+        <Companyreview />
+        <Footer />
+      </Layout>
     </>
   );
 }
