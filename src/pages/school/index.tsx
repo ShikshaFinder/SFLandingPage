@@ -1,9 +1,9 @@
 import Card from "../../components/card";
 import React from "react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useAuthContext } from "@/context";
-import supabase from "../../../supabase";
+// import { useEffect, useState } from "react";
+// import { useAuthContext } from "@/context";
+// import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
 import Layoutt from "../Layout";
