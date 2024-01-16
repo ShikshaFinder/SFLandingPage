@@ -18,7 +18,7 @@ function admissionformlink({name,phoneNumber}:{name:string,phoneNumber:number}) 
         zIndex={20}
         borderColor="gray.400"
       >
-        <Stack direction="row" spacing={100}>
+        <Stack direction="row" spacing={60}>
           <Link href={`/admissionform/${name}`}>
             {" "}
             <Button
