@@ -250,7 +250,7 @@ const boxColor = useColorModeValue("gray.100", "gray.900");
         borderTopWidth="1px"
         borderColor="gray"
       >
-        <Stack direction={"row"} spacing={90}>
+        <Stack direction={"row"} spacing={85}>
           <Link href={"/school"}>
             <FaSchool
               size={20}
