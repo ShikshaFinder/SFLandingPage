@@ -13,6 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Admissionform from "../../../../components/admissionformlink";
+import Videoo from "../../../../components/video";
+import Subject from "../../../../components/subject";
+import InfoTeacher from "../../../../components/InfoTeacher";
 
 import Cardd from "../../../../components/card";
 import { MdOpenInBrowser } from "react-icons/md";
@@ -28,71 +31,25 @@ function IntroSchool() {
 
   return (
     <>
-      <AspectRatio maxW="560px" ratio={1.75}>
-        <iframe
-          title="hihello"
-          src="https://www.youtube.com/embed/pGeHsxjQJXw?si=FLPTuZo-YCnKVMOz"
-          allowFullScreen
-        />
-      </AspectRatio>
+      <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
       <br />{" "}
       <Link href={`../${lastSegment}/schoolname/subject`}>
         <Stack spacing={4} direction="row" align="center">
           {" "}
-          <Button colorScheme="teal" size="xs">
-            Std 6
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 7
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 8
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 9
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 10
-          </Button>
-          <Button colorScheme="teal" size="xs">
-            Std 11
-          </Button>{" "}
-          <Button colorScheme="teal" size="xs">
-            Std 12
-          </Button>
+          <Subject
+            subject1="10"
+            subject2="11"
+            subject3="12"
+            subject4="8"
+          />
         </Stack>{" "}
       </Link>
-      <Card>
-        <Stack spacing={4} direction="row" align="center">
-          <CardHeader>
-            <Heading size="md">School Name</Heading>
-          </CardHeader>
-          <Link href={"/"}>
-            <Icon as={MdOpenInBrowser} color={"blue"} />
-          </Link>
-        </Stack>
-        <CardBody>
-          <Stack divider={<StackDivider />} spacing="3">
-            <Box>
-              <Heading size="xs" textTransform="uppercase">
-                Location
-              </Heading>
-              <Text pt="2" fontSize="sm">
-                Check out the overview of your clients.
-              </Text>
-            </Box>
-            <Box>
-              <Heading size="xs" textTransform="uppercase">
-                Information of school
-              </Heading>
-              <Text pt="2" fontSize="sm">
-                ye school bhot badhiya hain mujhe ye school bhot pasand hain
-                sdvfabbjf amnd fadnmd jdbfiaefihfbjd d sfvskbibhdiwbrfhbdb
-              </Text>
-            </Box>
-          </Stack>
-        </CardBody>
-      </Card>
+      <InfoTeacher
+        TeacherName="Chintansir"
+        Experience={"12 years"}
+        AboutTeacher={"He is a good teacher"}
+        discription={"He is a good teacher"}
+      />
       <Stack direction="row">
         <Link href={`../school/2/schoolname`}>
           <Cardd
