@@ -84,6 +84,7 @@ function IntroSchool() {
           />
         </Link>
       </Stack>
+      <Admissionform  name="shree" phoneNumber={7984140706}/>
     </>
   );
 }
