@@ -15,6 +15,7 @@ import Leaderbord from "../components/Leaderbord";
 import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
 import Layout from "./Layout";
+import { useRouter } from "next/router";
 
 
 type UserType = {
@@ -40,15 +41,23 @@ type UserType = {
 function Profile() {
   const { user } = useAuthContext() as { user: UserType };
   const [userData, setUserData] = useState<any>();
+const router = useRouter();
+ async function getStudent() {
+   try {
+     let { data, error } = await supabase
+       .from("Student")
+       .select("*")
+       .eq("user_id", user.id);
 
-  async function getStudent() {
-    let { data, error } = await supabase
-      .from("Student")
-      .select("*")
-      .eq("user_id", user.id);
-    if (!data) return;
-    setUserData(data);
+     if (error) throw error;
+
+     if (!data) return;
+
+     setUserData(data);
+   } catch (error) {
+ router.push("/formstudent");
   }
+ }
 
   useEffect(() => {
     getStudent();
