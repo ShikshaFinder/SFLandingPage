@@ -152,7 +152,7 @@ export default function Home() {
                     fontWeight={"normal"}
                     px={6}
                   >
-                    Educational Platform
+                   For Educational Platform
                   </Button>
                 </a>
               </Stack>
