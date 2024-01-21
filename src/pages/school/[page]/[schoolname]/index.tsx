@@ -13,8 +13,6 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Admissionform from "../../../../components/admissionformlink";
-
-import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
 import Cardd from "../../../../components/card";
 import { MdOpenInBrowser } from "react-icons/md";
 
@@ -117,8 +115,7 @@ function IntroSchool() {
         </Link>
       </Stack>
     <Admissionform name="Shree Swami" phoneNumber={1234567890} />
-    
-    
+\    
     </>
   );
 }

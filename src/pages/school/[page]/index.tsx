@@ -8,6 +8,7 @@ import Bannerad from "../../../components/bannerad";
 import Layout from "../[page]/Layout";
 import { useRouter } from "next/router";
 import Layoutt from "../../Layout";
+import Chart from "../../../components/Chart";  
 
 type UserType = {
   app_metadata: {
@@ -35,60 +36,61 @@ export default function skillclass() {
 
   const lastSegment = pathSegments[pathSegments.length - 1];
 
-  const fetchImages = async () => {
-    const { data, error } = await supabase.storage
-      .from("uploads")
-      .list(user.id + "/");
+  // const fetchImages = async () => {
+  //   const { data, error } = await supabase.storage
+  //     .from("uploads")
+  //     .list(user.id + "/");
 
-    if (data) {
-      setCoverImages(data);
-      console.log(coverImages);
-    }
-    if (error) {
-      console.log(error);
-    }
-  };
+  //   if (data) {
+  //     setCoverImages(data);
+  //     console.log(coverImages);
+  //   }
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchImages();
-  }, []);
+  // useEffect(() => {
+  //   fetchImages();
+  // }, []);
 
   return (
     <>
-    <Layoutt>
-      <Layout>
-        <Bannerad />
-        <Link href={`../school/${lastSegment}/schoolname`}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-        <Link href={`../school/${lastSegment}/schoolname`}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-        <Link href={`../school/${lastSegment}/schoolname`}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-      </Layout>
+      <Layoutt>
+        <Layout>
+          <Bannerad />
+          <Link href={`../school/${lastSegment}/schoolname`}>
+            {" "}
+            <Card
+              name="Shree Swami"
+              imgsrc={
+                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+              rating={"3.4"}
+            />{" "}
+          </Link>{" "}
+          <Link href={`../school/${lastSegment}/schoolname`}>
+            {" "}
+            <Card
+              name="Shree Swami"
+              imgsrc={
+                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+              rating={"3.4"}
+            />{" "}
+          </Link>{" "}
+          <Link href={`../school/${lastSegment}/schoolname`}>
+            {" "}
+            <Card
+              name="Shree Swami"
+              imgsrc={
+                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+              rating={"3.4"}
+            />{" "}
+          </Link>{" "}
+          <Chart />
+        </Layout>
       </Layoutt>
     </>
   );

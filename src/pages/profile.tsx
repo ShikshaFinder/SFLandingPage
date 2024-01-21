@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+
 import {
   Tabs,
   TabList,
   TabPanels,
-  Tab,
   TabPanel,
   Button,
   Box,
   useTab,
   useMultiStyleConfig,
+  Spinner,
+  Center,
 } from "@chakra-ui/react";
 import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
@@ -41,23 +44,23 @@ type UserType = {
 function Profile() {
   const { user } = useAuthContext() as { user: UserType };
   const [userData, setUserData] = useState<any>();
-const router = useRouter();
- async function getStudent() {
-   try {
-     let { data, error } = await supabase
-       .from("Student")
-       .select("*")
-       .eq("user_id", user.id);
+  const router = useRouter();
+  async function getStudent() {
+    try {
+      let { data, error } = await supabase
+        .from("Student")
+        .select("*")
+        .eq("user_id", user.id);
 
-     if (error) throw error;
+      if (error) throw error;
 
-     if (!data) return;
+      if (!data) return;
 
-     setUserData(data);
-   } catch (error) {
- router.push("/formstudent");
+      setUserData(data);
+    } catch (error) {
+      router.push("/formstudent");
+    }
   }
- }
 
   useEffect(() => {
     getStudent();
@@ -82,7 +85,12 @@ const router = useRouter();
     );
   });
 
-  if (!userData) return <div>loading</div>;
+  if (!userData)
+    return (
+      <Center>
+        <Spinner color="green.500" />
+      </Center>
+    );
 
   return (
     <>
@@ -108,13 +116,24 @@ const router = useRouter();
               />
             </TabPanel>
             <TabPanel>
-              <Leaderbord />
+              <Leaderbord name="you" number={78} name1="Shree Ram" name2="Harsh Jani" name3="rudra joshi"/>
             </TabPanel>
           </TabPanels>
         </Tabs>
+        <a href="schoolleaderbord" style={{ textDecoration: 'underline', color: 'blue' }}>school leaderbord</a>
       </Layout>
     </>
   );
 }
 
 export default Profile;
+
+export async function getServerSideProps(context: any) {
+  let content = "shiksha finder"; // Fetch the data here
+
+  return {
+    props: {
+      content, // will be passed to the page component as props
+    },
+  };
+}

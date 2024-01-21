@@ -1,24 +1,13 @@
 import {
-  AspectRatio,
-  Card,
-  CardHeader,
-  CardBody,
-  Text,
-  Box,
-  Stack,
-  Heading,
-  StackDivider,
-  Button,
-  Icon,
+ Stack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Admissionform from "../../../../components/admissionformlink";
 import Videoo from "../../../../components/video";
-import Subject from "../../../../components/subject";
+import Standard from "../../../../components/Standard";
 import InfoTeacher from "../../../../components/InfoTeacher";
 
 import Cardd from "../../../../components/card";
-import { MdOpenInBrowser } from "react-icons/md";
 
 import Link from "next/link";
 import React from "react";
@@ -36,12 +25,7 @@ function IntroSchool() {
       <Link href={`../${lastSegment}/schoolname/subject`}>
         <Stack spacing={4} direction="row" align="center">
           {" "}
-          <Subject
-            subject1="10"
-            subject2="11"
-            subject3="12"
-            subject4="8"
-          />
+          <Standard />
         </Stack>{" "}
       </Link>
       <InfoTeacher
@@ -73,6 +57,7 @@ function IntroSchool() {
         </Link>
       </Stack>
       <Admissionform name="Shree Swami" phoneNumber={7984140706} />
+     
     </>
   );
 }

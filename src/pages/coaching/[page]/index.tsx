@@ -8,6 +8,7 @@ import Bannerad from "../../../components/bannerad";
 import Layout from "../[page]/Layout";
 import { useRouter } from "next/router";
 import Layoutt from "../../Layout";
+import Chart from "../../../components/Chart";
 
 type UserType = {
   app_metadata: {
@@ -88,6 +89,7 @@ export default function skillclass() {
             rating={"3.4"}
           />{" "}
         </Link>{" "}
+<Chart />
       </Layout>
       </Layoutt>
     </>

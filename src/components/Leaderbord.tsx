@@ -1,97 +1,122 @@
-import { Fragment } from "react";
+import React from 'react'
 import {
-  Container,
-  Flex,
-  Stack,
-  VStack,
-  Divider,
-  useColorModeValue,
-  Avatar,
+  Card,
+  CardBody,
   Text,
+  Stack,
+  Avatar,
+  Divider,
+  Box,
+  AbsoluteCenter,
 } from "@chakra-ui/react";
 
 
-interface Notification {
-  notification: string;
-  School: string;
-  userName: string;
-  userAvatar: string;
+function Leaderbord({name,name1,name2,name3,number}:{name?:string,number:any,name1?:string,name2?:string,name3?:string}) {
+  return (
+    <>
+      <Card>
+        <CardBody>
+          <Stack direction="row" spacing={"8"}>
+            <Avatar name={name} />
+            <Text
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              fontWeight="bold"
+            >
+              {name}
+            </Text>
+            <Text
+              display="flex"
+              fontSize="xl"
+              alignItems={"center"}
+              fontWeight="bold"
+            >
+              {number}{" "}
+            </Text>
+          </Stack>
+        </CardBody>
+      </Card>
+      <Box position="relative" padding="10">
+        <Divider />
+        <AbsoluteCenter bg="white" px="4">
+          Leaderbord
+        </AbsoluteCenter>
+      </Box>
+      <Card>
+        <CardBody>
+          <Stack direction="row" spacing={"8"}>
+            <Avatar name={name1} />
+            <Text
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              fontWeight="bold"
+            >
+              {name1}
+            </Text>
+            <Text
+              display="flex"
+              fontSize="xl"
+              alignItems={"center"}
+              fontWeight="bold"
+              color="yellow.500"
+            >
+              1st
+            </Text>
+          </Stack>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody>
+          <Stack direction="row" spacing={"8"}>
+            <Avatar name={name2} />
+            <Text
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              fontWeight="bold"
+            >
+              {name2}
+            </Text>
+            <Text
+              display="flex"
+              fontSize="xl"
+              alignItems={"center"}
+              fontWeight="bold"
+              color="silver"
+            >
+              2nd
+            </Text>
+          </Stack>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody>
+          <Stack direction="row" spacing={"8"}>
+            <Avatar name={name3} />
+            <Text
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              fontWeight="bold"
+            >
+              {name3}
+            </Text>
+            <Text
+              display="flex"
+              fontSize="xl"
+              alignItems={"center"}
+              fontWeight="bold"
+              color="green"
+            >
+             3rd
+            </Text>
+          </Stack>
+        </CardBody>
+      </Card>
+    </>
+  );
 }
 
-const notifications: Notification[] = [
-  {
-    notification: `Harsh Jani `,
-    School: "LD college of engineering",
-    userName: "Dan Abrahmov",
-    userAvatar: "https://bit.ly/dan-abramov",
-  },
-  {
-    notification: `Hetal Jani`,
-    School: "Shree swami narayan gurukul",
-    userName: "Kent Dodds",
-    userAvatar: "https://bit.ly/kent-c-dodds",
-  },
-  {
-    notification: `Naresh Jani`,
-    School: "Shihore school",
-    userName: "Jena Karlis",
-    userAvatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80",
-  },
-];
-
-const NotificationsList = () => {
-  return (
-    <Container maxW="5xl" p={{ base: 5, md: 10 }}>
-      <VStack
-        boxShadow={useColorModeValue(
-          "2px 6px 8px rgba(160, 174, 192, 0.6)",
-          "2px 6px 8px rgba(9, 17, 28, 0.9)"
-        )}
-        bg={useColorModeValue("gray.100", "gray.800")}
-        rounded="md"
-        overflow="hidden"
-        spacing={0}
-      >
-        {notifications.map((notification, index) => (
-          <Fragment key={index}>
-            <Flex
-              w="100%"
-              justify="space-between"
-              alignItems="center"
-              _hover={{ bg: useColorModeValue("gray.200", "gray.700") }}
-            >
-              <Stack spacing={0} direction="row" alignItems="center">
-                <Flex p={4}>
-                  <Avatar
-                    size="md"
-                    name={notification.userName}
-                    src={notification.userAvatar}
-                  />
-                </Flex>
-                <Flex direction="column" p={2}>
-                  <Text
-                    color={useColorModeValue("black", "white")}
-                    fontSize={{ base: "sm", sm: "md", md: "lg" }}
-                    dangerouslySetInnerHTML={{
-                      __html: notification.notification,
-                    }}
-                  />
-                  <Text
-                    color={useColorModeValue("gray.600", "gray.200")}
-                    fontSize={{ base: "sm", sm: "md" }}
-                  >
-                    {notification.School}
-                  </Text>
-                </Flex>
-              </Stack>
-            </Flex>
-            {notifications.length - 1 !== index && <Divider m={0} />}
-          </Fragment>
-        ))}
-      </VStack>
-    </Container>
-  );
-};
-
-export default NotificationsList;
+export default Leaderbord

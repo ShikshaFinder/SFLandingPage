@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Footer from "../components/footer";
 import { NextSeo } from "next-seo";
+// import Chart from "../components/Chart";  
 
 import Companyreview from "../components/companyreview";
 import Getstarted from "../components/getstarted";
@@ -194,7 +195,7 @@ export default function Home() {
             </Flex>
           </Stack>
         </Container>
-
+        {/* <Chart /> */}
         <Companyreview />
         <Footer />
       </Layout>
