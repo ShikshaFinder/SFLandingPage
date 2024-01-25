@@ -7,7 +7,6 @@ import Layout from "../Layout";
 function skillclass() {
   return (
     <>
-    
       <Layout>
         {/* <Layoutt> */}
         <Grid
@@ -38,7 +37,7 @@ function skillclass() {
           <Link href={"../skillclass/Self-Diffence"}>
             {" "}
             <Skillcard
-              skillname="Self-Diffence"
+              skillname="self defence"
               icon="https://images.pexels.com/photos/8038021/pexels-photo-8038021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />{" "}
           </Link>
@@ -69,6 +68,18 @@ function skillclass() {
               icon="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
           </Link>
+          <Link href={"../skillclass/coding"}>
+            <Skillcard
+              skillname="Coding"
+              icon="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            />
+          </Link>{" "}
+          <Link href={"../skillclass/Other"}>
+            <Skillcard
+              skillname="Others"
+              icon="https://images.pexels.com/photos/3771055/pexels-photo-3771055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            />
+          </Link>{" "}
           {/* Add more Skillcard components here */}
         </Grid>
       </Layout>

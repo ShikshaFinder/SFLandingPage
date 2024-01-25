@@ -1,58 +1,68 @@
+"use client";
+
 import {
-  chakra,
   Box,
+  Center,
+  useColorModeValue,
+  Heading,
+  Text,
   Stack,
-  HStack,
-  Container,
-  Avatar,
-  Tooltip,
- 
-  useColorModeValue
-} from '@chakra-ui/react';
+  Image,
+} from "@chakra-ui/react";
 
-const UserCard = ({ skillname, icon }:{ skillname: string, icon:any }) => {
+
+export default function ProductSimple({ skillname, icon }: { skillname: string; icon: any }) {
   return (
-    <Container maxW="5xl" p={{ base: 5, md: 6 }}>
-      <Stack
-        w="9rem"
+    <Center py={12}>
+      <Box
+        role={"group"}
         p={6}
-        border="1px solid"
-        borderColor={useColorModeValue("gray.500", "gray.600")}
-        rounded="md"
-        _hover={{
-          boxShadow: useColorModeValue(
-            "0 4px 6px rgba(160, 174, 192, 0.6)",
-            "0 4px 6px rgba(9, 17, 28, 0.4)"
-          ),
-        }}
+        maxW={"330px"}
+        w={"full"}
+        bg={useColorModeValue("white", "gray.800")}
+        boxShadow={"2xl"}
+        rounded={"lg"}
+        pos={"relative"}
+        zIndex={1}
       >
-        <HStack justifyContent="space-between" alignItems="baseline">
-          <Tooltip
-            label="SKill Name"
-            aria-label="SKill Name"
-            placement="right-end"
-            size="sm"
-            // Sizes for Tooltip are not implemented in the default theme. You can extend the theme to implement them
-          >
-            <Box pos="relative">
-              <Avatar
-                src={icon}
-                name="Skill Name "
-                size="xl"
-                borderRadius="md"
-
-              />
-            </Box>
-          </Tooltip>
-        </HStack>
-        <chakra.h1 fontSize="xl" fontWeight="bold">
-         {skillname}
-        </chakra.h1>
-      </Stack>
-    </Container>
-
-    
+        <Box
+          rounded={"lg"}
+          mt={-12}
+          pos={"relative"}
+          height={"230px"}
+          _after={{
+            transition: "all .3s ease",
+            content: '""',
+            w: "full",
+            h: "full",
+            pos: "absolute",
+            top: 5,
+            left: 0,
+            backgroundImage: `url(${icon})`,
+            filter: "blur(15px)",
+            zIndex: -1,
+          }}
+          _groupHover={{
+            _after: {
+              filter: "blur(20px)",
+            },
+          }}
+        >
+          <Image
+            rounded={"lg"}
+            height={230}
+            width={282}
+            objectFit={"cover"}
+            src={icon}
+            alt="Skill class"
+          />
+        </Box>
+        <Stack pt={10} align={"center"}>
+          <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+            {skillname}
+          </Heading>
+        </Stack>
+      </Box>
+    </Center>
   );
-};
-
-export default UserCard;
+}
