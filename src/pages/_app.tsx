@@ -34,10 +34,10 @@ export default function App({
   return (
     <>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
-      <noscript>
+      <noscript> 
         <img
           src="https://queue.simpleanalyticscdn.com/noscript.gif"
-          alt=""
+          alt="script"
           referrerPolicy="no-referrer-when-downgrade"
         />
       </noscript>

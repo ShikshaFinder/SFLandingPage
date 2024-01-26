@@ -52,9 +52,9 @@ function Profile() {
         .select("*")
         .eq("user_id", user.id);
 
-      if (error) throw error;
+      // if (error) throw error;
 
-      if (!data) return;
+      // if (!data) return;
 
       setUserData(data);
     } catch (error) {

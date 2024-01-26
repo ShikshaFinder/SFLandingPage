@@ -1,4 +1,3 @@
-
 import {
   FormControl,
   FormLabel,
@@ -14,7 +13,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 
@@ -39,15 +38,14 @@ type UserType = {
 
 function Form() {
   const toast = useToast();
- const { user } = useAuthContext() as { user: UserType };
+  const { user } = useAuthContext() as { user: UserType };
 
   const form = useForm();
-const router = useRouter();
-  
-  const { register, handleSubmit,control } = form;
+  const router = useRouter();
+
+  const { register, handleSubmit, control } = form;
 
   const handleSubmitt = () => {
-  
     toast({
       title: "Form submitted!",
       description: "Thank you for your Form",
@@ -55,26 +53,29 @@ const router = useRouter();
       duration: 3000,
       isClosable: true,
     });
-    router.push("/school");
+    router.push("/profile");
   };
- 
-const onSubmit = async (data: any) => {
-  const { error } = await supabase
-    .from("Student")
-    .insert([{ ...data,  user_id: user.id}]);
-  if (error) {
-    console.error("Error submitting Form:", error);
-    toast({
-      title: "Error",
-      description: error.message,
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-    });
-  } else {
-    handleSubmitt();
-  }
-};
+
+  const onSubmit = async (data: any) => {
+    const { error } = await supabase
+      .from("Student")
+      .update({ ...data })
+      .eq("user_id", user.id);
+
+
+    if (error) {
+      console.error("Error submitting Form:", error);
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      handleSubmitt();
+    }
+  };
 
   return (
     <>
@@ -142,7 +143,7 @@ const onSubmit = async (data: any) => {
             </FormControl>
             <br />
             <FormControl as="fieldset">
-              <FormLabel as="legend">Medium</FormLabel>
+              <FormLabel as="legend">Mediumy</FormLabel>
               <Controller
                 name="medium"
                 control={control}
