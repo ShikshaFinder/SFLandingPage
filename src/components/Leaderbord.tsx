@@ -39,7 +39,7 @@ function Leaderbord({name,name1,name2,name3,number}:{name?:string,number:any,nam
       </Card>
       <Box position="relative" padding="10">
         <Divider />
-        <AbsoluteCenter bg="white" px="4">
+        <AbsoluteCenter  px="4">
           Leaderbord
         </AbsoluteCenter>
       </Box>

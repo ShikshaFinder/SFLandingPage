@@ -8,6 +8,7 @@ import {
   Card,
   CardBody,
   Badge,
+  Stack,
 } from "@chakra-ui/react";
 
 import { FaAlignLeft, FaCoins, FaEdit, FaHeart, FaLanguage, FaMailBulk, FaMailchimp, FaMapMarkerAlt, FaSchool } from "react-icons/fa";
@@ -22,14 +23,14 @@ function profile({name, email, board, medium, standard, city, state, coins}: {na
  
   return (
     <Container justifyContent={"center"}>
-      <Card >
+      <Card>
         <CardBody>
           <Wrap justifyContent={"center"} spacing={4} direction="column">
             <WrapItem>
-              <Link href={"/formstudent"}>
+              <Link href={"/updateprofile"}>
                 {" "}
-                <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
-                <FaEdit size={24} style={{ alignSelf: "flex-end" }} />
+              <Stack direction="row" spacing={4}>  <Avatar size="2xl" name={name} borderRadius={"3xl"} />{" "}
+                <FaEdit size={24} style={{ alignSelf: "flex-end" }} /></Stack>
               </Link>
             </WrapItem>
             <WrapItem>
@@ -42,20 +43,27 @@ function profile({name, email, board, medium, standard, city, state, coins}: {na
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaMapMarkerAlt />
-              <b style={{ textAlign: "center" }}>&nbsp; {city},{state} </b>
-            </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
-              <FaMailBulk />
               <b style={{ textAlign: "center" }}>
-                &nbsp; {email}
+                &nbsp; {city},{state}{" "}
               </b>
+            </WrapItem>
+            <WrapItem
+              style={{
+                marginTop: "10px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <FaMailBulk />
+              <b style={{ textAlign: "center" }}>&nbsp; {email}</b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaCoins />
-              <b style={{ textAlign: "center" }}> {coins} </b>
+              <b style={{ textAlign: "center" }}> &nbsp;{coins} </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
-              <FaHeart />
+             <Stack direction="row" spacing={4}> <FaHeart />
               <b
                 color="blue.400"
                 style={{
@@ -65,17 +73,26 @@ function profile({name, email, board, medium, standard, city, state, coins}: {na
                 }}
               >
                 <Link href={"/liked"}> &nbsp; Your Liked Institute</Link>
-              </b>
+              </b></Stack>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaAlignLeft />
 
               <b style={{ textAlign: "center" }}>&nbsp; {board}</b>
             </WrapItem>
-            <WrapItem style={{ marginTop: "10px" }}>
+            <WrapItem
+              style={{
+                marginTop: "10px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               <FaLanguage />
 
-              <b style={{ textAlign: "center" }}>&nbsp; {medium}</b>
+              <b style={{ textAlign: "center" }}>
+                &nbsp; {medium}
+              </b>
             </WrapItem>
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSchool />

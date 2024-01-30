@@ -61,7 +61,7 @@ const router = useRouter();
 const onSubmit = async (data: any) => {
   const { error } = await supabase
     .from("Student")
-    .insert([{ ...data,  user_id: user.id}]);
+    .insert([{ ...data,  user_id: user.id,email:user.email}]);
   if (error) {
     console.error("Error submitting Form:", error);
     toast({
@@ -84,6 +84,17 @@ const onSubmit = async (data: any) => {
             <Heading size="md" fontSize="26px">
               We welcome you with full hearts 💓{" "}
             </Heading>
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Name</FormLabel>
+              <Input
+                {...register("name", {
+                  required: true,
+                })}
+                name="name"
+                placeholder="Your Name"
+              />
+            </FormControl>{" "}
             <br />
             <FormControl isRequired>
               <FormLabel>State</FormLabel>
