@@ -55,11 +55,11 @@ function skillclass() {
               icon="https://images.pexels.com/photos/752525/pexels-photo-752525.jpeg?auto=compress&cs=tinysrgb&w=600"
             />
           </Link>
-          <Link href={"../skillclass/Motivation"}>
+          <Link href={"../skillclass/art"}>
             {" "}
             <Skillcard
-              skillname="Motivation"
-              icon="https://images.pexels.com/photos/673018/pexels-photo-673018.jpeg?auto=compress&cs=tinysrgb&w=600"
+              skillname="Art"
+              icon="https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </Link>
           <Link href={"../skillclass/Designing"}>
