@@ -1,4 +1,4 @@
-
+import React, { useState, useEffect } from "react";
 import {
   FormControl,
   FormLabel,
@@ -12,9 +12,10 @@ import {
   CardBody,
   Card,
   Stack,
+  Select,
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 
@@ -36,18 +37,23 @@ type UserType = {
   role: string;
   updated_at: string;
 };
+interface State {
+  name: string;
+  districts: string[];
+  state: string;
+}
 
 function Form() {
   const toast = useToast();
- const { user } = useAuthContext() as { user: UserType };
+  const { user } = useAuthContext() as { user: UserType };
 
   const form = useForm();
-const router = useRouter();
-  
-  const { register, handleSubmit,control } = form;
+  const router = useRouter();
+
+const { register, handleSubmit, control, watch } = form;
+const selectedState = watch("State");
 
   const handleSubmitt = () => {
-  
     toast({
       title: "Form submitted!",
       description: "Thank you for your Form",
@@ -57,24 +63,44 @@ const router = useRouter();
     });
     router.push("/school");
   };
- 
-const onSubmit = async (data: any) => {
-  const { error } = await supabase
-    .from("Student")
-    .insert([{ ...data,  user_id: user.id,email:user.email}]);
-  if (error) {
-    console.error("Error submitting Form:", error);
-    toast({
-      title: "Error",
-      description: error.message,
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-    });
-  } else {
-    handleSubmitt();
-  }
-};
+
+  const onSubmit = async (data: any) => {
+    const { error } = await supabase
+      .from("Student")
+      .insert([{ ...data, user_id: user.id, email: user.email }]);
+    if (error) {
+      console.error("Error submitting Form:", error);
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      handleSubmitt();
+    }
+  };
+  
+  const [states, setStates] = useState<State[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/state.json");
+        const data = await response.json();
+        setStates(data.states); // set the fetched data to the 'states' variable
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const districts =
+    states.find((state) => state.state === selectedState)?.districts || [];
+
 
   return (
     <>
@@ -96,25 +122,36 @@ const onSubmit = async (data: any) => {
               />
             </FormControl>{" "}
             <br />
+            <br />
             <FormControl isRequired>
               <FormLabel>State</FormLabel>
-              <Input
-                {...register("State", {
-                  required: true,
-                })}
+              <Select
+                {...register("State", { required: true })}
                 name="State"
-                placeholder="State"
-              />
+                placeholder="Select State"
+              >
+                {states.map((stateObj) => (
+                  <option key={stateObj.state} value={stateObj.state}>
+                    {stateObj.state}
+                  </option>
+                ))}
+              </Select>
             </FormControl>
             <br />
             <FormControl isRequired>
               <FormLabel>District/city</FormLabel>
-              <Input
-                {...register("District", { required: true })}
-                name="District"
-                placeholder="District/city"
-              />
-            </FormControl>
+              <Select
+                {...register("city", { required: true })}
+                name="city"
+                placeholder="Select District"
+              >
+                {districts.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>{" "}
             <br />
             <FormControl isRequired>
               <FormLabel> Sub-District</FormLabel>

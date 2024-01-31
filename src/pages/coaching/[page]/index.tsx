@@ -56,41 +56,41 @@ export default function skillclass() {
 
   return (
     <>
-    <Layoutt> 
-      <Layout>
-        <Bannerad />
-        <Link href={`../coaching/${lastSegment}/schoolname`}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-        <Link href={`../coaching/${lastSegment}/schoolname`}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-        <Link href={`../coaching/${lastSegment}/schoolname`}>
-          {" "}
-          <Card
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>{" "}
-<Chart />
-      </Layout>
+      <Layoutt>
+        <Layout>
+          <Bannerad />
+          <Link href={`../coaching/${lastSegment}/schoolname`}>
+            {" "}
+            <Card
+              name="Shree Swami"
+              imgsrc={
+                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+              rating={"3.4"}
+            />{" "}
+          </Link>{" "}
+          <Link href={`../coaching/${lastSegment}/schoolname`}>
+            {" "}
+            <Card
+              name="Shree Swami"
+              imgsrc={
+                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+              rating={"3.4"}
+            />{" "}
+          </Link>{" "}
+          <Link href={`../coaching/${lastSegment}/schoolname`}>
+            {" "}
+            <Card
+              name="Shree Swami"
+              imgsrc={
+                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+              rating={"3.4"}
+            />{" "}
+          </Link>{" "}
+          <Chart extra={10} quality={10} management={10} facilities={10} />
+        </Layout>
       </Layoutt>
     </>
   );

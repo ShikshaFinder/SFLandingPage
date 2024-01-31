@@ -9,33 +9,41 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { Box } from "@chakra-ui/react";
+type ChartProps = {
+  quality: number;
+};
 
+
+export default function Chart({quality, management, facilities, extra}:{quality: number, management: number, facilities: number, extra: number}) {
+  
 const data = [
   {
     name: "Quality of Education",
-    uv: 9,
+    uv: quality,
     amt: 2400,
   },
   {
     name: "Management",
-    uv: 10,
+    uv: management,
     amt: 2210,
   },
   {
     name: "Facilities Available",
-    uv: 7,
+    uv: facilities,
     amt: 2290,
   },
   {
     name: "Extra Curricular Activities",
-    uv: 8,
+    uv: extra,
     amt: 2000,
-  }
+  },
 ];
 
-export default function Chart() {
+
     // console.log("chart");
   return (
+    <Box width={["100%", "75%", "100%", "25%"]}>
       <BarChart
         width={500}
         height={300}
@@ -52,12 +60,13 @@ export default function Chart() {
         <YAxis />
         <Tooltip />
         <Legend />
-        
+
         <Bar
           dataKey="uv"
           fill="#82ca9d"
           activeBar={<Rectangle fill="gold" stroke="purple" />}
         />
       </BarChart>
+    </Box>
   );
 }

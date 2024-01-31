@@ -89,7 +89,7 @@ export default function skillclass() {
               rating={"3.4"}
             />{" "}
           </Link>{" "}
-          <Chart />
+          <Chart extra={9} quality={8} management={7} facilities={8} />
         </Layout>
       </Layoutt>
     </>
