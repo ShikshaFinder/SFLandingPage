@@ -21,22 +21,18 @@ const data = [
   {
     name: "Quality of Education",
     uv: quality,
-    amt: 2400,
   },
   {
     name: "Management",
     uv: management,
-    amt: 2210,
   },
   {
     name: "Facilities Available",
     uv: facilities,
-    amt: 2290,
   },
   {
     name: "Extra Curricular Activities",
     uv: extra,
-    amt: 2000,
   },
 ];
 
@@ -45,7 +41,7 @@ const data = [
   return (
     <Box width={["100%", "75%", "100%", "25%"]}>
       <BarChart
-        width={500}
+        width={350}
         height={300}
         data={data}
         margin={{
@@ -55,7 +51,7 @@ const data = [
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 4" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
@@ -63,8 +59,8 @@ const data = [
 
         <Bar
           dataKey="uv"
-          fill="#82ca9d"
-          activeBar={<Rectangle fill="gold" stroke="purple" />}
+          fill="#40a2d8"
+          activeBar={<Rectangle fill="#008170" stroke="white" />}
         />
       </BarChart>
     </Box>
