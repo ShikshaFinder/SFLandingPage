@@ -195,7 +195,6 @@ export default function Home() {
             </Flex>
           </Stack>
         </Container>
-        {/* <Chart /> */}
         <Companyreview />
         <Footer />
       </Layout>

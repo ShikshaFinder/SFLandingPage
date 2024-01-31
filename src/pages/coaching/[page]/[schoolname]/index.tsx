@@ -6,6 +6,7 @@ import Admissionform from "../../../../components/admissionformlink";
 import Videoo from "../../../../components/video";
 import Standard from "../../../../components/Standard";
 import InfoTeacher from "../../../../components/InfoTeacher";
+import Chart from "../../../../components/Chart"
 
 import Cardd from "../../../../components/card";
 
@@ -34,6 +35,7 @@ function IntroSchool() {
         AboutTeacher={"He is a good teacher"}
         discription={"He is a good teacher"}
       />
+      <Chart extra={9} quality={8} management={7} facilities={8} />
       <Stack direction="row">
         <Link href={`../school/2/schoolname`}>
           <Cardd
@@ -57,7 +59,6 @@ function IntroSchool() {
         </Link>
       </Stack>
       <Admissionform name="Shree Swami" phoneNumber={7984140706} />
-     
     </>
   );
 }

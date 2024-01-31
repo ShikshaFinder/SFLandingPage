@@ -20,24 +20,23 @@ export default function Chart({quality, management, facilities, extra}:{quality:
 const data = [
   {
     name: "Quality of Education",
-    uv: quality,
+    p: quality,
   },
   {
     name: "Management",
-    uv: management,
+    p: management,
   },
   {
     name: "Facilities Available",
-    uv: facilities,
+    p: facilities,
   },
   {
     name: "Extra Curricular Activities",
-    uv: extra,
+    p: extra,
   },
 ];
 
 
-    // console.log("chart");
   return (
     <Box width={["100%", "75%", "100%", "25%"]}>
       <BarChart
@@ -52,13 +51,18 @@ const data = [
         }}
       >
         <CartesianGrid strokeDasharray="3 4" />
-        <XAxis dataKey="name" />
+        <XAxis
+          dataKey="name"
+          angle={-20}
+          textAnchor="end"
+          tick={{ fontSize: 12}}
+        />
         <YAxis />
         <Tooltip />
         <Legend />
 
         <Bar
-          dataKey="uv"
+          dataKey="p"
           fill="#40a2d8"
           activeBar={<Rectangle fill="#008170" stroke="white" />}
         />
@@ -66,3 +70,4 @@ const data = [
     </Box>
   );
 }
+

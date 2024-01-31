@@ -12,7 +12,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-
+import Chart from "../../../../components/Chart";
 import Admissionform from "../../../../components/admissionformlink";
 import Cardd from "../../../../components/card";
 import { MdOpenInBrowser } from "react-icons/md";
@@ -93,6 +93,8 @@ function IntroSchool() {
           </Stack>
         </CardBody>
       </Card>
+      <br />
+      <Chart extra={9} quality={8} management={7} facilities={8} />
       <Stack direction="row">
         <Link href={`../onlineplatforms`}>
           <Cardd
@@ -115,7 +117,7 @@ function IntroSchool() {
           />
         </Link>
       </Stack>
-     <Admissionform name="shreeswami" phoneNumber={7984140706}/>
+      <Admissionform name="shreeswami" phoneNumber={7984140706} />
     </>
   );
 }

@@ -11,6 +11,7 @@ import {
   Button,
   Icon,
 } from "@chakra-ui/react";
+import Chart from "../../../../components/Chart";
 import { useRouter } from "next/router";
 import Admissionform from "../../../../components/admissionformlink";
 import Cardd from "../../../../components/card";
@@ -92,6 +93,8 @@ function IntroSchool() {
           </Stack>
         </CardBody>
       </Card>
+      <br />
+      <Chart extra={9} quality={8} management={7} facilities={8} />
       <Stack direction="row">
         <Link href={`../school/2/schoolname`}>
           <Cardd
@@ -114,8 +117,7 @@ function IntroSchool() {
           />
         </Link>
       </Stack>
-    <Admissionform name="Shree Swami" phoneNumber={1234567890} />
-\    
+      <Admissionform name="Shree Swami" phoneNumber={1234567890} />
     </>
   );
 }

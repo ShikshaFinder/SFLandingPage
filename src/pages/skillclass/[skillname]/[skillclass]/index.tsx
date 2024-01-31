@@ -8,13 +8,19 @@ import Cardd from "../../../../components/card";
 import Videoo from "../../../../components/video";
 import InfoTeacher from "../../../../components/InfoTeacher";
 import Subject from "../../../../components/subject";
+import Chart from "../../../../components/Chart";
 import Link from "next/link";
 import React from "react";
 function IntroSchool() {
   return (
     <>
-    <Subject subject1={"maths"}  subject2="hindi" subject3="Social Science" subject4="Science"/>
-    <br />
+      <Subject
+        subject1={"maths"}
+        subject2="hindi"
+        subject3="Social Science"
+        subject4="Science"
+      />
+      <br />
       <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
       <br />
       <InfoTeacher
@@ -25,6 +31,9 @@ function IntroSchool() {
       />
 
       <Stack direction="row">
+        <br />
+        <Chart extra={9} quality={8} management={7} facilities={8} />
+
         <Link href={"../school/1/schoolname"}>
           <Cardd
             name="Shree Swami"
