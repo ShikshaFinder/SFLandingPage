@@ -11,14 +11,10 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-import { FaAlignLeft, FaCoins, FaEdit, FaHeart, FaLanguage, FaMailBulk, FaMailchimp, FaMapMarkerAlt, FaSchool } from "react-icons/fa";
+import { FaAlignLeft, FaCoins, FaEdit, FaHeart, FaLanguage, FaMailBulk, FaMapMarkerAlt, FaSchool } from "react-icons/fa";
 import Link from "next/link";
 
 function profile({name, email, board, medium, standard, city, state, coins}: {name: string, email: string, board: string, medium: string, standard: string, city: string, state: string, coins: number})
-
-   
-
-
 {
  
   return (
