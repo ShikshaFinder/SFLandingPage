@@ -39,7 +39,7 @@ type UserType = {
   role: string;
   updated_at: string;
 };
-
+// console.log(userData[0]);
 
 function Profile() {
   const { user } = useAuthContext() as { user: UserType };
@@ -52,9 +52,7 @@ function Profile() {
         .select("*")
         .eq("user_id", user.id);
 
-      // if (error) throw error;
-
-      // if (!data) return;
+   
 
       setUserData(data);
     } catch (error) {
@@ -65,7 +63,6 @@ function Profile() {
   useEffect(() => {
     getStudent();
   }, [user]);
-  console.log(user.id);
 
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     // 1. Reuse the `useTab` hook
@@ -91,7 +88,7 @@ function Profile() {
         <Spinner color="green.500" />
       </Center>
     );
-
+console.log(userData[0]);
   return (
     <>
       <Layout>
@@ -105,7 +102,7 @@ function Profile() {
             <TabPanel>
               {" "}
               <Profilee
-                name="harsh"
+                name={userData[0].name}
                 city={userData[0].District}
                 state={userData[0].State}
                 email={user.email}
