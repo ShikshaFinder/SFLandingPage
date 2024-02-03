@@ -152,7 +152,7 @@ const Parent = () => {
               brain, not just fancy words, is so important.
             </Text>
             <BlogAuthor
-              name="John Doe"
+              name="Harsh Jani"
               date={new Date("2021-04-06T19:01:27Z")}
             />
           </Box>
