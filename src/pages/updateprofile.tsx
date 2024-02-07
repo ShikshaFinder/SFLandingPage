@@ -100,8 +100,8 @@ function Form() {
             <FormControl isRequired>
               <FormLabel>District/city</FormLabel>
               <Input
-                {...register("District", { required: true })}
-                name="District"
+                {...register("city", { required: true })}
+                name="city"
                 placeholder="District/city"
               />
             </FormControl>

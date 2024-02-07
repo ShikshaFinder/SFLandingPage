@@ -44,6 +44,7 @@ type UserType = {
   updated_at: string;
 };
 import Layout from "./Layout";
+// import ShikshaCoinPopup from "@/components/shikshacoinpopup";
 
 
 export default function Home() {
@@ -196,6 +197,7 @@ export default function Home() {
           </Stack>
         </Container>
         <Companyreview />
+        {/* <ShikshaCoinPopup/> */}
         <Footer />
       </Layout>
     </>
