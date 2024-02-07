@@ -1,7 +1,6 @@
 "use client";
-import { useRouter } from "next/router"; // Import the useRouter hook
+import { useRouter } from "next/router";
 import supabase from "../../supabase";
-import Link from "next/link";
 import {
   Flex,
   Box,
@@ -16,10 +15,12 @@ import {
   Heading,
   Text,
   useColorModeValue,
- 
+  Link,
+  Toast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { error } from "console";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
@@ -35,14 +36,21 @@ export default function SignupCard() {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+
         options: {
-          emailRedirectTo: 'https://shikshafinder.com/whichuser',
+          emailRedirectTo: "https://platform.shikshafinder.com/",
+          data: {
+            firstName,
+            lastName,
+          },
         },
       });
       router.push("/checkmail");
     } catch (error) {
       console.log(error);
+
     }
+   
   };
 
   return (
@@ -74,6 +82,7 @@ export default function SignupCard() {
                   <FormLabel>First Name</FormLabel>
                   <Input
                     type="text"
+                    name="firstName"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                 </FormControl>
@@ -82,6 +91,7 @@ export default function SignupCard() {
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
                   <Input
+                    name="lastName"
                     type="text"
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -132,7 +142,7 @@ export default function SignupCard() {
                   href={"/login"}
                   style={{ color: "blue", textDecoration: "underline" }}
                 >
-                  Login
+                  login
                 </Link>
               </Text>
             </Stack>

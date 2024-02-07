@@ -18,6 +18,7 @@ import supabase from "../../supabase";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
+import { state } from "@/components/state";
 
 type UserType = {
   app_metadata: {
@@ -38,7 +39,6 @@ type UserType = {
   updated_at: string;
 };
 interface State {
-  name: string;
   districts: string[];
   state: string;
 }
@@ -82,22 +82,7 @@ const selectedState = watch("State");
     }
   };
   
-  const [states, setStates] = useState<State[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/state.json");
-        const data = await response.json();
-        setStates(data.states); // set the fetched data to the 'states' variable
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
 
@@ -121,7 +106,6 @@ const selectedState = watch("State");
                 placeholder="Your Name"
               />
             </FormControl>{" "}
-            <br />
             <br />
             <FormControl isRequired>
               <FormLabel>State</FormLabel>

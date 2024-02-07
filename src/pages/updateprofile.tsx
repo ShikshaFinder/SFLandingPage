@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   FormControl,
   FormLabel,
@@ -11,11 +12,13 @@ import {
   CardBody,
   Card,
   Stack,
+  Select,
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
+import { state } from "@/components/state";
 
 type UserType = {
   app_metadata: {
@@ -35,6 +38,10 @@ type UserType = {
   role: string;
   updated_at: string;
 };
+interface State {
+  districts: string[];
+  state: string;
+}
 
 function Form() {
   const toast = useToast();
@@ -43,11 +50,12 @@ function Form() {
   const form = useForm();
   const router = useRouter();
 
-  const { register, handleSubmit, control } = form;
+  const { register, handleSubmit, control, watch } = form;
+  const selectedState = watch("State");
 
   const handleSubmitt = () => {
     toast({
-      title: "Form submitted!",
+      title: "Details updates!",
       description: "Thank you for your Form",
       status: "success",
       duration: 3000,
@@ -62,7 +70,6 @@ function Form() {
       .update({ ...data })
       .eq("user_id", user.id);
 
-
     if (error) {
       console.error("Error submitting Form:", error);
       toast({
@@ -72,10 +79,15 @@ function Form() {
         duration: 3000,
         isClosable: true,
       });
+
     } else {
       handleSubmitt();
     }
   };
+
+  const [states, setStates] = useState<State[]>(state.states);
+  const districts =
+    states.find((state) => state.state === selectedState)?.districts || [];
 
   return (
     <>
@@ -87,24 +99,45 @@ function Form() {
             </Heading>
             <br />
             <FormControl isRequired>
-              <FormLabel>State</FormLabel>
+              <FormLabel>Name</FormLabel>
               <Input
-                {...register("State", {
+                {...register("name", {
                   required: true,
                 })}
-                name="State"
-                placeholder="State"
+                name="name"
+                placeholder="Your Name"
               />
+            </FormControl>{" "}
+            <br />
+            <FormControl isRequired>
+              <FormLabel>State</FormLabel>
+              <Select
+                {...register("State", { required: true })}
+                name="State"
+                placeholder="Select State"
+              >
+                {states.map((stateObj) => (
+                  <option key={stateObj.state} value={stateObj.state}>
+                    {stateObj.state}
+                  </option>
+                ))}
+              </Select>
             </FormControl>
             <br />
             <FormControl isRequired>
               <FormLabel>District/city</FormLabel>
-              <Input
+              <Select
                 {...register("city", { required: true })}
                 name="city"
-                placeholder="District/city"
-              />
-            </FormControl>
+                placeholder="Select District"
+              >
+                {districts.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>{" "}
             <br />
             <FormControl isRequired>
               <FormLabel> Sub-District</FormLabel>
@@ -143,7 +176,7 @@ function Form() {
             </FormControl>
             <br />
             <FormControl as="fieldset">
-              <FormLabel as="legend">Mediumy</FormLabel>
+              <FormLabel as="legend">Medium</FormLabel>
               <Controller
                 name="medium"
                 control={control}
@@ -166,7 +199,7 @@ function Form() {
               size="md"
               onClick={handleSubmit(onSubmit)}
             >
-              Submit
+              Update Details
             </Button>
           </CardBody>
         </Card>
