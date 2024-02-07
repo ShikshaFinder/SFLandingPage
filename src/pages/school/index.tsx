@@ -1,9 +1,6 @@
 import Card from "../../components/card";
 import React from "react";
 import Link from "next/link";
-// import { useEffect, useState } from "react";
-// import { useAuthContext } from "@/context";
-// import supabase from "../../../supabase";
 import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
 import Layoutt from "../Layout";
@@ -22,27 +19,8 @@ import { useRouter } from "next/router";
 //   console.log(School);
 // }
 
-type UserType = {
-  app_metadata: {
-    provider: string;
-    providers: string[];
-  };
-  aud: string;
-  confirmation_sent_at: string;
-  confirmed_at: string;
-  created_at: string;
-  email: string;
-  email_confirmed_at: string;
-  id: string;
-  identities: Array<any>; // You might want to define a type for this array
-  last_sign_in_at: string;
-  phone: any;
-  role: string;
-  updated_at: string;
-};
 export default function skillclass() {
-  // const [coverImages, setCoverImages] = useState<any[]>([]);
-  // const { user } = useAuthContext() as { user: UserType };
+
   const router = useRouter();
   const pathSegments = router.asPath.split("/");
 

@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   FaSchool,
   FaChalkboardTeacher,
-  FaLaptopCode,
   FaPaintBrush,
   FaGlobe,
 } from "react-icons/fa";
@@ -34,29 +33,10 @@ import {
 import { useAuthContext } from "@/context";
 
 
-type UserType = {
-  app_metadata: {
-    provider: string;
-    providers: string[];
-  };
-  aud: string;
-  confirmation_sent_at: string;
-  confirmed_at: string;
-  created_at: string;
-  email: string;
-  email_confirmed_at: string;
-  id: string;
-  identities: Array<any>;
-  last_sign_in_at: string;
-  phone: any;
-  role: string;
-  updated_at: string;
-};
-
 
 export default function Navbar() {
   const isMobileNav = useBreakpointValue({ base: true, md: false });
-  const { user } = useAuthContext() as { user: UserType };
+  const { user } = useAuthContext() ;
 
   return (
     <Box>

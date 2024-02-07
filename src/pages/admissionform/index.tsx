@@ -18,27 +18,9 @@ import {
 import { useAuthContext } from "@/context";
 // assciate school id with the form filled by the student
 
-type UserType = {
-  app_metadata: {
-    provider: string;
-    providers: string[];
-  };
-  aud: string;
-  confirmation_sent_at: string;
-  confirmed_at: string;
-  created_at: string;
-  email: string;
-  email_confirmed_at: string;
-  id: string;
-  identities: Array<any>; // You might want to define a type for this array
-  last_sign_in_at: string;
-  phone: any;
-  role: string;
-  updated_at: string;
-};
 
 function admissionform() {
-  const { user } = useAuthContext() as { user: UserType };
+  const { user } = useAuthContext();
 
   const form = useForm();
   const toast = useToast();
