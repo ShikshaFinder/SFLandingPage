@@ -1,14 +1,10 @@
 import Head from "next/head";
 import Footer from "../components/footer";
 import { NextSeo } from "next-seo";
-// import Chart from "../components/Chart";  
-
-import Companyreview from "../components/companyreview";
-import Getstarted from "../components/getstarted";
+import CompanyReview from "../components/companyreview";
+import GetStarted from "../components/getstarted";
 import { useAuthContext } from "@/context";
 import Link from "next/link";
-
-
 import {
   Container,
   Stack,
@@ -17,30 +13,24 @@ import {
   Heading,
   Text,
   Button,
+  AspectRatio,
   Icon,
   IconProps,
-  useColorModeValue,
-  AspectRatio,
 } from "@chakra-ui/react";
-
-
-
 import Layout from "./Layout";
-// import ShikshaCoinPopup from "@/components/shikshacoinpopup";
-
 
 export default function Home() {
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
   return (
     <>
       <Layout>
         <NextSeo
           title="Shiksha Finder"
-          description="Show case the quality of education"
+          description="Showcase the quality of education"
           openGraph={{
             url: "https://shikshafinder.com/",
             title: "Let's promote Quality of Education",
-            description: "  इमानदार स्कूल की पहचान",
+            description: "इमानदार स्कूल की पहचान",
             images: [
               {
                 url: "https://postimg.cc/nXqxc8CG",
@@ -84,31 +74,30 @@ export default function Home() {
                     position: "absolute",
                     bottom: 1,
                     left: 0,
-
                     zIndex: -1,
                   }}
                 >
                   Shiksha Finder
                 </Text>
                 <br />
-                <link rel="stylesheet" href="/login" />
                 <Text as={"span"} color={"blue.400"}>
                   इमानदार स्कूल की पहचान
                 </Text>
               </Heading>
               <Text>
-                Here at shiksha finder you can watch &nbsp; <b>Demo lectures</b>
-                & facilities of any school, any coaching classes or any skill
-                classes. you can feel the online admission form of any platform.
+                Here at Shiksha Finder, you can watch <b>Demo lectures</b> and
+                explore facilities of any school, coaching classes, or skill
+                classes. You can easily fill the online admission form of any
+                platform.
                 <br />
-                <b>Admission is this simple!</b>
+                <b>Admission made simple!</b>
               </Text>
               <Stack
                 spacing={{ base: 4, sm: 6 }}
                 direction={{ base: "column", sm: "row" }}
               >
                 {user && user.email ? (
-                  <Getstarted />
+                  <GetStarted />
                 ) : (
                   <Link href="/signup">
                     <Button
@@ -123,20 +112,18 @@ export default function Home() {
                     </Button>
                   </Link>
                 )}
-
                 <a
                   href="https://platform.shikshafinder.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {" "}
                   <Button
                     rounded={"full"}
                     size={"lg"}
                     fontWeight={"normal"}
                     px={6}
                   >
-                   For Educational Platform
+                    For Educational Platform
                   </Button>
                 </a>
               </Stack>
@@ -152,20 +139,21 @@ export default function Home() {
                 w={"100%"}
                 h={"100%"}
                 position={"absolute"}
-                top={"-20%"}
+                top={"-30%"}
                 left={0}
                 zIndex={-1}
-                color={useColorModeValue("red.50", "red.400")}
+                color={"blue.400"}
               />
+
               <Box
                 position={"relative"}
-                height={"292px"}
+                height={"auto"}
                 rounded={"2xl"}
                 boxShadow={"2xl"}
                 width={"full"}
                 overflow={"hidden"}
               >
-                <AspectRatio ratio={14 / 9}>
+                <AspectRatio ratio={16 / 9}>
                   <iframe
                     width="600"
                     height="400"
@@ -178,14 +166,12 @@ export default function Home() {
             </Flex>
           </Stack>
         </Container>
-        <Companyreview />
-        {/* <ShikshaCoinPopup/> */}
+        <CompanyReview />
         <Footer />
       </Layout>
     </>
   );
 }
-
 
 const Blob = (props: IconProps) => {
   return (
@@ -205,4 +191,3 @@ const Blob = (props: IconProps) => {
     </Icon>
   );
 };
-
