@@ -10,11 +10,11 @@ import {
   StackDivider,
   Button,
 } from "@chakra-ui/react";
-import Cardd from "../../../../../components/card";
-import Admissionform from "../../../../../components/admissionformlink";
-import Videoo from "../../../../../components/video";
-import Subject from "../../../../../components/subject";  
-import InfoTeacher from "../../../../../components/InfoTeacher";
+import Cardd from "../../../../components/card";
+import Admissionform from "../../../../components/admissionformlink";
+import Videoo from "../../../../components/video";
+import Subject from "../../../../components/subject";  
+import InfoTeacher from "../../../../components/InfoTeacher";
 import Link from "next/link";
 import React from "react";
 

@@ -2,13 +2,13 @@ import {
  Stack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import Admissionform from "../../../../components/admissionformlink";
-import Videoo from "../../../../components/video";
-import Standard from "../../../../components/Standard";
-import InfoTeacher from "../../../../components/InfoTeacher";
-import Chart from "../../../../components/Chart"
+import Admissionform from "../../../components/admissionformlink";
+import Videoo from "../../../components/video";
+import Standard from "../../../components/Standard";
+import InfoTeacher from "../../../components/InfoTeacher";
+import Chart from "../../../components/Chart"
 
-import Cardd from "../../../../components/card";
+import Cardd from "../../../components/card";
 
 import Link from "next/link";
 import React from "react";
