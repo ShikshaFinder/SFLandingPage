@@ -5,6 +5,10 @@ import Bannerad from "../../components/bannerad";
 import Layout from "./[page]/Layout";
 import Layoutt from "../Layout";
 import { useRouter } from "next/router";
+import { useAuthContext } from "@/context";
+import GetStarted from "../../components/getstarted";
+import { Button } from "@chakra-ui/react";
+
 
 // async function getSchooldata() {
 //   let { data: School, error } = await supabase
@@ -20,9 +24,9 @@ import { useRouter } from "next/router";
 // }
 
 export default function skillclass() {
-
+const { user } = useAuthContext();
   const router = useRouter();
-  const pathSegments = router.asPath.split("/");
+  // const pathSegments = router.asPath.split("/");
 
   // const lastSegment = pathSegments[pathSegments.length - 1];
 
@@ -53,42 +57,60 @@ export default function skillclass() {
   //   // fetchImages();
   // }, []);
 
+
   return (
     <>
       <Layoutt>
-        <Layout>
-          <Bannerad />
-          <Link href={`../school/1/schoolname`}>
-            {" "}
-            <Card
-              name="Shree Swami"
-              imgsrc={
-                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              rating={"3.4"}
-            />{" "}
-          </Link>{" "}
-          <Link href={`../school/1/schoolname`}>
-            {" "}
-            <Card
-              name="Shree Swami"
-              imgsrc={
-                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              rating={"3.4"}
-            />{" "}
-          </Link>{" "}
-          <Link href={`../school/1/schoolname`}>
-            {" "}
-            <Card
-              name="Shree Swami"
-              imgsrc={
-                "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              rating={"3.4"}
-            />{" "}
-          </Link>{" "}
-        </Layout>
+        {user && user.email ? (
+          <>
+            <Layout>
+              <Bannerad />
+              <Link href={`../school/1/schoolname`}>
+                {" "}
+                <Card
+                  name="Shree Swami"
+                  imgsrc={
+                    "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  rating={"3.4"}
+                />{" "}
+              </Link>{" "}
+              <Link href={`../school/1/schoolname`}>
+                {" "}
+                <Card
+                  name="Shree Swami"
+                  imgsrc={
+                    "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  rating={"3.4"}
+                />{" "}
+              </Link>{" "}
+              <Link href={`../school/1/schoolname`}>
+                {" "}
+                <Card
+                  name="Shree Swami"
+                  imgsrc={
+                    "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  rating={"3.4"}
+                />{" "}
+              </Link>{" "}
+            </Layout>
+          </>
+        ) : (
+          <Link href="/signup">
+            <Button
+              rounded={"full"}
+              size={"lg"}
+              fontWeight={"normal"}
+              px={6}
+              colorScheme={"blue"}
+              _hover={{ bg: "blue.500" }}
+            >
+              Get started
+            </Button>
+          </Link>
+        )}
       </Layoutt>
     </>
   );
