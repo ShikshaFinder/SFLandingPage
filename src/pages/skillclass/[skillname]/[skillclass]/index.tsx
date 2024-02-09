@@ -30,29 +30,26 @@ function IntroSchool() {
         discription={"He is a good teacher"}
       />
 
-      <Stack direction="row">
-        <br />
-        <Chart extra={9} quality={8} management={7} facilities={8} />
+      <Chart extra={9} quality={8} management={7} facilities={8} />
 
-        <Link href={"../school/1/schoolname"}>
-          <Cardd
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-        </Link>
-        <Link href={"../school/1/schoolname"}>
-          <Cardd
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />
-        </Link>
-      </Stack>
+      <Link href={"../school/1/schoolname"}>
+        <Cardd
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />{" "}
+      </Link>
+      <Link href={"../school/1/schoolname"}>
+        <Cardd
+          name="Shree Swami"
+          imgsrc={
+            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          rating={"3.4"}
+        />
+      </Link>
       <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
     </>
   );
