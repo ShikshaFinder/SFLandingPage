@@ -29,15 +29,14 @@ export const AuthContextProvider = ({ children }:any) => {
   const [user, setUser] = useState({});
   const fetcCurrentUser = async () => {
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const {data: { user }} = await supabase.auth.getUser();
       if (user) {
         setUser(user);
       }
     } catch (error) {
       console.log(error);
     } finally {
+      
     }
   };
 
