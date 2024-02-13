@@ -77,8 +77,16 @@ function Form() {
         <Card variant="outline">
           <CardBody>
             <Heading size="md" fontSize="26px">
-              We welcome you with full hearts 💓{" "}
+             Form for information updation{" "}
             </Heading>
+            <small
+              style={{
+                display: "block",
+                color: "gray",
+                marginBottom: "10px",
+              }}>
+                By updating this information the information you will see will change like the coaching and classes you will see will be according to your location and standard.
+              </small>
             <br />
             <FormControl isRequired>
               <FormLabel>Name</FormLabel>

@@ -85,25 +85,28 @@ const HeroSection = () => {
               compare, and even experience schools, coaching centers, and skill
               development courses like never before! Think of it as your
               personalized education genie, granting wishes read: finding the
-              perfect learning fit!.  Our mission? Simple: to make your
+              perfect learning fit!. Our mission? Simple: to make your
               educational journey epic. We have a massive database of schools
-              across India, and we don't just list them  we give you the inside
+              across India, and we don't just list them we give you the inside
               scoop. Think **detailed profiles, sneak peeks at actual classes
               through demo lectures, and all the info you need to make the right
               choice with confidence. What makes us different? Unlike other
-              directories, we're all about transparency and convenience. We don't just throw names at you and hope you stick. We give you real glimpses into what each school
-              offers, so you can feel if it's the right fit before you even step
-              foot inside. Here's the best part: Shiksha Finder is a win-win for
-              everyone! Students get an awesome platform to explore options, see
-              teaching styles, and make informed decisions. Schools get a
-              powerful marketing tool to showcase their awesomeness and connect
-              with future stars like you!  Shiksha Finder is designed by educators, for educators and students, with features
-              like demo lectures that you won't find anywhere else. Join us! Be
-              a part of the education revolution and unlock your full potential.
-              Together, let's make finding the perfect school an exciting
-              adventure, not a stressful chore. Click, explore, and get ready to
-              embrace your educational destiny! P.S. We're constantly adding new
-              schools and features, so stay tuned for even more awesomeness!
+              directories, we're all about transparency and convenience. We
+              don't just throw names at you and hope you stick. We give you real
+              glimpses into what each school offers, so you can feel if it's the
+              right fit before you even step foot inside. Here's the best part:
+              Shiksha Finder is a win-win for everyone! Students get an awesome
+              platform to explore options, see teaching styles, and make
+              informed decisions. Schools get a powerful marketing tool to
+              showcase their awesomeness and connect with future stars like you!
+              Shiksha Finder is designed by educators, for educators and
+              students, with features like demo lectures that you won't find
+              anywhere else. Join us! Be a part of the education revolution and
+              unlock your full potential. Together, let's make finding the
+              perfect school an exciting adventure, not a stressful chore.
+              Click, explore, and get ready to embrace your educational destiny!
+              P.S. We're constantly adding new schools and features, so stay
+              tuned for even more awesomeness!
             </Text>
             <HStack
               spacing={{ base: 0, sm: 2 }}
