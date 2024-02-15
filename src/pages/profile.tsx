@@ -20,9 +20,8 @@ import supabase from "../../supabase";
 import Layout from "./Layout";
 import { useRouter } from "next/router";
 
-
 function Profile() {
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
   const [userData, setUserData] = useState<any>();
   const router = useRouter();
   async function getStudent() {
@@ -31,8 +30,6 @@ function Profile() {
         .from("Student")
         .select("*")
         .eq("user_id", user.id);
-
-   
 
       setUserData(data);
     } catch (error) {
@@ -68,7 +65,7 @@ function Profile() {
         <Spinner color="green.500" />
       </Center>
     );
-console.log(userData[0]);
+  console.log(userData[0]);
   return (
     <>
       <Layout>
@@ -93,11 +90,22 @@ console.log(userData[0]);
               />
             </TabPanel>
             <TabPanel>
-              <Leaderbord name="you" number={78} name1="Shree Ram" name2="Harsh Jani" name3="rudra joshi"/>
+              <Leaderbord
+                name="you"
+                number={78}
+                name1="Shree Ram"
+                name2="Harsh Jani"
+                name3="rudra joshi"
+              />
             </TabPanel>
           </TabPanels>
         </Tabs>
-        <a href="schoolleaderbord" style={{ textDecoration: 'underline', color: 'blue' }}>school leaderbord</a>
+        <a
+          href="schoolleaderbord"
+          style={{ textDecoration: "underline", color: "blue" }}
+        >
+          school leaderbord
+        </a>
       </Layout>
     </>
   );

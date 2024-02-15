@@ -114,12 +114,22 @@ function admissionform() {
               />
             </FormControl>
             <br />
-            <FormControl isRequired>
-              <FormLabel>Board</FormLabel>
-              <Input
-                {...register("board", { required: true })}
+            <FormControl as="fieldset">
+              <FormLabel as="legend">Board</FormLabel>
+              <Controller
                 name="board"
-                placeholder="Board"
+                control={control}
+                defaultValue="Native"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <RadioGroup {...field}>
+                    <HStack spacing="24px">
+                      <Radio value="Hindi">CBSE</Radio>
+                      <Radio value="English">NCERT</Radio>
+                      <Radio value="State">State Board</Radio>
+                    </HStack>
+                  </RadioGroup>
+                )}
               />
             </FormControl>
             <br />
