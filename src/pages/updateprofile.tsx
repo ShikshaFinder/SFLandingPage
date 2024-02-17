@@ -77,16 +77,19 @@ function Form() {
         <Card variant="outline">
           <CardBody>
             <Heading size="md" fontSize="26px">
-             Form for information updation{" "}
+              Form for information updation{" "}
             </Heading>
             <small
               style={{
                 display: "block",
                 color: "gray",
                 marginBottom: "10px",
-              }}>
-                By updating this information the information you will see will change like the coaching and classes you will see will be according to your location and standard.
-              </small>
+              }}
+            >
+              By updating this information the information you will see will
+              change like the coaching and classes you will see will be
+              according to your location and standard.
+            </small>
             <br />
             <FormControl isRequired>
               <FormLabel>Name</FormLabel>
@@ -139,20 +142,58 @@ function Form() {
             </FormControl>
             <br />{" "}
             <FormControl isRequired>
-              <FormLabel>Standard/Exam </FormLabel>
-              <Input
+              <FormLabel>Standard</FormLabel>
+              <Select
                 {...register("Standard", { required: true })}
                 name="Standard"
-                placeholder="Standard/if for more than 12 the than write name of exam for which you are preparing"
+                placeholder="Standard"
+              >
+                <option value="Nursery">Nursery</option>
+                <option value="1">Standard 1</option>
+                <option value="2">Standard 2</option>
+                <option value="3">Standard 3</option>
+                <option value="4">Standard 4</option>
+                <option value="5">Standard 5</option>
+                <option value="6">Standard 6</option>
+                <option value="7">Standard 7</option>
+                <option value="8">Standard 8</option>
+                <option value="9">Standard 9</option>
+                <option value="10">Standard 10</option>
+                <option value="11s">Standard 11 -Science</option>{" "}
+                <option value="12s">Standard 12 - Science</option>{" "}
+                <option value="11c">Standard 11 - commerce</option>
+                <option value="12c">Standard 12 - commerce</option>
+                <option value="11a">Standard 11 - Arts</option>
+                <option value="12a">Standard 12 - Arts</option>
+                <option value="Other">Other</option>
+              </Select>
+            </FormControl>
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Exam</FormLabel>
+              <Input
+                {...register("exam", { required: true })}
+                name="exam"
+                placeholder="if for more than 12 the than write name of exam for which you are preparing"
               />
             </FormControl>
             <br />
-            <FormControl>
-              <FormLabel>Board</FormLabel>
-              <Input
-                {...register("Board", { required: false })}
+            <FormControl as="fieldset">
+              <FormLabel as="legend">Board</FormLabel>
+              <Controller
                 name="Board"
-                placeholder="Board"
+                control={control}
+                defaultValue="Native"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <RadioGroup {...field}>
+                    <HStack spacing="24px">
+                      <Radio value="Hindi">CBSE</Radio>
+                      <Radio value="English">NCERT</Radio>
+                      <Radio value="State">State Board</Radio>
+                    </HStack>
+                  </RadioGroup>
+                )}
               />
             </FormControl>
             <br />

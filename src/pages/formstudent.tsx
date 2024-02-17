@@ -131,7 +131,7 @@ function Form() {
             <FormControl as="fieldset">
               <FormLabel as="legend">Board</FormLabel>
               <Controller
-                name="board"
+                name="Board"
                 control={control}
                 defaultValue="Native"
                 rules={{ required: true }}
@@ -147,6 +147,34 @@ function Form() {
               />
             </FormControl>
             <br />
+            <FormControl isRequired>
+              <FormLabel>Standard</FormLabel>
+              <Select
+                {...register("Standard", { required: true })}
+                name="Standard"
+                placeholder="Standard"
+              >
+                <option value="Nursery">Nursery</option>
+                <option value="1">Standard 1</option>
+                <option value="2">Standard 2</option>
+                <option value="3">Standard 3</option>
+                <option value="4">Standard 4</option>
+                <option value="5">Standard 5</option>
+                <option value="6">Standard 6</option>
+                <option value="7">Standard 7</option>
+                <option value="8">Standard 8</option>
+                <option value="9">Standard 9</option>
+                <option value="10">Standard 10</option>
+                <option value="11s">Standard 11 -Science</option>{" "}
+                <option value="12s">Standard 12 - Science</option>{" "}
+                <option value="11c">Standard 11 - commerce</option>
+                <option value="12c">Standard 12 - commerce</option>
+                <option value="11a">Standard 11 - Arts</option>
+                <option value="12a">Standard 12 - Arts</option>
+                <option value="Other">Other</option>
+              </Select>
+            </FormControl>
+            <br />
             <FormControl>
               <FormLabel>Exam</FormLabel>
               <Input
@@ -155,16 +183,6 @@ function Form() {
                 placeholder="exam for which you are preparing"
               />
             </FormControl>
-            <br />
-            <FormControl>
-              <FormLabel>Stream </FormLabel>
-              <Input
-                {...register("stream", { required: false })}
-                name="stream"
-                placeholder="write science/commerce/arts if you are in 11th or 12th"
-              />
-            </FormControl>
-            <br />
             <FormControl as="fieldset">
               <FormLabel as="legend">Medium</FormLabel>
               <Controller
