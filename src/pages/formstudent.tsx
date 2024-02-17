@@ -129,12 +129,22 @@ const selectedState = watch("State");
               />
             </FormControl>
             <br />{" "}
-            <FormControl isRequired>
-              <FormLabel>Standard/Exam </FormLabel>
-              <Input
-                {...register("Standard", { required: true })}
-                name="Standard"
-                placeholder="Standard/if for more than 12 the than write name of exam for which you are preparing"
+            <FormControl as="fieldset">
+              <FormLabel as="legend">Board</FormLabel>
+              <Controller
+                name="board"
+                control={control}
+                defaultValue="Native"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <RadioGroup {...field}>
+                    <HStack spacing="24px">
+                      <Radio value="Hindi">CBSE</Radio>
+                      <Radio value="English">NCERT</Radio>
+                      <Radio value="State">State Board</Radio>
+                    </HStack>
+                  </RadioGroup>
+                )}
               />
             </FormControl>
             <br />

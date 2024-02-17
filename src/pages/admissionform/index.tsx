@@ -106,7 +106,7 @@ function admissionform() {
             </FormControl>
             <br />
             <FormControl>
-              <FormLabel>Stream </FormLabel>
+              <FormLabel>Stream</FormLabel>
               <Input
                 {...register("stream", { required: false })}
                 name="stream"
@@ -117,15 +117,15 @@ function admissionform() {
             <FormControl as="fieldset">
               <FormLabel as="legend">Board</FormLabel>
               <Controller
-                name="board"
+                name="Board"
                 control={control}
-                defaultValue="Native"
+                defaultValue="State"
                 rules={{ required: true }}
                 render={({ field }) => (
                   <RadioGroup {...field}>
                     <HStack spacing="24px">
-                      <Radio value="Hindi">CBSE</Radio>
-                      <Radio value="English">NCERT</Radio>
+                      <Radio value="CBSE">CBSE</Radio>
+                      <Radio value="ICSE">ICSE</Radio>
                       <Radio value="State">State Board</Radio>
                     </HStack>
                   </RadioGroup>
