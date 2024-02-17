@@ -27,13 +27,13 @@ interface State {
 
 function Form() {
   const toast = useToast();
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
 
   const form = useForm();
   const router = useRouter();
 
-const { register, handleSubmit, control, watch } = form;
-const selectedState = watch("State");
+  const { register, handleSubmit, control, watch } = form;
+  const selectedState = watch("State");
 
   const handleSubmitt = () => {
     toast({
@@ -50,7 +50,7 @@ const selectedState = watch("State");
     const { error } = await supabase
       .from("Student")
       .insert([{ ...data, user_id: user.id, email: user.email }]);
-      
+
     if (error) {
       console.error("Error submitting Form:", error);
       toast({
@@ -64,11 +64,10 @@ const selectedState = watch("State");
       handleSubmitt();
     }
   };
-  
+
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
-
 
   return (
     <>
@@ -149,11 +148,11 @@ const selectedState = watch("State");
             </FormControl>
             <br />
             <FormControl>
-              <FormLabel>Board</FormLabel>
+              <FormLabel>Exam</FormLabel>
               <Input
-                {...register("Board", { required: false })}
-                name="Board"
-                placeholder="Board"
+                {...register("exam", { required: false })}
+                name="exam"
+                placeholder="exam for which you are preparing"
               />
             </FormControl>
             <br />
