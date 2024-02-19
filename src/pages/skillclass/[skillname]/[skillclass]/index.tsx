@@ -1,16 +1,29 @@
-import {
-
-  Stack
-
-} from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import Admissionform from "../../../../components/admissionformlink";
-import Cardd from "../../../../components/card";
+import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
 import InfoTeacher from "../../../../components/InfoTeacher";
 import Subject from "../../../../components/subject";
 import Chart from "../../../../components/Chart";
-import Link from "next/link";
 import React from "react";
+
+const cards = [
+  {
+    name: "Shree Swami",
+    imgsrc:
+      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    rating: "3.4",
+    link: "/skillclass/typeofclass/nameofCoaching",
+  },
+  {
+    name: "Shree Swami nararyan ",
+    imgsrc:
+      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    rating: "3.4",
+    link: "/coaching/1/nameofCoaching",
+  }
+];
+
 function IntroSchool() {
   return (
     <>
@@ -31,25 +44,17 @@ function IntroSchool() {
       />
 
       <Chart extra={9} quality={8} management={7} facilities={8} />
-
-      <Link href={"../school/1/schoolname"}>
-        <Cardd
-          name="Shree Swami"
-          imgsrc={
-            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
-          rating={"3.4"}
-        />{" "}
-      </Link>
-      <Link href={"../school/1/schoolname"}>
-        <Cardd
-          name="Shree Swami"
-          imgsrc={
-            "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
-          rating={"3.4"}
-        />
-      </Link>
+      <Stack direction={"row"}>
+        {cards.map(({ name, imgsrc, rating, link }, index) => (
+          <Card
+            key={index}
+            name={name}
+            imgsrc={imgsrc}
+            rating={rating}
+            link={link}
+          />
+        ))}
+      </Stack>
       <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
     </>
   );

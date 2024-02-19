@@ -33,13 +33,14 @@ export default function skillclass() {
       <Layoutt>
         <Bannerad />
         {cards.map(({ name, imgsrc, rating, link }, index) => (
-          <Card
-            key={index}
-            name={name}
-            imgsrc={imgsrc}
-            rating={rating}
-            link={link}
-          />
+          
+            <Card
+              key={index}
+              name={name}
+              imgsrc={imgsrc}
+              rating={rating}
+              link={link}
+            />
         ))}
       </Layoutt>
     </>
