@@ -1,10 +1,10 @@
 import { Stack } from "@chakra-ui/react";
-import Admissionform from "../../../../components/admissionformlink";
-import Card from "../../../../components/card";
-import Videoo from "../../../../components/video";
-import InfoTeacher from "../../../../components/InfoTeacher";
-import Subject from "../../../../components/subject";
-import Chart from "../../../../components/Chart";
+import Admissionform from "../../../components/admissionformlink";
+import Card from "../../../components/card";
+import Videoo from "../../../components/video";
+import InfoTeacher from "../../../components/InfoTeacher";
+import Subject from "../../../components/subject";
+import Chart from "../../../components/Chart";
 import React from "react";
 
 const cards = [
