@@ -28,7 +28,7 @@ function IntroSchool() {
   return (
     <>
       <Subject
-        subject1={"maths"}
+        subject1="maths"
         subject2="hindi"
         subject3="Social Science"
         subject4="Science"

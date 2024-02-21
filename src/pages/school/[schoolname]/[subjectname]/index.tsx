@@ -1,30 +1,40 @@
-import {
-  AspectRatio,
-  Card,
-  CardHeader,
-  CardBody,
-  Text,
-  Box,
-  Stack,
-  Heading,
-  StackDivider,
-  Button,
-} from "@chakra-ui/react";
-import Cardd from "../../../../components/card";
+import { Stack } from "@chakra-ui/react";
 import Admissionform from "../../../../components/admissionformlink";
+import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
-import Subject from "../../../../components/subject";
 import InfoTeacher from "../../../../components/InfoTeacher";
-import Link from "next/link";
+import Subject from "../../../../components/subject";
+import Chart from "../../../../components/Chart";
 import React from "react";
+
+const cards = [
+  {
+    name: "Shree Swami",
+    imgsrc:
+      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    rating: "3.4",
+    link: "/skillclass/typeofclass/nameofCoaching",
+  },
+  {
+    name: "Shree Swami nararyan ",
+    imgsrc:
+      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    rating: "3.4",
+    link: "/coaching/1/nameofCoaching",
+  },
+];
 
 function IntroSchool() {
   return (
     <>
+      <Subject
+        subject1="maths"
+        subject2="hindi"
+        subject3="Social Science"
+        subject4="Science"
+      />
       <br />
       <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
-      <br />
-      <Subject subject1="10" subject2="11" subject3="12" subject4="8" />
       <br />
       <InfoTeacher
         TeacherName="Chintansir"
@@ -33,25 +43,19 @@ function IntroSchool() {
         discription={"He is a good teacher"}
       />
 
-      <Stack direction="row">
-        <Link href={"../school/schoolname"}>
-          <Cardd
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
-          />{" "}
-          <Cardd
-            name="Shree Swami"
-            imgsrc={
-              "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            rating={"3.4"}
+      <Chart extra={9} quality={8} management={7} facilities={8} />
+      <Stack direction={"row"}>
+        {cards.map(({ name, imgsrc, rating, link }, index) => (
+          <Card
+            key={index}
+            name={name}
+            imgsrc={imgsrc}
+            rating={rating}
+            link={link}
           />
-        </Link>
+        ))}
       </Stack>
-      <Admissionform name="Shree Swami" phoneNumber={1234567890} />
+      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
     </>
   );
 }
