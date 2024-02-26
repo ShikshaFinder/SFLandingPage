@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+// import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
 import {
   Tabs,
@@ -24,6 +24,7 @@ function Profile() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any>();
   const router = useRouter();
+  
   async function getStudent() {
     try {
       let { data, error } = await supabase
@@ -95,7 +96,7 @@ function Profile() {
                 number={78}
                 name1="Shree Ram"
                 name2="Harsh Jani"
-                name3="rudra joshi"
+                name3="Hetal jani"
               />
             </TabPanel>
           </TabPanels>

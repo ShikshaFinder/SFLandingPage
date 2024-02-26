@@ -16,11 +16,10 @@ import {
   Text,
   useColorModeValue,
   Link,
-  Toast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { error } from "console";
+import { useToast } from "@chakra-ui/react";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
@@ -32,6 +31,20 @@ export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
 
   const signUpNewUser = async () => {
+    const toast = useToast();
+if(!firstName || !lastName || !email || !password){
+      toast({
+        title: "Error.",
+        description: "All fields are required",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return; 
+}
+
+
+
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
