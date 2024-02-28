@@ -43,12 +43,12 @@ function Profile() {
   }, [user]);
 
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
-    // 1. Reuse the `useTab` hook
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
 
     // 2. Hook into the Tabs `size`, `variant`, props
     const styles = useMultiStyleConfig("Tabs", tabProps);
+  console.log(userData[0]);
 
     return (
       <Button __css={styles.tab} {...tabProps}>
@@ -66,7 +66,6 @@ function Profile() {
         <Spinner color="green.500" />
       </Center>
     );
-  console.log(userData[0]);
   return (
     <>
       <Layout>
