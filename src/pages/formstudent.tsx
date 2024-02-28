@@ -61,6 +61,8 @@ function Form() {
         isClosable: true,
       });
     } else {
+          localStorage.setItem("formData", JSON.stringify(data));
+
       handleSubmitt();
     }
   };

@@ -32,53 +32,9 @@ const cards = [
 ];
 
 export default function skillclass() {
-  const [userData, setUserData] = useState<any>();
   const router = useRouter();
   const { user } = useAuthContext();
-  const [city, setCity] = useState<string | null>("");
-  const [state, setState] = useState<string | null>("");
-  const [medium, setMedium] = useState<string | null>("");
-  const [standard, setStandard] = useState<string | null>("");
-  const [board, setBoard] = useState<string | null>("");
-
-  async function getSchools() {
-    if (state !== null) {
-      try {
-        // Fetch the student data first to ensure it's available
-        let studentData = await supabase
-          .from("Student")
-          .select("*")
-          .eq("user_id", user.id);
-
-        if (studentData.error || studentData.data.length === 0) {
-          // Handle error or no data found for the user
-          console.error("Error fetching student data or no data found.");
-          return;
-        }
-
-        // Extract the district from the student data
-        const district = studentData.data[0].District;
-
-        // Fetch schools in the same state and district as the student
-        let { data: schoolsData, error: schoolsError } = await supabase
-          .from("School")
-          .select("*")
-          .eq("State", state)
-         
-
-        if (schoolsError) {
-          // Handle error fetching schools data
-          console.error("Error fetching schools data:", schoolsError.message);
-          return;
-        }
-
-        console.log(schoolsData);
-        // Now schoolsData contains the schools in the same state and district as the student
-      } catch (error) {
-        console.error("Error:",console.error);
-      }
-    }
-  }
+ 
 
   return (
     <>
