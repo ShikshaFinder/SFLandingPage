@@ -19,7 +19,6 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useToast } from "@chakra-ui/react";
 
 export default function SignupCard() {
   const router = useRouter(); // Initialize the router
@@ -31,20 +30,6 @@ export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
 
   const signUpNewUser = async () => {
-    const toast = useToast();
-if(!firstName || !lastName || !email || !password){
-      toast({
-        title: "Error.",
-        description: "All fields are required",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-      return; 
-}
-
-
-
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -61,9 +46,7 @@ if(!firstName || !lastName || !email || !password){
       router.push("/checkmail");
     } catch (error) {
       console.log(error);
-
     }
-   
   };
 
   return (
@@ -153,7 +136,7 @@ if(!firstName || !lastName || !email || !password){
                 Already a user?{" "}
                 <Link
                   href={"/login"}
-                  style={{ color: "blue", textDecoration: "underline" }}
+                  style={{ color: "blue.400", textDecoration: "underline" }}
                 >
                   login
                 </Link>
