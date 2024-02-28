@@ -44,7 +44,7 @@ export default function Login() {
         email,
         password,
       });
-      router.push("/onbording");
+      router.push("/school");
     } catch (error) {
       console.log(error);
     }
