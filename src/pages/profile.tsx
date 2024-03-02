@@ -19,12 +19,14 @@ import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
 import Layout from "./Layout";
 import { useRouter } from "next/router";
+import { useToast } from "@chakra-ui/react";
 
 function Profile() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any>();
   const router = useRouter();
-  
+  const toast = useToast();
+
   async function getStudent() {
     try {
       let { data, error } = await supabase
@@ -32,8 +34,21 @@ function Profile() {
         .select("*")
         .eq("user_id", user.id);
 
-      setUserData(data);
+      if (error) {
+        console.log("Error", error);
+        toast({
+          title: "Error",
+          description: "Error in fetching data",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+       
+        return;
+      }
     } catch (error) {
+      console.log("Caught Error:", error);
+
       router.push("/formstudent");
     }
   }
@@ -48,7 +63,7 @@ function Profile() {
 
     // 2. Hook into the Tabs `size`, `variant`, props
     const styles = useMultiStyleConfig("Tabs", tabProps);
-  console.log(userData[0]);
+    // console.log(userData[0]);
 
     return (
       <Button __css={styles.tab} {...tabProps}>
