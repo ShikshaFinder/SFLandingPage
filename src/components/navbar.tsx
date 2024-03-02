@@ -22,21 +22,14 @@ import {
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
-
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useStore } from "@/store";
 import { useAuthContext } from "@/context";
-
-
 
 export default function Navbar() {
   const isMobileNav = useBreakpointValue({ base: true, md: false });
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
 
   return (
     <Box>
@@ -212,11 +205,10 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
-    const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
-const handleClick = (iconName: string) => {
-  setSelectedIcon(iconName);
-};
-const boxColor = useColorModeValue("gray.100", "gray.900");
+  const handleClick = (iconName: string) => {
+    useStore.getState().setSelectedIcon(iconName);
+  };
+  const boxColor = useColorModeValue("gray.100", "gray.900");
   return (
     <>
       <Box
@@ -234,29 +226,45 @@ const boxColor = useColorModeValue("gray.100", "gray.900");
           <Link href={"/school"}>
             <FaSchool
               size={20}
-              color={selectedIcon === "school" ? "blue" : "initial"}
+              color={
+                useStore.getState().selectedIcon === "school"
+                  ? "blue"
+                  : "initial"
+              }
               onClick={() => handleClick("school")}
             />
           </Link>
           <Link href={"coaching"}>
             <FaChalkboardTeacher
               size={20}
-              color={selectedIcon === "coaching" ? "blue" : "initial"}
+              color={
+                useStore.getState().selectedIcon === "coaching"
+                  ? "blue"
+                  : "initial"
+              }
               onClick={() => handleClick("coaching")}
             />
           </Link>
           <Link href={"onlineplatforms"}>
             <FaGlobe
               size={20}
-              color={selectedIcon === "online" ? "blue" : "initial"}
+              color={
+                useStore.getState().selectedIcon === "online"
+                  ? "blue"
+                  : "initial"
+              }
               onClick={() => handleClick("online")}
             />
           </Link>
           <Link href={"/skillclass"}>
             <FaPaintBrush
               size={20}
-              color={selectedIcon === "skill" ? "blue" : "initial"}
-              onClick={() => handleClick("skill")}
+              color={
+                useStore.getState().selectedIcon === "skillclass"
+                  ? "blue"
+                  : "initial"
+              }
+              onClick={() => handleClick("skillclass")}
             />
           </Link>
         </Stack>
@@ -264,7 +272,6 @@ const boxColor = useColorModeValue("gray.100", "gray.900");
     </>
   );
 };
-
 
 interface NavItem {
   label: string;

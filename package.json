@@ -32,7 +32,8 @@
     "react-icons": "^4.11.0",
     "react-slick": "^0.29.0",
     "recharts": "^2.10.4",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "zustand": "^4.5.1"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",

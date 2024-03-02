@@ -20,7 +20,12 @@ import {
 import Layout from "./Layout";
 
 export default function Home() {
-  const { user } = useAuthContext();
+          //  for (let i = 0; i < localStorage.length; i++) {
+          //    const key = localStorage.key(i);
+          //    const value = (localStorage.getItem(key) as string)?.toString() ?? "";
+          //    console.log(`${key}: ${value}`);
+          //  }
+        const { user } = useAuthContext();
   return (
     <>
       <Layout>
