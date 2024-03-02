@@ -4,7 +4,6 @@ import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
 import InfoTeacher from "../../../../components/InfoTeacher";
 import Subject from "../../../../components/subject";
-import Chart from "../../../../components/Chart";
 import React from "react";
 
 const cards = [
@@ -43,7 +42,6 @@ function IntroSchool() {
         discription={"He is a good teacher"}
       />
 
-      <Chart extra={9} quality={8} management={7} facilities={8} />
       <Stack direction={"row"}>
         {cards.map(({ name, imgsrc, rating, link }, index) => (
           <Card

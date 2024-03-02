@@ -8,8 +8,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Badge } from "@chakra-ui/react";
-import { Link as ChakraLink } from "@chakra-ui/react";
-
+import Link from "next/link";
 
 const Index = ({
   name,
@@ -23,7 +22,7 @@ const Index = ({
   link?: string;
 }) => {
   return (
-    <ChakraLink href={link} _hover={{ textDecoration: "none" }}>
+    <Link href={link || "#"}>
       <Container p={{ base: 5, md: 10 }}>
         <Box
           borderWidth="1px"
@@ -51,7 +50,7 @@ const Index = ({
           </Box>
         </Box>
       </Container>
-    </ChakraLink>
+    </Link>
   );
 };
 
