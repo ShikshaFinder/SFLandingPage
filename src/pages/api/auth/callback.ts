@@ -9,7 +9,7 @@ const handler: NextApiHandler = async (req, res) => {
     await supabase.auth.exchangeCodeForSession(String(code));
     console.log("new user created");
   }
-            
+
   res.redirect("/");
 };
 

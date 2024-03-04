@@ -34,18 +34,9 @@ function Profile() {
         .select("*")
         .eq("user_id", user.id);
 
-      if (error) {
-        console.log("Error", error);
-        toast({
-          title: "Error",
-          description: "Error in fetching data",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        });
-       
-        return;
-      }
+            setUserData(data);
+
+      if (error) throw error;
     } catch (error) {
       console.log("Caught Error:", error);
 
