@@ -19,13 +19,11 @@ import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
 import Layout from "./Layout";
 import { useRouter } from "next/router";
-import { useToast } from "@chakra-ui/react";
 
 function Profile() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any>();
   const router = useRouter();
-  const toast = useToast();
 
   async function getStudent() {
     try {
@@ -34,7 +32,7 @@ function Profile() {
         .select("*")
         .eq("user_id", user.id);
 
-            setUserData(data);
+      setUserData(data);
 
       if (error) throw error;
     } catch (error) {
