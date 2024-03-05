@@ -160,8 +160,9 @@ export default function SignupCard() {
                     variant="outline"
                     mt={4}
                   >
-                    Sign up with Google
+                    Sign up with Google 
                   </Button>
+                  
                 </Link>
               </Text>
             </Stack>
