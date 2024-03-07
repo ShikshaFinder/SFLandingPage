@@ -18,7 +18,7 @@ const Index = ({
 }: {
   name?: string;
   rating?: any;
-  imgsrc: any;
+  imgsrc?: any;
   link?: string;
 }) => {
   return (
