@@ -16,6 +16,7 @@ import {
   Card,
 } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
+import { useRouter } from "next/router";
 // assciate school id with the form filled by the student
 
 
@@ -24,6 +25,7 @@ function admissionform() {
 
   const form = useForm();
   const toast = useToast();
+  const router = useRouter();
 
   const { register, handleSubmit, control } = form;
 
@@ -35,12 +37,14 @@ function admissionform() {
       duration: 3000,
       isClosable: true,
     });
+router.push("/");
   };
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("admissionform")
       .insert([{ ...data, email: user.email, user_id: user.id }]);
+
     if (error) {
       console.error("Error submitting Form:", error);
     } else {

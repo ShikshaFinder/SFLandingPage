@@ -9,7 +9,7 @@ import { useAuthContext } from "@/context";
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
-  const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState<any[] | null>(null);
 
   async function getSchool() {
     try {
@@ -34,7 +34,8 @@ export default function skillclass() {
       <Layoutt>
         <Bannerad />
 
-        {userData.map(
+       {userData &&
+        userData.map(
           (
             school: { District: string; rating: number; link: string },
             index: number
