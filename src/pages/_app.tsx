@@ -1,8 +1,4 @@
-import {
-  ChakraProvider,
-  extendTheme,
-  ThemeConfig,
-} from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import { type AppProps } from "next/app";
@@ -11,6 +7,7 @@ import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://qgkjakomwapzuhvnrvgr.supabase.co";
@@ -25,16 +22,19 @@ export default function App({
   const [supabaseClient] = useState(() =>
     createPagesBrowserClient({ supabaseUrl, supabaseKey })
   );
- const config: ThemeConfig = {
-   initialColorMode: "dark",
-   useSystemColorMode: true,
- };
+  const config: ThemeConfig = {
+    initialColorMode: "dark",
+    useSystemColorMode: true,
+  };
 
- const theme = extendTheme({ config });
+  const theme = extendTheme({ config });
   return (
     <>
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
-      <noscript> 
+      <noscript>
         <img
           src="https://queue.simpleanalyticscdn.com/noscript.gif"
           alt="script"
