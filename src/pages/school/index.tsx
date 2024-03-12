@@ -11,6 +11,8 @@ export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
 
+  console.log(user.district);
+
   async function getSchool() {
     try {
       let { data, error } = await supabase

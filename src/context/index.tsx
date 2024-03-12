@@ -19,6 +19,11 @@ type UserType = {
   last_sign_in_at: string;
   phone: any;
   role: string;
+  state: string;
+  district: string;
+  standard: string;
+  board: string;
+
   updated_at: string;
 };
 

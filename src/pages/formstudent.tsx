@@ -50,6 +50,7 @@ const onSubmit = async (data: any) => {
   const { error } = await supabase
     .from("Student")
     .insert([{ ...data, user_id: user.id, email: user.email }]);
+    
 
   if (error) {
     console.error("Error submitting Form:", error);
