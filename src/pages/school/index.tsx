@@ -11,7 +11,7 @@ export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
 
-  console.log(user.district);
+  console.log(user.state);
 
   async function getSchool() {
     try {
