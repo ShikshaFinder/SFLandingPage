@@ -46,26 +46,39 @@ function Form() {
     router.push("/school");
   };
 
-  const onSubmit = async (data: any) => {
-    const { error } = await supabase
-      .from("Student")
-      .insert([{ ...data, user_id: user.id, email: user.email }]);
+const onSubmit = async (data: any) => {
+  const { error } = await supabase
+    .from("Student")
+    .insert([{ ...data, user_id: user.id, email: user.email }]);
 
-    if (error) {
-      console.error("Error submitting Form:", error);
-      toast({
-        title: "Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+  if (error) {
+    console.error("Error submitting Form:", error);
+    toast({
+      title: "Error",
+      description: error.message,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  } else {
+    // Update user metadata
+    const { error: updateError } = await supabase.auth.updateUser({
+      data: {
+        state: data.State,
+        district: data.city,
+        standard: data.Standard,
+        board: data.Board,
+      },
+    });
+
+    if (updateError) {
+      console.error("Error updating user metadata:", updateError);
     } else {
-          localStorage.setItem("formData", JSON.stringify(data));
-
+      localStorage.setItem("formData", JSON.stringify(data));
       handleSubmitt();
     }
-  };
+  }
+};
 
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
