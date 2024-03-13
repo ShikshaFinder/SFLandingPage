@@ -14,7 +14,7 @@ function signout() {
                 title: "Error.",
                 description: error.message,
                 status: "error",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
             });
         } else {
@@ -22,7 +22,7 @@ function signout() {
                 title: "Success.",
                 description: "You have been signed out",    
                 status: "success",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
             }); 
         }
