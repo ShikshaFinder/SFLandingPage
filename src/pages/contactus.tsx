@@ -97,7 +97,7 @@ const Contact = () => {
             >
               <FormControl id="name">
                 <FormLabel>Name</FormLabel>
-                <Input type="text" placeholder="Ahmad" rounded="md" />
+                <Input type="text" placeholder="Bahubali" rounded="md" />
               </FormControl>
               <FormControl id="email">
                 <FormLabel>Email</FormLabel>
