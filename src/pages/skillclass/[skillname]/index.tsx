@@ -1,47 +1,55 @@
 import Card from "../../../components/card";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Bannerad from "../../../components/bannerad";
 import Layoutt from "../../Layout";
-
-const cards = [
-  {
-    name: "Shree Swami",
-    imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/skillclass/typeofclass/nameofCoaching",
-  },
-  {
-    name: "Shree Swami nararyan ",
-    imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/coaching/1/nameofCoaching",
-  },
-  {
-    name: "Shree Swami Nararyan Gurukul",
-    imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/coaching/1/nameofCoaching",
-  },
-];
+import supabase from "../../../../supabase";
+import { useAuthContext } from "@/context";
+// import { useRouter } from "next/router";
 
 export default function skillclass() {
+  // const router = useRouter();
+  const { user } = useAuthContext();
+  const [userData, setUserData] = useState<any[] | null>(null);
+
+  console.log(user.state);
+
+  async function getSchool() {
+    try {
+      let { data, error } = await supabase.from("School").select("*");
+
+      if (error) throw error;
+      setUserData(data);
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
+  useEffect(() => {
+    getSchool();
+  }, [user]);
+
   return (
     <>
       <Layoutt>
         <Bannerad />
-        {cards.map(({ name, imgsrc, rating, link }, index) => (
-          
-            <Card
-              key={index}
-              name={name}
-              imgsrc={imgsrc}
-              rating={rating}
-              link={link}
-            />
-        ))}
+
+        {userData &&
+          userData.map(
+            (
+              school: { schoolname: string; rating: number; link: string },
+              index: number
+            ) => (
+              <Card
+                key={index} // Ensure unique key for each Card
+                name={school.schoolname}
+                rating={school.rating}
+                link={`/skillclass/skillname/${school.schoolname}`}
+                imgsrc={
+                  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              />
+            )
+          )}
       </Layoutt>
     </>
   );

@@ -38,14 +38,14 @@ export default function skillclass() {
         {userData &&
           userData.map(
             (
-              school: { District: string; rating: number; link: string },
+              school: { schoolname: string; rating: number; link: string },
               index: number
             ) => (
               <Card
                 key={index} // Ensure unique key for each Card
-                name={school.District}
+                name={school.schoolname}
                 rating={school.rating}
-                link={school.link}
+                link={`/school/${school.schoolname}`}
                 imgsrc={
                   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }
