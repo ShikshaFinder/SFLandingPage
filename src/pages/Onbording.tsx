@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import Slider from "react-slick";
+import { useAuthContext } from "@/context";
 
 const settings = {
   dots: true,
@@ -26,6 +27,7 @@ const settings = {
 };
 
 export default function CaptionCarousel() {
+  const user = useAuthContext();
   // As we have used custom buttons, we need a reference variable to
   // change the state
   const [slider, setSlider] = React.useState<Slider | null>(null);

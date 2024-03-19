@@ -4,7 +4,7 @@ import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
 import InfoTeacher from "../../../../components/InfoTeacher";
 import Subject from "../../../../components/subject";
-import Chart from "../../../../components/Chart";
+// import Chart from "../../../../components/Chart";
 import React from "react";
 
 const cards = [
