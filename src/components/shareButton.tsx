@@ -28,8 +28,8 @@ function shareButton({ link }: { link: string }) {
             if (navigator.share) {
               navigator
                 .share({
-                  title: "My Awesome App",
-                  text: "Check out this website I found: ",
+                  title: "Shiksha Finder",
+                  text: "I found this school on shiksha finder ,It might be helpful for you too.",
                   url: url,
                 })
                 .then(() => console.log("Successful share"))
