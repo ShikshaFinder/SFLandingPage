@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 function shareButton({ link }: { link: string }) {
   const router = useRouter();
+  let url=router.query.url;
 
 
   return (
@@ -21,12 +22,15 @@ function shareButton({ link }: { link: string }) {
         <Button
           colorScheme="teal"
           onClick={() => {
+            if (!url) return console.log("No url found");
+            if (Array.isArray(url)) url = url[0]; // use the first string if url is an array
+
             if (navigator.share) {
               navigator
                 .share({
                   title: "My Awesome App",
                   text: "Check out this website I found: ",
-                  url: "https://myawesomeapp.com",
+                  url: url,
                 })
                 .then(() => console.log("Successful share"))
                 .catch((error) => console.log("Error sharing", error));
