@@ -5,13 +5,38 @@ import { useRouter } from "next/router";
 function shareButton({ link }: { link: string }) {
   const router = useRouter();
 
+
   return (
     <>
       <Stack spacing={14} direction="row" align="center">
-        <a href={link}>
-          <Button colorScheme="whatsapp">Visit Website</Button>
-        </a>
-        <Button colorScheme="teal">Share</Button>
+        <Button
+          colorScheme="whatsapp"
+          onClick={() => {
+            router.push("https://" + link);
+          }}
+        >
+          Visit Website
+        </Button>
+
+        <Button
+          colorScheme="teal"
+          onClick={() => {
+            if (navigator.share) {
+              navigator
+                .share({
+                  title: "My Awesome App",
+                  text: "Check out this website I found: ",
+                  url: "https://myawesomeapp.com",
+                })
+                .then(() => console.log("Successful share"))
+                .catch((error) => console.log("Error sharing", error));
+            } else {
+              console.log("Web Share API not supported");
+            }
+          }}
+        >
+          Share
+        </Button>
       </Stack>
     </>
   );
