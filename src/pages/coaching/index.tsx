@@ -15,7 +15,7 @@ export default function skillclass() {
 
   async function getSchool() {
     try {
-      let { data, error } = await supabase.from("School").select("*");
+      let { data, error } = await supabase.from("coaching").select("*");
 
       if (error) throw error;
       setUserData(data);
@@ -36,14 +36,14 @@ export default function skillclass() {
         {userData &&
           userData.map(
             (
-              school: { schoolname: string; rating: number; link: string },
+              coaching: { coachingname: string; rating: number; link: string },
               index: number
             ) => (
               <Card
                 key={index} // Ensure unique key for each Card
-                name={school.schoolname}
-                rating={school.rating}
-                link={`/school/${school.schoolname}`}
+                name={coaching.coachingname}
+                rating={coaching.rating}
+                link={`/coaching/${coaching.coachingname}`}
                 imgsrc={
                   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }
