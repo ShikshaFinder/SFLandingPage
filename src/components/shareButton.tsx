@@ -11,7 +11,7 @@ function shareButton({ link }: { link: string }) {
   let slugs = window.location.pathname.split("/");
 
   // Remove empty slugs (which appear if the path starts or ends with a slash)
-  slugs = slugs.filter((slug) => slug !== "");
+  slugs = slugs.filter((slug) => slug !== "");  
 
   // Take the last two slugs
   let lastTwoSlugs = slugs.slice(-2);
