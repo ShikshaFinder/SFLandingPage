@@ -15,7 +15,7 @@ export default function skillclass() {
 
   async function getSchool() {
     try {
-      let { data, error } = await supabase.from("School").select("*");
+      let { data, error } = await supabase.from("skillclass").select("*");
 
       if (error) throw error;
       setUserData(data);

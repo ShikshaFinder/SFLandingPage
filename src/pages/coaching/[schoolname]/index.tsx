@@ -42,7 +42,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("coaching")
           .select("*")
-          .eq("schoolname", schoolname);
+          // .eq("schoolname", schoolname);
 
         setUserData(data);
 
@@ -92,7 +92,10 @@ function IntroSchool() {
           />
         ))}
       </Stack>
-      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
+      <Admissionform
+        name="shree swami narayan"
+        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+      />
     </>
   );
 }
