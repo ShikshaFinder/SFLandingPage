@@ -11,6 +11,7 @@ import supabase from "../../../../supabase";
 import { useEffect,useState } from "react";
 import ShareButton from "../../../components/shareButton";
 
+
 const cards = [
   {
     name: "Shree Swami",
@@ -48,6 +49,10 @@ async function getSchool() {
 
       if (error) throw error;
       console.log(data);
+
+              // const { error: updateError } = await supabase
+              //   .from("coaching")
+              //   .update({ view: supabase.raw("view + 1") });
     } else {
       console.log("schoolname is not a string:", schoolname);
     }

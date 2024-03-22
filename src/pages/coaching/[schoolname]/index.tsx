@@ -30,26 +30,27 @@ const cards = [
 
 function IntroSchool() {
   const router = useRouter();
-  const { schoolname } = router.query;
+  const { coachingname } = router.query;
 
-  console.log(schoolname);
+  console.log(coachingname);
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
   async function getSchool() {
     try {
-      if (typeof schoolname === "string") {
+      if (typeof coachingname === "string") {
         let { data, error } = await supabase
-          .from("coaching")
+          .from("School")
           .select("*")
-          // .eq("schoolname", schoolname);
+          .eq("coachingname", coachingname);
 
         setUserData(data);
-
+        console.log("data", data);
+        
         if (error) throw error;
         console.log(data);
       } else {
-        console.log("schoolname is not a string:", schoolname);
+        console.log("coachingname is not a string:", coachingname);
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -58,7 +59,7 @@ function IntroSchool() {
 
   useEffect(() => {
     getSchool();
-  }, [schoolname]);
+  }, [coachingname]);
 
   return (
     <>
@@ -74,7 +75,7 @@ function IntroSchool() {
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
+        TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
         Experience={"12 years"}
         AboutTeacher={"He is a good teacher"}
         discription={userData && userData[0] ? userData[0].discription : ""}
@@ -92,10 +93,7 @@ function IntroSchool() {
           />
         ))}
       </Stack>
-      <Admissionform
-        name="shree swami narayan"
-        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
-      />
+      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 function ShareButton({ link }: { link: string }) {
   const router = useRouter();
   let url = router.query;
-  console.log("url", url);
+  // console.log("url", url);
 
   const handleShare = () => {
     let slugs = window.location.pathname.split("/");
