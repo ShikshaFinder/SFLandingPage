@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
+// import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -31,8 +32,8 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { coachingname } = router.query;
-
-  console.log(coachingname);
+  // const { user } = useAuthContext();
+  // console.log(coachingname);
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
@@ -40,15 +41,33 @@ function IntroSchool() {
     try {
       if (typeof coachingname === "string") {
         let { data, error } = await supabase
-          .from("School")
+          .from("coaching")
           .select("*")
           .eq("coachingname", coachingname);
 
-        setUserData(data);
-        console.log("data", data);
-        
         if (error) throw error;
         console.log(data);
+
+        setUserData(data);
+
+        // Check if 'view' is not null
+        // if (data && data[0].view !== null) {
+        //   // Increment the 'view' column value
+        //   const newViewValue = data[0].view + 1;
+        //   console.log("newViewValue", newViewValue);
+
+        //   // Update the 'view' column with the new value
+        //   const { error: updateError } = await supabase
+        //     .from("School")
+        //     .update({ view: newViewValue })
+        //     .eq("coachingname", coachingname);
+        //   console.log("view incremented");
+        //   console.log("updateError", updateError);
+
+        //   if (updateError) {
+        //     throw updateError;
+        //   }
+        // }
       } else {
         console.log("coachingname is not a string:", coachingname);
       }
