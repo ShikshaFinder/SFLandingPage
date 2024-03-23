@@ -6,14 +6,14 @@ import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 // import { useRouter } from "next/router";
 
-export default function skillclass() {
+export default function Skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
 
   console.log(user.state);
 
-  async function getSchool() {
+  async function getskill() {
     try {
       let { data, error } = await supabase.from("skillclass").select("*");
 
@@ -25,7 +25,7 @@ export default function skillclass() {
   }
 
   useEffect(() => {
-    getSchool();
+    getskill();
   }, [user]);
 
   return (
@@ -36,14 +36,14 @@ export default function skillclass() {
         {userData &&
           userData.map(
             (
-              school: { schoolname: string; rating: number; link: string },
+              skill: { skillname: string; rating: number; link: string },
               index: number
             ) => (
               <Card
                 key={index} // Ensure unique key for each Card
-                name={school.schoolname}
-                rating={school.rating}
-                link={`/skillclass/skillname/${school.schoolname}`}
+                name={skill.skillname}
+                rating={skill.rating}
+                link={`/skillclass/skillname/${skill.skillname}`}
                 imgsrc={
                   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }

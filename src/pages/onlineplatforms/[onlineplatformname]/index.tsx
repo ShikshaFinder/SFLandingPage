@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
+// import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -30,26 +31,46 @@ const cards = [
 
 function IntroSchool() {
   const router = useRouter();
-  const { schoolname } = router.query;
-
-  // console.log(schoolname);
+  const { onlineplatform } = router.query;
+  // const { user } = useAuthContext();
+  // console.log(onlineplatform);
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
   async function getSchool() {
     try {
-      if (typeof schoolname === "string") {
+      if (typeof onlineplatform === "string") {
         let { data, error } = await supabase
-          .from("School")
+          .from("coaching")
           .select("*")
-          .eq("schoolname", schoolname);
-
-        setUserData(data);
+          .eq("onlineplatform", onlineplatform);
 
         if (error) throw error;
         console.log(data);
+
+        setUserData(data);
+
+        // Check if 'view' is not null
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          // const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
+
+          // Update the 'view' column with the new value
+          // const { error: updateError } = await supabase
+          //   .from("onlineform")
+          //   .update({ view: newViewValue })
+          //   .eq("onlineplatform", onlineplatform);
+          // console.log("view incremented");
+
+          // console.log("updateError", updateError);
+
+          // if (updateError) {
+          //   throw updateError;
+          // }
+        }
       } else {
-        console.log("schoolname is not a string:", schoolname);
+        console.log("onlineplatform is not a string:", onlineplatform);
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -58,7 +79,7 @@ function IntroSchool() {
 
   useEffect(() => {
     getSchool();
-  }, [schoolname]);
+  }, [onlineplatform]);
 
   return (
     <>
@@ -74,7 +95,7 @@ function IntroSchool() {
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
+        TeacherName={userData && userData[0] ? userData[0].onlineplatform : ""}
         Experience={"12 years"}
         AboutTeacher={"He is a good teacher"}
         discription={userData && userData[0] ? userData[0].discription : ""}
@@ -92,10 +113,7 @@ function IntroSchool() {
           />
         ))}
       </Stack>
-      <Admissionform
-        name="shree swami narayan"
-        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
-      />
+      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
     </>
   );
 }

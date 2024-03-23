@@ -51,23 +51,24 @@ function IntroSchool() {
         setUserData(data);
 
         // Check if 'view' is not null
-        // if (data && data[0].view !== null) {
-        //   // Increment the 'view' column value
-        //   const newViewValue = data[0].view + 1;
-        //   console.log("newViewValue", newViewValue);
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].view + 1;
+          console.log("newViewValue", newViewValue);
 
-        //   // Update the 'view' column with the new value
-        //   const { error: updateError } = await supabase
-        //     .from("School")
-        //     .update({ view: newViewValue })
-        //     .eq("coachingname", coachingname);
-        //   console.log("view incremented");
-        //   console.log("updateError", updateError);
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("coaching")
+            .update({ view: newViewValue })
+            .eq("coachingname", coachingname);
+          console.log("view incremented");
+          
+          console.log("updateError", updateError);
 
-        //   if (updateError) {
-        //     throw updateError;
-        //   }
-        // }
+          if (updateError) {
+            throw updateError;
+          }
+        }
       } else {
         console.log("coachingname is not a string:", coachingname);
       }
