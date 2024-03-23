@@ -45,27 +45,16 @@ function IntroSchool() {
           .select("*")
           .eq("schoolname", schoolname);
 
-        setUserData(data);
-
         if (error) throw error;
         console.log(data);
 
-        // Fetch the current value of the 'view' column for the school
-        // Fetch the current value of the 'view' column for the school
-        const { data: currentData, error: fetchError } = await supabase
-          .from("School")
-          .select("view")
-          .eq("schoolname", schoolname)
-          .single();
-
-        if (fetchError) {
-          throw fetchError;
-        }
+        setUserData(data);
 
         // Check if 'view' is not null
-        if (currentData && currentData.view !== null) {
+        if (data && data[0].view !== null) {
           // Increment the 'view' column value
-          const newViewValue = currentData.view + 1;
+          const newViewValue = data[0].view + 1;
+          console.log("newViewValue", newViewValue);
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
