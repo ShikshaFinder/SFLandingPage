@@ -6,11 +6,11 @@ import InfoTeacher from "../../../components/InfoTeacher";
 import Subject from "../../../components/subject";
 import Chart from "../../../components/Chart";
 import React, { use } from "react";
-import {useRouter} from "next/router"; 
+import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-
+// import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -32,40 +32,64 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { schoolname } = router.query;
-
-  console.log(schoolname);
+  // const { user } = useAuthContext();
+  // console.log(schoolname);
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
-async function getSchool() {
-  try {
-    if (typeof schoolname === "string") {
-      let { data, error } = await supabase
-        .from("School")
-        .select("*")
-        .eq("schoolname", schoolname);
+  async function getSchool() {
+    try {
+      if (typeof schoolname === "string") {
+        let { data, error } = await supabase
+          .from("School")
+          .select("*")
+          .eq("schoolname", schoolname);
 
         setUserData(data);
 
-      if (error) throw error;
-      console.log(data);
+        if (error) throw error;
+        console.log(data);
 
-              // const { error: updateError } = await supabase
-              //   .from("coaching")
-              //   .update({ view: supabase.raw("view + 1") });
-    } else {
-      console.log("schoolname is not a string:", schoolname);
+        // Fetch the current value of the 'view' column for the school
+        // Fetch the current value of the 'view' column for the school
+        const { data: currentData, error: fetchError } = await supabase
+          .from("School")
+          .select("view")
+          .eq("schoolname", schoolname)
+          .single();
+
+        if (fetchError) {
+          throw fetchError;
+        }
+
+        // Check if 'view' is not null
+        if (currentData && currentData.view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = currentData.view + 1;
+
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("School")
+            .update({ view: newViewValue })
+            .eq("schoolname", schoolname);
+          console.log("view incremented");
+          console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("schoolname is not a string:", schoolname);
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
     }
-  } catch (error) {
-    console.log("Caught Error:", error);
   }
-}
 
-useEffect(() => {
-  getSchool();
-}, [schoolname]);
-
-
+  useEffect(() => {
+    getSchool();
+  }, [schoolname]);
 
   return (
     <>
@@ -78,9 +102,7 @@ useEffect(() => {
       <br />
       <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
       <br />
-      <ShareButton
-        link={userData && userData[0] ? userData[0].website : ""}
-      />
+      <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
         TeacherName={userData && userData[0] ? userData[0].schoolname : ""}

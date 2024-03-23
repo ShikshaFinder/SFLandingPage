@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+      "update-types": "npx supabase gen types typescript --project-id \"qgkjakomwapzuhvnrvgr\" > lib/database.types.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
