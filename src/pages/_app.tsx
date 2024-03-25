@@ -8,6 +8,9 @@ import { useState } from "react";
 import AuthContextProvider from "@/context";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Head from "next/head";
+const { BlobServiceClient } = require("@azure/storage-blob");
+const { v1: uuidv1 } = require("uuid");
+require("dotenv").config();
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://qgkjakomwapzuhvnrvgr.supabase.co";

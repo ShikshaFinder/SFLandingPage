@@ -53,21 +53,21 @@ function IntroSchool() {
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
-          // const newViewValue = data[0].view + 1;
-          // console.log("newViewValue", newViewValue);
+          const newViewValue = data[0].view + 1;
+          console.log("newViewValue", newViewValue);
 
           // Update the 'view' column with the new value
-          // const { error: updateError } = await supabase
-          //   .from("onlineform")
-          //   .update({ view: newViewValue })
-          //   .eq("onlineplatform", onlineplatform);
-          // console.log("view incremented");
+          const { error: updateError } = await supabase
+            .from("onlineform")
+            .update({ view: newViewValue })
+            .eq("onlineplatform", onlineplatform);
+          console.log("view incremented");
 
-          // console.log("updateError", updateError);
+          console.log("updateError", updateError);
 
-          // if (updateError) {
-          //   throw updateError;
-          // }
+          if (updateError) {
+            throw updateError;
+          }
         }
       } else {
         console.log("onlineplatform is not a string:", onlineplatform);

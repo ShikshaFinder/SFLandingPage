@@ -246,6 +246,7 @@ export type Database = {
           State: string | null
           stream: string | null
           user_id: string | null
+          view: number | null
           website: string | null
         }
         Insert: {
@@ -263,6 +264,7 @@ export type Database = {
           State?: string | null
           stream?: string | null
           user_id?: string | null
+          view?: number | null
           website?: string | null
         }
         Update: {
@@ -280,6 +282,7 @@ export type Database = {
           State?: string | null
           stream?: string | null
           user_id?: string | null
+          view?: number | null
           website?: string | null
         }
         Relationships: [
@@ -421,6 +424,7 @@ export type Database = {
           streetaddress: string | null
           subdistrict: string | null
           user_id: string | null
+          view: number | null
           website: string | null
         }
         Insert: {
@@ -438,6 +442,7 @@ export type Database = {
           streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          view?: number | null
           website?: string | null
         }
         Update: {
@@ -455,6 +460,7 @@ export type Database = {
           streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          view?: number | null
           website?: string | null
         }
         Relationships: [
