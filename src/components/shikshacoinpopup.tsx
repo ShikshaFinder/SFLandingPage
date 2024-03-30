@@ -1,32 +1,47 @@
-import React, { useState } from "react";
-import Styles from "../styles/popup.module.css";
+import React from "react";
+import { Button, useDisclosure } from "@chakra-ui/react";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
+} from "@chakra-ui/react";
 
-const YourComponent = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+function Shikshacoin() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef<HTMLButtonElement | null>(null);
 
   return (
-    <div className={isOpen ? "blur" : ""}>
-      <button onClick={handleOpen}>Open Popup</button>
+    <>
+      <Button onClick={onOpen}>Shiksha Coin</Button>
+      <AlertDialog
+        motionPreset="slideInBottom"
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
 
-      {isOpen && (
-        <div className="popup">
-          <div className="popup-content">
-            <button onClick={handleClose}>Close Popup</button>
-            <h2>This is a popup!</h2>
-            {/* Add your popup content here */}
-          </div>
-        </div>
-      )}
-    </div>
+        <AlertDialogContent>
+          <AlertDialogHeader>Shiksha coin update</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody> Your Shiksha coin balance :</AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              Later
+            </Button>
+            <Button colorScheme="yellow" ml={3}>
+              Know more about shiksha coin
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
-};
+}
 
-export default YourComponent;
+export default Shikshacoin;

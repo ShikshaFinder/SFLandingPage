@@ -2,6 +2,8 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../supabase";
 import { useToast } from "@chakra-ui/react";
+import Shikshacoin from "@/components/shikshacoinpopup";
+import { useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -19,7 +21,6 @@ import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 // assciate school id with the form filled by the student
 
-
 function admissionform() {
   const { user } = useAuthContext();
 
@@ -28,7 +29,8 @@ function admissionform() {
   const router = useRouter();
 
   const { register, handleSubmit, control } = form;
-
+  
+  const [showShikshacoin, setShowShikshacoin] = useState(false);
   const handleSubmitt = () => {
     toast({
       title: "Form submitted!",
@@ -37,7 +39,9 @@ function admissionform() {
       duration: 3000,
       isClosable: true,
     });
-router.push("/");
+      setShowShikshacoin(true);
+
+    router.push("/");
   };
 
   const onSubmit = async (data: any) => {
@@ -55,6 +59,8 @@ router.push("/");
   return (
     <>
       <Stack spacing="4">
+        {showShikshacoin && <Shikshacoin />}
+
         <Card variant="outline">
           <CardBody>
             <Heading size="md" fontSize="26px">

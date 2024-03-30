@@ -10,8 +10,7 @@ import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-// import { useAuthContext } from "@/context";
-
+import Shikshacoin from "../../../components/shikshacoinpopup";
 const cards = [
   {
     name: "Shree Swami",
@@ -62,7 +61,7 @@ function IntroSchool() {
             .update({ view: newViewValue })
             .eq("coachingname", coachingname);
           console.log("view incremented");
-          
+
           console.log("updateError", updateError);
 
           if (updateError) {
@@ -90,6 +89,7 @@ function IntroSchool() {
         subject4="Science"
       />
       <br />
+      <Shikshacoin />
       <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
       <br />
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
@@ -113,6 +113,7 @@ function IntroSchool() {
           />
         ))}
       </Stack>
+
       <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
     </>
   );

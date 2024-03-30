@@ -23,7 +23,6 @@ type UserType = {
   district: string;
   standard: string;
   board: string;
-
   updated_at: string;
 };
 
