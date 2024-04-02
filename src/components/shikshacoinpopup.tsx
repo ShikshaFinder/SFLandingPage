@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import {
   AlertDialog,
@@ -14,9 +14,18 @@ function Shikshacoin() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef<HTMLButtonElement | null>(null);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onOpen();
+    }, 2500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <>
-      <Button onClick={onOpen}>Shiksha Coin</Button>
       <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}

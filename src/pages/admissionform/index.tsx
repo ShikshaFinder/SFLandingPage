@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../supabase";
 import { useToast } from "@chakra-ui/react";
-import Shikshacoin from "@/components/shikshacoinpopup";
+// import Shikshacoin from "@/components/shikshacoinpopup";
 import { useState } from "react";
 import {
   FormControl,
@@ -30,7 +30,7 @@ function admissionform() {
 
   const { register, handleSubmit, control } = form;
   
-  const [showShikshacoin, setShowShikshacoin] = useState(false);
+  // const [showShikshacoin, setShowShikshacoin] = useState(false);
   const handleSubmitt = () => {
     toast({
       title: "Form submitted!",
@@ -39,7 +39,7 @@ function admissionform() {
       duration: 3000,
       isClosable: true,
     });
-      setShowShikshacoin(true);
+      // setShowShikshacoin(true);
 
     router.push("/");
   };
@@ -59,7 +59,7 @@ function admissionform() {
   return (
     <>
       <Stack spacing="4">
-        {showShikshacoin && <Shikshacoin />}
+        {/* {showShikshacoin && <Shikshacoin />} */}
 
         <Card variant="outline">
           <CardBody>
