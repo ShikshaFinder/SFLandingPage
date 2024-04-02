@@ -20,6 +20,7 @@ import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
 
+
 interface State {
   districts: string[];
   state: string;
@@ -62,29 +63,14 @@ const onSubmit = async (data: any) => {
       isClosable: true,
     });
   } else {
-    // Update user metadata
-    const { error: updateError } = await supabase.auth.updateUser({
-      data: {
-        state: data.State,
-        district: data.city,
-        standard: data.Standard,
-        board: data.Board,
-      },
-    });
-
-    if (updateError) {
-      console.error("Error updating user metadata:", updateError);
-    } else {
-      localStorage.setItem("formData", JSON.stringify(data));
-      handleSubmitt();
-    }
+    handleSubmitt();  
   }
 };
 
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
-
+// supabase.auth.getUser();
   return (
     <>
       <Stack spacing="4">

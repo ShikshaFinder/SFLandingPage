@@ -9,6 +9,7 @@ import {
   AlertDialogOverlay,
   AlertDialogCloseButton,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 function Shikshacoin() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,14 +39,17 @@ function Shikshacoin() {
         <AlertDialogContent>
           <AlertDialogHeader>Shiksha coin update</AlertDialogHeader>
           <AlertDialogCloseButton />
-          <AlertDialogBody> Your Shiksha coin balance :</AlertDialogBody>
+          <AlertDialogBody> Your Shiksha coin balance : </AlertDialogBody>
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
               Later
             </Button>
-            <Button colorScheme="yellow" ml={3}>
-              Know more about shiksha coin
-            </Button>
+            <Link href={"/shikshacoinInfo"}>
+              {" "}
+              <Button colorScheme="yellow" ml={3}>
+                Know more about shiksha coin
+              </Button>
+            </Link>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

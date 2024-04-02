@@ -5,6 +5,7 @@ import Onbording from "../components/Onbording";
 //the user will get shiksha coins when they learn something new
 //dashborde will show the shiksha coin balance as well as there will be a leader bord on which you can show case in district or state or country
 
+
 function shikshacoinInfo() {
   return (
     <>

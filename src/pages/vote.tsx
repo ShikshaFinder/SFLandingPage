@@ -20,11 +20,14 @@ import { useAuthContext } from '../context';
 import { useState,useEffect } from "react";
 import supabase from "../../supabase";
 import Layout from "./Layout";
+import { useUser } from "@/store";
 
 function Vote() {
   const toast = useToast();
   const form = useForm();
   const [hasVoted, setHasVoted] = useState(false);
+  const userStore = useUser((state)=>state.user);
+  console.log("userstore",userStore);
 
   const { register, handleSubmit } = form;
 
@@ -64,6 +67,7 @@ function Vote() {
   }
   const { user } = useAuthContext() ;
 
+ 
   return (
     <>
       <Layout>

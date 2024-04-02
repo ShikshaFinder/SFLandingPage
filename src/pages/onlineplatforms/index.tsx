@@ -11,7 +11,6 @@ export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
 
-  console.log(user.state);
 
   async function getSchool() {
     try {
@@ -27,6 +26,15 @@ export default function skillclass() {
   useEffect(() => {
     getSchool();
   }, [user]);
+  
+    if (!user.email) {
+      return (
+        <div>
+          loading/no user found ,if it is taking longer than usual ,please{" "}
+          <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+        </div>
+      );
+    }
 
   return (
     <>

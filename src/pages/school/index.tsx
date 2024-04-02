@@ -1,23 +1,27 @@
 import Card from "../../components/card";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 // import { useRouter } from "next/router";
+import { useUser } from "@/store";
 
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
 
-  console.log(user.state);
+  const userStore = useUser((state) => state.user);
+  console.log("userstore", userStore);
 
   async function getSchool() {
     try {
       let { data, error } = await supabase
         .from("School")
         .select("*")
+        .eq("State", userStore.State);
+      // console.log('userStore.State',userStore.State);
 
       if (error) throw error;
       setUserData(data);
@@ -27,8 +31,19 @@ export default function skillclass() {
   }
 
   useEffect(() => {
-    getSchool();
-  }, [user]);
+    if (userStore && userStore.State) {
+      getSchool();
+    }
+  }, [userStore]);
+
+  if (!user.email) {
+    return (
+      <div>
+        loading/no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+      </div>
+    );
+  }
 
   return (
     <>

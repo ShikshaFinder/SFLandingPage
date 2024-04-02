@@ -7,11 +7,9 @@ import { useAuthContext } from "@/context";
 // import { useRouter } from "next/router";
 
 export default function Skillclass() {
-  // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
 
-  console.log(user.state);
 
   async function getskill() {
     try {

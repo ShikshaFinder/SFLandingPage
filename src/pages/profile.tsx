@@ -70,6 +70,15 @@ function Profile() {
         <Spinner color="green.500" />
       </Center>
     );
+
+      if (!user.email) {
+        return (
+          <div>
+            loading/no user found ,if it is taking longer than usual ,please{" "}
+            <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+          </div>
+        );
+      }
   return (
     <>
       <Layout>
