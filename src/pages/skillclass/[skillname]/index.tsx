@@ -6,6 +6,7 @@ import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 // import { useRouter } from "next/router";
 
+
 export default function Skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);

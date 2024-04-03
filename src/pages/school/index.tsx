@@ -21,6 +21,8 @@ export default function skillclass() {
         .from("School")
         .select("*")
         .eq("State", userStore.State);
+        
+
       // console.log('userStore.State',userStore.State);
 
       if (error) throw error;
