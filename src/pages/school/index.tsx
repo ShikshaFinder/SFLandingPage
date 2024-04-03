@@ -13,7 +13,7 @@ export default function skillclass() {
   const [userData, setUserData] = useState<any[] | null>(null);
 
   const userStore = useUser((state) => state.user);
-  console.log("userstore", userStore);
+  // console.log("userstore", userStore);
 
   async function getSchool() {
     try {

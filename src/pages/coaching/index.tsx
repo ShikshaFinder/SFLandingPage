@@ -4,17 +4,27 @@ import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
+import { useUser } from "@/store";
+
 // import { useRouter } from "next/router";
 
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
-
+  const userStore = useUser((state) => state.user);
 
   async function getSchool() {
     try {
-      let { data, error } = await supabase.from("coaching").select("*");
+      let { data, error } = await supabase
+        .from("coaching")
+        .select("*")
+        .eq("State", userStore.State);
+
+              if (error) throw error;
+
+              setUserData(data);
+
 
       if (error) throw error;
       setUserData(data);
@@ -27,14 +37,14 @@ export default function skillclass() {
     getSchool();
   }, [user]);
 
-    if (!user.email) {
-      return (
-        <div>
-          loading/no user found ,if it is taking longer than usual ,please{" "}
-          <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
-        </div>
-      );
-    }
+  if (!user.email) {
+    return (
+      <div>
+        loading/no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/signin">signin</a>.
+      </div>
+    );
+  }
 
   return (
     <>
