@@ -20,7 +20,8 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("School")
         .select("*")
-        .match({ State: userStore.State, District: userStore.city });
+        .match({ State: userStore.State, District: userStore.city })
+        // .order("rating", { ascending: false });
 
       // console.log('userStore.State',userStore.State);
 

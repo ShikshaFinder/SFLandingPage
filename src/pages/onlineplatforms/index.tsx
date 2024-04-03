@@ -5,17 +5,23 @@ import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 // import { useRouter } from "next/router";
+import { useUser } from "@/store";
 
 
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
+    const userStore = useUser((state) => state.user);
+
 
 
   async function getSchool() {
     try {
-      let { data, error } = await supabase.from("School").select("*");
+      let { data, error } = await supabase
+        .from("onlineform")
+        .select("*")
+        // .match({ State: userStore.State, District: userStore.city });
 
       if (error) throw error;
       setUserData(data);
