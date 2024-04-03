@@ -20,8 +20,7 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("School")
         .select("*")
-        .eq("State", userStore.State);
-        
+        .match({ State: userStore.State, District: userStore.city });
 
       // console.log('userStore.State',userStore.State);
 
