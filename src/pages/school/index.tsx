@@ -20,13 +20,11 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("School")
         .select("*")
-        .match({ State: userStore.State, District: userStore.city })
-        // .order("rating", { ascending: false });
+        .match({ State: userStore.State, District: userStore.District })
 
-      // console.log('userStore.State',userStore.State);
 
-      if (error) throw error;
       setUserData(data);
+      if (error) throw error;
     } catch (error) {
       console.log("Caught Error:", error);
     }
@@ -55,7 +53,7 @@ export default function skillclass() {
         {userData &&
           userData.map(
             (
-              school: { schoolname: string; rating: number; link: string },
+              school: { schoolname: string; rating: number; link: string,img:string },
               index: number
             ) => (
               <Card
@@ -64,7 +62,8 @@ export default function skillclass() {
                 rating={school.rating}
                 link={`/school/${school.schoolname}`}
                 imgsrc={
-                  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  school.img ||
+                  "https://images.unsplash.com/photo-1612835240301-5b5b8f7e1e8e"
                 }
               />
             )

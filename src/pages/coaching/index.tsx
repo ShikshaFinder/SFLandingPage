@@ -19,7 +19,8 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("coaching")
         .select("*")
-        .eq("State", userStore.State);
+        // .eq("State", userStore.State);
+        console.log({data, error})
 
               if (error) throw error;
 
@@ -34,8 +35,10 @@ export default function skillclass() {
   }
 
   useEffect(() => {
-    getSchool();
-  }, [user]);
+    if (userStore && userStore.State) {
+      getSchool();
+    }
+  }, [userStore]);
 
   if (!user.email) {
     return (
