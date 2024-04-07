@@ -71,7 +71,7 @@ export default function skillclass() {
                   link={`/school/${school.schoolname}`}
                   imgsrc={
                     school.img
-                      ? ` //wsrv.nl/?url=${school.img}`
+                      ? ` //wsrv.nl/?url=${school.img}&h=300`
                       : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   }
                 />
