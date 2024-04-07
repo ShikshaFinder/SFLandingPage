@@ -51,13 +51,17 @@ export default function skillclass() {
         {userData &&
           userData.map(
             (
-              onlineplatform: { coachingname: string; rating: number; link: string },
+              onlineplatform: {
+                coachingname: string;
+                ratingofcoaching: number; // Ensure unique key for each Card
+                link: string;
+              },
               index: number
             ) => (
               <Card
                 key={index} // Ensure unique key for each Card
                 name={onlineplatform.coachingname}
-                rating={onlineplatform.rating}
+                rating={onlineplatform.ratingofcoaching}
                 link={`/onlineplatform/${onlineplatform.coachingname}`}
                 imgsrc={
                   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

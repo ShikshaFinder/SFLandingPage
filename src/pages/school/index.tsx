@@ -58,7 +58,7 @@ export default function skillclass() {
               (
                 school: {
                   schoolname: string;
-                  rating: number;
+                  ratingofschool: number;
                   link: string;
                   img: string;
                 },
@@ -67,7 +67,7 @@ export default function skillclass() {
                 <Card
                   key={index} // Ensure unique key for each Card
                   name={school.schoolname}
-                  rating={school.rating}
+                  rating={school.ratingofschool}
                   link={`/school/${school.schoolname}`}
                   imgsrc={
                     school.img
