@@ -18,6 +18,7 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("onlineform")
         .select("*")
+
         // .filter("Standard", "contains", "Kg");
       // .match({ State: userStore.Standard, District: userStore.medium });
 

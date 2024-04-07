@@ -7,10 +7,10 @@ import { useAuthContext } from "@/context";
 import { useUser } from "@/store";
 import { Grid } from "@chakra-ui/react";
 
-// import { useRouter } from "next/router";
+
+
 
 export default function skillclass() {
-  // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
   const userStore = useUser((state) => state.user);
@@ -20,7 +20,8 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("coaching")
         .select("*")
-        // .eq("State", userStore.State);
+        .eq("State", userStore.State);
+
         console.log({data, error})
 
               if (error) throw error;

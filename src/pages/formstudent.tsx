@@ -70,8 +70,8 @@ const onSubmit = async (data: any) => {
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
-// supabase.auth.getUser();
-  return (
+
+    return (
     <>
       <Stack spacing="4">
         <Card variant="outline">

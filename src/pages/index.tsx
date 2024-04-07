@@ -5,7 +5,6 @@ import CompanyReview from "../components/companyreview";
 import GetStarted from "../components/getstarted";
 import { useAuthContext } from "@/context";
 import Link from "next/link";
-import { useEffect } from "react";
 
 import {
   Container,
@@ -22,27 +21,8 @@ import {
 import Layout from "./Layout";
 
 export default function Home() {
-  //  for (let i = 0; i < localStorage.length; i++) {
-  //    const key = localStorage.key(i);
-  //    const value = (localStorage.getItem(key) as string)?.toString() ?? "";
-  //    console.log(`${key}: ${value}`);
-  //  }'
+
 const { user } = useAuthContext();
-
-// Function to show alert when navigating back
-useEffect(() => {
-  const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-    event.preventDefault();
-    event.returnValue = ""; // This text won't actually be shown to the user
-  };
-
-  window.addEventListener("beforeunload", handleBeforeUnload);
-
-  return () => {
-    window.removeEventListener("beforeunload", handleBeforeUnload);
-  };
-}, []);
- 
 
   return (
     <>
