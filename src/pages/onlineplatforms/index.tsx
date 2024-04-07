@@ -18,7 +18,7 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("onlineform")
         .select("*")
-        .filter("Standard", "contains", "Kg");
+        // .filter("Standard", "contains", "Kg");
       // .match({ State: userStore.Standard, District: userStore.medium });
 
       // .match({ State: userStore.State, District: userStore.city });
@@ -51,14 +51,14 @@ export default function skillclass() {
         {userData &&
           userData.map(
             (
-              school: { schoolname: string; rating: number; link: string },
+              onlineplatform: { coachingname: string; rating: number; link: string },
               index: number
             ) => (
               <Card
                 key={index} // Ensure unique key for each Card
-                name={school.schoolname}
-                rating={school.rating}
-                link={`/onlineplatform/${school.schoolname}`}
+                name={onlineplatform.coachingname}
+                rating={onlineplatform.rating}
+                link={`/onlineplatform/${onlineplatform.coachingname}`}
                 imgsrc={
                   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }
