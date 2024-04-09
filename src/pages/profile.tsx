@@ -19,6 +19,7 @@ import { useAuthContext } from "@/context";
 import supabase from "../../supabase";
 import Layout from "./Layout";
 import { useRouter } from "next/router";
+import Schoolleaderbord from "@/components/schoolleaderbord";
 
 function Profile() {
   const { user } = useAuthContext();
@@ -103,13 +104,7 @@ function Profile() {
               />
             </TabPanel>
             <TabPanel>
-              <Leaderbord
-                name="you"
-                number={78}
-                name1="Shree Ram"
-                name2="Harsh Jani"
-                name3="Hetal jani"
-              />
+        <Schoolleaderbord />
             </TabPanel>
           </TabPanels>
         </Tabs>

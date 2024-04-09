@@ -1,6 +1,5 @@
 import React from 'react'
-import Leaderbord from '../components/Leaderbord'
-import Layout from './Layout';
+import Leaderbord from './Leaderbord'
 import { useState } from 'react';
 import supabase from '../../supabase';
 import { useEffect } from 'react';
@@ -29,9 +28,10 @@ const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
     const { data, error } = await supabase
       .from("School")
       .select("view , schoolname, Board")
-      .order("view", { ascending: false })
+      .order("view", { ascending: false })//here i can sort with help of vote also
       .limit(10); 
       // .eq("District", user?.Board)
+      //percentage * rating
 
       // console.log({data,error});
 
@@ -50,7 +50,6 @@ const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
 
   return (
     <>
-      <Layout>
         <Text fontSize="3xl" display={"flex"} justifyContent={"center"}>Leaderbord</Text>
 <br />
         {leaderboardData.map((entry, index) => (
@@ -62,7 +61,6 @@ const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
           />
           
         ))}
-      </Layout>
     </>
   );
 }
