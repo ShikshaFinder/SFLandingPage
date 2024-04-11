@@ -44,8 +44,6 @@ export default function skillclass() {
       status: "error",
       duration: 5000,
       isClosable: true,
-
-
     })
     );
   }

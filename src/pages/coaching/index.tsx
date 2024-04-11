@@ -5,8 +5,7 @@ import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import { useUser } from "@/store";
-import { Grid } from "@chakra-ui/react";
-import { Toast } from "@chakra-ui/react";
+import { Grid, Toast } from "@chakra-ui/react";
 
 
 
