@@ -6,7 +6,7 @@ import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import { useUser } from "@/store";
 import { Grid } from "@chakra-ui/react";
-
+import { Toast } from "@chakra-ui/react";
 
 
 
@@ -42,14 +42,15 @@ export default function skillclass() {
     }
   }, [userStore]);
 
-  if (!user.email) {
-    return (
-      <div>
-        loading/no user found ,if it is taking longer than usual ,please{" "}
-        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-      </div>
-    );
-  }
+ if (!user.email) {
+   return Toast({
+     title: "Error.",
+     description: "Please Login to access this page",
+     status: "error",
+     duration: 5000,
+     isClosable: true,
+   });
+ }
 
   return (
     <>

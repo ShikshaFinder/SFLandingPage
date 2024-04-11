@@ -5,6 +5,7 @@ import Layoutt from "../../Layout";
 import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
+import { Toast } from "@chakra-ui/react";
 // import { useRouter } from "next/router";
 
 
@@ -29,6 +30,16 @@ const { skillName } = router.query;
   useEffect(() => {
     getskill();
   }, [user]);
+
+   if (!user.email) {
+     return Toast({
+       title: "Error.",
+       description: "Please Login to access this page",
+       status: "error",
+       duration: 5000,
+       isClosable: true,
+     });
+   }
 
   return (
     <>

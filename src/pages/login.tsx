@@ -3,6 +3,7 @@ import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
 import { FaGoogle } from "react-icons/fa";
 
+
 import {
   Flex,
   Box,
@@ -34,7 +35,7 @@ export default function Login() {
    const { data, error } = await supabase.auth.signInWithOAuth({
      provider: "google",
      options: {
-       redirectTo: "https://platform.shikshafinder.com/",
+       redirectTo: "https://shikshafinder.com/",
      },
    });
  }
