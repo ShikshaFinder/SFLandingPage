@@ -81,32 +81,34 @@ export default function Navbar() {
               Profile
             </Button>
           ) : (
-            <Button
-              as={Link}
-              href={"/login"}
-              passHref
-              fontSize={"sm"}
-              fontWeight={400}
-              variant={"link"}
-            >
-              Sign In
-            </Button>
+            <>
+              <Button
+                as={Link}
+                href={"/login"}
+                passHref
+                fontSize={"sm"}
+                fontWeight={400}
+                variant={"link"}
+              >
+                Sign In
+              </Button>
+              <Button
+                as={Link}
+                href={"/signup"}
+                passHref
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"sm"}
+                fontWeight={600}
+                color={"white"}
+                bg={"blue"}
+                _hover={{
+                  bg: "blue.300",
+                }}
+              >
+                Sign Up
+              </Button>
+            </>
           )}
-          <Button
-            as={Link}
-            href={"/signup"}
-            passHref
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"blue"}
-            _hover={{
-              bg: "blue.300",
-            }}
-          >
-            Sign Up
-          </Button>
         </Stack>
       </Flex>
       <Box>{isMobileNav ? <MobileNav /> : null}</Box>
