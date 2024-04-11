@@ -1,6 +1,8 @@
 "use client";
 import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
+import { FaGoogle } from "react-icons/fa";
+
 import {
   Flex,
   Box,
@@ -27,6 +29,17 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+ async function SignIn() {
+   const { data, error } = await supabase.auth.signInWithOAuth({
+     provider: "google",
+     options: {
+       redirectTo: "https://platform.shikshafinder.com/",
+     },
+   });
+ }
+
+
 
   const Signin = async () => {
     if (!email || !password) {
@@ -120,6 +133,13 @@ export default function Login() {
                   Signup
                 </Link>
               </Text>
+              <Button
+                colorScheme="telegram"
+                onClick={SignIn}
+                leftIcon={<FaGoogle />}
+              >
+                Signin with Google
+              </Button>
             </Stack>
           </Stack>
         </Box>
