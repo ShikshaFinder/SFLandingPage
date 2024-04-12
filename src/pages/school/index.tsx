@@ -4,7 +4,7 @@ import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-import { Grid, Toast } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { useUser } from "@/store";
 
 export default function skillclass() {
@@ -38,13 +38,10 @@ export default function skillclass() {
 
   if (!user.email) {
     return (
-    Toast({
-      title: "Error.",
-      description: "Please Login to access this page",
-      status: "error",
-      duration: 5000,
-      isClosable: true,
-    })
+      <div>
+       no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+      </div>
     );
   }
 

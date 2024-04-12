@@ -2,12 +2,14 @@
 
 import React from "react";
 import { Box, IconButton, useBreakpointValue } from "@chakra-ui/react";
-// Here we have used react-icons package for the icons
+import { useAuthContext } from "@/context";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-// And react-slick as our Carousel Lib
+import { useUser } from "@/store";
 import Slider from "react-slick";
+import { useState, useEffect } from "react";
+import supabase from "../../supabase";
+import { useToast } from "@chakra-ui/react";
 
-// Settings for the slider
 const settings = {
   dots: true,
   arrows: false,
@@ -21,8 +23,9 @@ const settings = {
 };
 
 export default function Carousel() {
-  // As we have used custom buttons, we need a reference variable to
-  // change the state
+  
+const Toast = useToast(); 
+
   const [slider, setSlider] = React.useState<Slider | null>(null);
 
   // These are the breakpoints which changes the position of the
@@ -31,11 +34,45 @@ export default function Carousel() {
   const side = useBreakpointValue({ base: "30%", md: "10px" });
 
   // These are the images used in the slide
-  const cards = [
-    "https://images.unsplash.com/photo-1612852098516-55d01c75769a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    "https://images.unsplash.com/photo-1627875764093-315831ac12f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
-    "https://images.unsplash.com/photo-1571432248690-7fd6980a1ae2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
-  ];
+  
+
+   const { user } = useAuthContext();
+   const [userData, setUserData] = useState<any[] | null>(null);
+
+   const userStore = useUser((state) => state.user);
+   // console.log("userstore", userStore);
+
+   async function getSchool() {
+     try {
+       let { data, error } = await supabase
+         .from("marketingDetails")
+         .select("img")
+         .range(0, 3)
+
+       setUserData(data);
+       console.log(data);
+       if (error) throw error;
+     } catch (error) {
+       console.log("Caught Error:", error);
+     }
+   }
+
+   useEffect(() => {
+     if (userStore && userStore.State) {
+       getSchool();
+     }
+   }, [userStore]);
+
+
+   
+
+   const cards = [
+     userData && userData[0]?.img,
+     userData && userData[1]?.img,
+     userData && userData[2]?.img,
+   ];
+
+
 
   return (
     <Box
