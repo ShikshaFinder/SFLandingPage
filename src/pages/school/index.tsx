@@ -4,13 +4,21 @@ import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-import { Grid } from "@chakra-ui/react";
+import { Grid, Skeleton, Toast } from "@chakra-ui/react";
 import { useUser } from "@/store";
+import {
+  Button,
+  Box,
+  SkeletonCircle,
+  SkeletonText,
+
+} from "@chakra-ui/react";
 
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const userStore = useUser((state) => state.user);
   // console.log("userstore", userStore);
@@ -20,13 +28,22 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("School")
         .select("*")
-        .match({ State: userStore.State, District: userStore.District })
+        // .match({ State: userStore.State, District: userStore.District })
+        .range(0, 9);
 
 
       setUserData(data);
+      setLoading(true);
+
       if (error) throw error;
     } catch (error) {
-      console.log("Caught Error:", error);
+      Toast({
+        title: "Error",
+        description: "Error fetching data",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
 
@@ -49,10 +66,15 @@ export default function skillclass() {
     <>
       <Layoutt>
         <Bannerad />
+
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}
         >
+          <Skeleton isLoaded={loading}>
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+          </Skeleton>
           {userData &&
             userData.map(
               (
@@ -78,6 +100,8 @@ export default function skillclass() {
               )
             )}
         </Grid>
+        <br />
+        <Button onClick={getSchool}>Load More</Button>
       </Layoutt>
     </>
   );

@@ -6,6 +6,7 @@ import {
   Container,
   Stack,
   useColorModeValue,
+  Img,
 } from "@chakra-ui/react";
 import { Badge } from "@chakra-ui/react";
 import Link from "next/link";
@@ -31,7 +32,7 @@ const Index = ({
           overflow="hidden"
           bg={useColorModeValue("white", "gray.800")}
         >
-          <Image src={imgsrc} objectFit="cover" w="100%" />
+          <Img src={imgsrc} objectFit="cover" w="100%" />
           <Box p={{ base: 3, sm: 5 }}>
             <Box mb={6}>
               <chakra.h3
