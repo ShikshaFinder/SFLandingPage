@@ -6,6 +6,7 @@ import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import { useUser } from "@/store";
 import { Grid, Toast } from "@chakra-ui/react";
+import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 
 
@@ -41,20 +42,27 @@ export default function skillclass() {
     }
   }, [userStore]);
 
- if (!user.email) {
-   return Toast({
-     title: "Error.",
-     description: "Please Login to access this page",
-     status: "error",
-     duration: 5000,
-     isClosable: true,
-   });
- }
+  if (!user.email) {
+    return (
+      <div>
+        no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+      </div>
+    );
+  }
 
   return (
     <>
       <Layoutt>
         <Bannerad />
+        {userData === null ? (
+          <Box>
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+        ) : (
+          <h1>Top Coaching classes in {userStore.District}</h1>
+        )}
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}

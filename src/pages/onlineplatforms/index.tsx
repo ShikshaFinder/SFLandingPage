@@ -6,7 +6,8 @@ import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 // import { useRouter } from "next/router";
 import { useUser } from "@/store";
-import { Toast } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
+import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 export default function skillclass() {
   // const router = useRouter();
@@ -37,42 +38,54 @@ export default function skillclass() {
     getSchool();
   }, [user]);
 
-  if (!user.email) {
-    return Toast({
-      title: "Error.",
-      description: "Please Login to access this page",
-      status: "error",
-      duration: 5000,
-      isClosable: true,
-    });
-  }
+   if (!user.email) {
+     return (
+       <div>
+         no user found ,if it is taking longer than usual ,please{" "}
+         <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+       </div>
+     );
+   }
 
   return (
     <>
       <Layoutt>
         <Bannerad />
 
-        {userData &&
-          userData.map(
-            (
-              onlineplatform: {
-                coachingname: string;
-                ratingofcoaching: number; // Ensure unique key for each Card
-                link: string;
-              },
-              index: number
-            ) => (
-              <Card
-                key={index} // Ensure unique key for each Card
-                name={onlineplatform.coachingname}
-                rating={onlineplatform.ratingofcoaching}
-                link={`/onlineplatform/${onlineplatform.coachingname}`}
-                imgsrc={
-                  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-              />
-            )
-          )}
+        {userData === null ? (
+          <Box>
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+        ) : (
+          <h1>Top online platforms in your category </h1>
+        )}
+        <Grid
+          templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
+          gap={1}
+        >
+          {userData &&
+            userData.map(
+              (
+                onlineplatform: {
+                  coachingname: string;
+                  ratingofcoaching: number; // Ensure unique key for each Card
+                  link: string;
+                },
+                index: number
+              ) => (
+                <Card
+                  key={index} // Ensure unique key for each Card
+                  name={onlineplatform.coachingname}
+                  rating={onlineplatform.ratingofcoaching}
+                  link={`/onlineplatform/${onlineplatform.coachingname}`}
+                  imgsrc={
+                    "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  }
+                />
+              )
+            )}
+        </Grid>
       </Layoutt>
     </>
   );

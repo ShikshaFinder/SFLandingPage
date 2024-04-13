@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../../supabase";
 import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+// import Shikshacoin from "@/components/shikshacoinpopup";
 import {
   FormControl,
   FormLabel,
@@ -16,16 +19,20 @@ import {
   Card,
 } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
-
+// assciate school id with the form filled by the student
 
 function admissionform() {
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
 
   const form = useForm();
   const toast = useToast();
+   const router = useRouter();
+   const { name } = router.query;
+  console.log(name);
 
   const { register, handleSubmit, control } = form;
 
+  // const [showShikshacoin, setShowShikshacoin] = useState(false);
   const handleSubmitt = () => {
     toast({
       title: "Form submitted!",
@@ -34,26 +41,49 @@ function admissionform() {
       duration: 3000,
       isClosable: true,
     });
+    // setShowShikshacoin(true);
+
+    router.push("/");
   };
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("admissionform")
       .insert([{ ...data, email: user.email, user_id: user.id }]);
+
     if (error) {
-      console.error("Error submitting Form:", error);
+     toast({
+       title: "error",
+       description: error.message,
+       status: "error",
+       duration: 3000,
+       isClosable: true,
+     });
     } else {
       handleSubmitt();
     }
   };
+  console.log("harsh");
+  console.log(name);
+
+  if (!user.email) {
+    return (
+      <div>
+        loading/no user found ,if it is taking longer than usual ,please{" "}
+        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+      </div>
+    );
+  }
 
   return (
     <>
       <Stack spacing="4">
+        {/* {showShikshacoin && <Shikshacoin />} */}
+
         <Card variant="outline">
           <CardBody>
             <Heading size="md" fontSize="26px">
-              Let's Begin the journey of Education😎{" "}
+              Let's Begin the journey of Education{" "}
             </Heading>
             <br />
             <FormControl isRequired>
@@ -105,7 +135,7 @@ function admissionform() {
             </FormControl>
             <br />
             <FormControl>
-              <FormLabel>Stream </FormLabel>
+              <FormLabel>Stream</FormLabel>
               <Input
                 {...register("stream", { required: false })}
                 name="stream"
@@ -113,12 +143,22 @@ function admissionform() {
               />
             </FormControl>
             <br />
-            <FormControl isRequired>
-              <FormLabel>Board</FormLabel>
-              <Input
-                {...register("board", { required: true })}
-                name="board"
-                placeholder="Board"
+            <FormControl as="fieldset">
+              <FormLabel as="legend">Board</FormLabel>
+              <Controller
+                name="Board"
+                control={control}
+                defaultValue="State"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <RadioGroup {...field}>
+                    <HStack spacing="24px">
+                      <Radio value="CBSE">CBSE</Radio>
+                      <Radio value="ICSE">ICSE</Radio>
+                      <Radio value="State">State Board</Radio>
+                    </HStack>
+                  </RadioGroup>
+                )}
               />
             </FormControl>
             <br />

@@ -6,13 +6,7 @@ import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import { Grid, Skeleton, Toast } from "@chakra-ui/react";
 import { useUser } from "@/store";
-import {
-  Button,
-  Box,
-  SkeletonCircle,
-  SkeletonText,
-
-} from "@chakra-ui/react";
+import { Button, Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 export default function skillclass() {
   // const router = useRouter();
@@ -31,9 +25,8 @@ export default function skillclass() {
         // .match({ State: userStore.State, District: userStore.District })
         .range(0, 9);
 
-
       setUserData(data);
-      setLoading(true);
+      // setLoading(false);
 
       if (error) throw error;
     } catch (error) {
@@ -49,6 +42,7 @@ export default function skillclass() {
 
   useEffect(() => {
     if (userStore && userStore.State) {
+       setLoading(true);
       getSchool();
     }
   }, [userStore]);
@@ -56,25 +50,35 @@ export default function skillclass() {
   if (!user.email) {
     return (
       <div>
-       no user found ,if it is taking longer than usual ,please{" "}
+        no user found ,if it is taking longer than usual ,please{" "}
         <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
       </div>
     );
   }
+    
+      
+    
 
   return (
     <>
       <Layoutt>
         <Bannerad />
+        {
+          userData === null ? (
+            <Box>
+              <SkeletonCircle size="10" />
+              <SkeletonText mt="4" noOfLines={4} spacing="4" />
+            </Box>
+          ) : (
+            <h1>Top Schools in {userStore.District}</h1>
+          )
+        }
 
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}
         >
-          <Skeleton isLoaded={loading}>
-            <SkeletonCircle size="10" />
-            <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
-          </Skeleton>
+        
           {userData &&
             userData.map(
               (
