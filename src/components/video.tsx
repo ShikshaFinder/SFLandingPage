@@ -7,7 +7,7 @@ function video({src}: {src: string}) {
       <AspectRatio maxW="560px" ratio={1.75}>
         <iframe
           title="hihello"
-          src={src}
+          src={`https://www.youtube.com/embed/${src}`}
           allowFullScreen
         />
       </AspectRatio>

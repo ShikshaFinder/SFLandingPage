@@ -92,14 +92,14 @@ function IntroSchool() {
         subject4="Science"
       />
       <br />
-      <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
+      <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
         TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
         // Experience={"12 years"}
-        locationlink="https://goo.gl/maps/"
+        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         location={userData && userData[0] ? userData[0].location : ""}
         AboutTeacher={userData && userData[0] ? userData[0].location : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
