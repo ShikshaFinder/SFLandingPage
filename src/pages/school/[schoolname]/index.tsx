@@ -33,9 +33,10 @@ function IntroSchool() {
   const router = useRouter();
   const { schoolname } = router.query;
   // const { user } = useAuthContext();
-  // console.log(schoolname);
+  console.log(schoolname);
 
   const [userData, setUserData] = useState<any[] | null>(null);
+  const [View, setView] = useState<number | null>(null);
 
   async function getSchool() {
     try {
@@ -46,15 +47,17 @@ function IntroSchool() {
           .eq("schoolname", schoolname);
 
         if (error) throw error;
-        console.log(data);
 
         setUserData(data);
+        console.log("userData", userData);
 
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
-          const newViewValue = data[0].view + 1;
-          console.log("newViewValue", newViewValue);
+            const newViewValue = data[0].view + 1;
+            console.log("newViewValue", newViewValue);
+            setView(newViewValue);
+            console.log("view incremented", View);
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
@@ -69,7 +72,7 @@ function IntroSchool() {
           }
         }
       } else {
-        console.log("schoolname is not a string:", schoolname);
+        setView(1);
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -83,7 +86,7 @@ function IntroSchool() {
   return (
     <>
       <Subject
-        subject1="maths"
+        subject1="hi"
         subject2="hindi"
         subject3="Social Science"
         subject4="Science"
@@ -95,8 +98,10 @@ function IntroSchool() {
       <br />
       <InfoTeacher
         TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
-        Experience={"12 years"}
-        AboutTeacher={"He is a good teacher"}
+        // Experience={"12 years"}
+        locationlink="https://goo.gl/maps/"
+        location={userData && userData[0] ? userData[0].location : ""}
+        AboutTeacher={userData && userData[0] ? userData[0].location : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 
@@ -112,7 +117,10 @@ function IntroSchool() {
           />
         ))}
       </Stack>
-      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
+      <Admissionform
+        name={userData && userData[0] ? userData[0].schoolname : ""}
+        phoneNumber={userData && userData[0] ? userData[0].mobile1 : ""}
+      />
     </>
   );
 }

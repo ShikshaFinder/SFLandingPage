@@ -1,30 +1,50 @@
-import React from 'react'
-import { Card, CardHeader, CardBody, Text, Box, Stack, Heading, StackDivider, Button } from "@chakra-ui/react"
-
-function InfoTeacher({TeacherName, Experience, AboutTeacher,discription}: {TeacherName: string, Experience: string, AboutTeacher: string,discription:string}) {
+import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Text,
+  Box,
+  Stack,
+  Heading,
+  StackDivider,
+} from "@chakra-ui/react";
+import Link from "next/link";
+import { Icon } from "@chakra-ui/react";
+import { BiLocationPlus } from "react-icons/bi";
+function InfoTeacher({
+  TeacherName,
+  location,
+  AboutTeacher,
+  discription,
+  locationlink,
+}: {
+  TeacherName: string;
+  location?: string;
+  AboutTeacher: string;
+  discription: string;
+  locationlink?: string;
+}) {
   return (
     <>
       <Card>
         <CardHeader>
-          <Heading size="md">{TeacherName}</Heading>
+          <Heading size="sm">{TeacherName}</Heading>
         </CardHeader>
         <CardBody>
-          <Stack divider={<StackDivider />} spacing="3">
+          <Stack divider={<StackDivider />} spacing="1">
             <Box>
-              <Heading size="xs" textTransform="uppercase">
-                {Experience}
+              <Heading size="lg" >
+                Discription
               </Heading>
               <Text pt="2" fontSize="sm">
-                {AboutTeacher}
+                {discription}
               </Text>
             </Box>
             <Box>
-              <Heading size="xs" textTransform="uppercase">
-               About Teacher + Extra curricular Activitities
-              </Heading>
-              <Text pt="2" fontSize="sm">
-              {discription}
-              </Text>
+              <Link href={locationlink ?? ""}>
+                <BiLocationPlus /> {location}
+              </Link>
             </Box>
           </Stack>
         </CardBody>
@@ -33,4 +53,4 @@ function InfoTeacher({TeacherName, Experience, AboutTeacher,discription}: {Teach
   );
 }
 
-export default InfoTeacher
+export default InfoTeacher;
