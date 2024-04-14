@@ -6,9 +6,8 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import AuthContextProvider from "@/context";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import Head from "next/head";
-const { BlobServiceClient } = require("@azure/storage-blob");
+// const { BlobServiceClient } = require("@azure/storage-blob");
 // const { v1: uuidv1 } = require("uuid");
 require("dotenv").config();
 
@@ -49,7 +48,6 @@ export default function App({
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
-        <SpeedInsights />
         <ChakraProvider theme={theme}>
           <AuthContextProvider>
             <div className={inter.className}>
