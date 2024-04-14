@@ -95,9 +95,9 @@ function IntroSchool() {
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].onlineplatform : ""}
-        Experience={"12 years"}
-        AboutTeacher={"He is a good teacher"}
+        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
+        location={userData && userData[0] ? userData[0].location : ""}
+        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 

@@ -36,12 +36,12 @@ function IntroSchool() {
       <br />
       <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
       <br />
-      <InfoTeacher
+      {/* <InfoTeacher
         TeacherName="Chintansir"
         Experience={"12 years"}
         AboutTeacher={"He is a good teacher"}
         discription={"He is a good teacher"}
-      />
+      /> */}
 
       <Stack direction={"row"}>
         {cards.map(({ name, imgsrc, rating, link }, index) => (

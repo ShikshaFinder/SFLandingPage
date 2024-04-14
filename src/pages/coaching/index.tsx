@@ -15,7 +15,7 @@ export default function skillclass() {
   const [userData, setUserData] = useState<any[] | null>(null);
   const userStore = useUser((state) => state.user);
 
-  async function getSchool() {
+  async function getcoaching() {
     try {
       let { data, error } = await supabase
         .from("coaching")
@@ -38,7 +38,7 @@ export default function skillclass() {
 
   useEffect(() => {
     if (userStore && userStore.State) {
-      getSchool();
+      getcoaching();
     }
   }, [userStore]);
 
@@ -70,7 +70,7 @@ export default function skillclass() {
           {userData &&
             userData.map(
               (
-                school: {
+                coaching: {
                   coachingname: string;
                   ratingofcoaching: number;
                   link: string;
@@ -80,12 +80,12 @@ export default function skillclass() {
               ) => (
                 <Card
                   key={index} // Ensure unique key for each Card
-                  name={school.coachingname}
-                  rating={school.ratingofcoaching}
-                  link={`/school/${school.coachingname}`}
+                  name={coaching.coachingname}
+                  rating={coaching.ratingofcoaching}
+                  link={`/coaching/${coaching.coachingname}`}
                   imgsrc={
-                    school.img
-                      ? ` //wsrv.nl/?url=${school.img}`
+                    coaching.img
+                      ? ` //wsrv.nl/?url=${coaching.img}`
                       : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   }
                 />

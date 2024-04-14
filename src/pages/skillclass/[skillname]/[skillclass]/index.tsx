@@ -36,12 +36,12 @@ function IntroSchool() {
       <br />
       <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
       <br />
-      <InfoTeacher
-        TeacherName="Chintansir"
-        Experience={"12 years"}
-        AboutTeacher={"He is a good teacher"}
-        discription={"He is a good teacher"}
-      />
+      {/* <InfoTeacher
+        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
+        location={userData && userData[0] ? userData[0].location : ""}
+        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
+        discription={userData && userData[0] ? userData[0].discription : ""}
+      /> */}
 
       <Chart extra={9} quality={8} management={7} facilities={8} />
       <Stack direction={"row"}>

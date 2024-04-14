@@ -73,8 +73,8 @@ function IntroSchool() {
       <br />
       <InfoTeacher
         TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
-        Experience={"12 years"}
-        AboutTeacher={"He is a good teacher"}
+        location={userData && userData[0] ? userData[0].location : ""}
+        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 
