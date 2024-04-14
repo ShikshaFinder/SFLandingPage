@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../../supabase";
@@ -28,7 +27,8 @@ function admissionform() {
   const toast = useToast();
    const router = useRouter();
    const { name } = router.query;
-  console.log(name);
+   console.log(name);
+  
 
   const { register, handleSubmit, control } = form;
 
@@ -49,7 +49,7 @@ function admissionform() {
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("admissionform")
-      .insert([{ ...data, email: user.email, user_id: user.id }]);
+      .insert([{ ...data, email: user.email, user_id: user.id,institutename:name }]);
 
     if (error) {
      toast({
@@ -64,16 +64,15 @@ function admissionform() {
     }
   };
   console.log("harsh");
-  console.log(name);
 
-  if (!user.email) {
-    return (
-      <div>
-        loading/no user found ,if it is taking longer than usual ,please{" "}
-        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-      </div>
-    );
-  }
+  // if (!user.email) {
+  //   return (
+  //     <div>
+  //       loading/no user found ,if it is taking longer than usual ,please{" "}
+  //       <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
+  //     </div>
+  //   );
+  // }
 
   return (
     <>

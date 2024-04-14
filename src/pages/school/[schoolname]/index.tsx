@@ -21,7 +21,7 @@ const cards = [
     link: "/skillclass/typeofclass/nameofCoaching",
   },
   {
-    name: "Shree Swami nararyan ",
+    name: "Shree ",
     imgsrc:
       "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     rating: "3.4",
@@ -34,6 +34,9 @@ function IntroSchool() {
   const { schoolname } = router.query;
   // const { user } = useAuthContext();
   console.log(schoolname);
+    console.log("schoolname");
+
+
 
   const [userData, setUserData] = useState<any[] | null>(null);
   const [View, setView] = useState<number | null>(null);
@@ -101,7 +104,7 @@ function IntroSchool() {
         // Experience={"12 years"}
         locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         location={userData && userData[0] ? userData[0].location : ""}
-        AboutTeacher={userData && userData[0] ? userData[0].location : ""}
+        
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 

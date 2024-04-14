@@ -15,13 +15,11 @@ import { BiLocationPlus } from "react-icons/bi";
 function InfoTeacher({
   TeacherName,
   location,
-  AboutTeacher,
   discription,
   locationlink,
 }: {
   TeacherName: string;
   location?: string;
-  AboutTeacher: string;
   discription: string;
   locationlink?: string;
 }) {
@@ -33,14 +31,12 @@ function InfoTeacher({
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="1">
-            <Box>
-              <Heading size="lg" >
-                Discription
-              </Heading>
-              <Text pt="2" fontSize="sm">
-                {discription}
-              </Text>
-            </Box>
+            {/* <Box> */}
+            <Heading size="lg">Discription</Heading>
+            <Text pt="2" fontSize="sm">
+              {discription}
+            </Text>
+            {/* </Box> */}
             <Box>
               <Link href={locationlink ?? ""}>
                 <BiLocationPlus /> {location}
