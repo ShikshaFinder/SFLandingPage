@@ -6,6 +6,9 @@ import InfoTeacher from "../../../../components/InfoTeacher";
 import Subject from "../../../../components/subject";
 import Chart from "../../../../components/Chart";
 import React from "react";
+import { useRouter } from "next/router";
+import supabase from "../../../../../supabase";
+import { useEffect, useState } from "react";
 
 const cards = [
   {
@@ -25,7 +28,63 @@ const cards = [
 ];
 
 function IntroSchool() {
-  const name="gb2pHa47T-g";
+  const router = useRouter();
+  const { skillclass } = router.query;
+  // const { user } = useAuthContext();
+  console.log(skillclass);
+
+    
+
+
+
+  const [userData, setUserData] = useState<any[] | null>(null);
+  const [View, setView] = useState<number | null>(null);
+
+  async function getSchool() {
+    try {
+      if (typeof skillclass === "string") {
+        let { data, error } = await supabase
+          .from("skillclass")
+          .select("*")
+          .eq("skillclassname", skillclass);
+
+        if (error) throw error;
+
+        setUserData(data);
+        console.log("userData", userData);
+
+        // Check if 'view' is not null
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+            const newViewValue = data[0].view + 1;
+            console.log("newViewValue", newViewValue);
+            setView(newViewValue);
+            console.log("view incremented", View);
+
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("School")
+            .update({ view: newViewValue })
+            .eq("skillname", skillclass);
+          console.log("view incremented");
+          console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        setView(1);
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
+  useEffect(() => {
+    getSchool();
+  }, [skillclass]);
+
   return (
     <>
       <Subject
@@ -35,14 +94,14 @@ function IntroSchool() {
         subject4="Science"
       />
       <br />
-      <Videoo src={`https://www.youtube.com/embed/${name}` }/>
+      <Videoo src={userData && userData[0] ? userData[0].videolink : ""}/>
       <br />
-      {/* <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
+      <InfoTeacher
+        TeacherName={userData && userData[0] ? userData[0].skillclassname : ""}
         location={userData && userData[0] ? userData[0].location : ""}
         locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
-      /> */}
+      />
 
       <Chart extra={9} quality={8} management={7} facilities={8} />
       <Stack direction={"row"}>

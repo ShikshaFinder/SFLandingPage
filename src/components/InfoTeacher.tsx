@@ -26,7 +26,7 @@ function InfoTeacher({
   return (
     <>
       <Card>
-        <CardHeader>
+        <CardHeader>name
           <Heading size="sm">{TeacherName}</Heading>
         </CardHeader>
         <CardBody>

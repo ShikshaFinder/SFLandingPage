@@ -18,6 +18,7 @@ export type Database = {
           email: string
           id: number
           img: string | null
+          institutename: string | null
           medium: string
           mobilenumber: number
           name: string
@@ -35,6 +36,7 @@ export type Database = {
           email: string
           id?: number
           img?: string | null
+          institutename?: string | null
           medium: string
           mobilenumber: number
           name: string
@@ -52,6 +54,7 @@ export type Database = {
           email?: string
           id?: number
           img?: string | null
+          institutename?: string | null
           medium?: string
           mobilenumber?: number
           name?: string
@@ -72,6 +75,7 @@ export type Database = {
           discription: string | null
           email: string | null
           id: number
+          img: string | null
           location: string | null
           locationlink: string | null
           medium: string | null
@@ -94,6 +98,7 @@ export type Database = {
           discription?: string | null
           email?: string | null
           id?: number
+          img?: string | null
           location?: string | null
           locationlink?: string | null
           medium?: string | null
@@ -116,6 +121,7 @@ export type Database = {
           discription?: string | null
           email?: string | null
           id?: number
+          img?: string | null
           location?: string | null
           locationlink?: string | null
           medium?: string | null
@@ -201,6 +207,7 @@ export type Database = {
           District: string | null
           exam: string | null
           id: number
+          img: string | null
           medium: string | null
           Standard: string | null
           State: string | null
@@ -212,6 +219,7 @@ export type Database = {
           District?: string | null
           exam?: string | null
           id?: number
+          img?: string | null
           medium?: string | null
           Standard?: string | null
           State?: string | null
@@ -223,6 +231,46 @@ export type Database = {
           District?: string | null
           exam?: string | null
           id?: number
+          img?: string | null
+          medium?: string | null
+          Standard?: string | null
+          State?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      marketingDetailsIndustry: {
+        Row: {
+          Board: string | null
+          created_at: string
+          District: string | null
+          exam: string | null
+          id: number
+          img: string | null
+          medium: string | null
+          Standard: string | null
+          State: string | null
+          user_id: string | null
+        }
+        Insert: {
+          Board?: string | null
+          created_at?: string
+          District?: string | null
+          exam?: string | null
+          id?: number
+          img?: string | null
+          medium?: string | null
+          Standard?: string | null
+          State?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          Board?: string | null
+          created_at?: string
+          District?: string | null
+          exam?: string | null
+          id?: number
+          img?: string | null
           medium?: string | null
           Standard?: string | null
           State?: string | null
@@ -238,11 +286,12 @@ export type Database = {
           discription: string | null
           email: string | null
           id: number
+          img: string | null
           link: string | null
           medium: string | null
           mobile: number | null
           ratingofcoaching: string | null
-          Standard: string | null
+          Standard: string[] | null
           State: string | null
           stream: string | null
           user_id: string | null
@@ -256,11 +305,12 @@ export type Database = {
           discription?: string | null
           email?: string | null
           id?: number
+          img?: string | null
           link?: string | null
           medium?: string | null
           mobile?: number | null
           ratingofcoaching?: string | null
-          Standard?: string | null
+          Standard?: string[] | null
           State?: string | null
           stream?: string | null
           user_id?: string | null
@@ -274,11 +324,12 @@ export type Database = {
           discription?: string | null
           email?: string | null
           id?: number
+          img?: string | null
           link?: string | null
           medium?: string | null
           mobile?: number | null
           ratingofcoaching?: string | null
-          Standard?: string | null
+          Standard?: string[] | null
           State?: string | null
           stream?: string | null
           user_id?: string | null
@@ -298,12 +349,14 @@ export type Database = {
       School: {
         Row: {
           Board: string[] | null
+          customup: boolean | null
           discription: string | null
           DISE: string | null
           District: string | null
           email: string | null
           exam: string | null
           id: number
+          img: string | null
           location: string | null
           locationlink: string | null
           medium: string[] | null
@@ -314,19 +367,23 @@ export type Database = {
           State: string | null
           stream: string | null
           streetaddress: string | null
+          studentnumber: string | null
           subdistrict: string | null
           user_id: string | null
+          videolink: string | null
           view: number | null
           website: string | null
         }
         Insert: {
           Board?: string[] | null
+          customup?: boolean | null
           discription?: string | null
           DISE?: string | null
           District?: string | null
           email?: string | null
           exam?: string | null
           id?: number
+          img?: string | null
           location?: string | null
           locationlink?: string | null
           medium?: string[] | null
@@ -337,19 +394,23 @@ export type Database = {
           State?: string | null
           stream?: string | null
           streetaddress?: string | null
+          studentnumber?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
         Update: {
           Board?: string[] | null
+          customup?: boolean | null
           discription?: string | null
           DISE?: string | null
           District?: string | null
           email?: string | null
           exam?: string | null
           id?: number
+          img?: string | null
           location?: string | null
           locationlink?: string | null
           medium?: string[] | null
@@ -360,8 +421,10 @@ export type Database = {
           State?: string | null
           stream?: string | null
           streetaddress?: string | null
+          studentnumber?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
@@ -414,6 +477,7 @@ export type Database = {
           discription: string | null
           email: string | null
           id: number
+          img: string | null
           location: string | null
           locationlink: string | null
           mobile: number | null
@@ -424,6 +488,7 @@ export type Database = {
           streetaddress: string | null
           subdistrict: string | null
           user_id: string | null
+          videolink: string | null
           view: number | null
           website: string | null
         }
@@ -432,6 +497,7 @@ export type Database = {
           discription?: string | null
           email?: string | null
           id?: number
+          img?: string | null
           location?: string | null
           locationlink?: string | null
           mobile?: number | null
@@ -442,6 +508,7 @@ export type Database = {
           streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
@@ -450,6 +517,7 @@ export type Database = {
           discription?: string | null
           email?: string | null
           id?: number
+          img?: string | null
           location?: string | null
           locationlink?: string | null
           mobile?: number | null
@@ -460,6 +528,7 @@ export type Database = {
           streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
