@@ -32,7 +32,7 @@ const cards = [
 
 function IntroSchool() {
   const router = useRouter();
-  const { onlineplatform } = router.query;
+  const { onlineplatformname } = router.query;
   const { user } = useAuthContext();
   
   if (!user.email) {
@@ -43,16 +43,17 @@ function IntroSchool() {
 
   async function getSchool() {
     try {
-      if (typeof onlineplatform === "string") {
+      if (typeof onlineplatformname === "string") {
         let { data, error } = await supabase
           .from("onlineform")
           .select("*")
-          .eq("coachingname", onlineplatform);
+          .eq("coachingname", onlineplatformname);
 
         if (error) throw error;
         console.log(data);
 
         setUserData(data);
+        console.log("userData", data && data[0] ? data[0].coachingname : "");
 
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
@@ -64,7 +65,7 @@ function IntroSchool() {
           const { error: updateError } = await supabase
             .from("onlineform")
             .update({ view: newViewValue })
-            .eq("onlineplatform", onlineplatform);
+            .eq("onlineplatform", onlineplatformname);
           console.log("view incremented");
 
           console.log("updateError", updateError);
@@ -74,7 +75,7 @@ function IntroSchool() {
           }
         }
       } else {
-        console.log("onlineplatform is not a string:", onlineplatform);
+        console.log("onlineplatform is not a string:", onlineplatformname);
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -83,7 +84,7 @@ function IntroSchool() {
 
   useEffect(() => {
     getSchool();
-  }, [onlineplatform]);
+  }, [onlineplatformname]);
 
   return (
     <>
