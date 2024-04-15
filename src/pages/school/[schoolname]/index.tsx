@@ -41,7 +41,6 @@ function IntroSchool() {
 
 
   const [userData, setUserData] = useState<any[] | null>(null);
-  const [View, setView] = useState<number | null>(null);
 
   async function getSchool() {
     try {
@@ -55,20 +54,20 @@ function IntroSchool() {
 
         setUserData(data);
         console.log("userData", userData);
-
+console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
             const newViewValue = data[0].view + 1;
             console.log("newViewValue", newViewValue);
-            setView(newViewValue);
-            console.log("view incremented", View);
+            
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
             .from("School")
             .update({ view: newViewValue })
             .eq("schoolname", schoolname);
+
           console.log("view incremented");
           console.log("updateError", updateError);
 
@@ -77,7 +76,7 @@ function IntroSchool() {
           }
         }
       } else {
-        setView(1);
+        console.log("No schoolname found");
       }
     } catch (error) {
       console.log("Caught Error:", error);

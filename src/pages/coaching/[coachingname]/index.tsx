@@ -100,7 +100,7 @@ function IntroSchool() {
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
+        TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
         location={userData && userData[0] ? userData[0].location : ""}
         locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}

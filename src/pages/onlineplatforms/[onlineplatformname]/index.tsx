@@ -45,9 +45,9 @@ function IntroSchool() {
     try {
       if (typeof onlineplatform === "string") {
         let { data, error } = await supabase
-          .from("coaching")
+          .from("onlineform")
           .select("*")
-          .eq("onlineplatform", onlineplatform);
+          .eq("coachingname", onlineplatform);
 
         if (error) throw error;
         console.log(data);
@@ -94,14 +94,12 @@ function IntroSchool() {
         subject4="Science"
       />
       <br />
-      <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
+      <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
-        location={userData && userData[0] ? userData[0].location : ""}
-        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
+        TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 
@@ -117,7 +115,10 @@ function IntroSchool() {
           />
         ))}
       </Stack>
-      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
+      <Admissionform
+        name={userData && userData[0] ? userData[0].coachingname : ""}
+        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+      />
     </>
   );
 }
