@@ -10,7 +10,8 @@ import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-// import { useAuthContext } from "@/context";
+import Nouser from "@/components/Nouser";
+import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -32,8 +33,11 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { onlineplatform } = router.query;
-  // const { user } = useAuthContext();
-  // console.log(onlineplatform);
+  const { user } = useAuthContext();
+  
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   const [userData, setUserData] = useState<any[] | null>(null);
 

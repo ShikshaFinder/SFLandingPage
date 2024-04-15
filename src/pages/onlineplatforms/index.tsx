@@ -4,7 +4,7 @@ import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-// import { useRouter } from "next/router";
+import Nouser from "@/components/Nouser";
 import { useUser } from "@/store";
 import { Grid } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
@@ -38,14 +38,9 @@ export default function skillclass() {
     getSchool();
   }, [user]);
 
-   if (!user.email) {
-     return (
-       <div>
-         no user found ,if it is taking longer than usual ,please{" "}
-         <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-       </div>
-     );
-   }
+    if (!user.email) {
+      return <Nouser />;
+    }
 
   return (
     <>

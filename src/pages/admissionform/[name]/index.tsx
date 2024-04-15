@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import supabase from "../../../../supabase";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import Nouser from "@/components/Nouser";
 // import Shikshacoin from "@/components/shikshacoinpopup";
 import {
   FormControl,
@@ -65,14 +66,11 @@ function admissionform() {
   };
   console.log("harsh");
 
-  // if (!user.email) {
-  //   return (
-  //     <div>
-  //       loading/no user found ,if it is taking longer than usual ,please{" "}
-  //       <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-  //     </div>
-  //   );
-  // }
+  if (!user.email) {
+    return (
+     <Nouser/>
+    );
+  }
   
 
   return (

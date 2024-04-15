@@ -25,6 +25,7 @@ const cards = [
 ];
 
 function IntroSchool() {
+  const name="gb2pHa47T-g";
   return (
     <>
       <Subject
@@ -34,7 +35,7 @@ function IntroSchool() {
         subject4="Science"
       />
       <br />
-      <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
+      <Videoo src={`https://www.youtube.com/embed/${name}` }/>
       <br />
       {/* <InfoTeacher
         TeacherName={userData && userData[0] ? userData[0].schoolname : ""}

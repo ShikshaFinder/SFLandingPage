@@ -11,6 +11,8 @@ import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
 import Shikshacoin from "../../../components/shikshacoinpopup";
+import { useAuthContext } from "@/context";
+import Nouser from "@/components/Nouser";
 const cards = [
   {
     name: "Shree Swami",
@@ -31,8 +33,11 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { coachingname } = router.query;
-  // const { user } = useAuthContext();
+  const { user } = useAuthContext();
   // console.log(coachingname);
+   if (!user.email) {
+     return <Nouser />;
+   }
 
   const [userData, setUserData] = useState<any[] | null>(null);
 

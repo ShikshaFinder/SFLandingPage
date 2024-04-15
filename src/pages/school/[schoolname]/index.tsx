@@ -36,6 +36,8 @@ function IntroSchool() {
   console.log(schoolname);
     console.log("schoolname");
 
+    
+
 
 
   const [userData, setUserData] = useState<any[] | null>(null);

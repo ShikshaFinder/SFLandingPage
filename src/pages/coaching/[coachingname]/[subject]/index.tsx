@@ -5,11 +5,12 @@ import Videoo from "../../../../components/video";
 import InfoTeacher from "../../../../components/InfoTeacher";
 import Subject from "../../../../components/subject";
 import Chart from "../../../../components/Chart";
-import React, { use } from "react";
+import Nouser from "@/components/Nouser";
 import { useRouter } from "next/router";
 import supabase from "../../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../../components/shareButton";
+import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -31,6 +32,12 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { schoolname } = router.query;
+  const { user } = useAuthContext();
+
+   if (!user.email) {
+     return <Nouser />;
+   }
+
 
   console.log(schoolname);
 

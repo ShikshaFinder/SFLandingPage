@@ -7,15 +7,17 @@ import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { Grid } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import Nouser from "@/components/Nouser";
 // import { useRouter } from "next/router";
 
 
 export default function Skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
-const router = useRouter();
-const { skillName } = router.query;
+  const router = useRouter();
+  const { skillname } = router.query;
 
+ console.log("skillName",skillname);
 
   async function getskill() {
     try {
@@ -23,6 +25,7 @@ const { skillName } = router.query;
 
       if (error) throw error;
       setUserData(data);
+      // console.log(data);
     } catch (error) {
       console.log("Caught Error:", error);
     }
@@ -33,13 +36,8 @@ const { skillName } = router.query;
   }, [user]);
 
    if (!user.email) {
-     return (
-       <div>
-         no user found ,if it is taking longer than usual ,please{" "}
-         <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-       </div>
-     );
-   }
+     return <Nouser />;
+   }    
 
   return (
     <>
@@ -61,14 +59,18 @@ const { skillName } = router.query;
           {userData &&
             userData.map(
               (
-                skill: { skillname: string; rating: number; link: string },
+                skillclass: {
+                  skillclassname: string;
+                  rating: number;
+                  link: string;
+                },
                 index: number
               ) => (
                 <Card
                   key={index} // Ensure unique key for each Card
-                  name={skill.skillname}
-                  rating={skill.rating}
-                  link={`/skillclass/${skillName}/${skill.skillname}`}
+                  name={skillclass.skillclassname}
+                  rating={skillclass.rating}
+                  link={`/skillclass/${skillname}/${skillclass.skillclassname}`}
                   imgsrc={
                     "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   }

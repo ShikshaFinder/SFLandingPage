@@ -7,6 +7,7 @@ import { useAuthContext } from "@/context";
 import { Grid, Skeleton, Toast } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import { Button, Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import Nouser from "@/components/Nouser";
 
 export default function skillclass() {
   // const router = useRouter();
@@ -49,10 +50,7 @@ export default function skillclass() {
 
   if (!user.email) {
     return (
-      <div>
-        no user found ,if it is taking longer than usual ,please{" "}
-        <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-      </div>
+      <Nouser/>
     );
   }
     
