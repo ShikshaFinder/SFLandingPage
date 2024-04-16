@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   Box,
@@ -61,13 +59,16 @@ export default function SmallCentered() {
         justify={"center"}
         align={"center"}
       >
-        <Image
-          src="/sfv1.png"
-          alt="Shiksha Finder Logo"
-          className="Container"
-          width={200}
-          height={300}
-        ></Image>
+        
+          {" "}
+          <Image
+            src="/icon-512x512.png"
+            alt="Shiksha Finder Logo"
+            className="Container"
+            width={130}
+            height={228}
+          ></Image>
+       
         <Stack direction={"row"} spacing={6}>
           <Box as={Link} href={"/schoolleaderbord"}>
             platform Leaderbord
