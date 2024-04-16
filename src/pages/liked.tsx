@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../components/card";
+import Nouser from "@/components/Nouser";
 
 
 const cards = [
@@ -38,6 +39,7 @@ function likedinstitute() {
           link={link}
         />
       ))}
+      <Nouser />
     </>
   );
 }

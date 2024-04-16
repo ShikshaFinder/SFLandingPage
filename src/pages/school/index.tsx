@@ -12,11 +12,15 @@ import Nouser from "@/components/Nouser";
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
+  if (!user.email) {
+    return <Nouser />;
+  }
   const [userData, setUserData] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const userStore = useUser((state) => state.user);
-  // console.log("userstore", userStore);
+  console.log("userstore", userStore);
+
 
   async function getSchool() {
     try {
@@ -24,7 +28,7 @@ export default function skillclass() {
         .from("School")
         .select("*")
         // .match({ State: userStore.State, District: userStore.District })
-        .range(0, 9);
+        .range(0, 4);
 
       setUserData(data);
       // setLoading(false);
@@ -48,11 +52,7 @@ export default function skillclass() {
     }
   }, [userStore]);
 
-  if (!user.email) {
-    return (
-      <Nouser/>
-    );
-  }
+  
     
       
     
