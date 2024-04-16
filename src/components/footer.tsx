@@ -60,7 +60,7 @@ export default function SmallCentered() {
         align={"center"}
       >
         
-          {" "}
+          {" "} 
           <Image
             src="/icon-512x512.png"
             alt="Shiksha Finder Logo"
