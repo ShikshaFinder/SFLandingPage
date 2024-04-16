@@ -66,7 +66,7 @@ export default function skillclass() {
                   coachingname: string;
                   ratingofcoaching: number; // Ensure unique key for each Card
                   link: string;
-                  img:string;
+                  img: string;
                 },
                 index: number
               ) => (
@@ -77,7 +77,7 @@ export default function skillclass() {
                   link={`/onlineplatforms/${onlineplatform.coachingname}`}
                   imgsrc={
                     onlineplatform.img
-                      ? ` //wsrv.nl/?url=${onlineplatform.img}`
+                      ? ` //wsrv.nl/?url=${onlineplatform.img}&h=300`
                       : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   }
                 />
