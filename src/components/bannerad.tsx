@@ -50,7 +50,7 @@ const Toast = useToast();
          .range(0, 3)
 
        setUserData(data);
-       console.log(data);
+      //  console.log(data);
        if (error) throw error;
      } catch (error) {
        console.log("Caught Error:", error);
@@ -131,7 +131,7 @@ const Toast = useToast();
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            backgroundImage={`url(${url})`}
+            backgroundImage={`//wsrv.nl/?url=${url}&h=300&flip`}
           />
         ))}
       </Slider>
