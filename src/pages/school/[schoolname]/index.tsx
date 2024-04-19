@@ -3,7 +3,7 @@ import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/InfoTeacher";
-import Subject from "../../../components/subject";
+import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
 import React, { use } from "react";
 import { useRouter } from "next/router";
@@ -34,11 +34,32 @@ function IntroSchool() {
   const { schoolname } = router.query;
   // const { user } = useAuthContext();
   console.log(schoolname);
-    console.log("schoolname");
+  console.log("schoolname");
 
-    
+  const { name } = router.query;
+  const [useStandard, setStandard] = React.useState<any[] | null>(null);
 
+  async function getStandard() {
+    try {
+      if (typeof name === "string") {
+        let { data, error } = await supabase
+          .from("schoolDemo")
+          .select("Standard")
+          .eq("user_id", name);
 
+        setStandard(data);
+        console.log("userData", useStandard);
+
+        if (error) throw error;
+      } else {
+        console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+
+      router.push("/formstudent");
+    }
+  }
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
@@ -53,14 +74,13 @@ function IntroSchool() {
         if (error) throw error;
 
         setUserData(data);
-        console.log("userData", userData);
-console.log("view", data && data[0].view);
+        console.log("userStandard", data);
+        // console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
-            const newViewValue = data[0].view + 1;
-            console.log("newViewValue", newViewValue);
-            
+          const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
@@ -68,8 +88,8 @@ console.log("view", data && data[0].view);
             .update({ view: newViewValue })
             .eq("schoolname", schoolname);
 
-          console.log("view incremented");
-          console.log("updateError", updateError);
+          // console.log("view incremented");
+          // console.log("updateError", updateError);
 
           if (updateError) {
             throw updateError;
@@ -86,15 +106,21 @@ console.log("view", data && data[0].view);
   useEffect(() => {
     getSchool();
   }, [schoolname]);
+  useEffect(() => {
+    getStandard();
+  }, [name]);
 
   return (
     <>
-      <Subject
-        subject1="hi"
-        subject2="hindi"
-        subject3="Social Science"
-        subject4="Science"
-      />
+      {useStandard &&
+        useStandard.map(
+          (
+            standardItem: {
+              name: string;
+            },
+            index: number
+          ) => <Standard key={index} name={standardItem.name} />
+        )}
       <br />
       <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
@@ -105,7 +131,6 @@ console.log("view", data && data[0].view);
         // Experience={"12 years"}
         locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         location={userData && userData[0] ? userData[0].location : ""}
-        
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 

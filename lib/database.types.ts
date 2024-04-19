@@ -13,55 +13,49 @@ export type Database = {
         Row: {
           address: string
           Board: string
-          city: string | null
           created_at: string
           email: string
           id: number
-          img: string | null
-          institutename: string | null
+          instituteid: string
           medium: string
           mobilenumber: number
           name: string
           percentage: string
           standard: string | null
-          state: string | null
           stream: string | null
+          type: string
           user_id: string | null
         }
         Insert: {
           address: string
           Board: string
-          city?: string | null
           created_at?: string
           email: string
           id?: number
-          img?: string | null
-          institutename?: string | null
+          instituteid: string
           medium: string
           mobilenumber: number
           name: string
           percentage: string
           standard?: string | null
-          state?: string | null
           stream?: string | null
+          type: string
           user_id?: string | null
         }
         Update: {
           address?: string
           Board?: string
-          city?: string | null
           created_at?: string
           email?: string
           id?: number
-          img?: string | null
-          institutename?: string | null
+          instituteid?: string
           medium?: string
           mobilenumber?: number
           name?: string
           percentage?: string
           standard?: string | null
-          state?: string | null
           stream?: string | null
+          type?: string
           user_id?: string | null
         }
         Relationships: []
@@ -295,6 +289,7 @@ export type Database = {
           State: string | null
           stream: string | null
           user_id: string | null
+          videolink: string | null
           view: number | null
           website: string | null
         }
@@ -314,6 +309,7 @@ export type Database = {
           State?: string | null
           stream?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
@@ -333,6 +329,7 @@ export type Database = {
           State?: string | null
           stream?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
@@ -369,7 +366,7 @@ export type Database = {
           streetaddress: string | null
           studentnumber: string | null
           subdistrict: string | null
-          user_id: string | null
+          user_id: string
           videolink: string | null
           view: number | null
           website: string | null
@@ -396,7 +393,7 @@ export type Database = {
           streetaddress?: string | null
           studentnumber?: string | null
           subdistrict?: string | null
-          user_id?: string | null
+          user_id: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -423,7 +420,7 @@ export type Database = {
           streetaddress?: string | null
           studentnumber?: string | null
           subdistrict?: string | null
-          user_id?: string | null
+          user_id?: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -432,7 +429,7 @@ export type Database = {
           {
             foreignKeyName: "School_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           },
@@ -553,11 +550,12 @@ export type Database = {
           id: number
           medium: string | null
           name: string | null
+          school_userid: string | null
           Standard: string | null
           State: string | null
           stream: string | null
           subDistrict: string | null
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           Board?: string | null
@@ -569,11 +567,12 @@ export type Database = {
           id?: number
           medium?: string | null
           name?: string | null
+          school_userid?: string | null
           Standard?: string | null
           State?: string | null
           stream?: string | null
           subDistrict?: string | null
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           Board?: string | null
@@ -585,11 +584,12 @@ export type Database = {
           id?: number
           medium?: string | null
           name?: string | null
+          school_userid?: string | null
           Standard?: string | null
           State?: string | null
           stream?: string | null
           subDistrict?: string | null
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: []
       }

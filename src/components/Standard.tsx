@@ -1,7 +1,8 @@
-import { Button ,Stack} from '@chakra-ui/react'
-import React from 'react'
+import { Button, Stack } from "@chakra-ui/react";
+import React from "react";
 
-function Standard() {
+function Standard({ name}:{name:string}) {
+  
 
   return (
     <>
@@ -13,26 +14,12 @@ function Standard() {
         whiteSpace="nowrap"
       >
         <Button colorScheme="teal" variant="solid">
-          10th
+          {name}
         </Button>
-        <Button colorScheme="teal" variant="solid">
-          11th
-        </Button>
-        <Button colorScheme="teal" variant="solid">
-          12th
-        </Button>
-        <Button colorScheme="teal" variant="solid">
-          5th
-        </Button>{" "}
-        <Button colorScheme="teal" variant="solid">
-          6th
-        </Button>
-        <Button colorScheme="teal" variant="solid">
-          7th
-        </Button>
+        
       </Stack>
     </>
   );
 }
 
-export default Standard
+export default Standard;

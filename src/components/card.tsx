@@ -1,8 +1,6 @@
-"use client"
 import {
   chakra,
   Box,
-  Image,
   Container,
   Stack,
   useColorModeValue,
