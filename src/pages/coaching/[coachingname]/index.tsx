@@ -47,7 +47,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("coaching")
           .select("*")
-          .eq("coachingname", coachingname);
+          .eq("user_id", coachingname);
 
         if (error) throw error;
         console.log(data);
@@ -64,7 +64,7 @@ function IntroSchool() {
           const { error: updateError } = await supabase
             .from("coaching")
             .update({ view: newViewValue })
-            .eq("coachingname", coachingname);
+            .eq("user_id", coachingname);
           console.log("view incremented");
 
           console.log("updateError", updateError);
@@ -119,7 +119,10 @@ function IntroSchool() {
         ))}
       </Stack>
 
-      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
+      <Admissionform
+        name={userData && userData[0] ? userData[0].user_id : ""}
+        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+      />
     </>
   );
 }

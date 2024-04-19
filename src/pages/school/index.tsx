@@ -28,7 +28,7 @@ export default function skillclass() {
         .from("School")
         .select("*")
         // .match({ State: userStore.State, District: userStore.District })
-        .range(0, 4);
+        .range(0, 16);
 
       setUserData(data);
       // setLoading(false);
@@ -85,6 +85,7 @@ export default function skillclass() {
                   ratingofschool: number;
                   link: string;
                   img: string;
+                  user_id:string;
                 },
                 index: number
               ) => (
@@ -92,7 +93,7 @@ export default function skillclass() {
                   key={index} // Ensure unique key for each Card
                   name={school.schoolname}
                   rating={school.ratingofschool}
-                  link={`/school/${school.schoolname}`}
+                  link={`/school/${school.user_id}`}
                   imgsrc={
                     school.img
                       ? ` //wsrv.nl/?url=${school.img}&h=300`

@@ -67,6 +67,7 @@ export default function skillclass() {
                   ratingofcoaching: number; // Ensure unique key for each Card
                   link: string;
                   img: string;
+                  user_id: string;
                 },
                 index: number
               ) => (
@@ -74,7 +75,7 @@ export default function skillclass() {
                   key={index} // Ensure unique key for each Card
                   name={onlineplatform.coachingname}
                   rating={onlineplatform.ratingofcoaching}
-                  link={`/onlineplatforms/${onlineplatform.coachingname}`}
+                  link={`/onlineplatforms/${onlineplatform.user_id}`}
                   imgsrc={
                     onlineplatform.img
                       ? ` //wsrv.nl/?url=${onlineplatform.img}&h=300`

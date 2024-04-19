@@ -64,6 +64,7 @@ export default function Skillclass() {
                   ratingofskillclass: number;
                   link: string;
                   img: string;
+                  user_id: string;
                 },
                 index: number
               ) => (
@@ -71,7 +72,7 @@ export default function Skillclass() {
                   key={index} // Ensure unique key for each Card
                   name={skillclass.skillclassname}
                   rating={skillclass.ratingofskillclass}
-                  link={`/skillclass/${skillname}/${skillclass.skillclassname}`}
+                  link={`/skillclass/${skillname}/${skillclass.user_id}`}
                   imgsrc={
                     skillclass.img
                       ? ` //wsrv.nl/?url=${skillclass.img}&h=300`

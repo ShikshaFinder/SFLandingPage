@@ -47,7 +47,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("onlineform")
           .select("*")
-          .eq("coachingname", onlineplatformname);
+          .eq("user_id", onlineplatformname);
 
         if (error) throw error;
         console.log(data);
@@ -65,7 +65,7 @@ function IntroSchool() {
           const { error: updateError } = await supabase
             .from("onlineform")
             .update({ view: newViewValue })
-            .eq("onlineplatform", onlineplatformname);
+            .eq("user_id", onlineplatformname);///check here is user not get if user_id is not equal to onlineplatformname
           console.log("view incremented");
 
           console.log("updateError", updateError);
@@ -117,7 +117,7 @@ function IntroSchool() {
         ))}
       </Stack>
       <Admissionform
-        name={userData && userData[0] ? userData[0].coachingname : ""}
+        name={userData && userData[0] ? userData[0].user_id : ""}
         phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
       />
     </>

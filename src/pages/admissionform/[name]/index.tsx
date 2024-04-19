@@ -50,7 +50,7 @@ function admissionform() {
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("admissionform")
-      .insert([{ ...data, email: user.email, user_id: user.id,institutename:name }]);
+      .insert([{ ...data, email: user.email, user_id: user.id,instituteid:name }]);
 
     if (error) {
      toast({
@@ -64,7 +64,6 @@ function admissionform() {
       handleSubmitt();
     }
   };
-  console.log("harsh");
 
   if (!user.email) {
     return (

@@ -46,7 +46,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("skillclass")
           .select("*")
-          .eq("skillclassname", skillclass);
+          .eq("user_id", skillclass);
 
         if (error) throw error;
 
@@ -94,7 +94,7 @@ function IntroSchool() {
         subject4="Science"
       />
       <br />
-      <Videoo src={userData && userData[0] ? userData[0].videolink : ""}/>
+      <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
       <InfoTeacher
         TeacherName={userData && userData[0] ? userData[0].skillclassname : ""}
@@ -115,7 +115,10 @@ function IntroSchool() {
           />
         ))}
       </Stack>
-      <Admissionform name="shree swami narayan" phoneNumber={7984140706} />
+      <Admissionform
+        name={userData && userData[0] ? userData[0].user_id : ""}
+        phoneNumber={userData && userData[0] ? userData[0].skillclassname : ""}
+      />
     </>
   );
 }

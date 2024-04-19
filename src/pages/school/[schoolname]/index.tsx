@@ -48,7 +48,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("School")
           .select("*")
-          .eq("schoolname", schoolname);
+          .eq("user_id", schoolname);
 
         if (error) throw error;
 
@@ -122,7 +122,7 @@ console.log("view", data && data[0].view);
         ))}
       </Stack>
       <Admissionform
-        name={userData && userData[0] ? userData[0].schoolname : ""}
+        name={userData && userData[0] ? userData[0].user_id : ""}
         phoneNumber={userData && userData[0] ? userData[0].mobile1 : ""}
       />
     </>
