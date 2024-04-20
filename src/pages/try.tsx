@@ -14,7 +14,8 @@ function Try() {
 console.log("install button clicked");
    if ("serviceWorker" in navigator) {
     console.log("service worker is available");
-     window.addEventListener("beforeinstallprompt", (event: any) => {
+    
+    window.addEventListener("beforeinstallprompt", (event: any) => {
         console.log("beforeinstallprompt fired");
        event.preventDefault();
        const installPromptEvent = event as any;
