@@ -15,26 +15,29 @@ import {
   Card,
   useToast,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
-import { useAuthContext } from '../context'; 
-import { useState,useEffect } from "react";
-import supabase from "../../supabase";
-import Layout from "./Layout";
+import { useAuthContext } from "../../../context";
+import { useState, useEffect } from "react";
+import supabase from "../../../../supabase";
+import Layout from "../../Layout";
 import { useUser } from "@/store";
 
 function Vote() {
   const toast = useToast();
   const form = useForm();
   const [hasVoted, setHasVoted] = useState(false);
-  const userStore = useUser((state)=>state.user);
-  console.log("userstore",userStore);
+  const userStore = useUser((state) => state.user);
+  console.log("userstore", userStore);
+    const router = useRouter();
+    const { name } = router.query;
 
   const { register, handleSubmit } = form;
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("votes") // replace 'votes' with the name of your table
-      .insert([{ ...data, email: user.email, user_id: user.id }]);
+      .insert([{ ...data, email: user.email, school_id: name}]);
 
     if (error) {
       console.error("Error submitting vote:", error);
@@ -63,11 +66,15 @@ function Vote() {
   };
 
   if (hasVoted) {
-    return <p>Thank you for your vote!</p>;
+    return (
+      <>
+        <p>Thank you for your vote!</p>
+        <a href="/">Visit Home Page</a>
+      </>
+    );
   }
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
 
- 
   return (
     <>
       <Layout>
