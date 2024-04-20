@@ -22,8 +22,10 @@ import { useState, useEffect } from "react";
 import supabase from "../../../../supabase";
 import Layout from "../../Layout";
 import { useUser } from "@/store";
+import Nouser from "@/components/Nouser";
 
 function Vote() {
+  const { user } = useAuthContext();
   const toast = useToast();
   const form = useForm();
   const [hasVoted, setHasVoted] = useState(false);
@@ -31,7 +33,6 @@ function Vote() {
   console.log("userstore", userStore);
     const router = useRouter();
     const { name } = router.query;
-
   const { register, handleSubmit } = form;
 
   const onSubmit = async (data: any) => {
@@ -64,6 +65,7 @@ function Vote() {
       isClosable: true,
     });
   };
+  
 
   if (hasVoted) {
     return (
@@ -73,7 +75,10 @@ function Vote() {
       </>
     );
   }
-  const { user } = useAuthContext();
+
+  if (!user.email) {
+    return <Nouser/>
+  }
 
   return (
     <>

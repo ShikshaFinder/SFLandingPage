@@ -20,6 +20,7 @@ import supabase from "../../supabase";
 import Layout from "./Layout";
 import { useRouter } from "next/router";
 import Schoolleaderbord from "@/components/schoolleaderbord";
+import Nouser from "@/components/Nouser";
 
 function Profile() {
   const { user } = useAuthContext();
@@ -74,10 +75,7 @@ function Profile() {
 
       if (!user.email) {
         return (
-          <div>
-            loading/no user found ,if it is taking longer than usual ,please{" "}
-            <a href="signup">signup</a>__ /__<a href="/login">signin</a>.
-          </div>
+        <Nouser/>
         );
       }
   return (
