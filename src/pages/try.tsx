@@ -1,44 +1,107 @@
-import React from 'react'
-import Standard from '@/components/Standard'
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Card from "../components/card";
 
-
-declare global {
-  interface Window {
-    BeforeInstallPromptEvent: any;
-  }
-}
-function Try() {
-
-  const handleInstallClick = () => {
-   // ...
-console.log("install button clicked");
-   if ("serviceWorker" in navigator) {
-    console.log("service worker is available");
-    
-    window.addEventListener("beforeinstallprompt", (event: any) => {
-        console.log("beforeinstallprompt fired");
-       event.preventDefault();
-       const installPromptEvent = event as any;
-       installPromptEvent.prompt();
-       installPromptEvent.userChoice.then(
-         (choiceResult: { outcome: string }) => {
-           if (choiceResult.outcome === "accepted") {
-             console.log("User accepted the install prompt");
-           } else {
-             console.log("User dismissed the install prompt");
-           }
-         }
-       );
-     });
-   }
- };
+const YourComponent = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
-    <>
-      {/* <Standard name="ksjf" /> */}
-      <button id="installApp" onClick={handleInstallClick}>Install</button>
-    </>
+    <div style={{ width: "80%", marginInline: "auto" }}>
+      <Slider {...settings}>
+        <div>
+          <Card
+            name="LDce"
+            rating="12-12-12"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>
+        <div>
+          <Card
+            name="ldce"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            rating="12-11-14"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>
+        <div>
+          <Card
+            name="LDce"
+            rating="12-12-12"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>{" "}
+        <div>
+          <Card
+            name="LDce"
+            rating="12-12-12"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>{" "}
+        <div>
+          <Card
+            name="LDce"
+            rating="12-12-12"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>{" "}
+        <div>
+          <Card
+            name="LDce"
+            rating="12-12-12"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>{" "}
+        <div>
+          <Card
+            name="LDce"
+            rating="12-12-12"
+            imgsrc="https://images.unsplash.com/photo-1712312640787-a0b0cc94356e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            link="hello in the ldce there happeneed something"
+          />
+        </div>
+        {/* Add more Card components here */}
+      </Slider>
+    </div>
   );
-}
+};
 
-export default Try
+export default YourComponent;
