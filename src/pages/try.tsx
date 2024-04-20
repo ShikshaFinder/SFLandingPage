@@ -39,6 +39,9 @@ const YourComponent = () => {
     ],
   };
 
+
+  
+
   return (
     <div style={{ width: "80%", marginInline: "auto" }}>
       <Slider {...settings}>
