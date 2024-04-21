@@ -1,23 +1,18 @@
-import { Button, Stack } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import React from "react";
+import Link from "next/link";
 
-function Standard({ name}:{name:string}) {
+
+function Standard({ name,Standard,schoolname}:{name:string,Standard:string,schoolname?:any}) {
   
 
   return (
     <>
-      <Stack
-        spacing={4}
-        direction="row"
-        align="center"
-        overflowX="auto"
-        whiteSpace="nowrap"
-      >
+      <Link href={`${schoolname}/${Standard}`}>
         <Button colorScheme="teal" variant="solid">
           {name}
         </Button>
-        
-      </Stack>
+      </Link>
     </>
   );
 }

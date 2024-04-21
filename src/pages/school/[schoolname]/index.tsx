@@ -32,32 +32,29 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { schoolname } = router.query;
-  // const { user } = useAuthContext();
-  console.log(schoolname);
-  console.log("schoolname");
 
-  const { name } = router.query;
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
 
   async function getStandard() {
     try {
-      if (typeof name === "string") {
+      if (typeof schoolname === "string") {
         let { data, error } = await supabase
           .from("schoolDemo")
           .select("Standard")
-          .eq("user_id", name);
+          .eq("user_id", schoolname);
 
         setStandard(data);
-        console.log("userData", useStandard);
+        console.log("standarrrrrrrrrd", data);
 
-        if (error) throw error;
+        // if (error) throw error;
       } else {
         console.log("No schoolname found");
       }
     } catch (error) {
       console.log("Caught Error:", error);
+      alert(error);
 
-      router.push("/formstudent");
+      // router.push("/formstudent");
     }
   }
 
@@ -106,21 +103,40 @@ function IntroSchool() {
   useEffect(() => {
     getSchool();
   }, [schoolname]);
+
   useEffect(() => {
     getStandard();
-  }, [name]);
+  }, [schoolname]);
 
   return (
     <>
-      {useStandard &&
-        useStandard.map(
-          (
-            standardItem: {
-              name: string;
-            },
-            index: number
-          ) => <Standard key={index} name={standardItem.name} />
-        )}
+      <Stack
+        spacing={4}
+        direction="row"
+        align="center"
+        overflowX="auto"
+        whiteSpace="nowrap"
+      >
+        {useStandard &&
+          useStandard.map(
+            (
+              standardItem: {
+                Standard: string;
+                schoolname: any;
+              },
+              index: number
+            ) => (
+              <>
+                <Standard
+                  key={index}
+                  name={standardItem.Standard}
+                  Standard={standardItem.Standard}
+                  schoolname={schoolname}
+                />
+              </>
+            )
+          )}
+      </Stack>
       <br />
       <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
