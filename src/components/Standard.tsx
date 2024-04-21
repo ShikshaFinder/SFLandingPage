@@ -3,12 +3,21 @@ import React from "react";
 import Link from "next/link";
 
 
-function Standard({ name,Standard,schoolname}:{name:string,Standard:string,schoolname?:any}) {
+function Standard({
+  name,
+  Standard,
+  schoolname,
+  Subject,
+}: {
+  name: string;
+  Standard: string;
+  schoolname?: any;
+  Subject:any;
   
-
+}) {
   return (
     <>
-      <Link href={`${schoolname}/${Standard}`}>
+      <Link href={`${schoolname}/${Standard}/${Subject}`}>
         <Button colorScheme="teal" variant="solid">
           {name}
         </Button>

@@ -40,7 +40,7 @@ function IntroSchool() {
       if (typeof schoolname === "string") {
         let { data, error } = await supabase
           .from("schoolDemo")
-          .select("Standard")
+          .select("Standard,subject")
           .eq("user_id", schoolname);
 
         setStandard(data);
@@ -123,6 +123,7 @@ function IntroSchool() {
               standardItem: {
                 Standard: string;
                 schoolname: any;
+                subject:string;
               },
               index: number
             ) => (
@@ -132,6 +133,7 @@ function IntroSchool() {
                   name={standardItem.Standard}
                   Standard={standardItem.Standard}
                   schoolname={schoolname}
+                  Subject={standardItem.subject}
                 />
               </>
             )
