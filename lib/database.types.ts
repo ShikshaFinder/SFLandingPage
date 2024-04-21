@@ -203,6 +203,7 @@ export type Database = {
           id: number
           img: string | null
           medium: string | null
+          redirecturl: string | null
           Standard: string | null
           State: string | null
           user_id: string | null
@@ -215,6 +216,7 @@ export type Database = {
           id?: number
           img?: string | null
           medium?: string | null
+          redirecturl?: string | null
           Standard?: string | null
           State?: string | null
           user_id?: string | null
@@ -227,6 +229,7 @@ export type Database = {
           id?: number
           img?: string | null
           medium?: string | null
+          redirecturl?: string | null
           Standard?: string | null
           State?: string | null
           user_id?: string | null
@@ -445,6 +448,7 @@ export type Database = {
           Teachername: string | null
           user_id: string | null
           videolink: string | null
+          view: number
         }
         Insert: {
           created_at?: string
@@ -455,6 +459,7 @@ export type Database = {
           Teachername?: string | null
           user_id?: string | null
           videolink?: string | null
+          view?: number
         }
         Update: {
           created_at?: string
@@ -465,6 +470,7 @@ export type Database = {
           Teachername?: string | null
           user_id?: string | null
           videolink?: string | null
+          view?: number
         }
         Relationships: []
       }
@@ -635,6 +641,7 @@ export type Database = {
           id: number
           management: number | null
           qualityofeducation: number | null
+          school_id: string
         }
         Insert: {
           created_at?: string
@@ -644,6 +651,7 @@ export type Database = {
           id?: number
           management?: number | null
           qualityofeducation?: number | null
+          school_id: string
         }
         Update: {
           created_at?: string
@@ -653,6 +661,7 @@ export type Database = {
           id?: number
           management?: number | null
           qualityofeducation?: number | null
+          school_id?: string
         }
         Relationships: []
       }

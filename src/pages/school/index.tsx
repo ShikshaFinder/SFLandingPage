@@ -27,7 +27,7 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("School")
         .select("*")
-        .match({ State: userStore.State, District: userStore.District })
+        // .match({ State: userStore.State, District: userStore.District })
         .range(0, 16);
 
       setUserData(data);
