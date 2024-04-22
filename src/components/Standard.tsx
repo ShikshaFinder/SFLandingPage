@@ -21,6 +21,7 @@ function Standard({
         <Button colorScheme="teal" variant="solid">
           {name}
         </Button>
+       
       </Link>
     </>
   );

@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 // import Standard from "@/components/Standard";
 import InfoSubject from "../../../../../components/infosubject";
-import Standard from "@/components/Standard";
+import Standard from "@/components/subject";
 
 const cards = [
   {
@@ -30,8 +30,6 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { subjectname, standard, schoolname } = router.query;
-  const [userData, setUserData] = useState<any[] | null>(null);
-  // const { user } = useAuthContext();
   console.log("subjectname", subjectname);
   console.log("Standard", standard);
   console.log("school_id", schoolname);
@@ -45,7 +43,6 @@ function IntroSchool() {
           .from("schoolDemo")
           .select("*")
           .match({
-            subject: subjectname,
             Standard: standard,
             user_id: schoolname,
           }).select();
@@ -93,7 +90,7 @@ function IntroSchool() {
               <>
                 <Standard
                   key={index}
-                  name={standardItem.subject}
+                  name={standardItem.Standard}
                   Standard={standardItem.Standard}
                   schoolname={schoolname}
                   Subject={standardItem.subject}

@@ -1,32 +1,30 @@
-import React from 'react'
-import { Button, Stack } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react";
+import React from "react";
+import Link from "next/link";
 
-function subject({subject1,link}: {subject1?: string,link?:string}) {
+
+function Standard({
+  name,
+  Standard,
+  schoolname,
+  Subject,
+}: {
+  name: any;
+  Standard: any;
+  schoolname?: any;
+  Subject:any;
+  
+}) {
   return (
     <>
-        <Button colorScheme="teal" size="xs">
-          {subject1}
+      <Link href={`${schoolname}/${Standard}/${Subject}`}>
+        <Button colorScheme="teal" variant="solid">
+          {name}
         </Button>
-      
-
-     
+       
+      </Link>
     </>
   );
 }
 
-export default subject
-
-
-// import { Button } from "@chakra-ui/react";
-
-// const SchoolSubjects = ({ subjects }: { subjects: string[] }) => {
-//   return (
-//     <>
-//       {subjects.map((subject, index) => (
-//         <Button key={index} colorScheme="teal" size="xs">
-//           {subject}
-//         </Button>
-//       ))}
-//     </>
-//   );
-// };
+export default Standard;
