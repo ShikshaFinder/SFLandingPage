@@ -17,7 +17,7 @@ function Standard({
 }) {
   return (
     <>
-      <Link href={`${schoolname}/${Standard}/${Subject}`}>
+      <Link href={`/school/${schoolname}/${Standard}/${Subject}`}>
         <Button colorScheme="teal" variant="solid">
           {name}
         </Button>

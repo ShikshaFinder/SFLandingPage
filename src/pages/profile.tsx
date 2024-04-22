@@ -13,41 +13,19 @@ import {
   Spinner,
   Center,
 } from "@chakra-ui/react";
-import Profilee from "../components/profile";
 import Leaderbord from "../components/Leaderbord";
 import { useAuthContext } from "@/context";
-import supabase from "../../supabase";
 import Layout from "./Layout";
-import { useRouter } from "next/router";
+import { useUser } from "../store";
 import Schoolleaderbord from "@/components/schoolleaderbord";
 import Nouser from "@/components/Nouser";
+import Profilee from "../components/profile";
 
 function Profile() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any>();
-  const router = useRouter();
-
-  async function getStudent() {
-    try {
-      let { data, error } = await supabase
-        .from("Student")
-        .select("*")
-        .eq("user_id", user.id);
-
-      setUserData(data);
-
-      if (error) throw error;
-    } catch (error) {
-      console.log("Caught Error:", error);
-
-      router.push("/formstudent");
-    }
-  }
-
-  useEffect(() => {
-    getStudent();
-  }, [user]);
-
+  const useUse = useUser((state) => state.user);
+console.log(useUse);
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
@@ -66,18 +44,11 @@ function Profile() {
     );
   });
 
-  if (!userData)
-    return (
-      <Center>
-        <Spinner color="green.500" />
-      </Center>
-    );
+ 
 
-      if (!user.email) {
-        return (
-        <Nouser/>
-        );
-      }
+  if (!user.email) {
+    return <Nouser />;
+  }
   return (
     <>
       <Layout>
@@ -91,18 +62,18 @@ function Profile() {
             <TabPanel>
               {" "}
               <Profilee
-                name={userData[0].name}
-                city={userData[0].District}
-                state={userData[0].State}
-                email={user.email}
-                coins={userData[0].Coins}
-                medium={userData[0].medium}
-                standard={userData[0].Standard}
-                board={userData[0].Board}
+                name={useUse.name}
+                email={useUse.email}
+                board={useUse.Board}
+                medium={useUse.medium}
+                standard={useUse.Standard}
+                city={useUse.city}
+                state={useUse.State}
+                coins={useUse.Coins}
               />
             </TabPanel>
             <TabPanel>
-        <Schoolleaderbord />
+              <Schoolleaderbord />
             </TabPanel>
           </TabPanels>
         </Tabs>

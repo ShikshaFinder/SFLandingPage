@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 // import Standard from "@/components/Standard";
 import InfoSubject from "../../../../../components/infosubject";
-import Standard from "@/components/subject";
+import Subject from "@/components/subject";
 
 const cards = [
   {
@@ -88,7 +88,7 @@ function IntroSchool() {
               index: number
             ) => (
               <>
-                <Standard
+                <Subject
                   key={index}
                   name={standardItem.Standard}
                   Standard={standardItem.Standard}
