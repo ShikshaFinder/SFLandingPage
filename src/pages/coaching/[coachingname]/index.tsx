@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-import Shikshacoin from "../../../components/shikshacoinpopup";
 import { useAuthContext } from "@/context";
 import Nouser from "@/components/Nouser";
 const cards = [
@@ -143,7 +142,6 @@ function IntroSchool() {
       </Stack>
 
       <br />
-      <Shikshacoin />
       <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />

@@ -10,10 +10,12 @@ import {
   AlertDialogCloseButton,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useUser } from "../store";
 
-function Shikshacoin() {
+function Shikshacoin({ link, message, title }: { link: string; message: string; title: string}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef<HTMLButtonElement | null>(null);
+  const useUse = useUser((state) => state.user);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,6 +26,7 @@ function Shikshacoin() {
       clearTimeout(timer);
     };
   }, []);
+  console.log(useUse);
 
   return (
     <>
@@ -37,13 +40,16 @@ function Shikshacoin() {
         <AlertDialogOverlay />
 
         <AlertDialogContent>
-          <AlertDialogHeader>Shiksha coin update</AlertDialogHeader>
+          <AlertDialogHeader>{title}</AlertDialogHeader>
           <AlertDialogCloseButton />
-          <AlertDialogBody> Your Shiksha coin balance : </AlertDialogBody>
+          <AlertDialogBody> {message} :{ useUse && useUse.Coins}</AlertDialogBody>
           <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              Later
-            </Button>
+            <Link href={link}>
+              {" "}
+              <Button ref={cancelRef} onClick={onClose}>
+                Later
+              </Button>
+            </Link>
             <Link href={"/shikshacoinInfo"}>
               {" "}
               <Button colorScheme="yellow" ml={3}>

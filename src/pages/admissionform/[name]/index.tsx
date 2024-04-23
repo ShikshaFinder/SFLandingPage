@@ -19,10 +19,14 @@ import {
   Card,
 } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
+import { useUser } from "../../../store";
+import Shikshacoin from "@/components/shikshacoinpopup";
+
 // assciate school id with the form filled by the student
 
 function admissionform() {
   const { user } = useAuthContext();
+  const useUse = useUser((state) => state.user);
 
   const form = useForm();
   const toast = useToast();
@@ -30,6 +34,19 @@ function admissionform() {
   const { name } = router.query;
 
   const { register, handleSubmit, control } = form;
+
+  if (useUse && useUse.Coins <= 0) {
+    setTimeout(() => {
+      router.push("/school");
+    }, 5000);
+    return (
+      <Shikshacoin
+        title="Shiksha Coin"
+        message="You don't have enough shiksha coin to fill this form"
+        link="/school"
+      />
+    );
+  }
 
   // const [showShikshacoin, setShowShikshacoin] = useState(false);
   const handleSubmitt = () => {
@@ -40,10 +57,18 @@ function admissionform() {
       duration: 3000,
       isClosable: true,
     });
+    router.push("/successAdmission");
     // setShowShikshacoin(true);
-
-    router.push("/");
   };
+
+  const updateCoins = async () => {
+    let coin = useUse && useUse.Coins - 5;
+    const { error } = await supabase.from("Student").update({ Coins: coin }).eq("user_id", user.id);
+    console.log(coin);
+    console.log(error);
+    
+  };
+
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
@@ -51,6 +76,8 @@ function admissionform() {
       .insert([
         { ...data, email: user.email, user_id: user.id, instituteid: name },
       ]);
+
+     
 
     if (error) {
       toast({
@@ -61,6 +88,7 @@ function admissionform() {
         isClosable: true,
       });
     } else {
+         updateCoins();
       handleSubmitt();
     }
   };

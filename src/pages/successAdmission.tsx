@@ -1,9 +1,9 @@
-"use client";
 
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import Shikshacoin from "@/components/shikshacoinpopup";
+
 
 
 
@@ -28,6 +28,6 @@ return (
         <a href="/contactus">contact us.</a>
       </Text>
     </Box>
-    <Shikshacoin />
+    <Shikshacoin title="shiksha coin update" message="Your shiksha coin balance is " link="/"/>
   </>
 );};
