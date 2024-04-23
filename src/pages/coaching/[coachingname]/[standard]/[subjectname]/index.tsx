@@ -47,7 +47,6 @@ function IntroSchool() {
           });
 
         setStandard1(data);
-        console.log("standarrrrrrrrrd", data);
 
         if (error) throw error;
       } else {
@@ -77,7 +76,6 @@ function IntroSchool() {
           });
 
         setStandard(data);
-        console.log("standarrrrrrrrrd", data);
 
         if (error) throw error;
       } else {

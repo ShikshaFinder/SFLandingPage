@@ -30,15 +30,14 @@ function Vote() {
   const form = useForm();
   const [hasVoted, setHasVoted] = useState(false);
   const userStore = useUser((state) => state.user);
-  console.log("userstore", userStore);
-    const router = useRouter();
-    const { name } = router.query;
+  const router = useRouter();
+  const { name } = router.query;
   const { register, handleSubmit } = form;
 
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("votes") // replace 'votes' with the name of your table
-      .insert([{ ...data, email: user.email, school_id: name}]);
+      .insert([{ ...data, email: user.email, school_id: name }]);
 
     if (error) {
       console.error("Error submitting vote:", error);
@@ -65,7 +64,6 @@ function Vote() {
       isClosable: true,
     });
   };
-  
 
   if (hasVoted) {
     return (
@@ -77,7 +75,7 @@ function Vote() {
   }
 
   if (!user.email) {
-    return <Nouser/>
+    return <Nouser />;
   }
 
   return (

@@ -44,7 +44,6 @@ function IntroSchool() {
           .eq("user_id", onlineplatformname);
 
         setStandard(data);
-        console.log("standarrrrrrrrrd", data);
 
         // if (error) throw error;
       } else {
@@ -70,7 +69,6 @@ function IntroSchool() {
         if (error) throw error;
 
         setUserData(data);
-        console.log("userStandard", data);
         // console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
@@ -144,7 +142,9 @@ function IntroSchool() {
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].onlineplatformname : ""}
+        TeacherName={
+          userData && userData[0] ? userData[0].onlineplatformname : ""
+        }
         // Experience={"12 years"}
         locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         location={userData && userData[0] ? userData[0].location : ""}

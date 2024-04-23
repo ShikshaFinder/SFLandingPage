@@ -2,7 +2,6 @@ import { Button } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
 
-
 function Standard({
   name,
   Standard,
@@ -12,8 +11,7 @@ function Standard({
   name: any;
   Standard: any;
   schoolname?: any;
-  Subject:any;
-  
+  Subject: any;
 }) {
   return (
     <>
@@ -21,7 +19,6 @@ function Standard({
         <Button colorScheme="teal" variant="solid">
           {name}
         </Button>
-       
       </Link>
     </>
   );

@@ -10,14 +10,11 @@ import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
 // import { useRouter } from "next/router";
 
-
 export default function Skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
   const router = useRouter();
   const { skillname } = router.query;
-
- console.log("skillName",skillname);
 
   async function getskill() {
     try {
@@ -35,9 +32,9 @@ export default function Skillclass() {
     getskill();
   }, [user]);
 
-   if (!user.email) {
-     return <Nouser />;
-   }    
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   return (
     <>

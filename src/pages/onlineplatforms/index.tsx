@@ -14,15 +14,12 @@ export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
   const userStore = useUser((state) => state.user);
-  
 
   async function getSchool() {
     try {
-      let { data, error } = await supabase
-        .from("onlineform")
-        .select("*")
+      let { data, error } = await supabase.from("onlineform").select("*");
 
-        // .filter("Standard", "contains", "Kg");
+      // .filter("Standard", "contains", "Kg");
       // .match({ State: userStore.Standard, District: userStore.medium });
 
       // .match({ State: userStore.State, District: userStore.city });
@@ -38,9 +35,9 @@ export default function skillclass() {
     getSchool();
   }, [user]);
 
-    if (!user.email) {
-      return <Nouser />;
-    }
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   return (
     <>

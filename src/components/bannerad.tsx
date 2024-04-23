@@ -11,54 +11,46 @@ import Card from "./card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-
 export default function Carousel() {
-
-
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: true,
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
       },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        initialSlide: 2,
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
       },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
       },
-    },
-  ],
-};
-
-  
-  
+    ],
+  };
 
   // These are the images used in the slide
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
   const userStore = useUser((state) => state.user);
-  // console.log("userstore", userStore);
 
   async function getAd() {
     try {
@@ -68,7 +60,6 @@ const settings = {
         .range(0, 3);
 
       setUserData(data);
-      //  console.log(data);
       if (error) throw error;
     } catch (error) {
       console.log("Caught Error:", error);
@@ -112,7 +103,6 @@ const settings = {
     },
   ];
 
-  console.log(cards);
   return (
     <>
       <div style={{ width: "80%", marginInline: "auto" }}>

@@ -9,8 +9,6 @@ import { Grid, Toast } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 
-
-
 export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
@@ -18,17 +16,12 @@ export default function skillclass() {
 
   async function getcoaching() {
     try {
-      let { data, error } = await supabase
-        .from("coaching")
-        .select("*")
-        // .eq("State", userStore.State);
+      let { data, error } = await supabase.from("coaching").select("*");
+      // .eq("State", userStore.State);
 
-        console.log({data, error})
+      if (error) throw error;
 
-              if (error) throw error;
-
-              setUserData(data);
-
+      setUserData(data);
 
       if (error) throw error;
       setUserData(data);
@@ -44,9 +37,7 @@ export default function skillclass() {
   }, [userStore]);
 
   if (!user.email) {
-    return (
-     <Nouser/>
-    );
+    return <Nouser />;
   }
 
   return (
@@ -73,7 +64,7 @@ export default function skillclass() {
                   ratingofcoaching: number;
                   link: string;
                   img: string;
-                  user_id:string;
+                  user_id: string;
                 },
                 index: number
               ) => (

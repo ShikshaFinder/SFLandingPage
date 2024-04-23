@@ -23,16 +23,13 @@ import Profilee from "../components/profile";
 
 function Profile() {
   const { user } = useAuthContext();
-  const [userData, setUserData] = useState<any>();
   const useUse = useUser((state) => state.user);
-console.log(useUse);
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
 
     // 2. Hook into the Tabs `size`, `variant`, props
     const styles = useMultiStyleConfig("Tabs", tabProps);
-    // console.log(userData[0]);
 
     return (
       <Button __css={styles.tab} {...tabProps}>
@@ -43,8 +40,6 @@ console.log(useUse);
       </Button>
     );
   });
-
- 
 
   if (!user.email) {
     return <Nouser />;

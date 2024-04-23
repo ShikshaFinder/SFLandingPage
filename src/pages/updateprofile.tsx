@@ -27,7 +27,7 @@ interface State {
 
 function Form() {
   const toast = useToast();
-  const { user } = useAuthContext() ;
+  const { user } = useAuthContext();
 
   const form = useForm();
   const router = useRouter();
@@ -61,7 +61,6 @@ function Form() {
         duration: 3000,
         isClosable: true,
       });
-
     } else {
       handleSubmitt();
     }

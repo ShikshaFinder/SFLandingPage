@@ -35,7 +35,6 @@ function IntroSchool() {
 
   const { coachingname } = router.query;
   const { user } = useAuthContext();
-  // console.log(coachingname);
   if (!user.email) {
     return <Nouser />;
   }
@@ -50,7 +49,6 @@ function IntroSchool() {
           .eq("user_id", coachingname);
 
         setStandard(data);
-        console.log("standarrrrrrrrrd", data);
 
         // if (error) throw error;
       } else {
@@ -78,7 +76,6 @@ function IntroSchool() {
           .eq("user_id", coachingname);
 
         if (error) throw error;
-        console.log(data);
 
         setUserData(data);
 

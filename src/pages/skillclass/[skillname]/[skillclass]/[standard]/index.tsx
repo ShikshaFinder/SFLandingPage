@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Index() {
-  return (
-    <div>Sorry to say but you are in wrong URL</div>
-  )
+  return <div>Sorry to say but you are in wrong URL</div>;
 }
 
-export default Index
+export default Index;

@@ -4,7 +4,7 @@ import Card from "../../../../../components/card";
 import Videoo from "../../../../../components/video";
 import { useRouter } from "next/router";
 import supabase from "../../../../../../supabase";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import React from "react";
 // import Standard from "@/components/Standard";
 import InfoSubject from "../../../../../components/infosubject";
@@ -31,10 +31,9 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { subjectname, standard, schoolname } = router.query;
- 
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
-const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
+  const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
 
   async function getStandard1() {
     try {
@@ -45,11 +44,9 @@ const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
           .match({
             Standard: standard,
             user_id: schoolname,
-            
           });
 
         setStandard1(data);
-        console.log("standarrrrrrrrrd", data);
 
         if (error) throw error;
       } else {
@@ -66,7 +63,6 @@ const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
     getStandard1();
   }, [subjectname]);
 
-
   async function getStandard() {
     try {
       if (typeof subjectname === "string") {
@@ -80,7 +76,6 @@ const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
           });
 
         setStandard(data);
-       console.log("standarrrrrrrrrd", data);
 
         if (error) throw error;
       } else {
@@ -89,11 +84,9 @@ const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
     } catch (error) {
       console.log("Caught Error:", error);
 
-    //   router.push("/formstudent");
+      //   router.push("/formstudent");
     }
   }
-  
-
 
   useEffect(() => {
     getStandard();

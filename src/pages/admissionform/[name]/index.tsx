@@ -26,10 +26,8 @@ function admissionform() {
 
   const form = useForm();
   const toast = useToast();
-   const router = useRouter();
-   const { name } = router.query;
-   console.log(name);
-  
+  const router = useRouter();
+  const { name } = router.query;
 
   const { register, handleSubmit, control } = form;
 
@@ -50,27 +48,26 @@ function admissionform() {
   const onSubmit = async (data: any) => {
     const { error } = await supabase
       .from("admissionform")
-      .insert([{ ...data, email: user.email, user_id: user.id,instituteid:name }]);
+      .insert([
+        { ...data, email: user.email, user_id: user.id, instituteid: name },
+      ]);
 
     if (error) {
-     toast({
-       title: "error",
-       description: error.message,
-       status: "error",
-       duration: 3000,
-       isClosable: true,
-     });
+      toast({
+        title: "error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     } else {
       handleSubmitt();
     }
   };
 
   if (!user.email) {
-    return (
-     <Nouser/>
-    );
+    return <Nouser />;
   }
-  
 
   return (
     <>

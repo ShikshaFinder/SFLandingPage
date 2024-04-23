@@ -1,7 +1,7 @@
 import React from "react";
 import Skillcard from "../../components/skillcard";
 import { Grid } from "@chakra-ui/react";
-import Link from "next/link"
+import Link from "next/link";
 import Layout from "../Layout";
 function skillclass() {
   return (

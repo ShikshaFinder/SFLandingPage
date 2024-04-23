@@ -44,7 +44,6 @@ function IntroSchool() {
           .eq("user_id", schoolname);
 
         setStandard(data);
-        console.log("standarrrrrrrrrd", data);
 
         // if (error) throw error;
       } else {
@@ -122,7 +121,7 @@ function IntroSchool() {
               standardItem: {
                 Standard: string;
                 schoolname: any;
-                subject:string;
+                subject: string;
               },
               index: number
             ) => (

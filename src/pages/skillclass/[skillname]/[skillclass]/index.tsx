@@ -44,7 +44,6 @@ function IntroSchool() {
           .eq("user_id", skillname);
 
         setStandard(data);
-        console.log("standarrrrrrrrrd", data);
 
         // if (error) throw error;
       } else {
@@ -70,7 +69,6 @@ function IntroSchool() {
         if (error) throw error;
 
         setUserData(data);
-        console.log("userStandard", data);
         // console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
