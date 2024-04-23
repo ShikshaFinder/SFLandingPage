@@ -3,7 +3,6 @@ import Admissionform from "../../../../components/admissionformlink";
 import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
 import InfoTeacher from "../../../../components/InfoTeacher";
-import Subject from "../../../../components/subject";
 import Chart from "../../../../components/Chart";
 import React from "react";
 import { useRouter } from "next/router";
@@ -87,12 +86,7 @@ function IntroSchool() {
 
   return (
     <>
-      <Subject
-        subject1="maths"
-        subject2="hindi"
-        subject3="Social Science"
-        subject4="Science"
-      />
+     
       <br />
       <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
