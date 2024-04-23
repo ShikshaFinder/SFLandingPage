@@ -28,7 +28,7 @@ export default function skillclass() {
         .from("School")
         .select("*")
         // .match({ State: userStore.State, District: userStore.District })
-        .range(0, 16);
+        .range(0, 4);
 
       setUserData(data);
       // setLoading(false);

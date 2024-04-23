@@ -81,8 +81,9 @@ function IntroSchool() {
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
+          const newViewValuee = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
           const newViewValue = data[0].view + 1;
-          console.log("newViewValue", newViewValue);
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
@@ -90,6 +91,7 @@ function IntroSchool() {
             .update({ view: newViewValue })
             .eq("user_id", coachingname);
           console.log("view incremented");
+          console.log("newViewValue skjdbabs", newViewValue);
 
           console.log("updateError", updateError);
 
