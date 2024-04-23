@@ -10,7 +10,7 @@ function ShareButton({ link }: { link: string }) {
   const handleShare = () => {
     let slugs = window.location.pathname.split("/");
     slugs = slugs.filter((slug) => slug !== "");
-    let lastTwoSlugs = slugs.slice(-2);
+    let lastTwoSlugs = slugs.slice(-4);
     let shareUrl = "https://shikshafinder.com/" + lastTwoSlugs.join("/");
 
     if (navigator.share) {
@@ -32,7 +32,7 @@ function ShareButton({ link }: { link: string }) {
       <Button
         colorScheme="whatsapp"
         onClick={() => {
-          router.push("https://" + link);
+          router.push( link);
         }}
       >
         Visit Website

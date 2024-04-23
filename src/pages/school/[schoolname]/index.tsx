@@ -52,7 +52,6 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-      alert(error);
 
       // router.push("/formstudent");
     }

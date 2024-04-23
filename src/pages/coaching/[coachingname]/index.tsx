@@ -3,7 +3,7 @@ import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/InfoTeacher";
-import Subject from "../../../components/subject";
+import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
 import React, { use } from "react";
 import { useRouter } from "next/router";
@@ -32,12 +32,40 @@ const cards = [
 
 function IntroSchool() {
   const router = useRouter();
+
   const { coachingname } = router.query;
   const { user } = useAuthContext();
   // console.log(coachingname);
-   if (!user.email) {
-     return <Nouser />;
-   }
+  if (!user.email) {
+    return <Nouser />;
+  }
+  const [useStandard, setStandard] = React.useState<any[] | null>(null);
+
+  async function getStandard() {
+    try {
+      if (typeof coachingname === "string") {
+        let { data, error } = await supabase
+          .from("schoolDemo")
+          .select("Standard,subject")
+          .eq("user_id", coachingname);
+
+        setStandard(data);
+        console.log("standarrrrrrrrrd", data);
+
+        // if (error) throw error;
+      } else {
+        console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+      alert(error);
+
+      // router.push("/formstudent");
+    }
+  }
+  useEffect(() => {
+    getStandard();
+  }, [coachingname]);
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
@@ -87,15 +115,39 @@ function IntroSchool() {
 
   return (
     <>
-      <Subject
-        subject1="maths"
-        subject2="hindi"
-        subject3="Social Science"
-        subject4="Science"
-      />
+      <Stack
+        spacing={4}
+        direction="row"
+        align="center"
+        overflowX="auto"
+        whiteSpace="nowrap"
+      >
+        {useStandard &&
+          useStandard.map(
+            (
+              standardItem: {
+                Standard: string;
+                schoolname: any;
+                subject: string;
+              },
+              index: number
+            ) => (
+              <>
+                <Standard
+                  key={index}
+                  name={standardItem.Standard}
+                  Standard={standardItem.Standard}
+                  schoolname={coachingname}
+                  Subject={standardItem.subject}
+                />
+              </>
+            )
+          )}
+      </Stack>
+
       <br />
       <Shikshacoin />
-      <Videoo src="https://www.youtube.com/embed/pGeHsxjQJXw?si=vqQYrO90D7FzrvqN" />
+      <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />

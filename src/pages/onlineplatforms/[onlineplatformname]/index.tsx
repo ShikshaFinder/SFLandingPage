@@ -3,15 +3,14 @@ import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/InfoTeacher";
-import Subject from "../../../components/subject";
+import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
 import React, { use } from "react";
 import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-import Nouser from "@/components/Nouser";
-import { useAuthContext } from "@/context";
+// import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -22,7 +21,7 @@ const cards = [
     link: "/skillclass/typeofclass/nameofCoaching",
   },
   {
-    name: "Shree Swami nararyan ",
+    name: "Shree ",
     imgsrc:
       "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     rating: "3.4",
@@ -33,10 +32,29 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { onlineplatformname } = router.query;
-  const { user } = useAuthContext();
-  
-  if (!user.email) {
-    return <Nouser />;
+
+  const [useStandard, setStandard] = React.useState<any[] | null>(null);
+
+  async function getStandard() {
+    try {
+      if (typeof onlineplatformname === "string") {
+        let { data, error } = await supabase
+          .from("schoolDemo")
+          .select("Standard,subject")
+          .eq("user_id", onlineplatformname);
+
+        setStandard(data);
+        console.log("standarrrrrrrrrd", data);
+
+        // if (error) throw error;
+      } else {
+        console.log("No onlineplatformname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+
+      // router.push("/formstudent");
+    }
   }
 
   const [userData, setUserData] = useState<any[] | null>(null);
@@ -50,32 +68,31 @@ function IntroSchool() {
           .eq("user_id", onlineplatformname);
 
         if (error) throw error;
-        console.log(data);
 
         setUserData(data);
-        console.log("userData", data && data[0] ? data[0].coachingname : "");
-
+        console.log("userStandard", data);
+        // console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
           const newViewValue = data[0].view + 1;
-          console.log("newViewValue", newViewValue);
+          // console.log("newViewValue", newViewValue);
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
             .from("onlineform")
             .update({ view: newViewValue })
-            .eq("user_id", onlineplatformname);///check here is user not get if user_id is not equal to onlineplatformname
-          console.log("view incremented");
+            .eq("onlineplatformname", onlineplatformname);
 
-          console.log("updateError", updateError);
+          // console.log("view incremented");
+          // console.log("updateError", updateError);
 
           if (updateError) {
             throw updateError;
           }
         }
       } else {
-        console.log("onlineplatform is not a string:", onlineplatformname);
+        console.log("No onlineplatformname found");
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -86,21 +103,51 @@ function IntroSchool() {
     getSchool();
   }, [onlineplatformname]);
 
+  useEffect(() => {
+    getStandard();
+  }, [onlineplatformname]);
+
   return (
     <>
-      <Subject
-        subject1="maths"
-        subject2="hindi"
-        subject3="Social Science"
-        subject4="Science"
-      />
+      <Stack
+        spacing={4}
+        direction="row"
+        align="center"
+        overflowX="auto"
+        whiteSpace="nowrap"
+      >
+        {useStandard &&
+          useStandard.map(
+            (
+              standardItem: {
+                Standard: string;
+                onlineplatformname: any;
+                subject: string;
+              },
+              index: number
+            ) => (
+              <>
+                <Standard
+                  key={index}
+                  name={standardItem.Standard}
+                  Standard={standardItem.Standard}
+                  schoolname={onlineplatformname}
+                  Subject={standardItem.subject}
+                />
+              </>
+            )
+          )}
+      </Stack>
       <br />
       <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
       <br />
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
+        TeacherName={userData && userData[0] ? userData[0].onlineplatformname : ""}
+        // Experience={"12 years"}
+        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
+        location={userData && userData[0] ? userData[0].location : ""}
         discription={userData && userData[0] ? userData[0].discription : ""}
       />
 
@@ -118,7 +165,7 @@ function IntroSchool() {
       </Stack>
       <Admissionform
         name={userData && userData[0] ? userData[0].user_id : ""}
-        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+        phoneNumber={userData && userData[0] ? userData[0].mobile1 : ""}
       />
     </>
   );
