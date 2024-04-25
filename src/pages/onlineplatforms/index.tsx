@@ -40,11 +40,7 @@ const router = useRouter();
     return <Nouser />;
   }
 
-  setTimeout(() => {
-    if (userStore == null) {
-      router.push("/formstudent");
-    }
-  }, 2000);
+  
   return (
     <>
       <Layoutt>

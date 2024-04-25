@@ -49,13 +49,9 @@ const router = useRouter();
     }
   }, [userStore]);
   
-   setTimeout(() => {
-     if (userStore == null) {
-       router.push("/formstudent");
-     }
-   }, 2000);
+  
 
- if (!user.email) {
+ if (!user.email || userStore == null) {
    return <Nouser />;
  }
   

@@ -42,11 +42,7 @@ function Profile() {
       </Button>
     );
   });
- setTimeout(() => {
-   if (useUse  == null) {
-     router.push("/formstudent");
-   }
- }, 2000);
+
 
 
   if (!user.email) {

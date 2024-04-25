@@ -57,7 +57,6 @@ function IntroSchool() {
       console.log("Caught Error:", error);
       alert(error);
 
-      // router.push("/formstudent");
     }
   }
   useEffect(() => {

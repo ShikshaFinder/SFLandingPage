@@ -38,11 +38,7 @@ export default function skillclass() {
     }
   }, [userStore]);
 
-  setTimeout(() => {
-    if (userStore == null) {
-      router.push("/formstudent");
-    }
-  }, 2000);
+ 
   if (!user.email) {
     return <Nouser />;
   }

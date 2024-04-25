@@ -33,11 +33,7 @@ export default function Skillclass() {
     getskill();
   }, [user]);
 
-   setTimeout(() => {
-     if (userStore  == null) {
-       router.push("/formstudent");
-     }
-   }, 2000);
+  
 
 
   if (!user.email) {
