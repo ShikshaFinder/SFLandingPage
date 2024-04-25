@@ -81,7 +81,6 @@ function IntroSchool() {
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
-          const newViewValuee = data[0].view + 1;
           // console.log("newViewValue", newViewValue);
           const newViewValue = data[0].view + 1;
 
@@ -90,6 +89,7 @@ function IntroSchool() {
             .from("coaching")
             .update({ view: newViewValue })
             .eq("user_id", coachingname);
+
           console.log("view incremented");
           console.log("newViewValue skjdbabs", newViewValue);
 

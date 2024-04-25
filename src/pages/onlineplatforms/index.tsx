@@ -8,13 +8,14 @@ import Nouser from "@/components/Nouser";
 import { useUser } from "@/store";
 import { Grid } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
   const userStore = useUser((state) => state.user);
-
+const router = useRouter();
   async function getSchool() {
     try {
       let { data, error } = await supabase.from("onlineform").select("*");
@@ -39,6 +40,11 @@ export default function skillclass() {
     return <Nouser />;
   }
 
+  setTimeout(() => {
+    if (userStore == null) {
+      router.push("/formstudent");
+    }
+  }, 2000);
   return (
     <>
       <Layoutt>

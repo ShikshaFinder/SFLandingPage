@@ -8,13 +8,14 @@ import { useRouter } from "next/router";
 import { Grid } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
-// import { useRouter } from "next/router";
+import { useUser } from "@/store";
 
 export default function Skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
   const router = useRouter();
   const { skillname } = router.query;
+  const userStore = useUser((state) => state.user);
 
   async function getskill() {
     try {
@@ -31,6 +32,13 @@ export default function Skillclass() {
   useEffect(() => {
     getskill();
   }, [user]);
+
+   setTimeout(() => {
+     if (userStore  == null) {
+       router.push("/formstudent");
+     }
+   }, 2000);
+
 
   if (!user.email) {
     return <Nouser />;

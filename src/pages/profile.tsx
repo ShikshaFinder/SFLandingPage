@@ -13,17 +13,19 @@ import {
   Spinner,
   Center,
 } from "@chakra-ui/react";
-import Leaderbord from "../components/Leaderbord";
+// import Leaderbord from "../components/Leaderbord";
 import { useAuthContext } from "@/context";
 import Layout from "./Layout";
 import { useUser } from "../store";
 import Schoolleaderbord from "@/components/schoolleaderbord";
 import Nouser from "@/components/Nouser";
 import Profilee from "../components/profile";
+import {useRouter} from "next/router";
 
 function Profile() {
   const { user } = useAuthContext();
   const useUse = useUser((state) => state.user);
+  const router = useRouter();
   const CustomTab = React.forwardRef<HTMLElement, any>((props, ref) => {
     const tabProps = useTab({ ...props, ref });
     const isSelected = !!tabProps["aria-selected"];
@@ -40,6 +42,12 @@ function Profile() {
       </Button>
     );
   });
+ setTimeout(() => {
+   if (useUse  == null) {
+     router.push("/formstudent");
+   }
+ }, 2000);
+
 
   if (!user.email) {
     return <Nouser />;

@@ -8,20 +8,17 @@ import { Grid, Toast } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import { Button, Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
+import { useRouter } from "next/router";
 
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
-  if (!user.email) {
-    return <Nouser />;
-  }
+ 
   const [userData, setUserData] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const userStore = useUser((state) => state.user);
-  console.log("userstore", userStore);
-
-
+const router = useRouter();
   async function getSchool() {
     try {
       let { data, error } = await supabase
@@ -51,9 +48,17 @@ export default function skillclass() {
       getSchool();
     }
   }, [userStore]);
-
   
-    
+   setTimeout(() => {
+     if (userStore == null) {
+       router.push("/formstudent");
+     }
+   }, 2000);
+
+ if (!user.email) {
+   return <Nouser />;
+ }
+  
       
     
 

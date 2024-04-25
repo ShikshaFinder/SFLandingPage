@@ -3,12 +3,9 @@ import { Button, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 
-
 function Nouser() {
   const Router = useRouter();
 
-
-  
   return (
     <>
       <Alert status="warning">

@@ -8,11 +8,13 @@ import { useUser } from "@/store";
 import { Grid, Toast } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
+import { useRouter } from "next/router";
 
 export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
   const userStore = useUser((state) => state.user);
+  const router = useRouter();
 
   async function getcoaching() {
     try {
@@ -36,9 +38,15 @@ export default function skillclass() {
     }
   }, [userStore]);
 
+  setTimeout(() => {
+    if (userStore == null) {
+      router.push("/formstudent");
+    }
+  }, 2000);
   if (!user.email) {
     return <Nouser />;
   }
+
 
   return (
     <>
