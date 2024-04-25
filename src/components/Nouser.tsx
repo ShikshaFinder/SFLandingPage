@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -30,6 +31,17 @@ function Nouser() {
           }}
         >
           SignIn
+        </Button>
+        <Button
+          colorScheme="teal"
+          display={"flex"}
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              window.location.reload();
+            }
+          }}
+        >
+          Reload Page
         </Button>
       </Stack>
     </>
