@@ -19,6 +19,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
+import Nouser from "@/components/Nouser";
 
 
 interface State {
@@ -29,6 +30,9 @@ interface State {
 function Form() {
   const toast = useToast();
   const { user } = useAuthContext();
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   const form = useForm();
   const router = useRouter();
