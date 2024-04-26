@@ -51,7 +51,7 @@ const router = useRouter();
   
   
 
- if (!user.email || userStore == null) {
+ if (!user.email ) {
    return <Nouser />;
  }
   

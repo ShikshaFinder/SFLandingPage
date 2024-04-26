@@ -36,7 +36,7 @@ export default function Skillclass() {
   
 
 
-  if (!user.email || userStore == null ) { 
+  if (!user.email) { 
     return <Nouser />;
   }
 
