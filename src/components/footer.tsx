@@ -100,8 +100,10 @@ export default function SmallCentered() {
           <a href="https://platform.shikshafinder.com/gwsf">
             {" "}
             <Text>© GWSF Ventures Pvt Ltd</Text>
-            <br />
-            <Text>Recognised by startup India</Text>
+            <Text>
+              {" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recognised by{" "}
+            </Text>
             <img src="/images.png" alt="" />
           </a>
           <Stack direction={"row"} spacing={6}>

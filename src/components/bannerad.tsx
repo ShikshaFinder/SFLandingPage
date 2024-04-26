@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
-import { Box, Button, IconButton, useBreakpointValue } from "@chakra-ui/react";
 import { useAuthContext } from "@/context";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { useUser } from "@/store";
 import Slider from "react-slick";
 import { useState, useEffect } from "react";

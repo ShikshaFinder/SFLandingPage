@@ -16,7 +16,11 @@ export default function skillclass() {
 
   async function getcoaching() {
     try {
-      let { data, error } = await supabase.from("coaching").select("coachingname, ratingofcoaching, img, user_id").eq("District", userStore.District).order("ratingofcoaching", { ascending: false }).limit(10);
+      let { data, error } = await supabase
+        .from("coaching")
+        .select("coachingname, ratingofcoaching, img, user_id");
+        // .eq("District", userStore.District)
+
       // .eq("State", userStore.State);
 
       if (error) throw error;
@@ -36,24 +40,24 @@ export default function skillclass() {
     }
   }, [userStore]);
 
- 
   if (!user.email) {
     return <Nouser />;
   }
-
 
   return (
     <>
       <Layoutt>
         <Bannerad />
+        <br />
         {userData === null ? (
           <Box>
             <SkeletonCircle size="10" />
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
           </Box>
         ) : (
-          <h1>Top Coaching classes in {userStore.District}</h1>
+          <h1>Top Coaching classes in {userStore.city}</h1>
         )}
+
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}

@@ -45,13 +45,14 @@ export default function Skillclass() {
     <>
       <Layoutt>
         <Bannerad />
+        <br />
         {userData === null ? (
           <Box>
             <SkeletonCircle size="10" />
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
           </Box>
         ) : (
-          <h1>Top Skill classes </h1>
+          <h1>Top Skill classes in {userStore.city} </h1>
         )}
 
         <Grid

@@ -69,7 +69,6 @@ function IntroSchool() {
         if (error) throw error;
 
         setUserData(data);
-        console.log("userStandard", data);
         // console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
@@ -79,11 +78,18 @@ function IntroSchool() {
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
-            .from("School")
-            .update({ view: newViewValue })
-            .eq("schoolname", schoolname);
+            .from("viewschool")
+            .upsert({ user_id: schoolname, view: newViewValue })
+            .select();
 
-          // console.log("view incremented");
+
+
+            
+           
+            
+
+
+          console.log("view incremented bdvkb");
           // console.log("updateError", updateError);
 
           if (updateError) {

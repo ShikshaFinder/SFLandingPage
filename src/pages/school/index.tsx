@@ -62,6 +62,7 @@ const router = useRouter();
     <>
       <Layoutt>
         <Bannerad />
+        <br />
         {
           userData === null ? (
             <Box>
@@ -69,7 +70,7 @@ const router = useRouter();
               <SkeletonText mt="4" noOfLines={4} spacing="4" />
             </Box>
           ) : (
-            <h1>Top Schools in {userStore.District}</h1>
+            <h1>Top Schools in {userStore.city}</h1>
           )
         }
 
