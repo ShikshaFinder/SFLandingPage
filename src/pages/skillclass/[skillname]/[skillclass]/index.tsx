@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import supabase from "../../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../../components/shareButton";
+import skillclass from "@/pages/coaching";
 // import { useAuthContext } from "@/context";
 
 const cards = [
@@ -31,27 +32,26 @@ const cards = [
 
 function IntroSchool() {
   const router = useRouter();
-  const { skillname } = router.query;
+  const { skillclass } = router.query;
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
 
   async function getStandard() {
     try {
-      if (typeof skillname === "string") {
+      if (typeof skillclass === "string") {
         let { data, error } = await supabase
           .from("schoolDemo")
           .select("Standard,subject")
-          .eq("user_id", skillname);
+          .eq("user_id", skillclass);
 
         setStandard(data);
 
         // if (error) throw error;
       } else {
-        console.log("No skillname found");
+        console.log("No skillclass found");
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
@@ -59,15 +59,16 @@ function IntroSchool() {
 
   async function getSchool() {
     try {
-      if (typeof skillname === "string") {
+      if (typeof skillclass === "string") {
         let { data, error } = await supabase
           .from("skillclass")
           .select("*")
-          .eq("user_id", skillname);
+          .eq("user_id", skillclass);
 
         if (error) throw error;
 
         setUserData(data);
+        console.log("userStandard", data);
         // console.log("view", data && data[0].view);
         // Check if 'view' is not null
         if (data && data[0].view !== null) {
@@ -77,9 +78,9 @@ function IntroSchool() {
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
-            .from("skillclass")
+            .from("School")
             .update({ view: newViewValue })
-            .eq("skillname", skillname);
+            .eq("skillclass", skillclass);
 
           // console.log("view incremented");
           // console.log("updateError", updateError);
@@ -89,7 +90,7 @@ function IntroSchool() {
           }
         }
       } else {
-        console.log("No skillname found");
+        console.log("No skillclass found");
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -98,11 +99,11 @@ function IntroSchool() {
 
   useEffect(() => {
     getSchool();
-  }, [skillname]);
+  }, [skillclass]);
 
   useEffect(() => {
     getStandard();
-  }, [skillname]);
+  }, [skillclass]);
 
   return (
     <>
@@ -118,7 +119,7 @@ function IntroSchool() {
             (
               standardItem: {
                 Standard: string;
-                skillname: any;
+                skillclass: any;
                 subject: string;
               },
               index: number
@@ -128,7 +129,7 @@ function IntroSchool() {
                   key={index}
                   name={standardItem.Standard}
                   Standard={standardItem.Standard}
-                  schoolname={skillname}
+                  schoolname={skillclass}
                   Subject={standardItem.subject}
                 />
               </>
@@ -141,7 +142,7 @@ function IntroSchool() {
       <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
       <br />
       <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].skillname : ""}
+        TeacherName={userData && userData[0] ? userData[0].skillclass : ""}
         // Experience={"12 years"}
         locationlink={userData && userData[0] ? userData[0].locationlink : ""}
         location={userData && userData[0] ? userData[0].location : ""}

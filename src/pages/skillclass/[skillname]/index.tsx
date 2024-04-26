@@ -19,7 +19,11 @@ export default function Skillclass() {
 
   async function getskill() {
     try {
-      let { data, error } = await supabase.from("skillclass").select("*");
+      let { data, error } = await supabase
+        .from("skillclass")
+        .select("skillclassname, ratingofskillclass, img, user_id")
+        .order("ratingofskillclass", { ascending: false })
+        .limit(10);
 
       if (error) throw error;
       setUserData(data);
@@ -33,10 +37,7 @@ export default function Skillclass() {
     getskill();
   }, [user]);
 
-  
-
-
-  if (!user.email) { 
+  if (!user.email) {
     return <Nouser />;
   }
 

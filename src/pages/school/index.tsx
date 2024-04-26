@@ -23,7 +23,7 @@ const router = useRouter();
     try {
       let { data, error } = await supabase
         .from("School")
-        .select("*")
+        .select("schoolname, ratingofschool, img, user_id")
         // .match({ State: userStore.State, District: userStore.District })
         .range(0, 4);
 

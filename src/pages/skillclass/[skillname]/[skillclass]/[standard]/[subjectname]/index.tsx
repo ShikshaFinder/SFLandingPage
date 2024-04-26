@@ -30,7 +30,7 @@ const cards = [
 
 function IntroSchool() {
   const router = useRouter();
-  const { subjectname, standard, skillname } = router.query;
+  const { subjectname, standard, skillclass } = router.query;
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
@@ -43,7 +43,7 @@ function IntroSchool() {
           .select("subject,Standard")
           .match({
             Standard: standard,
-            user_id: skillname,
+            user_id: skillclass,
           });
 
         setStandard1(data);
@@ -70,7 +70,7 @@ function IntroSchool() {
           .select("*")
           .match({
             Standard: standard,
-            user_id: skillname,
+            user_id: skillclass,
             subject: subjectname,
           });
 
@@ -104,7 +104,7 @@ function IntroSchool() {
             (
               standardItem: {
                 Standard: string;
-                skillname: any;
+                skillclass: any;
                 subject: string;
               },
               index: number
@@ -114,7 +114,7 @@ function IntroSchool() {
                   key={index}
                   name={standardItem.subject}
                   Standard={standardItem.Standard}
-                  schoolname={skillname}
+                  schoolname={skillclass}
                   Subject={standardItem.subject}
                 />
               </>

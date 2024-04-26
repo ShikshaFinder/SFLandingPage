@@ -51,7 +51,6 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
@@ -62,7 +61,9 @@ function IntroSchool() {
       if (typeof schoolname === "string") {
         let { data, error } = await supabase
           .from("School")
-          .select("*")
+          .select(
+            "schoolname, videolink, website, locationlink, location, discription, mobile1,view, user_id"
+          )
           .eq("user_id", schoolname);
 
         if (error) throw error;

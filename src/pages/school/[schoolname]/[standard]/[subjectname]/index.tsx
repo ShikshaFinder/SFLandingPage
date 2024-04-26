@@ -67,7 +67,7 @@ function IntroSchool() {
       if (typeof subjectname === "string") {
         let { data, error } = await supabase
           .from("schoolDemo")
-          .select("*")
+          .select("Teachername,discription,videolink,view,user_id")
           .match({
             Standard: standard,
             user_id: schoolname,
