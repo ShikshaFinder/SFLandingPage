@@ -23,7 +23,7 @@ export type Database = {
           percentage: string
           standard: string | null
           stream: string | null
-          type: string
+          type: string | null
           user_id: string | null
         }
         Insert: {
@@ -39,7 +39,7 @@ export type Database = {
           percentage: string
           standard?: string | null
           stream?: string | null
-          type: string
+          type?: string | null
           user_id?: string | null
         }
         Update: {
@@ -55,7 +55,7 @@ export type Database = {
           percentage?: string
           standard?: string | null
           stream?: string | null
-          type?: string
+          type?: string | null
           user_id?: string | null
         }
         Relationships: []
@@ -78,9 +78,9 @@ export type Database = {
           Standard: string | null
           State: string | null
           stream: string | null
-          streetaddress: string | null
           subdistrict: string | null
           user_id: string | null
+          videolink: string | null
           view: number | null
           website: string | null
         }
@@ -101,9 +101,9 @@ export type Database = {
           Standard?: string | null
           State?: string | null
           stream?: string | null
-          streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
@@ -124,9 +124,9 @@ export type Database = {
           Standard?: string | null
           State?: string | null
           stream?: string | null
-          streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
+          videolink?: string | null
           view?: number | null
           website?: string | null
         }
@@ -365,8 +365,6 @@ export type Database = {
           schoolname: string | null
           Standard: string[] | null
           State: string | null
-          stream: string | null
-          streetaddress: string | null
           studentnumber: string | null
           subdistrict: string | null
           user_id: string
@@ -392,8 +390,6 @@ export type Database = {
           schoolname?: string | null
           Standard?: string[] | null
           State?: string | null
-          stream?: string | null
-          streetaddress?: string | null
           studentnumber?: string | null
           subdistrict?: string | null
           user_id: string
@@ -419,8 +415,6 @@ export type Database = {
           schoolname?: string | null
           Standard?: string[] | null
           State?: string | null
-          stream?: string | null
-          streetaddress?: string | null
           studentnumber?: string | null
           subdistrict?: string | null
           user_id?: string
@@ -607,7 +601,6 @@ export type Database = {
           demolecturesView: number | null
           id: number
           user_id: string | null
-          videoadviews: number | null
           view: number | null
         }
         Insert: {
@@ -617,7 +610,6 @@ export type Database = {
           demolecturesView?: number | null
           id?: number
           user_id?: string | null
-          videoadviews?: number | null
           view?: number | null
         }
         Update: {
@@ -627,7 +619,6 @@ export type Database = {
           demolecturesView?: number | null
           id?: number
           user_id?: string | null
-          videoadviews?: number | null
           view?: number | null
         }
         Relationships: []

@@ -16,7 +16,7 @@ export default function skillclass() {
 
   async function getcoaching() {
     try {
-      let { data, error } = await supabase.from("coaching").select("*");
+      let { data, error } = await supabase.from("coaching").select("coachingname, ratingofcoaching, img, user_id").eq("District", userStore.District).order("ratingofcoaching", { ascending: false }).limit(10);
       // .eq("State", userStore.State);
 
       if (error) throw error;

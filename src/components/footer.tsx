@@ -59,16 +59,14 @@ export default function SmallCentered() {
         justify={"center"}
         align={"center"}
       >
-        
-          {" "} 
-          <Image
-            src="/icon-512x512.png"
-            alt="Shiksha Finder Logo"
-            className="Container"
-            width={130}
-            height={228}
-          ></Image>
-       
+        {" "}
+        <Image
+          src="/icon-512x512.png"
+          alt="Shiksha Finder Logo"
+          className="Container"
+          width={130}
+          height={228}
+        ></Image>
         <Stack direction={"row"} spacing={6}>
           <Box as={Link} href={"/schoolleaderbord"}>
             platform Leaderbord
@@ -102,6 +100,9 @@ export default function SmallCentered() {
           <a href="https://platform.shikshafinder.com/gwsf">
             {" "}
             <Text>© GWSF Ventures Pvt Ltd</Text>
+            <br />
+            <Text>Recognised by startup India</Text>
+            <img src="/images.png" alt="" />
           </a>
           <Stack direction={"row"} spacing={6}>
             <SocialButton
@@ -129,6 +130,7 @@ export default function SmallCentered() {
               <FaLinkedin />
             </SocialButton>
           </Stack>
+          <Box height={"19"}></Box>
         </Container>
       </Box>
     </Box>

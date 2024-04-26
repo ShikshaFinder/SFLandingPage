@@ -1,12 +1,30 @@
 import React from "react";
-
-function Index() {
+import { Button, Stack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+function Standard() {
+  const router = useRouter();
   return (
-    <div>
-      Please specify a subject after slug to go on if it is not there please try
-      a diffrent subject and report a problem in contact us{" "}
-    </div>
+    <>
+      <div>Aoo you are in wrong URL</div>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+        {" "}
+        <Button
+          onClick={() => {
+            router.push("/coaching");
+          }}
+        >
+          Go back to skillclass
+        </Button>
+        <Button
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          Go back to Home
+        </Button>
+      </Stack>
+    </>
   );
 }
 
-export default Index;
+export default Standard;

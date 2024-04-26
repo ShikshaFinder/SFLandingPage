@@ -70,7 +70,7 @@ function IntroSchool() {
       if (typeof coachingname === "string") {
         let { data, error } = await supabase
           .from("coaching")
-          .select("*")
+          .select("videolink,website,coachingname,location,locationlink,discription,view,mobile")
           .eq("user_id", coachingname);
 
         if (error) throw error;
