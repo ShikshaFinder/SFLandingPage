@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import {
   FaSchool,
   FaChalkboardTeacher,
   FaPaintBrush,
   FaGlobe,
 } from "react-icons/fa";
-
+import ThemeButton from "@/components/ThemButton";
+import { Show, Hide } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -31,6 +31,7 @@ export default function Navbar() {
 
   return (
     <Box>
+      {" "}
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -46,7 +47,11 @@ export default function Navbar() {
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
-        ></Flex>
+        >
+          <Show breakpoint="(max-width: 400px)">
+            <ThemeButton />
+          </Show>
+        </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
@@ -68,16 +73,18 @@ export default function Navbar() {
           spacing={6}
         >
           {user && user.email ? (
-            <Button
-              as={Link}
-              href={"/profile"}
-              passHref
-              fontSize={"sm"}
-              fontWeight={400}
-              variant={"link"}
-            >
-              Profile
-            </Button>
+            <>
+              <Button
+                as={Link}
+                href={"/profile"}
+                passHref
+                fontSize={"sm"}
+                fontWeight={400}
+                variant={"link"}
+              >
+                Profile
+              </Button>
+            </>
           ) : (
             <>
               <Button

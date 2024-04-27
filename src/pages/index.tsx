@@ -101,6 +101,7 @@ const { user } = useAuthContext();
               >
                 {user && user.email ? (
                   <GetStarted />
+                 
                 ) : (
                   <Link href="/signup">
                     <Button
