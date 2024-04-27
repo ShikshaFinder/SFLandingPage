@@ -1,4 +1,4 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack ,Box} from "@chakra-ui/react";
 import Admissionform from "../../../../../../components/admissionformlink";
 import Card from "../../../../../../components/card";
 import Videoo from "../../../../../../components/video";
@@ -92,65 +92,81 @@ function IntroSchool() {
 
   return (
     <>
-      <Stack
-        spacing={4}
-        direction="row"
-        align="center"
-        overflowX="auto"
-        whiteSpace="nowrap"
+      <Box
+        p={{
+          md: "2rem",
+          lg: "2rem",
+          xl: "2rem",
+        }}
+        m={{
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
       >
-        {useStandard1 &&
-          useStandard1.map(
-            (
-              standardItem: {
-                Standard: string;
-                skillclass: any;
-                subject: string;
-              },
-              index: number
-            ) => (
-              <>
-                <Subject
-                  key={index}
-                  name={standardItem.subject}
-                  Standard={standardItem.Standard}
-                  schoolname={skillclass}
-                  Subject={standardItem.subject}
-                />
-              </>
-            )
-          )}
-      </Stack>
-      <br />
-      <Videoo
-        src={useStandard && useStandard[0] ? useStandard[0].videolink : ""}
-      />
-      <br />
-      <ShareButton link="https://shikshafinder.com/" />
-      <InfoSubject
-        TeacherName={
-          useStandard && useStandard[0] ? useStandard[0].Teachername : ""
-        }
-        discription={
-          useStandard && useStandard[0] ? useStandard[0].discription : ""
-        }
-      />
+        <Stack
+          spacing={4}
+          direction="row"
+          align="center"
+          overflowX="auto"
+          whiteSpace="nowrap"
+        >
+          {useStandard1 &&
+            useStandard1.map(
+              (
+                standardItem: {
+                  Standard: string;
+                  skillclass: any;
+                  subject: string;
+                },
+                index: number
+              ) => (
+                <>
+                  <Subject
+                    key={index}
+                    name={standardItem.subject}
+                    Standard={standardItem.Standard}
+                    schoolname={skillclass}
+                    Subject={standardItem.subject}
+                  />
+                </>
+              )
+            )}
+        </Stack>
+        <br />
+        <Videoo
+          src={useStandard && useStandard[0] ? useStandard[0].videolink : ""}
+        />
+        <br />
+        <ShareButton link="https://shikshafinder.com/" />
+        <InfoSubject
+          TeacherName={
+            useStandard && useStandard[0] ? useStandard[0].Teachername : ""
+          }
+          discription={
+            useStandard && useStandard[0] ? useStandard[0].discription : ""
+          }
+        />
 
-      <Stack direction={"row"}>
-        {cards.map(({ name, imgsrc, rating, link }, index) => (
-          <Card
-            key={index}
-            name={name}
-            imgsrc={imgsrc}
-            rating={rating}
-            link={link}
-          />
-        ))}
-      </Stack>
-      <Admissionform
-        name={useStandard && useStandard[0] ? useStandard[0].user_id : ""}
-        phoneNumber={7984140706}
-      />
+        <Stack direction={"row"}>
+          {cards.map(({ name, imgsrc, rating, link }, index) => (
+            <Card
+              key={index}
+              name={name}
+              imgsrc={imgsrc}
+              rating={rating}
+              link={link}
+            />
+          ))}
+        </Stack>
+        <Admissionform
+          name={useStandard && useStandard[0] ? useStandard[0].user_id : ""}
+          phoneNumber={7984140706}
+        />
+      </Box>
     </>
   );
 }

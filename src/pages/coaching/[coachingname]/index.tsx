@@ -1,4 +1,4 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack,Box } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
@@ -112,65 +112,83 @@ function IntroSchool() {
 
   return (
     <>
-      <Stack
-        spacing={4}
-        direction="row"
-        align="center"
-        overflowX="auto"
-        whiteSpace="nowrap"
+      <Box
+        p={{
+          md: "2rem",
+          lg: "2rem",
+          xl: "2rem",
+        }}
+        m={{
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
       >
-        {useStandard &&
-          useStandard.map(
-            (
-              standardItem: {
-                Standard: string;
-                schoolname: any;
-                subject: string;
-              },
-              index: number
-            ) => (
-              <>
-                <Standard
-                  key={index}
-                  name={standardItem.Standard}
-                  Standard={standardItem.Standard}
-                  schoolname={coachingname}
-                  Subject={standardItem.subject}
-                />
-              </>
-            )
-          )}
-      </Stack>
+        <Stack
+          spacing={4}
+          direction="row"
+          align="center"
+          overflowX="auto"
+          whiteSpace="nowrap"
+        >
+          {useStandard &&
+            useStandard.map(
+              (
+                standardItem: {
+                  Standard: string;
+                  schoolname: any;
+                  subject: string;
+                },
+                index: number
+              ) => (
+                <>
+                  <Standard
+                    key={index}
+                    name={standardItem.Standard}
+                    Standard={standardItem.Standard}
+                    schoolname={coachingname}
+                    Subject={standardItem.subject}
+                  />
+                </>
+              )
+            )}
+        </Stack>
 
-      <br />
-      <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
-      <br />
-      <ShareButton link={userData && userData[0] ? userData[0].website : ""} />
-      <br />
-      <InfoTeacher
-        TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
-        location={userData && userData[0] ? userData[0].location : ""}
-        locationlink={userData && userData[0] ? userData[0].locationlink : ""}
-        discription={userData && userData[0] ? userData[0].discription : ""}
-      />
+        <br />
+        <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+        <br />
+        <ShareButton
+          link={userData && userData[0] ? userData[0].website : ""}
+        />
+        <br />
+        <InfoTeacher
+          TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
+          location={userData && userData[0] ? userData[0].location : ""}
+          locationlink={userData && userData[0] ? userData[0].locationlink : ""}
+          discription={userData && userData[0] ? userData[0].discription : ""}
+        />
 
-      <Chart extra={9} quality={8} management={7} facilities={8} />
-      <Stack direction={"row"}>
-        {cards.map(({ name, imgsrc, rating, link }, index) => (
-          <Card
-            key={index}
-            name={name}
-            imgsrc={imgsrc}
-            rating={rating}
-            link={link}
-          />
-        ))}
-      </Stack>
+        <Chart extra={9} quality={8} management={7} facilities={8} />
+        <Stack direction={"row"}>
+          {cards.map(({ name, imgsrc, rating, link }, index) => (
+            <Card
+              key={index}
+              name={name}
+              imgsrc={imgsrc}
+              rating={rating}
+              link={link}
+            />
+          ))}
+        </Stack>
 
-      <Admissionform
-        name={userData && userData[0] ? userData[0].user_id : ""}
-        phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
-      />
+        <Admissionform
+          name={userData && userData[0] ? userData[0].user_id : ""}
+          phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+        />
+      </Box>
     </>
   );
 }

@@ -22,7 +22,15 @@ function InfoTeacher({
 }) {
   return (
     <>
-      <Card>
+      <Card
+        
+        m={{
+          base: "1rem",
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
+      >
         <CardHeader>
           name
           <Heading size="sm">{TeacherName}</Heading>
@@ -35,7 +43,6 @@ function InfoTeacher({
               {discription}
             </Text>
             {/* </Box> */}
-         
           </Stack>
         </CardBody>
       </Card>

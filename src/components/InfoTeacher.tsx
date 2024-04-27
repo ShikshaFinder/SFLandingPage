@@ -25,8 +25,9 @@ function InfoTeacher({
 }) {
   return (
     <>
-      <Card>
-        <CardHeader>name
+      <Card boxShadow={"2xl"} rounded={"md"}>
+        <CardHeader>
+          name
           <Heading size="sm">{TeacherName}</Heading>
         </CardHeader>
         <CardBody>

@@ -13,12 +13,12 @@ import { useRouter } from "next/router";
 export default function skillclass() {
   // const router = useRouter();
   const { user } = useAuthContext();
- 
+
   const [userData, setUserData] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const userStore = useUser((state) => state.user);
-const router = useRouter();
+  const router = useRouter();
   async function getSchool() {
     try {
       let { data, error } = await supabase
@@ -44,41 +44,33 @@ const router = useRouter();
 
   useEffect(() => {
     if (userStore && userStore.State) {
-       setLoading(true);
+      setLoading(true);
       getSchool();
     }
   }, [userStore]);
-  
-  
 
- if (!user.email ) {
-   return <Nouser />;
- }
-  
-      
-    
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   return (
     <>
       <Layoutt>
         <Bannerad />
         <br />
-        {
-          userData === null ? (
-            <Box>
-              <SkeletonCircle size="10" />
-              <SkeletonText mt="4" noOfLines={4} spacing="4" />
-            </Box>
-          ) : (
-            <h1>Top Schools in {userStore.city}</h1>
-          )
-        }
+        {userData === null ? (
+          <Box>
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+        ) : (
+          <h1>Top Schools in {userStore.city}</h1>
+        )}
 
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}
         >
-        
           {userData &&
             userData.map(
               (
@@ -87,7 +79,7 @@ const router = useRouter();
                   ratingofschool: number;
                   link: string;
                   img: string;
-                  user_id:string;
+                  user_id: string;
                 },
                 index: number
               ) => (
