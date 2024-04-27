@@ -57,6 +57,8 @@ function IntroSchool() {
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
+  
+
   async function getSchool() {
     try {
       if (typeof skillclass === "string") {
@@ -78,7 +80,7 @@ function IntroSchool() {
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
-            .from("School")
+            .from("viewschool")
             .update({ view: newViewValue })
             .eq("skillclass", skillclass);
 

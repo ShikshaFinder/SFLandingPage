@@ -71,10 +71,21 @@ export default function skillclass() {
         <Bannerad />
         <br />
         {userData === null ? (
-          <Box>
+         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <SkeletonCircle size="10" />
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
-          </Box>
+            <Button
+              colorScheme="teal"
+              display={"flex"}
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.location.reload();
+                }
+              }}
+            >
+              Reload Page
+            </Button>
+          </Stack>
         ) : (
           <h1>Top Schools in {userStore.city}</h1>
         )}
