@@ -5,30 +5,37 @@ import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import { useUser } from "@/store";
-import { Grid, Toast } from "@chakra-ui/react";
-import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import {
+  Grid,
+  Stack,
+  Box,
+  SkeletonCircle,
+  SkeletonText,
+  Button,
+} from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 
 export default function skillclass() {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<any[] | null>(null);
+  const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
   const userStore = useUser((state) => state.user);
 
-  async function getcoaching() {
+  async function getcoaching(offset: number) {
     try {
       let { data, error } = await supabase
         .from("coaching")
-        .select("coachingname, ratingofcoaching, img, user_id");
-        // .eq("District", userStore.District)
+        .select("coachingname, ratingofcoaching, img, user_id")
+        .range(offset, offset + 3); // Fetch 3 more items
+      // .eq("District", userStore.District)
 
       // .eq("State", userStore.State);
 
       if (error) throw error;
 
-      setUserData(data);
-
-      if (error) throw error;
-      setUserData(data);
+      setUserData((prevData) =>
+        prevData ? [...prevData, ...(data || [])] : data || []
+      ); // Append new data
     } catch (error) {
       console.log("Caught Error:", error);
     }
@@ -36,9 +43,13 @@ export default function skillclass() {
 
   useEffect(() => {
     if (userStore && userStore.State) {
-      getcoaching();
+      getcoaching(dataOffset);
     }
-  }, [userStore]);
+  }, [userStore, dataOffset]); // Update effect dependencies
+
+  const handleLoadMore = () => {
+    setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+  };
 
   if (!user.email) {
     return <Nouser />;
@@ -88,6 +99,10 @@ export default function skillclass() {
               )
             )}
         </Grid>
+        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          {" "}
+          <Button onClick={handleLoadMore}>Load More</Button> // Add onClick handler
+        </Stack>
       </Layoutt>
     </>
   );

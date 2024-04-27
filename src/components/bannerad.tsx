@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { useAuthContext } from "@/context";
 import { useUser } from "@/store";
 import Slider from "react-slick";
 import { useState, useEffect } from "react";
@@ -16,6 +15,8 @@ export default function Carousel() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 3000, // Set autoplay speed in milliseconds (e.g., 3000ms = 3 seconds)
     responsive: [
       {
         breakpoint: 1024,

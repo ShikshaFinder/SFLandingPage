@@ -4,7 +4,7 @@ import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-import { Grid, Toast } from "@chakra-ui/react";
+import { Grid, Toast ,Stack} from "@chakra-ui/react";
 import { useUser } from "@/store";
 import { Button, Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
@@ -97,8 +97,11 @@ export default function skillclass() {
               )
             )}
         </Grid>
+        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          {" "}
+          <Button onClick={getSchool}>Load More</Button>
+        </Stack>
         <br />
-        <Button onClick={getSchool}>Load More</Button>
       </Layoutt>
     </>
   );
