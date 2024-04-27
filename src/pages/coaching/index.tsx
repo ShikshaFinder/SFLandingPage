@@ -31,11 +31,11 @@ export default function skillclass() {
 
       // .eq("State", userStore.State);
 
+      
       if (error) throw error;
-
       setUserData((prevData) =>
         prevData ? [...prevData, ...(data || [])] : data || []
-      ); // Append new data
+    ); // Append new data
     } catch (error) {
       console.log("Caught Error:", error);
     }

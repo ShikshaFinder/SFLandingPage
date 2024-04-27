@@ -5,7 +5,7 @@ import Layoutt from "../../Layout";
 import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
-import { Grid } from "@chakra-ui/react";
+import { Grid,Stack,Button } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
 import { useUser } from "@/store";
@@ -16,17 +16,19 @@ export default function Skillclass() {
   const router = useRouter();
   const { skillname } = router.query;
   const userStore = useUser((state) => state.user);
+  const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
 
-  async function getskill() {
+  async function getskill(offset: number) {
     try {
       let { data, error } = await supabase
         .from("skillclass")
         .select("skillclassname, ratingofskillclass, img, user_id")
-        .order("ratingofskillclass", { ascending: false })
-        .limit(10);
+        .range(offset, offset + 3);
 
       if (error) throw error;
-      setUserData(data);
+      setUserData((prevData) =>
+        prevData ? [...prevData, ...(data || [])] : data || []
+      ); // Append new data
       // console.log(data);
     } catch (error) {
       console.log("Caught Error:", error);
@@ -34,8 +36,14 @@ export default function Skillclass() {
   }
 
   useEffect(() => {
-    getskill();
-  }, [user]);
+    if (userStore && userStore.State) {
+      getskill(dataOffset);
+    }
+  }, [userStore, dataOffset]); // Update effect dependencies
+
+  const handleLoadMore = () => {
+    setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+  };
 
   if (!user.email) {
     return <Nouser />;
@@ -85,6 +93,11 @@ export default function Skillclass() {
               )
             )}
         </Grid>
+        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          {" "}
+          <Button onClick={handleLoadMore}>Load More</Button> // Add onClick
+          handler
+        </Stack>
       </Layoutt>
     </>
   );

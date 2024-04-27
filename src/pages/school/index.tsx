@@ -4,9 +4,16 @@ import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-import { Grid, Toast ,Stack} from "@chakra-ui/react";
+import {
+  Grid,
+  Toast,
+  Stack,
+  Button,
+  Box,
+  SkeletonCircle,
+  SkeletonText,
+} from "@chakra-ui/react";
 import { useUser } from "@/store";
-import { Button, Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
 import { useRouter } from "next/router";
 
@@ -16,18 +23,21 @@ export default function skillclass() {
 
   const [userData, setUserData] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
 
   const userStore = useUser((state) => state.user);
   const router = useRouter();
-  async function getSchool() {
+  async function getSchool(offset: number) {
     try {
       let { data, error } = await supabase
         .from("School")
         .select("schoolname, ratingofschool, img, user_id")
         // .match({ State: userStore.State, District: userStore.District })
-        .range(0, 4);
+        .range(offset, offset + 3);
 
-      setUserData(data);
+      setUserData((prevData) =>
+        prevData ? [...prevData, ...(data || [])] : data || []
+      ); // Append new data
       // setLoading(false);
 
       if (error) throw error;
@@ -44,10 +54,12 @@ export default function skillclass() {
 
   useEffect(() => {
     if (userStore && userStore.State) {
-      setLoading(true);
-      getSchool();
+      getSchool(dataOffset);
     }
-  }, [userStore]);
+  }, [userStore, dataOffset]); // Update effect dependencies
+   const handleLoadMore = () => {
+     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+   };
 
   if (!user.email) {
     return <Nouser />;
@@ -99,7 +111,7 @@ export default function skillclass() {
         </Grid>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
-          <Button onClick={getSchool}>Load More</Button>
+          <Button onClick={handleLoadMore}>Load More</Button>
         </Stack>
         <br />
       </Layoutt>
