@@ -45,7 +45,7 @@ const router = useRouter();
     <>
       <Layoutt>
         <Bannerad />
-
+<br />
         {userData === null ? (
           <Box>
             <SkeletonCircle size="10" />
@@ -54,6 +54,7 @@ const router = useRouter();
         ) : (
           <h1>Top online platforms in your category </h1>
         )}
+        
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
           gap={1}
