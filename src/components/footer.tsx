@@ -104,7 +104,7 @@ export default function SmallCentered() {
               {" "}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recognised by{" "}
             </Text>
-            <img src="/images.png" alt="" />
+            <img src="/images.png" alt="startup india image shiksha finder" />
           </a>
           <Stack direction={"row"} spacing={6}>
             <SocialButton
