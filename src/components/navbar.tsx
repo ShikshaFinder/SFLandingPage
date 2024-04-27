@@ -84,6 +84,14 @@ export default function Navbar() {
               >
                 Profile
               </Button>
+
+              <Show above="sm">
+              
+                  <Show breakpoint="(min-width: 400px)">
+                    <ThemeButton />
+                  </Show>
+              
+              </Show>
             </>
           ) : (
             <>
