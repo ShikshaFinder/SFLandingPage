@@ -1,4 +1,4 @@
-import { Stack,Box } from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
@@ -34,6 +34,8 @@ function IntroSchool() {
   const { onlineplatformname } = router.query;
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
+    const [useView, setUseView] = React.useState<any[] | null>(null);
+
 
   async function getStandard() {
     try {
@@ -67,26 +69,6 @@ function IntroSchool() {
         if (error) throw error;
 
         setUserData(data);
-        // console.log("view", data && data[0].view);
-        // Check if 'view' is not null
-        if (data && data[0].view !== null) {
-          // Increment the 'view' column value
-          const newViewValue = data[0].view + 1;
-          // console.log("newViewValue", newViewValue);
-
-          // Update the 'view' column with the new value
-          const { error: updateError } = await supabase
-            .from("onlineform")
-            .update({ view: newViewValue })
-            .eq("onlineplatformname", onlineplatformname);
-
-          // console.log("view incremented");
-          // console.log("updateError", updateError);
-
-          if (updateError) {
-            throw updateError;
-          }
-        }
       } else {
         console.log("No onlineplatformname found");
       }
@@ -102,6 +84,49 @@ function IntroSchool() {
   useEffect(() => {
     getStandard();
   }, [onlineplatformname]);
+     async function updateView() {
+       try {
+         if (typeof onlineplatformname === "string") {
+           let { data, error } = await supabase
+             .from("viewonline")
+             .select("view")
+             .eq("user_id", onlineplatformname);
+
+           setUseView(data);
+           if (error) throw error;
+
+           console.log("view", data);
+
+           if (data && data[0].view !== null) {
+             // Increment the 'view' column value
+             const newViewValue = data[0].view + 1;
+             // console.log("newViewValue", newViewValue);
+
+             // Update the 'view' column with the new value
+             const { error: updateError } = await supabase
+               .from("viewonline")
+               .update({ view: newViewValue })
+               .eq("user_id", onlineplatformname);
+
+             console.log("view incremented bdvkb");
+             // console.log("updateError", updateError);
+
+             if (updateError) {
+               throw updateError;
+             }
+           }
+         } else {
+           console.log("string error");
+         }
+       } catch (error) {
+         console.log("Caught Error:", error);
+       }
+     }
+
+     useEffect(() => {
+       updateView();
+     }, []);
+
 
   return (
     <>

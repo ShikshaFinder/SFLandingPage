@@ -1,4 +1,4 @@
-import { Stack,Box } from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../../../components/admissionformlink";
 import Card from "../../../../../components/card";
 import Videoo from "../../../../../components/video";
@@ -34,6 +34,8 @@ function IntroSchool() {
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
+    const [useView, setUseView] = React.useState<any[] | null>(null);
+
 
   async function getStandard1() {
     try {
@@ -54,7 +56,6 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
@@ -82,13 +83,56 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
   useEffect(() => {
     getStandard();
   }, [subjectname]);
+
+     async function updateView() {
+       try {
+         if (typeof onlineplatformname === "string") {
+           let { data, error } = await supabase
+             .from("viewschool")
+             .select("view")
+             .eq("user_id", onlineplatformname);
+
+           setUseView(data);
+           if (error) throw error;
+
+           console.log("view", data);
+
+           if (data && data[0].view !== null) {
+             // Increment the 'view' column value
+             const newViewValue = data[0].view + 1;
+             // console.log("newViewValue", newViewValue);
+
+             // Update the 'view' column with the new value
+             const { error: updateError } = await supabase
+               .from("viewschool")
+               .update({ view: newViewValue })
+               .eq("user_id", onlineplatformname);
+
+             console.log("view incremented bdvkb");
+             // console.log("updateError", updateError);
+
+             if (updateError) {
+               throw updateError;
+             }
+           }
+         } else {
+           console.log("string error");
+         }
+       } catch (error) {
+         console.log("Caught Error:", error);
+       }
+     }
+
+     useEffect(() => {
+       updateView();
+     }, []);
+
 
   return (
     <>
