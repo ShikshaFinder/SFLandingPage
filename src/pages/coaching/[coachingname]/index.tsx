@@ -64,40 +64,20 @@ function IntroSchool() {
   }, [coachingname]);
 
   const [userData, setUserData] = useState<any[] | null>(null);
+    const [useView, setUseView] = React.useState<any[] | null>(null);
+
 
   async function getSchool() {
     try {
       if (typeof coachingname === "string") {
         let { data, error } = await supabase
           .from("coaching")
-          .select("videolink,website,coachingname,location,locationlink,discription,view,mobile")
+          .select("videolink,website,coachingname,location,locationlink,discription,mobile")
           .eq("user_id", coachingname);
 
         if (error) throw error;
 
         setUserData(data);
-
-        // Check if 'view' is not null
-        if (data && data[0].view !== null) {
-          // Increment the 'view' column value
-          // console.log("newViewValue", newViewValue);
-          const newViewValue = data[0].view + 1;
-
-          // Update the 'view' column with the new value
-          const { error: updateError } = await supabase
-            .from("coaching")
-            .update({ view: newViewValue })
-            .eq("user_id", coachingname);
-
-          console.log("view incremented");
-          console.log("newViewValue skjdbabs", newViewValue);
-
-          console.log("updateError", updateError);
-
-          if (updateError) {
-            throw updateError;
-          }
-        }
       } else {
         console.log("coachingname is not a string:", coachingname);
       }
@@ -109,6 +89,48 @@ function IntroSchool() {
   useEffect(() => {
     getSchool();
   }, [coachingname]);
+
+   async function updateView() {
+     try {
+       if (typeof coachingname === "string") {
+         let { data, error } = await supabase
+           .from("viewcoaching")
+           .select("view")
+           .eq("user_id", coachingname);
+
+         setUseView(data);
+         if (error) throw error;
+
+
+         if (data && data[0].view !== null) {
+           // Increment the 'view' column value
+           const newViewValue = data[0].view + 1;
+           // console.log("newViewValue", newViewValue);
+
+           // Update the 'view' column with the new value
+           const { error: updateError } = await supabase
+             .from("viewcoaching")
+             .update({ view: newViewValue })
+             .eq("user_id", coachingname);
+
+           console.log("view incremented in coaching");
+           // console.log("updateError", updateError);
+
+           if (updateError) {
+             throw updateError;
+           }
+         }
+       } else {
+         console.log("string error");
+       }
+     } catch (error) {
+       console.log("Caught Error:", error);
+     }
+   }
+
+   useEffect(() => {
+     updateView();
+   }, []);
 
   return (
     <>

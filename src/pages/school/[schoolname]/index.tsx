@@ -64,7 +64,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("School")
           .select(
-            "schoolname, videolink, website, locationlink, location, discription, mobile1,view, user_id"
+            "schoolname, videolink, website, locationlink, location, discription, mobile1, user_id"
           )
           .eq("user_id", schoolname);
 

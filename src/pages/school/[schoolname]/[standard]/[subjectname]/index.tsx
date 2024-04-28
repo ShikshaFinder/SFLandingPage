@@ -1,4 +1,4 @@
-import { Stack ,Box} from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../../../components/admissionformlink";
 import Card from "../../../../../components/card";
 import Videoo from "../../../../../components/video";
@@ -34,6 +34,7 @@ function IntroSchool() {
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
+  const [useView, setUseView] = React.useState<any[] | null>(null);
 
   async function getStandard1() {
     try {
@@ -54,7 +55,6 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
@@ -67,7 +67,7 @@ function IntroSchool() {
       if (typeof subjectname === "string") {
         let { data, error } = await supabase
           .from("schoolDemo")
-          .select("Teachername,discription,videolink,view,user_id")
+          .select("Teachername,discription,videolink,user_id")
           .match({
             Standard: standard,
             user_id: schoolname,
@@ -82,13 +82,55 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
   useEffect(() => {
     getStandard();
   }, [subjectname]);
+
+  async function updateView() {
+    try {
+      if (typeof schoolname === "string") {
+        let { data, error } = await supabase
+          .from("viewschool")
+          .select("demolecturesView")
+          .eq("user_id", schoolname);
+
+        setUseView(data);
+        if (error) throw error;
+
+        // console.log("view", data);
+
+        if (data && data[0].demolecturesView !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].demolecturesView + 1;
+          // console.log("newViewValue", newViewValue);
+
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("viewschool")
+            .update({ demolecturesView: newViewValue })
+            .eq("user_id", schoolname);
+
+          console.log("view incremented in demo lecture side");
+          // console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("string error");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
+  useEffect(() => {
+    updateView();
+  }, []);
 
   return (
     <>
