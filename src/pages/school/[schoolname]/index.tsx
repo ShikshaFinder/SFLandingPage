@@ -36,6 +36,8 @@ function IntroSchool() {
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
+    const [userData, setUserData] = useState<any[] | null>(null);
+
 
   async function getStandard() {
     try {
@@ -56,7 +58,6 @@ function IntroSchool() {
     }
   }
 
-  const [userData, setUserData] = useState<any[] | null>(null);
 
   async function getSchool() {
     try {
