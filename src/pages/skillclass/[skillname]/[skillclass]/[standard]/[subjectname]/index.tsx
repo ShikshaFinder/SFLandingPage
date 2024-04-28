@@ -124,7 +124,7 @@ function IntroSchool() {
 
   useEffect(() => {
     updateView();
-  }, []);
+  }, [subjectname]);
 
   return (
     <>
