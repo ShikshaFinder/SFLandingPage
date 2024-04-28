@@ -92,7 +92,7 @@ function IntroSchool() {
      try {
        if (typeof skillclass === "string") {
          let { data, error } = await supabase
-           .from("viewschool")
+           .from("viewskill")
            .select("view")
            .eq("user_id", skillclass);
 
@@ -108,7 +108,7 @@ function IntroSchool() {
 
            // Update the 'view' column with the new value
            const { error: updateError } = await supabase
-             .from("viewschool")
+             .from("viewskill")
              .update({ view: newViewValue })
              .eq("user_id", skillclass);
 

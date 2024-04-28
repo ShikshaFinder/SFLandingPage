@@ -442,7 +442,6 @@ export type Database = {
           Teachername: string | null
           user_id: string | null
           videolink: string | null
-          view: number
         }
         Insert: {
           created_at?: string
@@ -453,7 +452,6 @@ export type Database = {
           Teachername?: string | null
           user_id?: string | null
           videolink?: string | null
-          view?: number
         }
         Update: {
           created_at?: string
@@ -464,7 +462,6 @@ export type Database = {
           Teachername?: string | null
           user_id?: string | null
           videolink?: string | null
-          view?: number
         }
         Relationships: []
       }
@@ -593,6 +590,54 @@ export type Database = {
         }
         Relationships: []
       }
+      viewcoaching: {
+        Row: {
+          created_at: string
+          demolecturesView: number | null
+          id: number
+          user_id: string
+          view: number | null
+        }
+        Insert: {
+          created_at?: string
+          demolecturesView?: number | null
+          id?: number
+          user_id: string
+          view?: number | null
+        }
+        Update: {
+          created_at?: string
+          demolecturesView?: number | null
+          id?: number
+          user_id?: string
+          view?: number | null
+        }
+        Relationships: []
+      }
+      viewonline: {
+        Row: {
+          created_at: string
+          demolecturesView: number | null
+          id: number
+          user_id: string
+          view: number | null
+        }
+        Insert: {
+          created_at?: string
+          demolecturesView?: number | null
+          id?: number
+          user_id: string
+          view?: number | null
+        }
+        Update: {
+          created_at?: string
+          demolecturesView?: number | null
+          id?: number
+          user_id?: string
+          view?: number | null
+        }
+        Relationships: []
+      }
       viewschool: {
         Row: {
           banneradviews: number | null
@@ -600,7 +645,7 @@ export type Database = {
           created_at: string
           demolecturesView: number | null
           id: number
-          user_id: string | null
+          user_id: string
           view: number | null
         }
         Insert: {
@@ -609,7 +654,7 @@ export type Database = {
           created_at?: string
           demolecturesView?: number | null
           id?: number
-          user_id?: string | null
+          user_id: string
           view?: number | null
         }
         Update: {
@@ -618,7 +663,31 @@ export type Database = {
           created_at?: string
           demolecturesView?: number | null
           id?: number
-          user_id?: string | null
+          user_id?: string
+          view?: number | null
+        }
+        Relationships: []
+      }
+      viewskill: {
+        Row: {
+          created_at: string
+          demolecturesView: number | null
+          id: number
+          user_id: string
+          view: number | null
+        }
+        Insert: {
+          created_at?: string
+          demolecturesView?: number | null
+          id?: number
+          user_id: string
+          view?: number | null
+        }
+        Update: {
+          created_at?: string
+          demolecturesView?: number | null
+          id?: number
+          user_id?: string
           view?: number | null
         }
         Relationships: []

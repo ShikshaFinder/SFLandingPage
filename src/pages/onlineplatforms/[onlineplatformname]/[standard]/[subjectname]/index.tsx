@@ -94,8 +94,8 @@ function IntroSchool() {
        try {
          if (typeof onlineplatformname === "string") {
            let { data, error } = await supabase
-             .from("viewschool")
-             .select("view")
+             .from("viewonline")
+             .select("demolecturesView")
              .eq("user_id", onlineplatformname);
 
            setUseView(data);
@@ -103,15 +103,15 @@ function IntroSchool() {
 
            console.log("view", data);
 
-           if (data && data[0].view !== null) {
+           if (data && data[0].demolecturesView !== null) {
              // Increment the 'view' column value
-             const newViewValue = data[0].view + 1;
+             const newViewValue = data[0].demolecturesView + 1;
              // console.log("newViewValue", newViewValue);
 
              // Update the 'view' column with the new value
              const { error: updateError } = await supabase
-               .from("viewschool")
-               .update({ view: newViewValue })
+               .from("viewonline")
+               .update({ demolecturesView: newViewValue })
                .eq("user_id", onlineplatformname);
 
              console.log("view incremented bdvkb");

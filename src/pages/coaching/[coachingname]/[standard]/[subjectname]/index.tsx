@@ -95,7 +95,7 @@ function IntroSchool() {
      try {
        if (typeof coachingname === "string") {
          let { data, error } = await supabase
-           .from("viewschool")
+           .from("viewcoaching")
            .select("demolecturesView")
            .eq("user_id", coachingname);
 
@@ -111,7 +111,7 @@ function IntroSchool() {
 
            // Update the 'view' column with the new value
            const { error: updateError } = await supabase
-             .from("viewschool")
+             .from("viewcoaching")
              .update({ demolecturesView: newViewValue })
              .eq("user_id", coachingname);
 
