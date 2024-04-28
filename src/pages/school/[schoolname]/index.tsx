@@ -35,8 +35,7 @@ function IntroSchool() {
   const { schoolname } = router.query;
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
-    const [useView, setUseView] = React.useState<any[] | null>(null);
-
+  const [useView, setUseView] = React.useState<any[] | null>(null);
 
   async function getStandard() {
     try {
@@ -74,7 +73,6 @@ function IntroSchool() {
         setUserData(data);
         // console.log("view", data && data[0].view);
         // Check if 'view' is not null
-      
       } else {
         console.log("No schoolname found");
       }
@@ -90,7 +88,6 @@ function IntroSchool() {
   useEffect(() => {
     getStandard();
   }, [schoolname]);
-  
 
   async function updateView() {
     try {
@@ -100,49 +97,39 @@ function IntroSchool() {
           .select("view")
           .eq("user_id", schoolname);
 
-          setUseView(data);
+        setUseView(data);
         if (error) throw error;
-        
+
         console.log("view", data);
 
-          if (data && data[0].view !== null) {
-            // Increment the 'view' column value
-            const newViewValue = data[0].view + 1;
-            // console.log("newViewValue", newViewValue);
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
 
-            // Update the 'view' column with the new value
-            const { error: updateError } = await supabase
-              .from("viewschool")
-              .update({ view: newViewValue })
-              .eq("user_id", schoolname);
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("viewschool")
+            .update({ view: newViewValue })
+            .eq("user_id", schoolname);
 
-            console.log("view incremented bdvkb");
-            // console.log("updateError", updateError);
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
 
-            if (updateError) {
-              throw updateError;
-            }
+          if (updateError) {
+            throw updateError;
           }
-
-
-        
-        
+        }
       } else {
         console.log("string error");
-      } 
-
-      
+      }
     } catch (error) {
-      console.log("Caught Error:", error);  
-    
+      console.log("Caught Error:", error);
     }
-
   }
 
   useEffect(() => {
-    if (userData && userData[0]) {
-      updateView();
-    }
+    updateView();
   }, []);
 
   return (
@@ -204,7 +191,7 @@ function IntroSchool() {
           location={userData && userData[0] ? userData[0].location : ""}
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
-<br />
+        <br />
         <Chart extra={9} quality={8} management={7} facilities={8} />
         <Stack direction={"row"}>
           {cards.map(({ name, imgsrc, rating, link }, index) => (
