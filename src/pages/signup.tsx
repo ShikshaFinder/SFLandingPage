@@ -151,7 +151,17 @@ export default function SignupCard() {
                 >
                   login
                 </Link>
-            
+                <Link href="https://qgkjakomwapzuhvnrvgr.supabase.co/auth/v1/authorize?provider=google">
+                  &nbsp; &nbsp; &nbsp;{" "}
+                  <Button
+                    leftIcon={<FaGoogle />}
+                    colorScheme="blue"
+                    variant="outline"
+                    mt={4}
+                  >
+                    Sign up with Google
+                  </Button>
+                </Link>
               </Text>
             </Stack>
           </Stack>
