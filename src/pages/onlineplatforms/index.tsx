@@ -90,7 +90,7 @@ export default function skillclass() {
                   key={index} // Ensure unique key for each Card
                   name={coaching.coachingname}
                   rating={coaching.ratingofcoaching}
-                  link={`/coaching/${coaching.user_id}`}
+                  link={`/onlineplatforms/${coaching.user_id}`}
                   imgsrc={
                     coaching.img
                       ? ` //wsrv.nl/?url=${coaching.img}&h=300`

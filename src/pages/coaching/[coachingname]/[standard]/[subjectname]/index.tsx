@@ -1,4 +1,4 @@
-import { Stack,Box } from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../../../components/admissionformlink";
 import Card from "../../../../../components/card";
 import Videoo from "../../../../../components/video";
@@ -55,7 +55,6 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
@@ -83,7 +82,6 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-
     }
   }
 
@@ -91,50 +89,48 @@ function IntroSchool() {
     getStandard();
   }, [subjectname]);
 
-   async function updateView() {
-     try {
-       if (typeof coachingname === "string") {
-         let { data, error } = await supabase
-           .from("viewcoaching")
-           .select("demolecturesView")
-           .eq("user_id", coachingname);
+  async function updateView() {
+    try {
+      if (typeof coachingname === "string") {
+        let { data, error } = await supabase
+          .from("viewcoaching")
+          .select("demolecturesView")
+          .eq("user_id", coachingname);
 
-         setUseView(data);
-         if (error) throw error;
+        setUseView(data);
+        if (error) throw error;
 
         //  console.log("view", data);
 
-         if (data && data[0].demolecturesView !== null) {
-           // Increment the 'view' column value
-           const newViewValue = data[0].demolecturesView + 1;
-           // console.log("newViewValue", newViewValue);
+        if (data && data[0].demolecturesView !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].demolecturesView + 1;
+          // console.log("newViewValue", newViewValue);
 
-           // Update the 'view' column with the new value
-           const { error: updateError } = await supabase
-             .from("viewcoaching")
-             .update({ demolecturesView: newViewValue })
-             .eq("user_id", coachingname);
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("viewcoaching")
+            .update({ demolecturesView: newViewValue })
+            .eq("user_id", coachingname);
 
-           console.log("view incremented in demo lecture");
-           // console.log("updateError", updateError);
+          console.log("view incremented in demo lecture");
+          // console.log("updateError", updateError);
 
-           if (updateError) {
-             throw updateError;
-           }
-         }
-       } else {
-         console.log("string error");
-       }
-     } catch (error) {
-       console.log("Caught Error:", error);
-     }
-   }
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("string error");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
-   useEffect(() => {
-     updateView();
-   }, [subjectname]);
-
-  
+  useEffect(() => {
+    updateView();
+  }, [subjectname]);
 
   return (
     <>
