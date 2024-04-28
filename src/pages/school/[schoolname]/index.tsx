@@ -204,7 +204,7 @@ function IntroSchool() {
           location={userData && userData[0] ? userData[0].location : ""}
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
-
+<br />
         <Chart extra={9} quality={8} management={7} facilities={8} />
         <Stack direction={"row"}>
           {cards.map(({ name, imgsrc, rating, link }, index) => (
