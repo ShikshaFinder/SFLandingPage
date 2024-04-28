@@ -131,6 +131,23 @@ export default function SmallCentered() {
             >
               <FaLinkedin />
             </SocialButton>
+            <div>
+              <a href="https://platform.shikshafinder.com/termsofservice">
+                {" "}
+                <Text fontSize="xs" as="u">
+                  {" "}
+                  Terms Of Service
+                </Text>
+              </a>
+              &nbsp;  <Text fontSize="xs" >&</Text>
+              <a href="https://platform.shikshafinder.com/privacypolicy">
+                {" "}
+                <Text fontSize="xs" as="u">
+                  {" "}
+                  Privacy Policy
+                </Text>
+              </a>
+            </div>
           </Stack>
           <Box height={"19"}></Box>
         </Container>
