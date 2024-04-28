@@ -21,8 +21,7 @@ import {
 import Layout from "./Layout";
 
 export default function Home() {
-
-const { user } = useAuthContext();
+  const { user } = useAuthContext();
 
   return (
     <>
@@ -45,6 +44,10 @@ const { user } = useAuthContext();
           }}
         />
         <Head>
+          <meta
+            name="google-site-verification"
+            content="x0ic1dcDO30kWVKAfCEqPcWGbjb6ZCvg75NpHKI_Ci0"
+          />
           <meta
             name="ShikshaFinder"
             content="Shiksha Finder,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,schools near me"
@@ -101,7 +104,6 @@ const { user } = useAuthContext();
               >
                 {user && user.email ? (
                   <GetStarted />
-                 
                 ) : (
                   <Link href="/signup">
                     <Button
