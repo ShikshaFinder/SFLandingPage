@@ -36,6 +36,8 @@ function IntroSchool() {
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
+    const [userData, setUserData] = useState<any[] | null>(null);
+
 
   async function getStandard() {
     try {
@@ -56,7 +58,6 @@ function IntroSchool() {
     }
   }
 
-  const [userData, setUserData] = useState<any[] | null>(null);
 
   
 
@@ -186,7 +187,7 @@ function IntroSchool() {
         />
         <br />
         <InfoTeacher
-          TeacherName={userData && userData[0] ? userData[0].skillclass : ""}
+          TeacherName={userData && userData[0] ? userData[0].skillclassname : ""}
           // Experience={"12 years"}
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
           location={userData && userData[0] ? userData[0].location : ""}

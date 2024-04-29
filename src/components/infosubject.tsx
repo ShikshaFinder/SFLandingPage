@@ -13,17 +13,13 @@ import {
 function InfoTeacher({
   TeacherName,
   discription,
-  
 }: {
   TeacherName: string;
-  location?: string;
   discription: string;
-  locationlink?: string;
 }) {
   return (
     <>
       <Card
-        
         m={{
           base: "1rem",
           md: "1rem",

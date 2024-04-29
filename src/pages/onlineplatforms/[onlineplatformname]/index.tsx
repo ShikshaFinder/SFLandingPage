@@ -2,7 +2,7 @@ import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
-import InfoTeacher from "../../../components/InfoTeacher";
+import InfoTeacher from "../../../components/infosubject";
 import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
 import React, { use } from "react";
@@ -183,11 +183,10 @@ function IntroSchool() {
         <br />
         <InfoTeacher
           TeacherName={
-            userData && userData[0] ? userData[0].onlineplatformname : ""
+            userData && userData[0] ? userData[0].coachingname : ""
           }
           // Experience={"12 years"}
-          locationlink={userData && userData[0] ? userData[0].locationlink : ""}
-          location={userData && userData[0] ? userData[0].location : ""}
+         
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
 
