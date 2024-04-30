@@ -26,16 +26,15 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("coaching")
         .select("coachingname, ratingofcoaching, img, user_id")
+        .match({ State: userStore.State, city: userStore.city })
         .range(offset, offset + 3); // Fetch 3 more items
-      // .eq("District", userStore.District)
 
       // .eq("State", userStore.State);
 
-      
       if (error) throw error;
       setUserData((prevData) =>
         prevData ? [...prevData, ...(data || [])] : data || []
-    ); // Append new data
+      ); // Append new data
     } catch (error) {
       console.log("Caught Error:", error);
     }
@@ -101,7 +100,8 @@ export default function skillclass() {
         </Grid>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
-          <Button onClick={handleLoadMore}>Load More</Button> // Add onClick handler
+          <Button onClick={handleLoadMore}>Load More</Button> // Add onClick
+          handler
         </Stack>
       </Layoutt>
     </>

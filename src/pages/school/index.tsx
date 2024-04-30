@@ -27,46 +27,7 @@ export default function skillclass() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const school_id = "069dd121-b40d-408b-bfcb-ed2f958785ed";
 
-  const userStore = useUser((state) => state.user);
-  const router = useRouter();
-  async function getSchool(offset: number) {
-    try {
-      let { data, error } = await supabase
-        .from("School")
-        .select("schoolname, ratingofschool, img, user_id")
-        // .match({ State: userStore.State, District: userStore.District })
-        .range(offset, offset + 3);
-
-      setUserData((prevData) =>
-        prevData ? [...prevData, ...(data || [])] : data || []
-      ); // Append new data
-      // setLoading(false);
-
-      if (error) throw error;
-    } catch (error) {
-      Toast({
-        title: "Error",
-        description: "Error fetching data",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-  }
-
-  useEffect(() => {
-    if (userStore && userStore.State) {
-      getSchool(dataOffset);
-    }
-  }, [userStore, dataOffset]); // Update effect dependencies
-   const handleLoadMore = () => {
-     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
-   };
-
-  if (!user.email) {
-    return <Nouser />;
-  }
-
+  
 
    async function updateView() {
      try {
@@ -107,9 +68,53 @@ export default function skillclass() {
      }
    }
 
+  const userStore = useUser((state) => state.user);
+  console.log(userStore);
+  const router = useRouter();
+  async function getSchool(offset: number) {
+    try {
+      let { data, error } = await supabase
+        .from("School")
+        .select("schoolname, ratingofschool, img, user_id")
+        .match({ State: userStore.State, District: userStore.city })
+        .range(offset, offset + 3);
+
+      setUserData((prevData) =>
+        prevData ? [...prevData, ...(data || [])] : data || []
+      ); // Append new data
+      // setLoading(false);
+
+      if (error) throw error;
+    } catch (error) {
+      Toast({
+        title: "Error",
+        description: "Error fetching data",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (userStore && userStore.State) {
+      getSchool(dataOffset);
+    }
+  }, [userStore, dataOffset]); // Update effect dependencies
+   const handleLoadMore = () => {
+     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+   };
+
+ 
+
+
    useEffect(() => {
      updateView();
    }, []);
+
+    if (!user.email) {
+      return <Nouser />;
+    }
 
 
   return (

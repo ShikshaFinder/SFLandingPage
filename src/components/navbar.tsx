@@ -86,11 +86,9 @@ export default function Navbar() {
               </Button>
 
               <Show above="sm">
-              
-                  <Show breakpoint="(min-width: 400px)">
-                    <ThemeButton />
-                  </Show>
-              
+                <Show breakpoint="(min-width: 400px)">
+                  <ThemeButton />
+                </Show>
               </Show>
             </>
           ) : (
@@ -223,7 +221,7 @@ const MobileNav = () => {
   const handleClick = (iconName: string) => {
     useStore.getState().setSelectedIcon(iconName);
   };
-  const boxColor = useColorModeValue("gray.100", "gray.900");
+  const boxColor = useColorModeValue("gray.100", "gray.800");
   return (
     <>
       <Box

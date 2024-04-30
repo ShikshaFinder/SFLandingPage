@@ -23,6 +23,7 @@ export default function Skillclass() {
       let { data, error } = await supabase
         .from("skillclass")
         .select("skillclassname, ratingofskillclass, img, user_id")
+        .match({ State: userStore.State, city: userStore.city })
         .range(offset, offset + 3);
 
       if (error) throw error;

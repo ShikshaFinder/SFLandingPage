@@ -28,7 +28,6 @@ export default function skillclass() {
         .from("onlineform")
         .select("coachingname, ratingofcoaching, img, user_id")
         .range(offset, offset + 3); // Fetch 3 more items
-      // .eq("District", userStore.District)
 
       // .eq("State", userStore.State);
 

@@ -19,25 +19,29 @@ import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
+import { useUser } from "../store";
 
 interface State {
   districts: string[];
   state: string;
 }
 
+
 function Form() {
   const toast = useToast();
   const { user } = useAuthContext();
-
+  
   const form = useForm();
   const router = useRouter();
-
+  
   const { register, handleSubmit, control, watch } = form;
   const selectedState = watch("State");
+  const useUse = useUser((state) => state.user);
+  console.log(useUse);  
 
   const handleSubmitt = () => {
     toast({
-      title: "Details updates!",
+      title: "Details updated!",
       description: "Thank you for your Form",
       status: "success",
       duration: 3000,
@@ -98,6 +102,8 @@ function Form() {
                 })}
                 name="name"
                 placeholder="Your Name"
+                defaultValue={useUse.name}
+                
               />
             </FormControl>{" "}
             <br />
@@ -174,6 +180,7 @@ function Form() {
                 {...register("exam", { required: true })}
                 name="exam"
                 placeholder="if for more than 12 the than write name of exam for which you are preparing"
+                defaultValue={useUse.exam}
               />
             </FormControl>
             <br />
@@ -202,6 +209,7 @@ function Form() {
                 {...register("stream", { required: false })}
                 name="stream"
                 placeholder="write science/commerce/arts if you are in 11th or 12th"
+                defaultValue={useUse.stream}
               />
             </FormControl>
             <br />
