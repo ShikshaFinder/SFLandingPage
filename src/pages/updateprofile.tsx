@@ -102,8 +102,7 @@ function Form() {
                 })}
                 name="name"
                 placeholder="Your Name"
-                defaultValue={useUse.name}
-                
+                defaultValue={useUse && useUse.name}
               />
             </FormControl>{" "}
             <br />
@@ -180,7 +179,7 @@ function Form() {
                 {...register("exam", { required: true })}
                 name="exam"
                 placeholder="if for more than 12 the than write name of exam for which you are preparing"
-                defaultValue={useUse.exam}
+                defaultValue={useUse && useUse.exam}
               />
             </FormControl>
             <br />
@@ -209,7 +208,7 @@ function Form() {
                 {...register("stream", { required: false })}
                 name="stream"
                 placeholder="write science/commerce/arts if you are in 11th or 12th"
-                defaultValue={useUse.stream}
+                defaultValue={useUse && useUse.stream}
               />
             </FormControl>
             <br />
