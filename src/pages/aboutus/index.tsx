@@ -16,10 +16,18 @@ import {
 import { GoChevronRight } from "react-icons/go";
 import { MdBolt } from "react-icons/md";
 import Layout from "../Layout";
+import Head from "next/head";
 
 const HeroSection = () => {
   return (
     <Layout>
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2754274313849445"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
       <Container maxW="6xl" px={{ base: 6, md: 3 }} py={24}>
         <Stack
           direction={{ base: "column", md: "row" }}

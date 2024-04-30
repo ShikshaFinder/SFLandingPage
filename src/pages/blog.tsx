@@ -81,6 +81,11 @@ const Parent = () => {
           content="How to choose best schools for your child "
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2754274313849445"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <Container maxW={"7xl"} p="12">
         <Heading as="h1"> How to find best school for your child?</Heading>
@@ -249,7 +254,7 @@ const Parent = () => {
             labs, computers, arts programs, and extracurriculars? Access to
             resources impacts learning.
           </Text>
-         
+
           <Text as="p" fontSize="lg">
             So making a great future of a children doesn't always depend upon
             the parents but also schools they both are molders of the future of

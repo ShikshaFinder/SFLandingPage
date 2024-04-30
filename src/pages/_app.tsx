@@ -34,6 +34,11 @@ export default function App({
     <>
       <Head>
         <link rel="manifest" href="/manifest.json" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2754274313849445"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
       <noscript>
