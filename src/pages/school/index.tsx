@@ -24,6 +24,8 @@ export default function skillclass() {
   const [userData, setUserData] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
+  const [useView, setUseView] = React.useState<any[] | null>(null);
+  const school_id = "069dd121-b40d-408b-bfcb-ed2f958785ed";
 
   const userStore = useUser((state) => state.user);
   const router = useRouter();
@@ -64,6 +66,51 @@ export default function skillclass() {
   if (!user.email) {
     return <Nouser />;
   }
+
+
+   async function updateView() {
+     try {
+       if (typeof school_id === "string") {
+         let { data, error } = await supabase
+           .from("banneradview")
+           .select("view")
+           .eq("user_id", school_id);
+
+         setUseView(data);
+         if (error) throw error;
+
+         console.log("view", data);
+
+         if (data && data[0].view !== null) {
+           // Increment the 'view' column value
+           const newViewValue = data[0].view + 1;
+           // console.log("newViewValue", newViewValue);
+
+           // Update the 'view' column with the new value
+           const { error: updateError } = await supabase
+             .from("banneradview")
+             .update({ view: newViewValue })
+             .eq("user_id", school_id);
+
+           console.log("view incremented bdvkb");
+           // console.log("updateError", updateError);
+
+           if (updateError) {
+             throw updateError;
+           }
+         }
+       } else {
+         console.log("string error");
+       }
+     } catch (error) {
+       console.log("Caught Error:", error);
+     }
+   }
+
+   useEffect(() => {
+     updateView();
+   }, []);
+
 
   return (
     <>
