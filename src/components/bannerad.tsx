@@ -56,7 +56,7 @@ export default function Carousel() {
       let { data, error } = await supabase
         .from("marketingDetails")
         .select("img,redirecturl")
-        .range(0, 3);
+        .range(0, 6);
 
       setUserData(data);
       if (error) throw error;
