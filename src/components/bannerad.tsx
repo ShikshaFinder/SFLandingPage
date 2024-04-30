@@ -56,6 +56,7 @@ export default function Carousel() {
       let { data, error } = await supabase
         .from("marketingDetails")
         .select("img,redirecturl")
+        .match({ State: userStore.State, District: userStore.city })
         .range(0, 6);
 
       setUserData(data);
