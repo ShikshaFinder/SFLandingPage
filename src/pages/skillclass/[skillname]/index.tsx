@@ -1,5 +1,5 @@
 import Card from "../../../components/card";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Bannerad from "../../../components/bannerad";
 import Layoutt from "../../Layout";
 import supabase from "../../../../supabase";
@@ -16,7 +16,50 @@ export default function Skillclass() {
   const router = useRouter();
   const { skillname } = router.query;
   const userStore = useUser((state) => state.user);
-  const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
+  const [dataOffset, setDataOffset] = useState(0); 
+  
+  const [useView, setUseView] = React.useState<any[] | null>(null);
+  const school_id = "skillclass";
+
+  async function updateView() {
+    try {
+      if (typeof school_id === "string") {
+        let { data, error } = await supabase
+          .from("banneradview")
+          .select("view")
+          .eq("user_id", school_id);
+
+        setUseView(data);
+        if (error) throw error;
+
+        console.log("view", data);
+
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
+
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("banneradview")
+            .update({ view: newViewValue })
+            .eq("user_id", school_id);
+
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("string error");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
 
   async function getskill(offset: number) {
     try {
@@ -35,6 +78,8 @@ export default function Skillclass() {
       console.log("Caught Error:", error);
     }
   }
+
+  useEffect(() => {updateView();}, []); // Update effect dependencies 
 
   useEffect(() => {
     if (userStore && userStore.State) {

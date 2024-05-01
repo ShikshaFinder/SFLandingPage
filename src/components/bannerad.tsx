@@ -111,7 +111,13 @@ export default function Carousel() {
           {cards.map(({ img, link }, index) => (
             <Fragment key={index}>
               {" "}
-              <Card imgsrc={img} link={link} />
+              <Card
+                imgsrc={
+                  img ||
+                  "https://images.unsplash.com/photo-1711994872181-1e112e5e18e0?q=80&w=1860&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+                link={link}
+              />
             </Fragment>
           ))}
           {/* Add more Card components here */}

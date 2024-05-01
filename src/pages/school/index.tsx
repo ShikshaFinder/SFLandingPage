@@ -25,7 +25,7 @@ export default function skillclass() {
   const [loading, setLoading] = useState(false);
   const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
   const [useView, setUseView] = React.useState<any[] | null>(null);
-  const school_id = "069dd121-b40d-408b-bfcb-ed2f958785ed";
+  const school_id = "school";
 
   
 
@@ -71,6 +71,7 @@ export default function skillclass() {
   const userStore = useUser((state) => state.user);
   console.log(userStore);
   const router = useRouter();
+  
   async function getSchool(offset: number) {
     try {
       let { data, error } = await supabase
