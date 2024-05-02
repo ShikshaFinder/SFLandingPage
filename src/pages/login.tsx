@@ -133,6 +133,15 @@ export default function Login() {
                   Signup
                 </Link>
               </Text>
+              <br />
+              <Stack align={"center"}>
+                {" "}
+                <Link href="/magicLink">
+                  {" "}
+                  <Text color={"blue.500"}>Forgot password?</Text>
+                </Link>
+              </Stack>
+              <br />
               <Button
                 colorScheme="telegram"
                 onClick={SignIn}

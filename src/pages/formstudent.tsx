@@ -21,7 +21,6 @@ import { useRouter } from "next/router";
 import { state } from "@/components/state";
 import Nouser from "@/components/Nouser";
 
-
 interface State {
   districts: string[];
   state: string;
@@ -30,9 +29,6 @@ interface State {
 function Form() {
   const toast = useToast();
   const { user } = useAuthContext();
-  if (!user.email) {
-    return <Nouser />;
-  }
 
   const form = useForm();
   const router = useRouter();
@@ -48,37 +44,38 @@ function Form() {
       duration: 3000,
       isClosable: true,
     });
-       setTimeout(() => {
-         router.reload();
-       }, 2000);
+    setTimeout(() => {
+      router.reload();
+    }, 2000);
     router.push("/school");
   };
-
-const onSubmit = async (data: any) => {
-  const { error } = await supabase
-    .from("Student")
-    .insert([{ ...data, user_id: user.id, email: user.email }]);
-    
-
-  if (error) {
-    console.error("Error submitting Form:", error);
-    toast({
-      title: "Error",
-      description: error.message,
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-    });
-  } else {
-    handleSubmitt();  
-  }
-};
 
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
+  const onSubmit = async (data: any) => {
+    const { error } = await supabase
+      .from("Student")
+      .insert([{ ...data, user_id: user.id, email: user.email }]);
 
-    return (
+    if (error) {
+      console.error("Error submitting Form:", error);
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      handleSubmitt();
+    }
+  };
+  if (!user.email) {
+    return <Nouser />;
+  }
+
+  return (
     <>
       <Stack spacing="4">
         <Card variant="outline">
