@@ -48,6 +48,9 @@ function Form() {
       duration: 3000,
       isClosable: true,
     });
+       setTimeout(() => {
+         router.reload();
+       }, 2000);
     router.push("/school");
   };
 

@@ -1,9 +1,6 @@
-"use client";
 import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
 import { FaGoogle } from "react-icons/fa";
-
-
 import {
   Flex,
   Box,
@@ -31,16 +28,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
- async function SignIn() {
-   const { data, error } = await supabase.auth.signInWithOAuth({
-     provider: "google",
-     options: {
-       redirectTo: "https://shikshafinder.com/",
-     },
-   });
- }
-
-
+  async function SignIn() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "https://shikshafinder.com/",
+      },
+    });
+  }
 
   const Signin = async () => {
     if (!email || !password) {
@@ -58,6 +53,10 @@ export default function Login() {
         email,
         password,
       });
+
+      setTimeout(() => {
+        router.reload();
+      }, 2000);
       router.push("/school");
     } catch (error) {
       console.log(error);
