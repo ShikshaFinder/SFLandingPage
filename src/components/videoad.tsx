@@ -23,6 +23,7 @@ function video({ src,link }: { src: string ,link:string}) {
 
          console.log("view", data);
 
+         
          if (data && data[0].view !== null) {
            // Increment the 'view' column value
            const newViewValue = data[0].view + 1;
