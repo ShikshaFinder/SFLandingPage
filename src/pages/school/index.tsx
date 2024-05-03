@@ -67,11 +67,6 @@ export default function skillclass() {
      setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
    };
 
- 
-
-
-   
-
     if (!user.email) {
       return <Nouser />;
     }
