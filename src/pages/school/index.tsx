@@ -3,6 +3,7 @@ import React, { use, useEffect, useState } from "react";
 import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
+import Videoo from "../../components/videoad";
 import { useAuthContext } from "@/context";
 import {
   Grid,
@@ -24,52 +25,12 @@ export default function skillclass() {
   const [userData, setUserData] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
-  const [useView, setUseView] = React.useState<any[] | null>(null);
-  const school_id = "school";
+  const userStore = useUser((state) => state.user);
 
   
 
-   async function updateView() {
-     try {
-       if (typeof school_id === "string") {
-         let { data, error } = await supabase
-           .from("banneradview")
-           .select("view")
-           .eq("user_id", school_id);
 
-         setUseView(data);
-         if (error) throw error;
-
-         console.log("view", data);
-
-         if (data && data[0].view !== null) {
-           // Increment the 'view' column value
-           const newViewValue = data[0].view + 1;
-           // console.log("newViewValue", newViewValue);
-
-           // Update the 'view' column with the new value
-           const { error: updateError } = await supabase
-             .from("banneradview")
-             .update({ view: newViewValue })
-             .eq("user_id", school_id);
-
-           console.log("view incremented bdvkb");
-           // console.log("updateError", updateError);
-
-           if (updateError) {
-             throw updateError;
-           }
-         }
-       } else {
-         console.log("string error");
-       }
-     } catch (error) {
-       console.log("Caught Error:", error);
-     }
-   }
-
-  const userStore = useUser((state) => state.user);
-  console.log(userStore);
+  // console.log(userStore);
   const router = useRouter();
   
   async function getSchool(offset: number) {
@@ -109,9 +70,7 @@ export default function skillclass() {
  
 
 
-   useEffect(() => {
-     updateView();
-   }, []);
+   
 
     if (!user.email) {
       return <Nouser />;
@@ -121,10 +80,10 @@ export default function skillclass() {
   return (
     <>
       <Layoutt>
-        <Bannerad />
+        <Videoo src="Q8PYzXn4HSs" link="https://platform.shikshafinder.com/" />
         <br />
         {userData === null ? (
-         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <SkeletonCircle size="10" />
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
             <Button
