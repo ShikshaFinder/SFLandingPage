@@ -47,7 +47,7 @@ function Form() {
     setTimeout(() => {
       router.reload();
     }, 2000);
-    router.push("/school");
+    router.push("/Onboarding");
   };
 
   const [states, setStates] = useState<State[]>(state.states);
