@@ -1,6 +1,7 @@
 import React, { use } from "react";
-import { AspectRatio, Stack, Button } from "@chakra-ui/react";
+import { Image, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function video({ src, link }: { src: string; link: string }) {
   const router = useRouter();
@@ -22,20 +23,17 @@ function video({ src, link }: { src: string; link: string }) {
           small: 2,
         }}
       >
-        <AspectRatio maxW="560px" ratio={1.75}>
-          <iframe
-            title="hello"
-            src={`https://www.youtube.com/embed/${src}?autoplay=1`}
-            allowFullScreen
+        <Link href={link || "#"}>
+          {" "}
+          <Image
+            objectFit="cover"
+            w="100%"
+            borderWidth="1px"
+            _hover={{ shadow: "lg" }}
+            src={src}
+            alt="Promotion Image"
           />
-        </AspectRatio>
-        <Button
-          onClick={() => {
-            router.push(link);
-          }}
-        >
-          visit site
-        </Button>
+        </Link>
       </Stack>
     </>
   );
