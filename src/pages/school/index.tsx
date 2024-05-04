@@ -1,9 +1,9 @@
 import Card from "../../components/card";
 import React, { use, useEffect, useState } from "react";
 import ImgAd from "../../components/ImgAd";
+import Videoo from "../../components/videoad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
-import Videoo from "../../components/videoad";
 import { useAuthContext } from "@/context";
 import Link from "next/link";
 
@@ -46,31 +46,7 @@ export default function skillclass() {
     }
   }
 
-  async function getSchool(offset: number) {
-    try {
-      let { data, error } = await supabase
-        .from("School")
-        .select("schoolname, ratingofschool, img, user_id")
-        .match({ State: userStore.State, District: userStore.city })
-        .range(offset, offset + 3);
-
-      setUserData((prevData) =>
-        prevData ? [...prevData, ...(data || [])] : data || []
-      ); // Append new data
-      // setLoading(false);
-
-      if (error) throw error;
-    } catch (error) {
-      Toast({
-        title: "Error",
-        description: "Error fetching data",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-  }
-
+  
   async function updateView() {
     try {
       if (userAd && userAd[0]?.videolink) {
@@ -105,6 +81,32 @@ export default function skillclass() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
+    }
+  }
+
+
+  async function getSchool(offset: number) {
+    try {
+      let { data, error } = await supabase
+        .from("School")
+        .select("schoolname, ratingofschool, img, user_id")
+        .match({ State: userStore.State, District: userStore.city })
+        .range(offset, offset + 3);
+
+      setUserData((prevData) =>
+        prevData ? [...prevData, ...(data || [])] : data || []
+      ); // Append new data
+      // setLoading(false);
+
+      if (error) throw error;
+    } catch (error) {
+      Toast({
+        title: "Error",
+        description: "Error fetching data",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
 

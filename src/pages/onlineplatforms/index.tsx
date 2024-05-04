@@ -1,9 +1,10 @@
 import Card from "../../components/card";
 import React, { use, useEffect, useState } from "react";
-import Bannerad from "../../components/bannerad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
+import ImgAd from "../../components/ImgAd";
+import Videoo from "../../components/videoad";
 import { useUser } from "@/store";
 import {
   Grid,
@@ -21,21 +22,37 @@ export default function skillclass() {
   const [userData, setUserData] = useState<any[] | null>(null);
   const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
   const userStore = useUser((state) => state.user);
+
+  
   const [useView, setUseView] = React.useState<any[] | null>(null);
-  const school_id = "onlineform";
+  const [userAd, setUserAd] = React.useState<any[] | null>(null);
+
+  async function getAd() {
+    try {
+      let { data, error } = await supabase
+        .from("marketingDetails")
+        .select("img,redirecturl,videolink,user_id")
+        .range(0, 1);
+
+      setUserAd(data);
+      if (error) throw error;
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
   async function updateView() {
     try {
-      if (typeof school_id === "string") {
+      if (userAd && userAd[0]?.videolink) {
         let { data, error } = await supabase
           .from("banneradview")
           .select("view")
-          .eq("user_id", school_id);
+          .eq("user_id", userAd?.[0]?.user_id);
 
         setUseView(data);
-        if (error) throw error;
+        console.log("data view", userAd?.[0]?.user_id);
 
-        console.log("view", data);
+        if (error) throw error;
 
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
@@ -46,7 +63,7 @@ export default function skillclass() {
           const { error: updateError } = await supabase
             .from("banneradview")
             .update({ view: newViewValue })
-            .eq("user_id", school_id);
+            .eq("user_id", userAd?.[0]?.user_id);
 
           console.log("view incremented bdvkb");
           // console.log("updateError", updateError);
@@ -55,14 +72,11 @@ export default function skillclass() {
             throw updateError;
           }
         }
-      } else {
-        console.log("string error");
       }
     } catch (error) {
       console.log("Caught Error:", error);
     }
   }
-
 
   async function getcoaching(offset: number) {
     try {
@@ -84,14 +98,20 @@ export default function skillclass() {
   }
 
   useEffect(() => {
-    updateView();
-  }, []); // Update effect dependencies
-
-  useEffect(() => {
     if (userStore && userStore.State) {
       getcoaching(dataOffset);
     }
   }, [userStore, dataOffset]); // Update effect dependencies
+
+  useEffect(() => {
+    getAd();
+  }, [userStore]);
+
+  useEffect(() => {
+    updateView();
+  }, [userStore]);
+
+  
 
   const handleLoadMore = () => {
     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
@@ -104,7 +124,10 @@ export default function skillclass() {
   return (
     <>
       <Layoutt>
-        <Bannerad />
+        <Videoo
+          src={userAd && userAd[0]?.videolink}
+          link={userAd && userAd[0]?.redirecturl}
+        />
         <br />
         {userData === null ? (
           <Box>
@@ -147,8 +170,12 @@ export default function skillclass() {
         </Grid>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
-          <Button onClick={handleLoadMore}>Load More</Button> // Add onClick
-          handler
+          <Button onClick={handleLoadMore}>Load More</Button>
+          <br />
+          <ImgAd
+            src={userAd && userAd[0]?.img}
+            link={userAd && userAd[0]?.redirecturl}
+          />
         </Stack>
       </Layoutt>
     </>

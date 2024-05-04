@@ -1,6 +1,5 @@
 import Card from "../../../components/card";
 import React, { use, useEffect, useState } from "react";
-import Bannerad from "../../../components/bannerad";
 import Layoutt from "../../Layout";
 import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
@@ -8,6 +7,8 @@ import { useRouter } from "next/router";
 import { Grid,Stack,Button } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
+import ImgAd from "../../../components/ImgAd";
+import Videoo from "../../../components/videoad";
 import { useUser } from "@/store";
 
 export default function Skillclass() {
@@ -17,22 +18,36 @@ export default function Skillclass() {
   const { skillname } = router.query;
   const userStore = useUser((state) => state.user);
   const [dataOffset, setDataOffset] = useState(0); 
-  
+
   const [useView, setUseView] = React.useState<any[] | null>(null);
-  const school_id = "skillclass";
+  const [userAd, setUserAd] = React.useState<any[] | null>(null);
+
+  async function getAd() {
+    try {
+      let { data, error } = await supabase
+        .from("marketingDetails")
+        .select("img,redirecturl,videolink,user_id")
+        .range(0, 1);
+
+      setUserAd(data);
+      if (error) throw error;
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
   async function updateView() {
     try {
-      if (typeof school_id === "string") {
+      if (userAd && userAd[0]?.videolink) {
         let { data, error } = await supabase
           .from("banneradview")
           .select("view")
-          .eq("user_id", school_id);
+          .eq("user_id", userAd?.[0]?.user_id);
 
         setUseView(data);
-        if (error) throw error;
+        console.log("data view", userAd?.[0]?.user_id);
 
-        console.log("view", data);
+        if (error) throw error;
 
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
@@ -43,7 +58,7 @@ export default function Skillclass() {
           const { error: updateError } = await supabase
             .from("banneradview")
             .update({ view: newViewValue })
-            .eq("user_id", school_id);
+            .eq("user_id", userAd?.[0]?.user_id);
 
           console.log("view incremented bdvkb");
           // console.log("updateError", updateError);
@@ -52,13 +67,12 @@ export default function Skillclass() {
             throw updateError;
           }
         }
-      } else {
-        console.log("string error");
       }
     } catch (error) {
       console.log("Caught Error:", error);
     }
   }
+  
 
 
   async function getskill(offset: number) {
@@ -79,13 +93,20 @@ export default function Skillclass() {
     }
   }
 
-  useEffect(() => {updateView();}, []); // Update effect dependencies 
 
   useEffect(() => {
     if (userStore && userStore.State) {
       getskill(dataOffset);
     }
   }, [userStore, dataOffset]); // Update effect dependencies
+
+  useEffect(() => {
+    getAd();
+  }, [userStore]);
+
+  useEffect(() => {
+    updateView();
+  }, [userStore]);
 
   const handleLoadMore = () => {
     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
@@ -98,7 +119,11 @@ export default function Skillclass() {
   return (
     <>
       <Layoutt>
-        <Bannerad />
+        <Videoo
+          src={userAd && userAd[0]?.videolink}
+          link={userAd && userAd[0]?.redirecturl}
+        />
+
         <br />
         {userData === null ? (
           <Box>
@@ -141,8 +166,12 @@ export default function Skillclass() {
         </Grid>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
-          <Button onClick={handleLoadMore}>Load More</Button> // Add onClick
-          handler
+          <Button onClick={handleLoadMore}>Load More</Button>
+          <br />
+          <ImgAd
+            src={userAd && userAd[0]?.img}
+            link={userAd && userAd[0]?.redirecturl}
+          />
         </Stack>
       </Layoutt>
     </>
