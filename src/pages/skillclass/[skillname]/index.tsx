@@ -27,7 +27,7 @@ export default function Skillclass() {
       let { data, error } = await supabase
         .from("marketingDetails")
         .select("img,redirecturl,videolink,user_id")
-        .range(0, 1);
+        .range(0, 0);
 
       setUserAd(data);
       if (error) throw error;
