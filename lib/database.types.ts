@@ -60,6 +60,27 @@ export type Database = {
         }
         Relationships: []
       }
+      banneradview: {
+        Row: {
+          created_at: string
+          id: number
+          user_id: string
+          view: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          user_id: string
+          view?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          user_id?: string
+          view?: number | null
+        }
+        Relationships: []
+      }
       coaching: {
         Row: {
           Board: string | null
@@ -203,10 +224,12 @@ export type Database = {
           id: number
           img: string | null
           medium: string | null
+          mobile: number
           redirecturl: string | null
           Standard: string | null
           State: string | null
           user_id: string | null
+          videolink: string
         }
         Insert: {
           Board?: string | null
@@ -216,10 +239,12 @@ export type Database = {
           id?: number
           img?: string | null
           medium?: string | null
+          mobile: number
           redirecturl?: string | null
           Standard?: string | null
           State?: string | null
           user_id?: string | null
+          videolink: string
         }
         Update: {
           Board?: string | null
@@ -229,10 +254,12 @@ export type Database = {
           id?: number
           img?: string | null
           medium?: string | null
+          mobile?: number
           redirecturl?: string | null
           Standard?: string | null
           State?: string | null
           user_id?: string | null
+          videolink?: string
         }
         Relationships: []
       }
@@ -479,7 +506,6 @@ export type Database = {
           skillclassname: string
           skilltype: string
           State: string | null
-          streetaddress: string | null
           subdistrict: string | null
           user_id: string | null
           videolink: string | null
@@ -499,7 +525,6 @@ export type Database = {
           skillclassname: string
           skilltype: string
           State?: string | null
-          streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
           videolink?: string | null
@@ -519,7 +544,6 @@ export type Database = {
           skillclassname?: string
           skilltype?: string
           State?: string | null
-          streetaddress?: string | null
           subdistrict?: string | null
           user_id?: string | null
           videolink?: string | null
@@ -695,33 +719,36 @@ export type Database = {
       votes: {
         Row: {
           created_at: string
-          email: string | null
           extracurricular: number | null
           facilityprovided: number | null
           id: number
           management: number | null
           qualityofeducation: number | null
-          school_id: string
+          totalrating: number | null
+          user_id: string | null
+          view: number | null
         }
         Insert: {
           created_at?: string
-          email?: string | null
           extracurricular?: number | null
           facilityprovided?: number | null
           id?: number
           management?: number | null
           qualityofeducation?: number | null
-          school_id: string
+          totalrating?: number | null
+          user_id?: string | null
+          view?: number | null
         }
         Update: {
           created_at?: string
-          email?: string | null
           extracurricular?: number | null
           facilityprovided?: number | null
           id?: number
           management?: number | null
           qualityofeducation?: number | null
-          school_id?: string
+          totalrating?: number | null
+          user_id?: string | null
+          view?: number | null
         }
         Relationships: []
       }

@@ -30,7 +30,6 @@ function Vote() {
   const router = useRouter();
   const { name } = router.query;
   const { register, handleSubmit } = form;
-  const [total, setTotal] = useState(0); // Initialize total votes to 0
 
   const [userData, setUserData] = useState<any[] | null>(null);
 
@@ -55,7 +54,7 @@ function Vote() {
       const { data, error } = await supabase
         .from("votes")
         .select(
-          "qualityofeducation,facilityprovided,management,extracurricular"
+          "qualityofeducation,facilityprovided,management,extracurricular,view"
         )
         .eq("user_id", name);
       setUserData(data);
@@ -70,7 +69,9 @@ function Vote() {
         data[0].management &&
         data[0].management !== 0 &&
         data[0].extracurricular &&
-        data[0].extracurricular !== 0
+        data[0].extracurricular !== 0 &&
+        data[0].view &&
+        data[0].view !== 0
       ) {
         const newQualityofeducation =
           (data[0].qualityofeducation + parseInt(voteData.qualityofeducation)) /
@@ -85,12 +86,8 @@ function Vote() {
         const newExtracurricular =
           (data[0].extracurricular + parseInt(voteData.extracurricular)) / 2;
 
-        console.log(
-          newQualityofeducation,
-          newFacilityprovided,
-          newManagement,
-          newExtracurricular
-        );
+          const newView = data[0].view + 1;
+
 
         const totalrating =
           (newExtracurricular +
@@ -107,6 +104,7 @@ function Vote() {
             management: newManagement,
             extracurricular: newExtracurricular,
             totalrating: totalrating,
+            view: newView,
           })
           .eq("user_id", name);
 
