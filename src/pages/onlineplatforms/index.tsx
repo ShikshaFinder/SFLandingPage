@@ -105,11 +105,11 @@ export default function skillclass() {
 
   useEffect(() => {
     getAd();
-  }, [userStore]);
+  }, []);
 
   useEffect(() => {
     updateView();
-  }, [userStore]);
+  }, []);
 
   
 
