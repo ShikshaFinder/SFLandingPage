@@ -21,7 +21,7 @@ function Schoolleaderbord() {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
     []
   );
-
+/////change
   const fetchLeaderboardData = async () => {
     const { data, error } = await supabase
       .from("School")
