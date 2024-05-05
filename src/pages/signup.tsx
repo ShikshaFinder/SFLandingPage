@@ -16,7 +16,7 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
-import { use, useState } from "react";
+import React, { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useToast } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";

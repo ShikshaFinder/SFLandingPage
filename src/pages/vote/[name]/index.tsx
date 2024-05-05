@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   FormControl,
@@ -18,10 +18,8 @@ import {
 import { useRouter } from "next/router";
 
 import { useAuthContext } from "../../../context";
-import { useState, useEffect } from "react";
 import supabase from "../../../../supabase";
 import Layout from "../../Layout";
-import { useUser } from "@/store";
 import Nouser from "@/components/Nouser";
 
 function Vote() {
@@ -29,30 +27,122 @@ function Vote() {
   const toast = useToast();
   const form = useForm();
   const [hasVoted, setHasVoted] = useState(false);
-  const userStore = useUser((state) => state.user);
   const router = useRouter();
   const { name } = router.query;
   const { register, handleSubmit } = form;
+  const [total, setTotal] = useState(0); // Initialize total votes to 0
 
-  const onSubmit = async (data: any) => {
-    const { error } = await supabase
-      .from("votes") // replace 'votes' with the name of your table
-      .insert([{ ...data, email: user.email, school_id: name }]);
+  const [userData, setUserData] = useState<any[] | null>(null);
 
-    if (error) {
-      console.error("Error submitting vote:", error);
-    } else {
-      handleSubmitt();
+  const onSubmit = async () => {
+    const {
+      qualityofeducation,
+      facilityprovided,
+      management,
+      extracurricular,
+    } = form.getValues();
+
+    const voteData = {
+      qualityofeducation,
+      facilityprovided,
+      management,
+      extracurricular,
+      user_id: name,
+    };
+    console.log("voteData", voteData);
+
+    if (typeof name == "string") {
+      const { data, error } = await supabase
+        .from("votes")
+        .select(
+          "qualityofeducation,facilityprovided,management,extracurricular"
+        )
+        .eq("user_id", name);
+      setUserData(data);
+      if (error) throw error;
+
+      if (
+        data &&
+        data[0].qualityofeducation &&
+        data[0].qualityofeducation !== 0 &&
+        data[0].facilityprovided &&
+        data[0].facilityprovided !== 0 &&
+        data[0].management &&
+        data[0].management !== 0 &&
+        data[0].extracurricular &&
+        data[0].extracurricular !== 0
+      ) {
+        const newQualityofeducation =
+          (data[0].qualityofeducation + parseInt(voteData.qualityofeducation)) /
+          2;
+
+        const newFacilityprovided =
+          (data[0].facilityprovided + parseInt(voteData.facilityprovided)) / 2;
+
+        const newManagement =
+          (data[0].management + parseInt(voteData.management)) / 2;
+
+        const newExtracurricular =
+          (data[0].extracurricular + parseInt(voteData.extracurricular)) / 2;
+
+        console.log(
+          newQualityofeducation,
+          newFacilityprovided,
+          newManagement,
+          newExtracurricular
+        );
+
+        const totalrating =
+          (newExtracurricular +
+            newFacilityprovided +
+            newManagement +
+            newQualityofeducation) /
+          4;
+
+        const { error: updateError } = await supabase
+          .from("votes")
+          .update({
+            qualityofeducation: newQualityofeducation,
+            facilityprovided: newFacilityprovided,
+            management: newManagement,
+            extracurricular: newExtracurricular,
+            totalrating: totalrating,
+          })
+          .eq("user_id", name);
+
+        if (updateError) {
+          toast({
+            title: "Error",
+            description: "Votes must be in between 0 to 10",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+          return;
+        }
+      } else {
+        const { error: insertError } = await supabase
+          .from("votes")
+          .update({
+            qualityofeducation,
+            facilityprovided,
+            management,
+            extracurricular,
+          })
+          .eq("user_id", name);
+
+        if (insertError) {
+          toast({
+            title: "Error",
+            description: "Votes must be in between 0 to 10",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+          return;
+        }
+      }
     }
-  };
-  useEffect(() => {
-    const voteStatus = localStorage.getItem("hasVoted");
-    if (voteStatus) {
-      setHasVoted(true);
-    }
-  }, []);
-
-  const handleSubmitt = () => {
     localStorage.setItem("hasVoted", "true");
     setHasVoted(true);
 
@@ -65,18 +155,40 @@ function Vote() {
     });
   };
 
-  if (hasVoted) {
-    return (
-      <>
-        <p>Thank you for your vote!</p>
-        <a href="/">Visit Home Page</a>
-      </>
-    );
-  }
+   useEffect(() => {
+     const voteStatus = localStorage.getItem("hasVoted");
+     if (voteStatus) {
+       setHasVoted(true);
+     }
+   }, []);
 
-  if (!user.email) {
-    return <Nouser />;
-  }
+   if (hasVoted) {
+     return (
+       <>
+         <p>Thank you for your vote!</p>
+         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+           <Button
+             onClick={() => {
+               router.push("/");
+             }}
+           >
+             Visit Home Page
+           </Button>
+           <Button
+             onClick={() => {
+               router.push("/onbording");
+             }}
+           >
+             Know More about shiksha finder
+           </Button>
+         </Stack>
+       </>
+     );
+   }
+
+   if (!user.email) {
+     return <Nouser />;
+   }  
 
   return (
     <>
@@ -167,6 +279,7 @@ function Vote() {
             </CardBody>
           </Card>
         </Stack>
+       
       </Layout>
     </>
   );
