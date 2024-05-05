@@ -106,7 +106,7 @@ export default function Skillclass() {
 
   useEffect(() => {
     updateView();
-  }, [userStore]);
+  }, [userAd]);
 
   const handleLoadMore = () => {
     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3

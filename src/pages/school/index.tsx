@@ -116,7 +116,7 @@ export default function skillclass() {
 
   useEffect(() => {
     updateView();
-  }, [userStore]);
+  }, [userAd]);
 
   useEffect(() => {
     if (userStore && userStore.State) {
