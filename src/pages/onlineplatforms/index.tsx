@@ -109,7 +109,7 @@ export default function skillclass() {
 
   useEffect(() => {
     updateView();
-  }, []);
+  }, [userAd]);
 
   
 
