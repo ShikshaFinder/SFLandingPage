@@ -1,4 +1,4 @@
-import { Stack,Box } from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
@@ -34,10 +34,29 @@ function IntroSchool() {
 
   const { coachingname } = router.query;
   const { user } = useAuthContext();
-  if (!user.email) {
-    return <Nouser />;
-  }
+
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
+  const [useVote, setVote] = React.useState<any[] | null>(null);
+  const [useView, setUseView] = React.useState<any[] | null>(null);
+  const [userData, setUserData] = useState<any[] | null>(null);
+
+  async function getVote() {
+    try {
+      if (typeof coachingname === "string") {
+        let { data, error } = await supabase
+          .from("vote")
+          .select("*")
+          .eq("user_id", coachingname);
+
+        setVote(data);
+        if (error) throw error;
+      } else {
+        console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
   async function getStandard() {
     try {
@@ -55,24 +74,17 @@ function IntroSchool() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-      alert(error);
-
     }
   }
-  useEffect(() => {
-    getStandard();
-  }, [coachingname]);
-
-  const [userData, setUserData] = useState<any[] | null>(null);
-    const [useView, setUseView] = React.useState<any[] | null>(null);
-
 
   async function getSchool() {
     try {
       if (typeof coachingname === "string") {
         let { data, error } = await supabase
           .from("coaching")
-          .select("videolink,website,coachingname,location,locationlink,discription,mobile")
+          .select(
+            "videolink,website,coachingname,location,locationlink,discription,mobile"
+          )
           .eq("user_id", coachingname);
 
         if (error) throw error;
@@ -86,51 +98,62 @@ function IntroSchool() {
     }
   }
 
+  async function updateView() {
+    try {
+      if (typeof coachingname === "string") {
+        let { data, error } = await supabase
+          .from("viewcoaching")
+          .select("view")
+          .eq("user_id", coachingname);
+
+        setUseView(data);
+        if (error) throw error;
+
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
+
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("viewcoaching")
+            .update({ view: newViewValue })
+            .eq("user_id", coachingname);
+
+          console.log("view incremented in coaching");
+          // console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("string error");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
   useEffect(() => {
     getSchool();
   }, [coachingname]);
 
-   async function updateView() {
-     try {
-       if (typeof coachingname === "string") {
-         let { data, error } = await supabase
-           .from("viewcoaching")
-           .select("view")
-           .eq("user_id", coachingname);
+  useEffect(() => {
+    getStandard();
+  }, [coachingname]);
 
-         setUseView(data);
-         if (error) throw error;
+  useEffect(() => {
+    getVote();
+  }, [coachingname]);
 
+  useEffect(() => {
+    updateView();
+  }, []);
 
-         if (data && data[0].view !== null) {
-           // Increment the 'view' column value
-           const newViewValue = data[0].view + 1;
-           // console.log("newViewValue", newViewValue);
-
-           // Update the 'view' column with the new value
-           const { error: updateError } = await supabase
-             .from("viewcoaching")
-             .update({ view: newViewValue })
-             .eq("user_id", coachingname);
-
-           console.log("view incremented in coaching");
-           // console.log("updateError", updateError);
-
-           if (updateError) {
-             throw updateError;
-           }
-         }
-       } else {
-         console.log("string error");
-       }
-     } catch (error) {
-       console.log("Caught Error:", error);
-     }
-   }
-
-   useEffect(() => {
-     updateView();
-   }, []);
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   return (
     <>
@@ -193,7 +216,13 @@ function IntroSchool() {
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
 
-        <Chart extra={9} quality={8} management={7} facilities={8} />
+        <Chart
+          extra={useVote && useVote[0]?.extracurricular}
+          quality={useVote && useVote[0]?.qualityofeducation}
+          management={useVote && useVote[0]?.management}
+          facilities={useVote && useVote[0]?.facilityprovided}
+          view={useVote && useVote[0]?.view}
+        />
         <Stack direction={"row"}>
           {cards.map(({ name, imgsrc, rating, link }, index) => (
             <Card

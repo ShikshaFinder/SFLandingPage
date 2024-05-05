@@ -5,12 +5,11 @@ import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/InfoTeacher";
 import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
-import React, { use } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-import { MdMargin } from "react-icons/md";
 // import { useAuthContext } from "@/context";
 
 const cards = [
@@ -36,8 +35,8 @@ function IntroSchool() {
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
-    const [userData, setUserData] = useState<any[] | null>(null);
-
+  const [userData, setUserData] = useState<any[] | null>(null);
+  const [useVote, setVote] = React.useState<any[] | null>(null);
 
   async function getStandard() {
     try {
@@ -58,6 +57,26 @@ function IntroSchool() {
     }
   }
 
+  async function getVote() {
+    try {
+      if (typeof schoolname === "string") {
+        let { data, error } = await supabase
+          .from("votes")
+          .select(
+            "qualityofeducation,facilityprovided,management,extracurricular,view"
+          )
+          .eq("user_id", schoolname);
+
+        setVote(data);
+
+        // if (error) throw error;
+      } else {
+        console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
   async function getSchool() {
     try {
@@ -82,13 +101,9 @@ function IntroSchool() {
     }
   }
 
-  useEffect(() => {
-    getSchool();
-  }, [schoolname]);
+ 
 
-  useEffect(() => {
-    getStandard();
-  }, [schoolname]);
+ 
 
   async function updateView() {
     try {
@@ -128,6 +143,18 @@ function IntroSchool() {
       console.log("Caught Error:", error);
     }
   }
+
+   useEffect(() => {
+     getStandard();
+   }, [schoolname]);
+
+    useEffect(() => {
+      getSchool();
+    }, [schoolname]);
+
+    useEffect(() => {
+      getVote();
+    }, [schoolname]);
 
   useEffect(() => {
     updateView();
@@ -193,7 +220,13 @@ function IntroSchool() {
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
         <br />
-        <Chart extra={9} quality={8} management={7} facilities={8} />
+        <Chart
+          extra={useVote && useVote[0]?.extracurricular}
+          quality={useVote && useVote[0]?.qualityofeducation}
+          management={useVote && useVote[0]?.management}
+          facilities= {useVote && useVote[0]?.facilityprovided}
+          view={useVote && useVote[0]?.view}
+        />
         <Stack direction={"row"}>
           {cards.map(({ name, imgsrc, rating, link }, index) => (
             <Card

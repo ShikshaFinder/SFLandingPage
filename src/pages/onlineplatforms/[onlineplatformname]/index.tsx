@@ -34,8 +34,9 @@ function IntroSchool() {
   const { onlineplatformname } = router.query;
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
-    const [useView, setUseView] = React.useState<any[] | null>(null);
-
+  const [useView, setUseView] = React.useState<any[] | null>(null);
+  const [userData, setUserData] = useState<any[] | null>(null);
+  const [useVote, setVote] = React.useState<any[] | null>(null);
 
   async function getStandard() {
     try {
@@ -56,7 +57,24 @@ function IntroSchool() {
     }
   }
 
-  const [userData, setUserData] = useState<any[] | null>(null);
+async function getVote() {
+    try {
+      if (typeof onlineplatformname === "string") {
+        let { data, error } = await supabase
+          .from("vote")
+          .select("*")
+          .eq("user_id", onlineplatformname);
+
+        setVote(data);
+        if (error) throw error;
+      } else {
+        console.log("No onlineplatformname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
 
   async function getSchool() {
     try {
@@ -76,7 +94,44 @@ function IntroSchool() {
       console.log("Caught Error:", error);
     }
   }
+  async function updateView() {
+    try {
+      if (typeof onlineplatformname === "string") {
+        let { data, error } = await supabase
+          .from("viewonline")
+          .select("view")
+          .eq("user_id", onlineplatformname);
 
+        setUseView(data);
+        if (error) throw error;
+
+        console.log("view", data);
+
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
+
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("viewonline")
+            .update({ view: newViewValue })
+            .eq("user_id", onlineplatformname);
+
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("string error");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
   useEffect(() => {
     getSchool();
   }, [onlineplatformname]);
@@ -84,49 +139,14 @@ function IntroSchool() {
   useEffect(() => {
     getStandard();
   }, [onlineplatformname]);
-     async function updateView() {
-       try {
-         if (typeof onlineplatformname === "string") {
-           let { data, error } = await supabase
-             .from("viewonline")
-             .select("view")
-             .eq("user_id", onlineplatformname);
 
-           setUseView(data);
-           if (error) throw error;
+  useEffect(() => {
+    getVote();
+  }, [onlineplatformname]);
 
-           console.log("view", data);
-
-           if (data && data[0].view !== null) {
-             // Increment the 'view' column value
-             const newViewValue = data[0].view + 1;
-             // console.log("newViewValue", newViewValue);
-
-             // Update the 'view' column with the new value
-             const { error: updateError } = await supabase
-               .from("viewonline")
-               .update({ view: newViewValue })
-               .eq("user_id", onlineplatformname);
-
-             console.log("view incremented bdvkb");
-             // console.log("updateError", updateError);
-
-             if (updateError) {
-               throw updateError;
-             }
-           }
-         } else {
-           console.log("string error");
-         }
-       } catch (error) {
-         console.log("Caught Error:", error);
-       }
-     }
-
-     useEffect(() => {
-       updateView();
-     }, []);
-
+  useEffect(() => {
+    updateView();
+  }, []);
 
   return (
     <>
@@ -182,15 +202,19 @@ function IntroSchool() {
         />
         <br />
         <InfoTeacher
-          TeacherName={
-            userData && userData[0] ? userData[0].coachingname : ""
-          }
+          TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
           // Experience={"12 years"}
-         
+
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
 
-        <Chart extra={9} quality={8} management={7} facilities={8} />
+        <Chart
+          extra={useVote && useVote[0]?.extracurricular}
+          quality={useVote && useVote[0]?.qualityofeducation}
+          management={useVote && useVote[0]?.management}
+          facilities={useVote && useVote[0]?.facilityprovided}
+          view={useVote && useVote[0]?.view}
+        />
         <Stack direction={"row"}>
           {cards.map(({ name, imgsrc, rating, link }, index) => (
             <Card
