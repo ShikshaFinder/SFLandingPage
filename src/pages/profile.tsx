@@ -76,12 +76,12 @@ function Profile() {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        <a
+        {/* <a
           href="schoolleaderbord"
           style={{ textDecoration: "underline", color: "blue" }}
         >
           school leaderbord
-        </a>
+        </a> */}
       </Layout>
     </>
   );
