@@ -25,13 +25,16 @@ function video({ src, link }: { src: string; link: string }) {
         <AspectRatio maxW="560px" ratio={1.75}>
           <iframe
             title="hello"
-            src={`https://www.youtube.com/embed/${src}?autoplay=1`}
+            src={
+              `https://www.youtube.com/embed/${src}?autoplay=1` ||
+              "https://www.youtube.com/embed/Q8PYzXn4HSs?si=HF3XvS_3Eu1RO93K?autoplay=1"
+            }
             allowFullScreen
           />
         </AspectRatio>
         <Button
           onClick={() => {
-            router.push(link);
+            router.push(link || "https://www.vigyasa.live/");
           }}
         >
           visit site

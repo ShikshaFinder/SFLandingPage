@@ -37,6 +37,7 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("marketingDetails")
         .select("img,redirecturl,videolink,user_id")
+        .match({ State: userStore.State, city: userStore.city })
         .range(0, 0);
         
 

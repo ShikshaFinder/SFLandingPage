@@ -22,7 +22,6 @@ export default function skillclass() {
   const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
   const userStore = useUser((state) => state.user);
 
-  
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
@@ -31,6 +30,7 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("marketingDetails")
         .select("img,redirecturl,videolink,user_id")
+        .match({ State: userStore.State, city: userStore.city })
         .range(0, 0);
 
       setUserAd(data);
@@ -77,7 +77,6 @@ export default function skillclass() {
     }
   }
 
-
   async function getcoaching(offset: number) {
     try {
       let { data, error } = await supabase
@@ -110,8 +109,6 @@ export default function skillclass() {
   useEffect(() => {
     updateView();
   }, [userAd]);
-
-   
 
   const handleLoadMore = () => {
     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
