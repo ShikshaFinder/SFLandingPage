@@ -192,7 +192,7 @@ const Parent = () => {
               textDecoration="underline"
               cursor="pointer"
             >
-              <a href="https://www.shikshafinder.com/school/">
+              <a href="https://shikshafinder.com/school">
                 Shiksha Finder schools
               </a>
             </Text>
@@ -217,7 +217,7 @@ const Parent = () => {
                 ShikshaFinder Teacher
               </a>
             </Text>
-            <br /> <b>Ratings and reviwes of schools</b> -WE should have a look
+            <br /> <b>Ratings and reviews of schools</b> -WE should have a look
             on the satisfaction of parents and students who are already learning
             form theire. you can also visit the ratings and reviews of schools
             by visiting &nbsp;
