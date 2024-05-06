@@ -23,7 +23,7 @@ function video({ src, link }: { src: string; link: string }) {
           small: 2,
         }}
       >
-        <Link href={link || "#"}>
+        <Link href={link || "https://www.vigyasa.live/"}>
           {" "}
           <Image
             objectFit="cover"
