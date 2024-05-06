@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { Image, Stack } from "@chakra-ui/react";
+import { Image, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -23,6 +23,10 @@ function video({ src, link }: { src: string; link: string }) {
           small: 2,
         }}
       >
+        <Text>
+          {" "}
+          This site might help you...Click on img <b>Sponsored</b>
+        </Text>
         <Link href={link || "https://www.vigyasa.live/"}>
           {" "}
           <Image

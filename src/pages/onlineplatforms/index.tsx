@@ -121,13 +121,16 @@ export default function skillclass() {
   if (!user.email) {
     return <Nouser />;
   }
+  
 
   return (
     <>
       <Layoutt>
         <Videoo
-          src={userAd && userAd[0]?.videolink}
-          link={userAd && userAd[0]?.redirecturl}
+          src={(userAd && userAd[0]?.videolink) || "Q8PYzXn4HSs"}
+          link={
+            (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
+          }
         />
         <br />
         {userData === null ? (
@@ -174,8 +177,13 @@ export default function skillclass() {
           <Button onClick={handleLoadMore}>Load More</Button>
           <br />
           <ImgAd
-            src={userAd && userAd[0]?.img}
-            link={userAd && userAd[0]?.redirecturl}
+            src={
+              (userAd && userAd[0]?.img) ||
+              "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75"
+            }
+            link={
+              (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
+            }
           />
         </Stack>
       </Layoutt>

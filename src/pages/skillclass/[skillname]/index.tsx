@@ -4,7 +4,7 @@ import Layoutt from "../../Layout";
 import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
-import { Grid,Stack,Button } from "@chakra-ui/react";
+import { Grid, Stack, Button } from "@chakra-ui/react";
 import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
 import ImgAd from "../../../components/ImgAd";
@@ -17,7 +17,7 @@ export default function Skillclass() {
   const router = useRouter();
   const { skillname } = router.query;
   const userStore = useUser((state) => state.user);
-  const [dataOffset, setDataOffset] = useState(0); 
+  const [dataOffset, setDataOffset] = useState(0);
 
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
@@ -73,8 +73,6 @@ export default function Skillclass() {
       console.log("Caught Error:", error);
     }
   }
-  
-
 
   async function getskill(offset: number) {
     try {
@@ -93,7 +91,6 @@ export default function Skillclass() {
       console.log("Caught Error:", error);
     }
   }
-
 
   useEffect(() => {
     if (userStore && userStore.State) {
@@ -121,8 +118,10 @@ export default function Skillclass() {
     <>
       <Layoutt>
         <Videoo
-          src={userAd && userAd[0]?.videolink}
-          link={userAd && userAd[0]?.redirecturl}
+          src={(userAd && userAd[0]?.videolink) || "Q8PYzXn4HSs"}
+          link={
+            (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
+          }
         />
 
         <br />
@@ -170,8 +169,13 @@ export default function Skillclass() {
           <Button onClick={handleLoadMore}>Load More</Button>
           <br />
           <ImgAd
-            src={userAd && userAd[0]?.img}
-            link={userAd && userAd[0]?.redirecturl}
+            src={
+              (userAd && userAd[0]?.img) ||
+              "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75"
+            }
+            link={
+              (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
+            }
           />
         </Stack>
       </Layoutt>
