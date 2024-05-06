@@ -1,16 +1,16 @@
 import React from "react";
-import Leaderbord from "./Leaderbord";
+// import Leaderbord from "./Leaderbord";
 
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 
-interface LeaderboardEntry {
-  schoolname: string;
-  views: number;
-  name1: string;
-  name2: string;
-  name3: string;
-}
+// interface LeaderboardEntry {
+//   schoolname: string;
+//   views: number;
+//   name1: string;
+//   name2: string;
+//   name3: string;
+// }
 
 function Schoolleaderbord() {
   //   const { user } = useAuthContext();
