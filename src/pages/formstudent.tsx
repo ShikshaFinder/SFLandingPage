@@ -189,6 +189,7 @@ function Form() {
                 placeholder="exam for which you are preparing"
               />
             </FormControl>
+            <br />
             <FormControl as="fieldset">
               <FormLabel as="legend">Medium</FormLabel>
               <Controller

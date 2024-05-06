@@ -1,4 +1,4 @@
-import { Stack,Box } from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../../components/admissionformlink";
 import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
@@ -14,30 +14,27 @@ import ShareButton from "../../../../components/shareButton";
 
 const cards = [
   {
-    name: "Shree Swami",
-    imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/skillclass/typeofclass/nameofCoaching",
+    name: "Vigyasa",
+    imgsrc: "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75",
+    rating: "5.0",
+    link: "https://www.vigyasa.live/",
   },
   {
-    name: "Shree ",
+    name: " Mariya Institute",
     imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/coaching/1/nameofCoaching",
+      "wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1715018846231_mariyainstitute.png&h=300",
+    rating: "5",
+    link: "https://shikshafinder.com/coaching/1b9d55be-d1ac-4ffa-bf04-fb17ce07834e",
   },
 ];
-
 function IntroSchool() {
   const router = useRouter();
   const { skillclass } = router.query;
 
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
-    const [userData, setUserData] = useState<any[] | null>(null);
+  const [userData, setUserData] = useState<any[] | null>(null);
   const [useVote, setVote] = React.useState<any[] | null>(null);
-
 
   async function getStandard() {
     try {
@@ -79,9 +76,6 @@ function IntroSchool() {
     }
   }
 
-
-  
-
   async function getSchool() {
     try {
       if (typeof skillclass === "string") {
@@ -114,49 +108,48 @@ function IntroSchool() {
     getStandard();
   }, [skillclass]);
 
-   async function updateView() {
-     try {
-       if (typeof skillclass === "string") {
-         let { data, error } = await supabase
-           .from("viewskill")
-           .select("view")
-           .eq("user_id", skillclass);
+  async function updateView() {
+    try {
+      if (typeof skillclass === "string") {
+        let { data, error } = await supabase
+          .from("viewskill")
+          .select("view")
+          .eq("user_id", skillclass);
 
-         setUseView(data);
-         if (error) throw error;
+        setUseView(data);
+        if (error) throw error;
 
-         console.log("view", data);
+        console.log("view", data);
 
-         if (data && data[0].view !== null) {
-           // Increment the 'view' column value
-           const newViewValue = data[0].view + 1;
-           // console.log("newViewValue", newViewValue);
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
 
-           // Update the 'view' column with the new value
-           const { error: updateError } = await supabase
-             .from("viewskill")
-             .update({ view: newViewValue })
-             .eq("user_id", skillclass);
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("viewskill")
+            .update({ view: newViewValue })
+            .eq("user_id", skillclass);
 
-           console.log("view incremented bdvkb");
-           // console.log("updateError", updateError);
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
 
-           if (updateError) {
-             throw updateError;
-           }
-         }
-       } else {
-         console.log("string error");
-       }
-     } catch (error) {
-       console.log("Caught Error:", error);
-     }
-   }
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      } else {
+        console.log("string error");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
-   useEffect(() => {
-     updateView();
-   }, []);
-
+  useEffect(() => {
+    updateView();
+  }, []);
 
   return (
     <>

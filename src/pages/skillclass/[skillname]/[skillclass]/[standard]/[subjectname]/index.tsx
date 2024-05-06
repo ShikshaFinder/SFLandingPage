@@ -13,21 +13,19 @@ import Subject from "@/components/subject";
 
 const cards = [
   {
-    name: "Shree Swami",
-    imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/skillclass/typeofclass/nameofCoaching",
+    name: "Vigyasa",
+    imgsrc: "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75",
+    rating: "5.0",
+    link: "https://www.vigyasa.live/",
   },
   {
-    name: "Shree Swami nararyan ",
+    name: " Mariya Institute",
     imgsrc:
-      "https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    rating: "3.4",
-    link: "/coaching/1/nameofCoaching",
+      "wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1715018846231_mariyainstitute.png&h=300",
+    rating: "5",
+    link: "https://shikshafinder.com/coaching/1b9d55be-d1ac-4ffa-bf04-fb17ce07834e",
   },
 ];
-
 function IntroSchool() {
   const router = useRouter();
   const { subjectname, standard, skillclass } = router.query;
