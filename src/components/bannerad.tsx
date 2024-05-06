@@ -4,7 +4,6 @@ import Slider from "react-slick";
 import { useState, useEffect } from "react";
 import supabase from "../../supabase";
 import Card from "./card";
-// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
