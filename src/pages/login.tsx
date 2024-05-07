@@ -37,6 +37,16 @@ export default function Login() {
         redirectTo: "https://shikshafinder.com/",
       },
     });
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
   }
 
   const Signin = async () => {

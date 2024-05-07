@@ -81,7 +81,6 @@ export default function SignupCard() {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Alert status="info">
-            <InfoIcon />
             please click on the link sent to your email to verify your account
           </Alert>
           <Heading fontSize={"4xl"} textAlign={"center"}>
