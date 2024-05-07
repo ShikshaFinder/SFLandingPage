@@ -55,10 +55,21 @@ export default function Login() {
         email,
         password,
       });
+      if(error) {
+        toast({
+          title: "Error.",
+          description: error.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        return;
+      }
 
       setTimeout(() => {
         router.reload();
       }, 2000);
+      
       router.push("/school");
     } catch (error) {
       console.log(error);
