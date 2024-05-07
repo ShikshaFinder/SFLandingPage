@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Button, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
