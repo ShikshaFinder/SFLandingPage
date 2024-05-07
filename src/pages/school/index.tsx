@@ -39,7 +39,7 @@ export default function skillclass() {
         .select("img,redirecturl,videolink,user_id")
         .match({
           State: userStore.State,
-          city: userStore.city,
+          District: userStore.city,
           Board: userStore.Board,
           Standard: userStore.standardcategory,
         })
