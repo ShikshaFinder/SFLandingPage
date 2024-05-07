@@ -8,6 +8,7 @@ import {
   CardBody,
   Badge,
   Stack,
+  Box,
 } from "@chakra-ui/react";
 
 import {
@@ -122,6 +123,7 @@ function profile({
               <FaSchool />
               <b style={{ textAlign: "center" }}>&nbsp; {standard}</b>{" "}
             </WrapItem>
+
             <WrapItem style={{ marginTop: "10px" }}>
               <FaSignOutAlt />
               <b
@@ -134,6 +136,7 @@ function profile({
               </b>
             </WrapItem>
           </Wrap>
+          <Box height={"30px"}></Box>
         </CardBody>
         {/* Add bg="gray.200" to set the background color */}
       </Card>

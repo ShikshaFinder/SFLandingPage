@@ -15,6 +15,8 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -72,6 +74,10 @@ export default function Login() {
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
+          <Alert status="warning">
+            <AlertIcon />
+            If you haven't signed up please do so before signing in
+          </Alert>
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Sign In
           </Heading>

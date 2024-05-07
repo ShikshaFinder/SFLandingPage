@@ -46,6 +46,7 @@ export default function skillclass() {
         .range(0, 0);
 
       setUserAd(data);
+      console.log("data", data);
       if (data && data[0]?.videolink == null) {
         let { data, error } = await supabase
           .from("marketingDetails")
