@@ -567,6 +567,7 @@ export type Database = {
           name: string | null
           school_userid: string | null
           Standard: string | null
+          standardcategory: string | null
           State: string | null
           stream: string | null
           subDistrict: string | null
@@ -584,6 +585,7 @@ export type Database = {
           name?: string | null
           school_userid?: string | null
           Standard?: string | null
+          standardcategory?: string | null
           State?: string | null
           stream?: string | null
           subDistrict?: string | null
@@ -601,6 +603,7 @@ export type Database = {
           name?: string | null
           school_userid?: string | null
           Standard?: string | null
+          standardcategory?: string | null
           State?: string | null
           stream?: string | null
           subDistrict?: string | null

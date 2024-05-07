@@ -144,9 +144,12 @@ function Form() {
                 render={({ field }) => (
                   <RadioGroup {...field}>
                     <HStack spacing="24px">
-                      <Radio value="Hindi">CBSE</Radio>
-                      <Radio value="English">NCERT</Radio>
                       <Radio value="State">State Board</Radio>
+                      <Radio value="CBSE">CBSE</Radio>
+                      <Radio value="IB">IB</Radio>
+                      <Radio value="ICSE">ICSE</Radio>
+                      <Radio value="AISSCE">AISSCE</Radio>
+                      <Radio value="NIOS">NIOS</Radio>
                     </HStack>
                   </RadioGroup>
                 )}
