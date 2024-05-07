@@ -13,6 +13,7 @@ import {
   Card,
   Stack,
   Select,
+  Wrap,
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
 import { useForm, Controller } from "react-hook-form";
@@ -143,14 +144,14 @@ function Form() {
                 rules={{ required: true }}
                 render={({ field }) => (
                   <RadioGroup {...field}>
-                    <HStack spacing="24px">
+                    <Wrap spacing="24px">
                       <Radio value="State">State Board</Radio>
                       <Radio value="CBSE">CBSE</Radio>
                       <Radio value="IB">IB</Radio>
                       <Radio value="ICSE">ICSE</Radio>
                       <Radio value="AISSCE">AISSCE</Radio>
                       <Radio value="NIOS">NIOS</Radio>
-                    </HStack>
+                    </Wrap>
                   </RadioGroup>
                 )}
               />
