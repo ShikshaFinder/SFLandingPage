@@ -37,18 +37,31 @@ export default function skillclass() {
       let { data, error } = await supabase
         .from("marketingDetails")
         .select("img,redirecturl,videolink,user_id")
-        .match({ State: userStore.State, city: userStore.city })
+        .match({
+          State: userStore.State,
+          city: userStore.city,
+          Board: userStore.Board,
+          Standard: userStore.standardcategory,
+        })
         .range(0, 0);
-        
 
       setUserAd(data);
+      if (data && data[0]?.videolink == null) {
+        let { data, error } = await supabase
+          .from("marketingDetails")
+          .select("img,redirecturl,videolink,user_id")
+          .match({ State: userStore.State, city: userStore.city })
+          .range(0, 0);
+
+        setUserAd(data);
+         if (error) throw error;
+      }
       if (error) throw error;
     } catch (error) {
       console.log("Caught Error:", error);
     }
   }
 
-  
   async function updateView() {
     try {
       if (userAd && userAd[0]?.videolink) {
@@ -85,7 +98,6 @@ export default function skillclass() {
       console.log("Caught Error:", error);
     }
   }
-
 
   async function getSchool(offset: number) {
     try {
