@@ -15,9 +15,10 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Alert,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { InfoIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useToast } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";
 
@@ -69,6 +70,10 @@ export default function SignupCard() {
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
+          <Alert status="info">
+            <InfoIcon />
+            please click on the link sent to your email to verify your account
+          </Alert>
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Sign up
           </Heading>
