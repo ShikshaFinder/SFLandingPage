@@ -26,18 +26,17 @@ interface State {
   state: string;
 }
 
-
 function Form() {
   const toast = useToast();
   const { user } = useAuthContext();
-  
+
   const form = useForm();
   const router = useRouter();
-  
+
   const { register, handleSubmit, control, watch } = form;
   const selectedState = watch("State");
   const useUse = useUser((state) => state.user);
-  console.log(useUse);  
+  console.log(useUse);
 
   const handleSubmitt = () => {
     toast({
@@ -182,7 +181,7 @@ function Form() {
                 defaultValue={useUse && useUse.exam}
               />
             </FormControl>
-            <br />
+            <br />{" "}
             <FormControl as="fieldset">
               <FormLabel as="legend">Board</FormLabel>
               <Controller
@@ -193,9 +192,12 @@ function Form() {
                 render={({ field }) => (
                   <RadioGroup {...field}>
                     <HStack spacing="24px">
-                      <Radio value="Hindi">CBSE</Radio>
-                      <Radio value="English">NCERT</Radio>
                       <Radio value="State">State Board</Radio>
+                      <Radio value="CBSE">CBSE</Radio>
+                      <Radio value="IB">IB</Radio>
+                      <Radio value="ICSE">ICSE</Radio>
+                      <Radio value="AISSCE">AISSCE</Radio>
+                      <Radio value="NIOS">NIOS</Radio>
                     </HStack>
                   </RadioGroup>
                 )}
@@ -210,6 +212,21 @@ function Form() {
                 placeholder="write science/commerce/arts if you are in 11th or 12th"
                 defaultValue={useUse && useUse.stream}
               />
+            </FormControl>
+            <br />
+            <FormControl isRequired>
+              <FormLabel>Standard category </FormLabel>
+              <Select
+                {...register("standardcategory", { required: true })}
+                name="standardcategory"
+                placeholder="standardcategory"
+              >
+                <option value="Nursery">Kinder Garden</option>
+                <option value="1">1-10</option>
+                <option value="2">11-12 Science</option>
+                <option value="3">11-12 Commerce</option>
+                <option value="4">11-12 Arts</option>
+              </Select>
             </FormControl>
             <br />
             <FormControl as="fieldset">
