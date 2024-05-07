@@ -12,10 +12,8 @@ import {
   Toast,
   Stack,
   Button,
-  Box,
   SkeletonCircle,
   SkeletonText,
-  Img,
 } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import Nouser from "@/components/Nouser";
@@ -48,17 +46,17 @@ export default function skillclass() {
       setUserAd(data);
       console.log("data", data);
 
-      // if (data && data[0]?.videolink == null) {
-      //   let { data, error } = await supabase
-      //     .from("marketingDetails")
-      //     .select("img,redirecturl,videolink,user_id")
-      //     .match({ State: userStore.State, District: userStore.city })
-      //     .range(0, 0);
+      if (data && data[0]?.videolink == null) {
+        let { data, error } = await supabase
+          .from("marketingDetailsIndustry")
+          .select("img,redirecturl,videolink,user_id")
+          .match({ State: userStore.State })
+          .range(0, 0);
 
-      //   setUserAd(data);
-      //   console.log("yaha pe data", data);
-      //    if (error) throw error;
-      // }
+        setUserAd(data);
+        console.log("yaha pe data", data);
+        if (error) throw error;
+      }
       if (error) throw error;
     } catch (error) {
       console.log("Caught Error:", error);
