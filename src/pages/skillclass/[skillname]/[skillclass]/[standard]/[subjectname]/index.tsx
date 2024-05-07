@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import supabase from "../../../../../../../supabase";
 import { useEffect } from "react";
 import React from "react";
-// import Standard from "@/components/Standard";
 import InfoSubject from "../../../../../../components/infosubject";
 import ShareButton from "../../../../../../components/shareButton";
 import Subject from "@/components/subject";
