@@ -16,6 +16,7 @@ function Nouser() {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Button
           colorScheme="teal"
+          variant="outline"
           display={"flex"}
           onClick={() => {
             Router.push("/signup");
@@ -25,6 +26,7 @@ function Nouser() {
         </Button>
         <Button
           colorScheme="teal"
+          variant="outline"
           display={"flex"}
           onClick={() => {
             Router.push("/login");
@@ -36,9 +38,7 @@ function Nouser() {
           colorScheme="teal"
           display={"flex"}
           onClick={() => {
-            if (typeof window !== "undefined") {
-              window.location.reload();
-            }
+            Router.reload();
           }}
         >
           Reload Page
