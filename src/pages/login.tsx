@@ -55,7 +55,7 @@ export default function Login() {
         email,
         password,
       });
-      if(error) {
+      if (error) {
         toast({
           title: "Error.",
           description: error.message,
@@ -69,7 +69,7 @@ export default function Login() {
       setTimeout(() => {
         router.reload();
       }, 2000);
-      
+
       router.push("/school");
     } catch (error) {
       console.log(error);
