@@ -86,7 +86,6 @@ export type Database = {
           Board: string | null
           city: string | null
           coachingname: string
-          coachingtype: string | null
           discription: string | null
           email: string | null
           id: number
@@ -100,7 +99,7 @@ export type Database = {
           State: string | null
           stream: string | null
           subdistrict: string | null
-          user_id: string | null
+          user_id: string
           videolink: string | null
           view: number | null
           website: string | null
@@ -109,7 +108,6 @@ export type Database = {
           Board?: string | null
           city?: string | null
           coachingname: string
-          coachingtype?: string | null
           discription?: string | null
           email?: string | null
           id?: number
@@ -123,7 +121,7 @@ export type Database = {
           State?: string | null
           stream?: string | null
           subdistrict?: string | null
-          user_id?: string | null
+          user_id: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -132,7 +130,6 @@ export type Database = {
           Board?: string | null
           city?: string | null
           coachingname?: string
-          coachingtype?: string | null
           discription?: string | null
           email?: string | null
           id?: number
@@ -146,7 +143,7 @@ export type Database = {
           State?: string | null
           stream?: string | null
           subdistrict?: string | null
-          user_id?: string | null
+          user_id?: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -155,7 +152,7 @@ export type Database = {
           {
             foreignKeyName: "coaching_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           },
@@ -318,7 +315,7 @@ export type Database = {
           Standard: string[] | null
           State: string | null
           stream: string | null
-          user_id: string | null
+          user_id: string
           videolink: string | null
           view: number | null
           website: string | null
@@ -338,7 +335,7 @@ export type Database = {
           Standard?: string[] | null
           State?: string | null
           stream?: string | null
-          user_id?: string | null
+          user_id: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -358,7 +355,7 @@ export type Database = {
           Standard?: string[] | null
           State?: string | null
           stream?: string | null
-          user_id?: string | null
+          user_id?: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -367,7 +364,7 @@ export type Database = {
           {
             foreignKeyName: "coaching_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           },
@@ -376,20 +373,19 @@ export type Database = {
       School: {
         Row: {
           Board: string[] | null
-          customup: boolean | null
-          discription: string | null
+          discription: string
           DISE: string | null
           District: string | null
           email: string | null
           exam: string | null
           id: number
-          img: string | null
+          img: string
           location: string | null
           locationlink: string | null
           medium: string[] | null
           mobile1: number | null
           ratingofschool: string | null
-          schoolname: string | null
+          schoolname: string
           Standard: string[] | null
           State: string | null
           studentnumber: string | null
@@ -401,20 +397,19 @@ export type Database = {
         }
         Insert: {
           Board?: string[] | null
-          customup?: boolean | null
-          discription?: string | null
+          discription: string
           DISE?: string | null
           District?: string | null
           email?: string | null
           exam?: string | null
           id?: number
-          img?: string | null
+          img?: string
           location?: string | null
           locationlink?: string | null
           medium?: string[] | null
           mobile1?: number | null
           ratingofschool?: string | null
-          schoolname?: string | null
+          schoolname: string
           Standard?: string[] | null
           State?: string | null
           studentnumber?: string | null
@@ -426,20 +421,19 @@ export type Database = {
         }
         Update: {
           Board?: string[] | null
-          customup?: boolean | null
-          discription?: string | null
+          discription?: string
           DISE?: string | null
           District?: string | null
           email?: string | null
           exam?: string | null
           id?: number
-          img?: string | null
+          img?: string
           location?: string | null
           locationlink?: string | null
           medium?: string[] | null
           mobile1?: number | null
           ratingofschool?: string | null
-          schoolname?: string | null
+          schoolname?: string
           Standard?: string[] | null
           State?: string | null
           studentnumber?: string | null
@@ -507,7 +501,7 @@ export type Database = {
           skilltype: string
           State: string | null
           subdistrict: string | null
-          user_id: string | null
+          user_id: string
           videolink: string | null
           view: number | null
           website: string | null
@@ -526,7 +520,7 @@ export type Database = {
           skilltype: string
           State?: string | null
           subdistrict?: string | null
-          user_id?: string | null
+          user_id: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -545,7 +539,7 @@ export type Database = {
           skilltype?: string
           State?: string | null
           subdistrict?: string | null
-          user_id?: string | null
+          user_id?: string
           videolink?: string | null
           view?: number | null
           website?: string | null
@@ -554,7 +548,7 @@ export type Database = {
           {
             foreignKeyName: "skillclass_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           },
