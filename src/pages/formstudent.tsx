@@ -190,6 +190,21 @@ function Form() {
               />
             </FormControl>
             <br />
+            <FormControl isRequired>
+              <FormLabel>Standard category </FormLabel>
+              <Select
+                {...register("standardcategory", { required: true })}
+                name="standardcategory"
+                placeholder="standardcategory"
+              >
+                <option value="Nursery">Kinder Garden</option>
+                <option value="1">1-10</option>
+                <option value="2">11-12 Science</option>
+                <option value="3">11-12 Commerce</option>
+                <option value="4">11-12 Arts</option>
+              </Select>
+            </FormControl>
+            <br />
             <FormControl as="fieldset">
               <FormLabel as="legend">Medium</FormLabel>
               <Controller
