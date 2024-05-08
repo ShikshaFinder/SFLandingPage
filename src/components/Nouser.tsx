@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Stack, Spinner } from "@chakra-ui/react";
+import { Button, Stack, Spinner, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { Alert, AlertIcon } from "@chakra-ui/react";
+import { Alert, AlertIcon ,Text} from "@chakra-ui/react";
 
 function Nouser() {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +11,7 @@ function Nouser() {
     // Simulate loading for 1 second
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -19,9 +19,12 @@ function Nouser() {
   if (isLoading) {
     // Render loader while loading
     return (
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} align="center" justify="center" minHeight="100vh">
-        <Spinner size="xl" />
-      </Stack>
+      <>
+        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          <iframe src="https://lottie.host/embed/a75b9516-581b-439a-89b5-aab82118aa06/FCreFd8jZ9.json"></iframe>
+          <Text>We are finding the Best Institute for you ,Please wait...</Text>
+        </Stack>
+      </>
     );
   }
 

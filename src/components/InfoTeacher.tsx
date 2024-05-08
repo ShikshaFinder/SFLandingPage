@@ -40,7 +40,14 @@ function InfoTeacher({
             {/* </Box> */}
             <Box>
               <Link href={locationlink ?? ""}>
-                <BiLocationPlus /> {location}
+                <Box height={"10px"}>
+                  <img
+                    src="/location.svg"
+                    alt="location"
+                    style={{ height: "50px" }}
+                  />
+                </Box>{" "}
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {location}
               </Link>
             </Box>
           </Stack>
