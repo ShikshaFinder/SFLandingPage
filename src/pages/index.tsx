@@ -5,6 +5,7 @@ import CompanyReview from "../components/companyreview";
 import GetStarted from "../components/getstarted";
 import { useAuthContext } from "@/context";
 import Link from "next/link";
+import Faq from "../components/Faq"
 
 import {
   Container,
@@ -173,6 +174,7 @@ export default function Home() {
           </Stack>
         </Container>
         <CompanyReview />
+        <Faq/>
         <Footer />
       </Layout>
     </>
