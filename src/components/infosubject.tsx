@@ -34,7 +34,7 @@ function InfoTeacher({
         <CardBody>
           <Stack divider={<StackDivider />} spacing="1">
             {/* <Box> */}
-            <Heading size="lg">Discription</Heading>
+            <Heading size="lg">Description</Heading>
             <Text pt="2" fontSize="sm">
               {discription}
             </Text>
