@@ -78,7 +78,7 @@ export default function Login() {
 
       setTimeout(() => {
         router.reload();
-      }, 2000);
+      }, 900);
 
       router.push("/school");
     } catch (error) {

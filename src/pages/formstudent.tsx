@@ -47,7 +47,7 @@ function Form() {
     });
     setTimeout(() => {
       router.reload();
-    }, 2000);
+    }, 900);
     router.push("/Onbording");
   };
 
