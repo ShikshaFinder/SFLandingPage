@@ -10,11 +10,10 @@ import {
   Grid,
   Stack,
   Box,
-  SkeletonCircle,
-  SkeletonText,
   Button,
 } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
+import Nodata from "../../components/Nodata";
 
 export default function skillclass() {
   const { user } = useAuthContext();
@@ -149,8 +148,7 @@ export default function skillclass() {
         <br />
         {userData === null ? (
           <Box>
-            <SkeletonCircle size="10" />
-            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+            <Nodata/>
           </Box>
         ) : (
           <h1>Top Coaching classes in {userStore.city}</h1>

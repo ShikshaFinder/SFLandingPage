@@ -6,6 +6,7 @@ import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import Link from "next/link";
+import Nodata from "@/components/Nodata";
 
 import {
   Grid,
@@ -160,19 +161,7 @@ export default function skillclass() {
         <br />
         {userData === null ? (
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-            <SkeletonCircle size="10" />
-            <SkeletonText mt="4" noOfLines={4} spacing="4" />
-            <Button
-              colorScheme="teal"
-              display={"flex"}
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  window.location.reload();
-                }
-              }}
-            >
-              Reload Page
-            </Button>
+           <Nodata/>
           </Stack>
         ) : (
           <h1>Top Schools in {userStore.city}</h1>

@@ -10,6 +10,7 @@ import Nouser from "@/components/Nouser";
 import ImgAd from "../../../components/ImgAd";
 import Videoo from "../../../components/videoad";
 import { useUser } from "@/store";
+import Nodata from "@/components/Nodata";
 
 export default function Skillclass() {
   const { user } = useAuthContext();
@@ -146,8 +147,7 @@ export default function Skillclass() {
         <br />
         {userData === null ? (
           <Box>
-            <SkeletonCircle size="10" />
-            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+            <Nodata/>
           </Box>
         ) : (
           <h1>Top Skill classes in {userStore.city} </h1>
