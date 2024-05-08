@@ -14,6 +14,7 @@ import {
   Stack,
   Card,
   useToast,
+  Box,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
@@ -274,10 +275,10 @@ function Vote() {
               >
                 Submit
               </Button>
+              height={"19"}
             </CardBody>
           </Card>
         </Stack>
-       
       </Layout>
     </>
   );

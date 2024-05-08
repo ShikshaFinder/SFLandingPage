@@ -22,7 +22,7 @@ function Nouser() {
       <>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <iframe src="https://lottie.host/embed/a75b9516-581b-439a-89b5-aab82118aa06/FCreFd8jZ9.json"></iframe>
-          <Text>We are finding the Best Institute for you ,Please wait...</Text>
+          <Text>Searching details in our database...</Text>
         </Stack>
       </>
     );
