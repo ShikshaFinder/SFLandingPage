@@ -248,7 +248,7 @@ const MobileNav = () => {
             />
             <Text fontSize={"sm"}>Schools</Text>
           </Link>
-          <Link href={"coaching"}>
+          <Link href={"/coaching"}>
             <FaChalkboardTeacher
               size={19}
               color={
@@ -261,7 +261,7 @@ const MobileNav = () => {
             />
             <Text fontSize={"sm"}>Coaching</Text>
           </Link>
-          <Link href={"onlineplatforms"}>
+          <Link href={"/onlineplatforms"}>
             <FaGlobe
               size={19}
               color={
