@@ -27,25 +27,38 @@ export default function skillclass() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
-  async function getAd() {
-    try {
-      let { data, error } = await supabase
-        .from("marketingDetails")
-        .select("img,redirecturl,videolink,user_id")
-        .match({
-          State: userStore.State,
-          District: userStore.city,
-          Board: userStore.Board,
-          Standard: userStore.standardcategory,
-        })
-        .range(0, 0);
+   async function getAd() {
+     try {
+       let { data, error } = await supabase
+         .from("marketingDetails")
+         .select("img,redirecturl,videolink,user_id")
+         .match({
+           State: userStore.State,
+           District: userStore.city,
+           Board: userStore.Board,
+           Standard: userStore.standardcategory,
+         })
+         .range(0, 0);
 
-      setUserAd(data);
-      if (error) throw error;
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
+       setUserAd(data);
+       console.log("data", data);
+
+       if (data && data[0]?.videolink == null) {
+         let { data, error } = await supabase
+           .from("marketingDetailsIndustry")
+           .select("img,redirecturl,videolink,user_id")
+           .match({ State: userStore.State })
+           .range(0, 0);
+
+         setUserAd(data);
+         console.log("yaha pe data", data);
+         if (error) throw error;
+       }
+       if (error) throw error;
+     } catch (error) {
+       console.log("Caught Error:", error);
+     }
+   }
 
   async function updateView() {
     try {
