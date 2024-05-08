@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import {
   FaSchool,
@@ -7,7 +6,7 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import ThemeButton from "@/components/ThemButton";
-import { Show, Hide } from "@chakra-ui/react";
+import { Show } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -235,50 +234,58 @@ const MobileNav = () => {
         borderTopWidth="1px"
         borderColor="gray"
       >
-        <Stack direction={"row"} spacing={85}>
+        <Stack direction={"row"} spacing={49}>
           <Link href={"/school"}>
             <FaSchool
-              size={20}
+              size={19}
               color={
                 useStore.getState().selectedIcon === "school"
                   ? "blue"
                   : "initial"
               }
+              style={{ marginInline: "auto" }}
               onClick={() => handleClick("school")}
             />
+            <Text fontSize={"sm"}>Schools</Text>
           </Link>
           <Link href={"coaching"}>
             <FaChalkboardTeacher
-              size={20}
+              size={19}
               color={
                 useStore.getState().selectedIcon === "coaching"
                   ? "blue"
                   : "initial"
               }
+              style={{ marginInline: "auto" }}
               onClick={() => handleClick("coaching")}
             />
+            <Text fontSize={"sm"}>Coaching</Text>
           </Link>
           <Link href={"onlineplatforms"}>
             <FaGlobe
-              size={20}
+              size={19}
               color={
                 useStore.getState().selectedIcon === "online"
                   ? "blue"
                   : "initial"
               }
+              style={{ marginInline: "auto" }}
               onClick={() => handleClick("online")}
             />
+            <Text fontSize={"sm"}>Online</Text>
           </Link>
           <Link href={"/skillclass"}>
             <FaPaintBrush
-              size={20}
+              size={19}
               color={
                 useStore.getState().selectedIcon === "skillclass"
                   ? "blue"
                   : "initial"
               }
+              style={{ marginInline: "auto" }}
               onClick={() => handleClick("skillclass")}
-            />
+            />{" "}
+            <Text fontSize={"sm"}>Skills</Text>
           </Link>
         </Stack>
       </Box>
