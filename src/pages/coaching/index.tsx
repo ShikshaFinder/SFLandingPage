@@ -35,21 +35,22 @@ export default function skillclass() {
           District: userStore.city,
           Board: userStore.Board,
           Standard: userStore.standardcategory,
+          paid: true,
         })
         .range(0, 0);
 
       setUserAd(data);
-      console.log("data", data);
+      // console.log("data", data);
 
       if (data && data[0]?.videolink == null) {
         let { data, error } = await supabase
           .from("marketingDetailsIndustry")
           .select("img,redirecturl,videolink,user_id")
-          .match({ State: userStore.State })
+          .match({ State: userStore.State,paid: true })
           .range(0, 0);
 
         setUserAd(data);
-        console.log("yaha pe data", data);
+        // console.log("yaha pe data", data);
         if (error) throw error;
       }
       if (error) throw error;

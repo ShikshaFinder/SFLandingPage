@@ -185,33 +185,6 @@ export type Database = {
         }
         Relationships: []
       }
-      leaderbordSchool: {
-        Row: {
-          city: string | null
-          created_at: string
-          id: number
-          name: string | null
-          number: string | null
-          points: string | null
-        }
-        Insert: {
-          city?: string | null
-          created_at?: string
-          id?: number
-          name?: string | null
-          number?: string | null
-          points?: string | null
-        }
-        Update: {
-          city?: string | null
-          created_at?: string
-          id?: number
-          name?: string | null
-          number?: string | null
-          points?: string | null
-        }
-        Relationships: []
-      }
       marketingDetails: {
         Row: {
           Board: string | null
@@ -222,6 +195,7 @@ export type Database = {
           img: string | null
           medium: string | null
           mobile: number
+          paid: boolean | null
           redirecturl: string | null
           Standard: string | null
           State: string | null
@@ -237,6 +211,7 @@ export type Database = {
           img?: string | null
           medium?: string | null
           mobile: number
+          paid?: boolean | null
           redirecturl?: string | null
           Standard?: string | null
           State?: string | null
@@ -252,6 +227,7 @@ export type Database = {
           img?: string | null
           medium?: string | null
           mobile?: number
+          paid?: boolean | null
           redirecturl?: string | null
           Standard?: string | null
           State?: string | null
@@ -264,38 +240,41 @@ export type Database = {
         Row: {
           Board: string | null
           created_at: string
-          District: string | null
-          exam: string | null
           id: number
           img: string | null
           medium: string | null
+          paid: boolean | null
+          redirecturl: string
           Standard: string | null
           State: string | null
           user_id: string | null
+          videolink: string
         }
         Insert: {
           Board?: string | null
           created_at?: string
-          District?: string | null
-          exam?: string | null
           id?: number
           img?: string | null
           medium?: string | null
+          paid?: boolean | null
+          redirecturl: string
           Standard?: string | null
           State?: string | null
           user_id?: string | null
+          videolink: string
         }
         Update: {
           Board?: string | null
           created_at?: string
-          District?: string | null
-          exam?: string | null
           id?: number
           img?: string | null
           medium?: string | null
+          paid?: boolean | null
+          redirecturl?: string
           Standard?: string | null
           State?: string | null
           user_id?: string | null
+          videolink?: string
         }
         Relationships: []
       }
@@ -569,7 +548,6 @@ export type Database = {
           Standard: string | null
           standardcategory: string | null
           State: string | null
-          stream: string | null
           subDistrict: string | null
           user_id: string
         }
@@ -587,7 +565,6 @@ export type Database = {
           Standard?: string | null
           standardcategory?: string | null
           State?: string | null
-          stream?: string | null
           subDistrict?: string | null
           user_id: string
         }
@@ -605,7 +582,6 @@ export type Database = {
           Standard?: string | null
           standardcategory?: string | null
           State?: string | null
-          stream?: string | null
           subDistrict?: string | null
           user_id?: string
         }
