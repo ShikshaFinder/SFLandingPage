@@ -8,14 +8,7 @@ import { useAuthContext } from "@/context";
 import Link from "next/link";
 import Nodata from "@/components/Nodata";
 
-import {
-  Grid,
-  Toast,
-  Stack,
-  Button,
-  SkeletonCircle,
-  SkeletonText,
-} from "@chakra-ui/react";
+import { Grid, Toast, Stack, Button } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import Nouser from "@/components/Nouser";
 
@@ -31,40 +24,40 @@ export default function skillclass() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
- async function getAd() {
-   try {
-     let { data, error } = await supabase
-       .from("marketingDetails")
-       .select("img,redirecturl,videolink,user_id")
-       .match({
-         State: userStore.State,
-         District: userStore.city,
-         Board: userStore.Board,
-         Standard: userStore.standardcategory,
-         paid: true,
-       })
-       .range(0, 0);
+  async function getAd() {
+    try {
+      let { data, error } = await supabase
+        .from("marketingDetails")
+        .select("img,redirecturl,videolink,user_id")
+        .match({
+          State: userStore.State,
+          District: userStore.city,
+          Board: userStore.Board,
+          Standard: userStore.standardcategory,
+          paid: true,
+        })
+        .range(0, 0);
 
-     setUserAd(data);
-     // console.log("data", data);
+      setUserAd(data);
+      // console.log("data", data);
 
-     if (data && data[0]?.videolink == null) {
-       let { data, error } = await supabase
-         .from("marketingDetailsIndustry")
-         .select("img,redirecturl,videolink,user_id")
-         .match({ State: userStore.State, paid: true })
-         .range(0, 0);
+      if (data && data[0]?.videolink == null) {
+        let { data, error } = await supabase
+          .from("marketingDetailsIndustry")
+          .select("img,redirecturl,videolink,user_id")
+          .match({ State: userStore.State, paid: true })
+          .range(0, 0);
 
-       setUserAd(data);
-       // console.log("yaha pe data", data);
-       if (error) throw error;
-     }
-     if (error) throw error;
-   } catch (error) {
-     console.log("Caught Error:", error);
-   }
- }
- 
+        setUserAd(data);
+        // console.log("yaha pe data", data);
+        if (error) throw error;
+      }
+      if (error) throw error;
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
   async function updateView() {
     try {
       if (userAd && userAd[0]?.videolink) {
@@ -161,7 +154,7 @@ export default function skillclass() {
         <br />
         {userData === null ? (
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-           <Nodata/>
+            <Nodata />
           </Stack>
         ) : (
           <h1>Top Schools in {userStore.city}</h1>

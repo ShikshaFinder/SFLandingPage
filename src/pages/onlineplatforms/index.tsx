@@ -10,8 +10,6 @@ import {
   Grid,
   Stack,
   Box,
-  SkeletonCircle,
-  SkeletonText,
   Text,
   Button,
 } from "@chakra-ui/react";
@@ -24,7 +22,6 @@ export default function skillclass() {
   const [dataOffset, setDataOffset] = useState(0); // State to keep track of offset
   const userStore = useUser((state) => state.user);
 
-  
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
@@ -131,8 +128,6 @@ export default function skillclass() {
     updateView();
   }, [userAd]);
 
-  
-
   const handleLoadMore = () => {
     setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
   };
@@ -140,7 +135,6 @@ export default function skillclass() {
   if (!user.email) {
     return <Nouser />;
   }
-  
 
   return (
     <>
@@ -154,7 +148,7 @@ export default function skillclass() {
         <br />
         {userData === null ? (
           <Box>
-            <Nodata/>
+            <Nodata />
           </Box>
         ) : (
           <Text>Top Online Platforms</Text>

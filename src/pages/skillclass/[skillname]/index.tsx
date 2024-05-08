@@ -5,7 +5,7 @@ import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { Grid, Stack, Button } from "@chakra-ui/react";
-import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
 import ImgAd from "../../../components/ImgAd";
 import Videoo from "../../../components/videoad";
