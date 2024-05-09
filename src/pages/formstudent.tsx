@@ -47,8 +47,8 @@ function Form() {
     });
     setTimeout(() => {
       router.reload();
-    }, 900);
-    router.push("/Onbording");
+    }, 2000);
+    router.push("/");
   };
 
   const [states, setStates] = useState<State[]>(state.states);
