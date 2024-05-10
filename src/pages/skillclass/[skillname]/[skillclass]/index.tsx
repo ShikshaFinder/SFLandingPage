@@ -1,4 +1,4 @@
-import { Stack, Box } from "@chakra-ui/react";
+import { Stack, Box ,Image} from "@chakra-ui/react";
 import Admissionform from "../../../../components/admissionformlink";
 import Card from "../../../../components/card";
 import Videoo from "../../../../components/video";
@@ -198,7 +198,16 @@ function IntroSchool() {
             )}
         </Stack>
         <br />
-        <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+        {userData && userData[0] && userData[0].videolink ? (
+          <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+        ) : (
+          <Image
+            src={userData && userData[0] ? userData[0].img : ""}
+            alt="school image"
+            objectFit="cover"
+            w="100%"
+          />
+        )}
         <br />
         <ShareButton
           link={userData && userData[0] ? userData[0].website : ""}

@@ -1,4 +1,4 @@
-import { Box, Flex, Stack } from "@chakra-ui/react";
+import { Box, Image, Stack } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
@@ -82,7 +82,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("School")
           .select(
-            "schoolname, videolink, website, locationlink, location, discription, mobile1, user_id"
+            "schoolname, website, locationlink, location, discription, mobile1, user_id,img,videolink"
           )
           .eq("user_id", schoolname);
 
@@ -98,10 +98,6 @@ function IntroSchool() {
       console.log("Caught Error:", error);
     }
   }
-
- 
-
- 
 
   async function updateView() {
     try {
@@ -142,17 +138,17 @@ function IntroSchool() {
     }
   }
 
-   useEffect(() => {
-     getStandard();
-   }, [schoolname]);
+  useEffect(() => {
+    getStandard();
+  }, [schoolname]);
 
-    useEffect(() => {
-      getSchool();
-    }, [schoolname]);
+  useEffect(() => {
+    getSchool();
+  }, [schoolname]);
 
-    useEffect(() => {
-      getVote();
-    }, [schoolname]);
+  useEffect(() => {
+    getVote();
+  }, [schoolname]);
 
   useEffect(() => {
     updateView();
@@ -205,7 +201,17 @@ function IntroSchool() {
             )}
         </Stack>
         <br />
-        <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+        {userData && userData[0] && userData[0].videolink ? (
+          <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+        ) : (
+          <Image
+            src={userData && userData[0] ? userData[0].img : ""}
+            alt="school image"
+            objectFit="cover"
+            w="100%"
+          />
+        )}
+
         <br />
         <ShareButton
           link={userData && userData[0] ? userData[0].website : ""}
@@ -222,7 +228,7 @@ function IntroSchool() {
           extra={useVote && useVote[0]?.extracurricular}
           quality={useVote && useVote[0]?.qualityofeducation}
           management={useVote && useVote[0]?.management}
-          facilities= {useVote && useVote[0]?.facilityprovided}
+          facilities={useVote && useVote[0]?.facilityprovided}
           view={useVote && useVote[0]?.view}
         />
         <Stack direction={"row"}>
