@@ -1,4 +1,4 @@
-import { Stack, Box ,Image} from "@chakra-ui/react";
+import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
 import { useAuthContext } from "@/context";
 import Nouser from "@/components/Nouser";
+import Image from "../../../components/image";
 
 const cards = [
   {
@@ -207,9 +208,6 @@ function IntroSchool() {
         ) : (
           <Image
             src={userData && userData[0] ? userData[0].img : ""}
-            alt="school image"
-            objectFit="cover"
-            w="100%"
           />
         )}
         <br />

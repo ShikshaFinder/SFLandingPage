@@ -1,4 +1,4 @@
-import { Box, Image, Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
 import Videoo from "../../../components/video";
@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
+import Image from "../../../components/image";
+
 // import { useAuthContext } from "@/context";
 
 const cards = [
@@ -204,12 +206,7 @@ function IntroSchool() {
         {userData && userData[0] && userData[0].videolink ? (
           <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
         ) : (
-          <Image
-            src={userData && userData[0] ? userData[0].img : ""}
-            alt="school image"
-            objectFit="cover"
-            w="100%"
-          />
+          <Image src={userData && userData[0] ? userData[0].img : ""} />
         )}
 
         <br />
