@@ -208,7 +208,7 @@ export default function skillclass() {
           {" "}
           <Button onClick={handleLoadMore}>Load More</Button>
           <Button colorScheme="teal" onClick={handleShare}>
-            Share
+            Share it with your friends / coaching classes
           </Button>
           <br />
           <ImgAd

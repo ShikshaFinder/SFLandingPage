@@ -24,6 +24,26 @@ export default function skillclass() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
+   const handleShare = () => {
+     let slugs = window.location.pathname.split("/");
+     slugs = slugs.filter((slug) => slug !== "");
+     let shareUrl = "https://shikshafinder.com/";
+
+     if (navigator.share) {
+       navigator
+         .share({
+           title: "Shiksha Finder",
+           text: "I found this website named shiksha finder ,it might be help for you too.",
+           url: shareUrl,
+         })
+         .then(() => console.log("Successful share"))
+         .catch((error) => console.log("Error sharing", error));
+     } else {
+       console.log("Web Share API not supported");
+     }
+   };
+ 
+
   async function getAd() {
     try {
       let { data, error } = await supabase
@@ -193,6 +213,9 @@ export default function skillclass() {
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
           <Button onClick={handleLoadMore}>Load More</Button>
+          <Button colorScheme="teal" onClick={handleShare}>
+            Share it with your friends / coaching classes
+          </Button>
           <br />
           <ImgAd
             src={
