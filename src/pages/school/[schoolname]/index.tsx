@@ -17,7 +17,8 @@ import Image from "../../../components/image";
 const cards = [
   {
     name: "Vigyasa",
-    imgsrc: "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75",
+    imgsrc:
+      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
     rating: "5.0",
     link: "https://www.vigyasa.live/",
   },
@@ -228,7 +229,14 @@ function IntroSchool() {
           facilities={useVote && useVote[0]?.facilityprovided}
           view={useVote && useVote[0]?.view}
         />
-        <Stack direction={"row"}>
+        <Stack
+          spacing={8}
+          mx={"auto"}
+          maxW={"lg"}
+          py={12}
+          px={6}
+          direction={"row"}
+        >
           {cards.map(({ name, imgsrc, rating, link }, index) => (
             <Card
               key={index}

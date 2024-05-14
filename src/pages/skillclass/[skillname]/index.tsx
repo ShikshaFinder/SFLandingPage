@@ -215,7 +215,7 @@ export default function Skillclass() {
           <ImgAd
             src={
               (userAd && userAd[0]?.img) ||
-              "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75"
+              "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300"
             }
             link={
               (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
