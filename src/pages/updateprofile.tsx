@@ -20,6 +20,7 @@ import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
 import { useUser } from "../store";
+import Nouser from "@/components/Nouser";
 
 interface State {
   districts: string[];
@@ -72,6 +73,10 @@ function Form() {
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
+
+    if(!user.email){
+      return <Nouser />
+    }
 
   return (
     <>
@@ -203,17 +208,7 @@ function Form() {
                 )}
               />
             </FormControl>
-            <br />
-            <FormControl>
-              <FormLabel>Stream </FormLabel>
-              <Input
-                {...register("stream", { required: false })}
-                name="stream"
-                placeholder="write science/commerce/arts if you are in 11th or 12th"
-                defaultValue={useUse && useUse.stream}
-              />
-            </FormControl>
-            <br />
+           <br />
             <FormControl isRequired>
               <FormLabel>Standard category </FormLabel>
               <Select

@@ -177,7 +177,12 @@ export default function skillclass() {
             <Nodata />
           </Stack>
         ) : (
-          <h1>Top Schools in {userStore.city}</h1>
+          <h1>
+            {" "}
+            <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+              Top Schools in {userStore.city}
+            </Stack>
+          </h1>
         )}
 
         <Grid
@@ -214,7 +219,7 @@ export default function skillclass() {
           {" "}
           <Button onClick={handleLoadMore}>Load More</Button>
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it 💖
+            Share it
           </Button>
           <br />
           <ImgAd

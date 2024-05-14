@@ -171,7 +171,9 @@ export default function skillclass() {
             <Nodata />
           </Box>
         ) : (
-          <h1>Top Coaching classes in {userStore.city}</h1>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <h1>Top Coaching classes in {userStore.city}</h1>
+          </Stack>
         )}
 
         <Grid
@@ -208,7 +210,7 @@ export default function skillclass() {
           {" "}
           <Button onClick={handleLoadMore}>Load More</Button>
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it 💖
+            Share it
           </Button>
           <br />
           <ImgAd

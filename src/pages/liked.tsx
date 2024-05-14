@@ -31,7 +31,6 @@ function likedinstitute() {
           link={link}
         />
       ))}
-      <Nouser />
     </>
   );
 }

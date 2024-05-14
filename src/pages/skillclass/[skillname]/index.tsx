@@ -1,11 +1,10 @@
 import Card from "../../../components/card";
-import React, { use, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Layoutt from "../../Layout";
 import supabase from "../../../../supabase";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
-import { Grid, Stack, Button } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
+import { Grid, Stack, Button, Text, Box } from "@chakra-ui/react";
 import Nouser from "@/components/Nouser";
 import ImgAd from "../../../components/ImgAd";
 import Videoo from "../../../components/videoad";
@@ -171,7 +170,9 @@ export default function Skillclass() {
             <Nodata />
           </Box>
         ) : (
-          <h1>Top Skill classes in {userStore.city} </h1>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <Text>Top Skill classes in {userStore.city} </Text>
+          </Stack>
         )}
 
         <Grid
@@ -208,7 +209,7 @@ export default function Skillclass() {
           {" "}
           <Button onClick={handleLoadMore}>Load More</Button>
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it 💖
+            Share it
           </Button>
           <br />
           <ImgAd

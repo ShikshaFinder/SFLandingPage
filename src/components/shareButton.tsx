@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { LinkIcon } from "@chakra-ui/icons";
+import { BiShareAlt } from "react-icons/bi";
 
 function ShareButton({ link }: { link: string }) {
   const router = useRouter();
@@ -29,15 +31,14 @@ function ShareButton({ link }: { link: string }) {
   return (
     <Stack spacing={14} direction="row" align="center">
       <Button
-        colorScheme="whatsapp"
         onClick={() => {
           router.push(link);
         }}
       >
-        Visit Website
+        website &nbsp; <LinkIcon />
       </Button>
-      <Button colorScheme="teal" onClick={handleShare}>
-        Share
+      <Button onClick={handleShare}>
+        <BiShareAlt />
       </Button>
     </Stack>
   );

@@ -1,5 +1,5 @@
 import Card from "../../components/card";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
@@ -172,7 +172,9 @@ export default function skillclass() {
             <Nodata />
           </Box>
         ) : (
-          <Text>Top Online Platforms</Text>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <Text>Top Online Platforms</Text>
+          </Stack>
         )}
 
         <Grid
@@ -209,7 +211,7 @@ export default function skillclass() {
           {" "}
           <Button onClick={handleLoadMore}>Load More</Button>
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it 💖
+            Share it
           </Button>
           <br />
           <ImgAd

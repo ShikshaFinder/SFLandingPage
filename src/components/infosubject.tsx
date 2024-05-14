@@ -28,13 +28,12 @@ function InfoTeacher({
         }}
       >
         <CardHeader>
-          name
-          <Heading size="sm">{TeacherName}</Heading>
+          <Heading size="lg">{TeacherName}</Heading>
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="1">
             {/* <Box> */}
-            <Heading size="lg">Description</Heading>
+            <Heading size="md">Description</Heading>
             <Text pt="2" fontSize="sm">
               {discription}
             </Text>

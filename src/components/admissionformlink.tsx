@@ -23,7 +23,7 @@ function AdmissionFormLink({ name, phoneNumber }: { name: string, phoneNumber: n
           <Link href={`/admissionform/${name}`}>
             <Button
               leftIcon={<MdOutlineDynamicForm />}
-              colorScheme={colorMode === 'light' ? 'pink' : 'teal'}
+              colorScheme={colorMode === 'light' ? 'blue' : 'teal'}
               variant="solid"
             >
               Admission form
