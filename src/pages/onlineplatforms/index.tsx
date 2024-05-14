@@ -173,7 +173,7 @@ export default function skillclass() {
           </Box>
         ) : (
           <Stack spacing={8} mx={"auto"} maxW={"lg"} px={6}>
-            <Text>Top Online Platforms</Text>
+            <Text as="b">Top Online Platforms</Text>
           </Stack>
         )}
 

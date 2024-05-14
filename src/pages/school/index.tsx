@@ -178,7 +178,7 @@ export default function skillclass() {
           <h1>
             {" "}
             <Stack spacing={8} mx={"auto"} maxW={"lg"} px={6}>
-              <Text>Top Schools in {userStore.city}</Text>
+              <Text as="b">Top Schools in {userStore.city}</Text>
             </Stack>
           </h1>
         )}
