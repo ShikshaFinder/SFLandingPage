@@ -13,6 +13,7 @@ import {
   Card,
   Stack,
   Select,
+  Wrap,
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
 import { useForm, Controller } from "react-hook-form";
@@ -74,9 +75,9 @@ function Form() {
   const districts =
     states.find((state) => state.state === selectedState)?.districts || [];
 
-    if(!user.email){
-      return <Nouser />
-    }
+  if (!user.email) {
+    return <Nouser />;
+  }
 
   return (
     <>
@@ -197,18 +198,20 @@ function Form() {
                 render={({ field }) => (
                   <RadioGroup {...field}>
                     <HStack spacing="24px">
-                      <Radio value="State">State Board</Radio>
-                      <Radio value="CBSE">CBSE</Radio>
-                      <Radio value="IB">IB</Radio>
-                      <Radio value="ICSE">ICSE</Radio>
-                      <Radio value="AISSCE">AISSCE</Radio>
-                      <Radio value="NIOS">NIOS</Radio>
+                      <Wrap spacing="24px">
+                        <Radio value="State">State Board</Radio>
+                        <Radio value="CBSE">CBSE</Radio>
+                        <Radio value="IB">IB</Radio>
+                        <Radio value="ICSE">ICSE</Radio>
+                        <Radio value="AISSCE">AISSCE</Radio>
+                        <Radio value="NIOS">NIOS</Radio>
+                      </Wrap>
                     </HStack>
                   </RadioGroup>
                 )}
               />
             </FormControl>
-           <br />
+            <br />
             <FormControl isRequired>
               <FormLabel>Standard category </FormLabel>
               <Select
