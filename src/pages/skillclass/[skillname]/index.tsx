@@ -51,7 +51,6 @@ export default function Skillclass() {
         .match({
           State: userStore.State,
           District: userStore.city,
-          Board: userStore.Board,
           Standard: userStore.standardcategory,
           paid: true,
         })
@@ -114,6 +113,44 @@ export default function Skillclass() {
     }
   }
 
+   async function updateClick() {
+     try {
+       if (userAd && userAd[0]?.videolink) {
+         let { data, error } = await supabase
+           .from("banneradview")
+           .select("click")
+           .eq("user_id", userAd?.[0]?.user_id);
+
+         setUseView(data);
+         console.log("data view", userAd?.[0]?.user_id);
+
+         if (error) throw error;
+
+         if (data && data[0].click !== null) {
+           // Increment the 'view' column value
+           const newViewValue = data[0].click + 1;
+           // console.log("newViewValue", newViewValue);
+
+           // Update the 'view' column with the new value
+           const { error: updateError } = await supabase
+             .from("banneradview")
+             .update({ click: newViewValue })
+             .eq("user_id", userAd?.[0]?.user_id);
+
+           console.log("view incremented bdvkb");
+           // console.log("updateError", updateError);
+
+           if (updateError) {
+             throw updateError;
+           }
+         }
+       }
+     } catch (error) {
+       console.log("Caught Error:", error);
+     }
+   }
+
+
   async function getskill(offset: number) {
     try {
       let { data, error } = await supabase
@@ -162,6 +199,7 @@ export default function Skillclass() {
           link={
             (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
           }
+          Click={updateClick}
         />
 
         <br />

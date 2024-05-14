@@ -62,18 +62,21 @@ export type Database = {
       }
       banneradview: {
         Row: {
+          click: number | null
           created_at: string
           id: number
           user_id: string
           view: number | null
         }
         Insert: {
+          click?: number | null
           created_at?: string
           id?: number
           user_id: string
           view?: number | null
         }
         Update: {
+          click?: number | null
           created_at?: string
           id?: number
           user_id?: string
@@ -544,7 +547,6 @@ export type Database = {
           id: number
           medium: string | null
           name: string | null
-          school_userid: string | null
           Standard: string | null
           standardcategory: string | null
           State: string | null
@@ -561,7 +563,6 @@ export type Database = {
           id?: number
           medium?: string | null
           name?: string | null
-          school_userid?: string | null
           Standard?: string | null
           standardcategory?: string | null
           State?: string | null
@@ -578,7 +579,6 @@ export type Database = {
           id?: number
           medium?: string | null
           name?: string | null
-          school_userid?: string | null
           Standard?: string | null
           standardcategory?: string | null
           State?: string | null

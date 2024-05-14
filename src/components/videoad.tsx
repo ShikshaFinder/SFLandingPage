@@ -2,7 +2,15 @@ import React, { use } from "react";
 import { AspectRatio, Stack, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-function video({ src, link }: { src: string; link: string }) {
+function video({
+  src,
+  link,
+  Click,
+}: {
+  src: string;
+  link: string;
+  Click: () => Promise<void>;
+}) {
   const router = useRouter();
 
   return (
@@ -30,7 +38,8 @@ function video({ src, link }: { src: string; link: string }) {
           />
         </AspectRatio>
         <Button
-          onClick={() => {
+          onClick={async () => {
+            await Click();
             router.push(link);
           }}
         >
