@@ -19,7 +19,7 @@ function AdmissionFormLink({ name, phoneNumber }: { name: string, phoneNumber: n
         zIndex={20}
         borderColor={colorMode === 'light' ? 'gray.400' : 'gray.600'}
       >
-        <Stack direction="row" spacing={14}>
+        <Stack direction="row" spacing={12}>
           <Link href={`/admissionform/${name}`}>
             <Button
               leftIcon={<MdOutlineDynamicForm />}
@@ -32,10 +32,10 @@ function AdmissionFormLink({ name, phoneNumber }: { name: string, phoneNumber: n
           <a href={`tel:${phoneNumber}`}>
             <Button
               rightIcon={<MdCall />}
-              colorScheme={colorMode === 'light' ? 'blue' : 'teal'}
+              colorScheme={colorMode === 'light' ? 'green' : 'green'}
               variant="outline"
             >
-              Call us
+              Call Now
             </Button>
           </a>
         </Stack>

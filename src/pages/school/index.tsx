@@ -5,10 +5,8 @@ import Videoo from "../../components/videoad";
 import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
-import Link from "next/link";
 import Nodata from "@/components/Nodata";
-
-import { Grid, Toast, Stack, Button } from "@chakra-ui/react";
+import { Grid, Toast, Stack, Button,Text } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import Nouser from "@/components/Nouser";
 
@@ -180,7 +178,7 @@ export default function skillclass() {
           <h1>
             {" "}
             <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-              Top Schools in {userStore.city}
+              <Text>Top Schools in {userStore.city}</Text>
             </Stack>
           </h1>
         )}

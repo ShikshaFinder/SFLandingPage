@@ -11,6 +11,7 @@ import {
   Stack,
   Box,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 import Nodata from "../../components/Nodata";
@@ -172,7 +173,7 @@ export default function skillclass() {
           </Box>
         ) : (
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-            <h1>Top Coaching classes in {userStore.city}</h1>
+            <Text>Top Coaching classes in {userStore.city}</Text>
           </Stack>
         )}
 
