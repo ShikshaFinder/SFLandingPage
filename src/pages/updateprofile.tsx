@@ -117,6 +117,7 @@ function Form() {
                 {...register("State", { required: true })}
                 name="State"
                 placeholder="Select State"
+                defaultValue={useUse && useUse.State}
               >
                 {states.map((stateObj) => (
                   <option key={stateObj.state} value={stateObj.state}>
@@ -132,6 +133,7 @@ function Form() {
                 {...register("city", { required: true })}
                 name="city"
                 placeholder="Select District"
+                defaultValue={useUse && useUse.city}
               >
                 {districts.map((district) => (
                   <option key={district} value={district}>
