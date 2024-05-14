@@ -172,7 +172,7 @@ export default function skillclass() {
             <Nodata />
           </Box>
         ) : (
-          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"}>
             <Text>Top Online Platforms</Text>
           </Stack>
         )}
