@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube,FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { ReactNode } from "react";
 
 import Image from "next/image";
@@ -66,6 +66,7 @@ export default function SmallCentered() {
           className="Container"
           width={150}
           height={250}
+          style={{ borderRadius: "5%" }}
         ></Image>
         <Stack direction={"row"} spacing={6}>
           <Box as={Link} href={"/schoolleaderbord"}>
@@ -107,6 +108,7 @@ export default function SmallCentered() {
             <img
               src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/images.png&h=76"
               alt="startup india image shiksha finder"
+              style={{ borderRadius: "5%" }}
             />
           </a>
           <Stack direction={"row"} spacing={6}>
