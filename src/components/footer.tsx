@@ -61,11 +61,11 @@ export default function SmallCentered() {
       >
         {" "}
         <Image
-          src="/icon-512x512.png"
+          src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1713029348785_sfv1.png&h=300"
           alt="Shiksha Finder Logo"
           className="Container"
-          width={130}
-          height={228}
+          width={150}
+          height={250}
         ></Image>
         <Stack direction={"row"} spacing={6}>
           <Box as={Link} href={"/schoolleaderbord"}>
@@ -104,7 +104,10 @@ export default function SmallCentered() {
               {" "}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recognised by{" "}
             </Text>
-            <img src="/images.png" alt="startup india image shiksha finder" />
+            <img
+              src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/images.png&h=76"
+              alt="startup india image shiksha finder"
+            />
           </a>
           <Stack direction={"row"} spacing={6}>
             <SocialButton
@@ -139,7 +142,7 @@ export default function SmallCentered() {
                   Terms Of Service
                 </Text>
               </a>
-              &nbsp;  <Text fontSize="xs" >&</Text>
+              &nbsp; <Text fontSize="xs">&</Text>
               <a href="https://platform.shikshafinder.com/privacypolicy">
                 {" "}
                 <Text fontSize="xs" as="u">

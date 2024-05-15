@@ -9,4 +9,7 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   reactStrictMode: true,
+  images: {
+    domains: ["wsrv.nl", "blobimageshikshafinder.blob.core.windows.net"],
+  },
 });
