@@ -60,14 +60,15 @@ export default function SmallCentered() {
         align={"center"}
       >
         {" "}
-        <Image
+        <img
           src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1713029348785_sfv1.png&h=300"
           alt="Shiksha Finder Logo"
           className="Container"
           width={150}
           height={250}
           style={{ borderRadius: "5%" }}
-        ></Image>
+          loading="lazy"
+        ></img>
         <Stack direction={"row"} spacing={6}>
           <Box as={Link} href={"/schoolleaderbord"}>
             platform Leaderbord
@@ -100,15 +101,15 @@ export default function SmallCentered() {
         >
           <a href="https://platform.shikshafinder.com/gwsf">
             {" "}
-            <Text>© GWSF Ventures Pvt Ltd</Text>
-            <Text>
-              {" "}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recognised by{" "}
-            </Text>
+            <Stack direction={"column"} mx={"auto"} align={"center"}>
+              <Text>© GWSF Ventures Pvt Ltd</Text>
+              <Text> Recognised by </Text>
+            </Stack>
             <img
               src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/images.png&h=76"
               alt="startup india image shiksha finder"
               style={{ borderRadius: "5%" }}
+              loading="lazy"
             />
           </a>
           <Stack direction={"row"} spacing={6}>
