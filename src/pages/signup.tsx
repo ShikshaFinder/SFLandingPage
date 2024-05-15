@@ -15,7 +15,6 @@ import {
   Text,
   useColorModeValue,
   Link,
-  Alert,
   Center,
 } from "@chakra-ui/react";
 import React, { useState } from "react";

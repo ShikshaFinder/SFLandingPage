@@ -126,7 +126,11 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" onChange={(e) => setEmail(e.target.value)}  placeholder="example@gmail.com"/>
+              <Input
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="example@gmail.com"
+              />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
