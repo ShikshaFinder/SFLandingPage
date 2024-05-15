@@ -138,6 +138,7 @@ export default function Login() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="******"
                 />
                 <InputRightElement h={"full"}>
                   <Button
