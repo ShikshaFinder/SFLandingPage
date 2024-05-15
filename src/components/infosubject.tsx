@@ -37,7 +37,7 @@ function InfoTeacher({
             <Text pt="2" fontSize="sm">
               {discription}
             </Text>
-            {/* </Box> */}
+           
           </Stack>
         </CardBody>
       </Card>

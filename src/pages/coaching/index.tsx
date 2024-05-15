@@ -247,7 +247,7 @@ export default function skillclass() {
         </Grid>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
-          <Button onClick={handleLoadMore}>Load More</Button>
+          {userData && userData.length > 0 && (<Button onClick={handleLoadMore}>Load More</Button>)}
           <Button colorScheme="teal" onClick={handleShare}>
             Share it
           </Button>

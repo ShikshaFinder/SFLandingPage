@@ -29,7 +29,6 @@ function InfoTeacher({
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="1">
-            {/* <Box> */}
             <Heading size="md">Description</Heading>
             <Text pt="2" fontSize="sm">
               {discription}

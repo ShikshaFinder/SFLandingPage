@@ -62,9 +62,9 @@ export default function SmallCentered() {
           src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1713029348785_sfv1.png&h=300"
           alt="Shiksha Finder Logo"
           className="Container"
-          width={150}
-          height={250}
-          style={{ borderRadius: "5%" }}
+          width={200}
+          height={300}
+          style={{ borderRadius: "3%" }}
           loading="lazy"
         ></img>
         <Stack direction={"row"} spacing={6}>

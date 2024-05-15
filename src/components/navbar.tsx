@@ -55,7 +55,9 @@ export default function Navbar() {
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
+            color={useColorModeValue("gray.900", "white")}
+            
+            fontSize="inherit"
           >
             <Link href={"/"}>ShikshaFinder</Link>
           </Text>

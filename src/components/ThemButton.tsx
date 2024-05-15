@@ -16,6 +16,7 @@ export default function ColorModeToggle() {
         onClick={toggleColorMode}
         _focus={{ boxShadow: "none" }}
         w="fit-content"
+        variant={"outline"}
       >
         {colorMode === "light" ? <BsMoonStarsFill /> : <BsSun />}
       </Button>
