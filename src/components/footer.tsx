@@ -11,8 +11,6 @@ import {
 import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { ReactNode } from "react";
 
-import Image from "next/image";
-
 const SocialButton = ({
   children,
   label,

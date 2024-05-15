@@ -8,11 +8,8 @@ import {
   HStack,
   VStack,
   Flex,
-  Icon,
   useColorModeValue,
 } from "@chakra-ui/react";
-// Here we have used react-icons package for the icons
-import { FaRegNewspaper } from "react-icons/fa";
 
 const articles = [
   {
@@ -22,13 +19,11 @@ const articles = [
   },
   {
     id: 2,
-
     title: "What i can find on shiksha finder?",
     content: `You can find schools,coaching centers,home tutors,SKill classes,educational platforms,online tutors and many more on shiksha finder`,
   },
   {
     id: 3,
-
     title: "If i get any problem using shiksha finder,how can i contact you?",
     content: `We are open to solve your queries and problems, you can contact us on contact us page or you can mail us at founder@shikshafinder.in`,
   },
