@@ -234,7 +234,7 @@ const MobileNav = () => {
         borderTopWidth="1px"
         borderColor="gray"
       >
-        <Stack direction={"row"} spacing={45}>
+        <Stack direction={"row"} spacing={"15%"}>
           <Link href={"/school"}>
             <FaSchool
               size={19}
