@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"; // Import the useRouter hook
 import supabase from "../../supabase";
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import {
   Flex,
   Box,
@@ -17,6 +17,7 @@ import {
   Link,
   Alert,
   AlertIcon,
+  Center,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -106,6 +107,16 @@ export default function Login() {
             to enjoy all of our cool features ✌️
           </Text>
         </Stack>
+        <Button
+          w={"full"}
+          variant={"outline"}
+          leftIcon={<FcGoogle />}
+          onClick={SignIn}
+        >
+          <Center>
+            <Text>Sign in with Google</Text>
+          </Center>
+        </Button>
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
@@ -115,7 +126,7 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+              <Input type="email" onChange={(e) => setEmail(e.target.value)}  placeholder="example@gmail.com"/>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
@@ -169,17 +180,11 @@ export default function Login() {
                 </Link>
               </Stack>
               <br />
-              <Button
-                colorScheme="telegram"
-                onClick={SignIn}
-                leftIcon={<FaGoogle />}
-              >
-                Signin with Google
-              </Button>
             </Stack>
           </Stack>
         </Box>
       </Stack>
+      <Box height={"30px"}></Box>Σ
     </Flex>
   );
 }
