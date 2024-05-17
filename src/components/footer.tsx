@@ -69,7 +69,7 @@ export default function SmallCentered() {
         ></img>
         <Stack direction={"row"} spacing={6}>
           <Box as={Link} href={"/schoolleaderbord"}>
-            platform Leaderbord
+            Platform Leaderbord
           </Box>
           <Box as={Link} href={"/aboutus"}>
             AboutUs
@@ -153,9 +153,12 @@ export default function SmallCentered() {
               </a>
             </div>
           </Stack>
-          <Box height={"19"}></Box>
         </Container>
       </Box>
+          <Box height={{
+            base: "50px",
+            md: "10px",
+          }}></Box>
     </Box>
   );
 }

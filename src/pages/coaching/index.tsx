@@ -5,14 +5,9 @@ import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import ImgAd from "../../components/ImgAd";
 import Videoo from "../../components/videoad";
+import { BiShareAlt } from "react-icons/bi";
 import { useUser } from "@/store";
-import {
-  Grid,
-  Stack,
-  Box,
-  Button,
-  Text,
-} from "@chakra-ui/react";
+import { Grid, Stack, Box, Button, Text } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 import Nodata from "../../components/Nodata";
 
@@ -25,26 +20,24 @@ export default function skillclass() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
-   const handleShare = () => {
-     let slugs = window.location.pathname.split("/");
-     slugs = slugs.filter((slug) => slug !== "");
-     let shareUrl = "https://shikshafinder.com/";
+  const handleShare = () => {
+    let slugs = window.location.pathname.split("/");
+    slugs = slugs.filter((slug) => slug !== "");
+    let shareUrl = "https://shikshafinder.com/";
 
-     if (navigator.share) {
-       navigator
-         .share({
-           title: "Shiksha Finder",
-           text: "I found this website named shiksha finder ,it might be help for you too.",
-           url: shareUrl,
-         })
-         .then(() => console.log("Successful share"))
-         .catch((error) => console.log("Error sharing", error));
-     } else {
-       console.log("Web Share API not supported");
-     }
-   };
- 
-
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Shiksha Finder",
+          text: "I found this website named shiksha finder ,it might be help for you too.",
+          url: shareUrl,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      console.log("Web Share API not supported");
+    }
+  };
 
   async function getAd() {
     try {
@@ -66,7 +59,7 @@ export default function skillclass() {
         let { data, error } = await supabase
           .from("marketingDetailsIndustry")
           .select("img,redirecturl,videolink,user_id")
-          .match({ State: userStore.State,paid: true })
+          .match({ State: userStore.State, paid: true })
           .range(0, 0);
 
         setUserAd(data);
@@ -150,7 +143,7 @@ export default function skillclass() {
       }
     } catch (error) {
       console.log("Caught Error:", error);
-    } 
+    }
   }
 
   async function getcoaching(offset: number) {
@@ -247,9 +240,11 @@ export default function skillclass() {
         </Grid>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
-          {userData && userData.length > 0 && (<Button onClick={handleLoadMore}>Load More</Button>)}
+          {userData && userData.length > 0 && (
+            <Button onClick={handleLoadMore}>Load More</Button>
+          )}
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it
+            Share  &nbsp;<BiShareAlt />
           </Button>
           <br />
           <ImgAd

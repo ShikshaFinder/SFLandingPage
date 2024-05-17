@@ -136,7 +136,7 @@ function profile({
               </b>
             </WrapItem>
           </Wrap>
-          <Box height={"30px"}></Box>
+          <Box height={"40px"}></Box>
         </CardBody>
         {/* Add bg="gray.200" to set the background color */}
       </Card>

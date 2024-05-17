@@ -9,6 +9,8 @@ import Nodata from "@/components/Nodata";
 import { Grid, Toast, Stack, Button,Text } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import Nouser from "@/components/Nouser";
+import { BiShareAlt } from "react-icons/bi";
+
 
 export default function skillclass() {
   const { user } = useAuthContext();
@@ -257,7 +259,8 @@ export default function skillclass() {
             <Button onClick={handleLoadMore}>Load More</Button>
           )}
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it
+            Share &nbsp;
+            <BiShareAlt />
           </Button>
           <br />
           <ImgAd

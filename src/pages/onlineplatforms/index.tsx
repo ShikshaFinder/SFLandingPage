@@ -6,6 +6,7 @@ import { useAuthContext } from "@/context";
 import ImgAd from "../../components/ImgAd";
 import Videoo from "../../components/videoad";
 import { useUser } from "@/store";
+import { BiShareAlt } from "react-icons/bi";
 import {
   Grid,
   Stack,
@@ -251,7 +252,8 @@ export default function skillclass() {
             <Button onClick={handleLoadMore}>Load More</Button>
           )}{" "}
           <Button colorScheme="teal" onClick={handleShare}>
-            Share it
+            Share &nbsp;
+            <BiShareAlt />
           </Button>
           <br />
           <ImgAd

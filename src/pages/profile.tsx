@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-
+import React from "react";
 import {
   Tabs,
   TabList,
@@ -10,8 +8,6 @@ import {
   Box,
   useTab,
   useMultiStyleConfig,
-  Spinner,
-  Center,
 } from "@chakra-ui/react";
 // import Leaderbord from "../components/Leaderbord";
 import { useAuthContext } from "@/context";
