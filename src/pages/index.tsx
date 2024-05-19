@@ -29,7 +29,7 @@ export default function Home() {
       <Layout>
         <NextSeo
           title="Shiksha Finder"
-          description="Showcase the quality of education"
+          description="Find Best educational institute for your child, Watch Demo lectures, Fill online admission form, Promote your educational platform"
           openGraph={{
             url: "/icon-192x192.png",
             title: "Let's promote Quality of Education",
@@ -51,7 +51,7 @@ export default function Home() {
           />
           <meta
             name="ShikshaFinder"
-            content="Shiksha Finder,schools,how to find best schools for your child?,what is the best way of marketing your educational platform?,schools near me"
+            content="Shiksha Finder,Coaching classes in ,how to find best schools for your child?,what is the best way of marketing your educational platform?,schools near me"
           />
           <meta
             name="viewport"

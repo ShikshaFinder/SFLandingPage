@@ -16,6 +16,8 @@ import {
 } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 import Nodata from "../../components/Nodata";
+import { NextSeo } from "next-seo";
+import Head from "next/head";
 
 export default function skillclass() {
   const { user } = useAuthContext();
@@ -198,6 +200,21 @@ export default function skillclass() {
   return (
     <>
       <Layoutt>
+        <NextSeo
+          title="How to find a perfect online educatioal Platform for you?"
+          description="Which is the most affordable online educational platform, how to find the best online educational platform in india, the best online educational platform in your city for your child, top online educational platform in Gujarat"
+        />
+        <Head>
+          <meta
+            name="shiksha finder online educational platforms lists"
+            content="Which is the most affordable online educational platform, how to find the best online educational platform in india, the best online educational platform in your city for your child, top online educational platform in Gujarat"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
+
         <Videoo
           src={(userAd && userAd[0]?.videolink) || "Q8PYzXn4HSs"}
           link={

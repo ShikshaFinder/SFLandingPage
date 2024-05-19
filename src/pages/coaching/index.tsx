@@ -10,6 +10,8 @@ import { useUser } from "@/store";
 import { Grid, Stack, Box, Button, Text } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 import Nodata from "../../components/Nodata";
+import { NextSeo } from "next-seo";
+import Head from "next/head";
 
 export default function skillclass() {
   const { user } = useAuthContext();
@@ -190,6 +192,21 @@ export default function skillclass() {
   return (
     <>
       <Layoutt>
+        <NextSeo
+          title={`top coaching classes/tution in ${userStore.city}`}
+          description={`Which is the most affordable coaching in ${userStore.city},how to find best coaching in ${userStore.city},best coaching in ${userStore.city} for your child, top coaching in ${userStore.city}`}
+        />
+        <Head>
+          <meta
+            name={`Shiksha Finder coaching In ${userStore.city}`}
+            content={`Which is the most affordable coaching  ${userStore.city}, how to find best coaching in ${userStore.city},best coaching in ${userStore.city} for your child, top coaching in ${userStore.city}`}
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
+
         <Videoo
           src={(userAd && userAd[0]?.videolink) || "Q8PYzXn4HSs"}
           link={
@@ -244,7 +261,8 @@ export default function skillclass() {
             <Button onClick={handleLoadMore}>Load More</Button>
           )}
           <Button colorScheme="teal" onClick={handleShare}>
-            Share  &nbsp;<BiShareAlt />
+            Share &nbsp;
+            <BiShareAlt />
           </Button>
           <br />
           <ImgAd

@@ -11,6 +11,9 @@ import Videoo from "../../../components/videoad";
 import { useUser } from "@/store";
 import Nodata from "@/components/Nodata";
 import { BiShareAlt } from "react-icons/bi";
+import { NextSeo } from "next-seo";
+import Head from "next/head";
+
 
 export default function Skillclass() {
   const { user } = useAuthContext();
@@ -195,6 +198,21 @@ export default function Skillclass() {
   return (
     <>
       <Layoutt>
+        <NextSeo
+          title={`top skillclasses in ${userStore.city}`}
+          description={`Which is the most affordable skillclasse in ${userStore.city},how to find best skillclass in ${userStore.city},best skillclass in ${userStore.city} for your child, top skillclasses`}
+        />
+        <Head>
+          <meta
+            name={`Shiksha Finder skillclasses In ${userStore.city}`}
+            content={`Which is the most affordable  ${userStore.city}, how to find best skillclasse in ${userStore.city},best skillclasse in ${userStore.city} for your child, top skillclasses in ${userStore.city}`}
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
+
         <Videoo
           src={(userAd && userAd[0]?.videolink) || "Q8PYzXn4HSs"}
           link={
