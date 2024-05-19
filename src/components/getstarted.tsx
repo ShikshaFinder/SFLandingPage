@@ -13,7 +13,7 @@ function Navnew() {
         size={"lg"}
         fontWeight={"normal"}
         px={6}
-        colorScheme={"blue"}
+        colorScheme="teal"
         _hover={{ bg: "blue.500" }}
       >
         Let's explore
