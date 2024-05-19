@@ -88,7 +88,7 @@ export default function Home() {
                 </Text>
                 <br />
                 <Text as={"span"} color={"blue.400"}>
-                  इमानदार स्कूल की पहचान
+                  Explore the quality of education
                 </Text>
               </Heading>
               <Text>
