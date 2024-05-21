@@ -109,6 +109,7 @@ export default function Login() {
           variant={"outline"}
           leftIcon={<FcGoogle />}
           onClick={SignIn}
+          colorScheme="teal"
         >
           <Center>
             <Text>Sign in with Google</Text>
