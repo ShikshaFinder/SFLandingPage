@@ -37,7 +37,7 @@ export default function CardWithIllustration() {
             fontSize={"3xl"}
             color={useColorModeValue("gray.800", "gray.200")}
           >
-            Please check your inbox
+            Please check your inbox / gmail & authenticate your email
           </Heading>
           <Text fontSize={"lg"} color={"gray.500"}>
             Thank you for joining shikshafinder! we are an early age startup and
