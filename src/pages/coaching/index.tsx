@@ -193,13 +193,13 @@ export default function skillclass() {
     <>
       <Layoutt>
         <NextSeo
-          title={`top coaching classes/tution in ${userStore.city}`}
-          description={`Which is the most affordable coaching in ${userStore.city},how to find best coaching in ${userStore.city},best coaching in ${userStore.city} for your child, top coaching in ${userStore.city}`}
+          title={`top coaching classes/tution in `}
+          description={`Which is the most affordable coaching in ,how to find best coaching in ,,best coaching in , for your child, top coaching in ,`}
         />
         <Head>
           <meta
-            name={`Shiksha Finder coaching In ${userStore.city}`}
-            content={`Which is the most affordable coaching  ${userStore.city}, how to find best coaching in ${userStore.city},best coaching in ${userStore.city} for your child, top coaching in ${userStore.city}`}
+            name={`Shiksha Finder coaching In ,`}
+            content={`Which is the most affordable coaching  ,, how to find best coaching in ,,best coaching in , for your child, top coaching in ,`}
           />
           <meta
             name="viewport"
