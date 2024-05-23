@@ -13,6 +13,7 @@ import ShareButton from "../../../components/shareButton";
 import { useAuthContext } from "@/context";
 import Nouser from "@/components/Nouser";
 import Image from "../../../components/image";
+import { Alert, AlertIcon } from "@chakra-ui/react";
 
 const cards = [
   {
@@ -45,7 +46,7 @@ function IntroSchool() {
     try {
       if (typeof coachingname === "string") {
         let { data, error } = await supabase
-          .from("vote")
+          .from("votes")
           .select("*")
           .eq("user_id", coachingname);
 
@@ -221,13 +222,20 @@ function IntroSchool() {
           discription={userData && userData[0] ? userData[0].discription : ""}
         />
 
-        <Chart
-          extra={useVote && useVote[0]?.extracurricular}
-          quality={useVote && useVote[0]?.qualityofeducation}
-          management={useVote && useVote[0]?.management}
-          facilities={useVote && useVote[0]?.facilityprovided}
-          view={useVote && useVote[0]?.view}
-        />
+        {useVote && useVote[0]?.extracurricular != 0 ? (
+          <Chart
+            extra={useVote[0]?.extracurricular}
+            quality={useVote[0]?.qualityofeducation}
+            management={useVote[0]?.management}
+            facilities={useVote[0]?.facilityprovided}
+            view={useVote[0]?.view}
+          />
+        ) : (
+          <Alert status="info">
+            <AlertIcon />
+            This institute has not participated in shiksha star contest yet
+          </Alert>
+        )}
         <Stack
           spacing={8}
           mx={"auto"}

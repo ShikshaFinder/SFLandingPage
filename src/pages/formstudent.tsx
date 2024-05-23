@@ -37,7 +37,7 @@ function Form() {
   const { register, handleSubmit, control, watch } = form;
   const selectedState = watch("State");
 
-  const handleSubmitt = () => {
+  async function handleSubmitt() {
     toast({
       title: "Form submitted!",
       description: "Thank you for your Form",
@@ -45,11 +45,13 @@ function Form() {
       duration: 3000,
       isClosable: true,
     });
-    setTimeout(() => {
-      router.reload();
-    }, 2000);
-    router.push("/");
-  };
+
+    router.push("/school");
+  }
+
+  function Reload() {
+    router.reload();
+  }
 
   const [states, setStates] = useState<State[]>(state.states);
   const districts =
@@ -69,7 +71,8 @@ function Form() {
         isClosable: true,
       });
     } else {
-      handleSubmitt();
+      await handleSubmitt();
+      Reload();
     }
   };
   if (!user.email) {

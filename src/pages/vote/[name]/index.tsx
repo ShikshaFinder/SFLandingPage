@@ -275,7 +275,7 @@ function Vote() {
               >
                 Submit
               </Button>
-              height={"19"}
+             
             </CardBody>
           </Card>
         </Stack>
