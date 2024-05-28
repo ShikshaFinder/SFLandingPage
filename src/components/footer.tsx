@@ -68,9 +68,6 @@ export default function SmallCentered() {
           loading="lazy"
         ></img>
         <Stack direction={"row"} spacing={6}>
-          <Box as={Link} href={"/schoolleaderbord"}>
-            Platform Leaderbord
-          </Box>
           <Box as={Link} href={"/aboutus"}>
             AboutUs
           </Box>
@@ -78,7 +75,10 @@ export default function SmallCentered() {
             Blog
           </Box>
           <Box as={Link} href={"/contactus"}>
-            Contact
+            Contact Us
+          </Box>
+          <Box as={Link} href={"https://platform.shikshafinder.com/"}>
+            Register my platform
           </Box>
         </Stack>
       </Container>
@@ -155,10 +155,12 @@ export default function SmallCentered() {
           </Stack>
         </Container>
       </Box>
-          <Box height={{
-            base: "50px",
-            md: "10px",
-          }}></Box>
+      <Box
+        height={{
+          base: "50px",
+          md: "10px",
+        }}
+      ></Box>
     </Box>
   );
 }
