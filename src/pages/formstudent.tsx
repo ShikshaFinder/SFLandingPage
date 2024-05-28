@@ -37,7 +37,7 @@ function Form() {
   const { register, handleSubmit, control, watch } = form;
   const selectedState = watch("State");
 
-  async function handleSubmitt() {
+  function handleSubmitt() {
     toast({
       title: "Form submitted!",
       description: "Thank you for your Form",
@@ -71,7 +71,7 @@ function Form() {
         isClosable: true,
       });
     } else {
-      await handleSubmitt();
+      handleSubmitt();
       Reload();
     }
   };
