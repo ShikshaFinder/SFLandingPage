@@ -15,7 +15,7 @@ const articles = [
   {
     id: 1,
     title: "Is it true that shiksha finder is and will be free forever?",
-    content: `Yes! Shiksha Finder is and will always be free to use for finding best educational platform. We believe that quality education should be accessible to all.There is no listing fees for educational platforms also.Our revenue model is simple,marketing and advertisement. `,
+    content: `Yes! Shiksha Finder is and will always be free to use for finding best educational platform. We believe that quality education should be accessible to all. `,
   },
   {
     id: 2,
