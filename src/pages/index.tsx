@@ -14,7 +14,6 @@ import {
   Heading,
   Text,
   Button,
-  AspectRatio,
   Icon,
   IconProps,
 } from "@chakra-ui/react";
