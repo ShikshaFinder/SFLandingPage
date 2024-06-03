@@ -16,23 +16,23 @@ const testimonials = [
     content:
       "Shiksha Finder is amazing! It helped me find the perfect school and coaching class for my needs. I highly recommend it!",
     avatar:
-      "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "https://media.licdn.com/dms/image/D4D03AQHvarl05uK6UQ/profile-displayphoto-shrink_400_400/0/1710650766496?e=1723075200&v=beta&t=uSBQYXSlbB2RHU7-trUgasaOKwY9mK1ltfz-CqEP8lU",
   },
   {
-    name: "Yash Navsarivala",
+    name: "Dhruvil Moradiya",
     role: "Parent",
     content:
       "As a parent, I was worried about finding the right educational institutions for my child. Shiksha Finder made the process easy and stress-free. Thank you!",
     avatar:
-      "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "https://media.licdn.com/dms/image/D4D03AQE-ollbTQptAA/profile-displayphoto-shrink_400_400/0/1695454519141?e=1723075200&v=beta&t=vf_J9ixqJQlhjL4gA5FGHAsfz9kSWcemPWQgJlBSNr8",
   },
   {
-    name: "Hinal Jani",
+    name: "Nishtha Joshi",
     role: "Teacher",
     content:
       "Shiksha Finder is a valuable tool for educators. It helps connect students with the best learning resources. I use it regularly in my teaching.",
     avatar:
-      "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "https://media.licdn.com/dms/image/D5603AQFd0xnadln6xw/profile-displayphoto-shrink_400_400/0/1712243120888?e=1723075200&v=beta&t=H-Au-eEMWKT0GpgkG1KVy8PoTJj_TfyegYmruFwJM0k",
   },
   {
     name: "Shree Swaminarayan Gurukul ,Sardar Nagar Bhavnagar",
@@ -40,7 +40,7 @@ const testimonials = [
     content:
       "I'm impressed with Shiksha Finder's ability to streamline the school selection process. It's an invaluable resource for students and parents alike.",
     avatar:
-      "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "https://lh3.googleusercontent.com/p/AF1QipP3xwSU6u7iDc1AqMPSarj5GaJVyFaNcZ8GJlkO=s1360-w1360-h1020",
   },
 ];
 
