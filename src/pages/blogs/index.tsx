@@ -13,7 +13,7 @@ import {
 import NextLink from "next/link";
 import { MotionBox } from "./motion";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://shikshafinder.com/";
 
 const posts = [
   {
