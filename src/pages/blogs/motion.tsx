@@ -2,7 +2,7 @@ import { Box, forwardRef } from "@chakra-ui/react";
 // Here we have used framer-motion package for animations
 import { motion, isValidMotionProp } from "framer-motion";
 
- const MotionBox = motion(
+export const MotionBox = motion(
   forwardRef((props, ref) => {
     const chakraProps = Object.fromEntries(
       Object.entries(props).filter(([key]) => !isValidMotionProp(key))
@@ -11,4 +11,11 @@ import { motion, isValidMotionProp } from "framer-motion";
   })
 );
 
-export default MotionBox;
+
+function Motion() {
+  return (
+    <div></div>
+  )
+}
+
+export default Motion

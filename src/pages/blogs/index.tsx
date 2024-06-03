@@ -11,7 +11,7 @@ import {
   Container,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import MotionBox from "./motion";
+import {MotionBox} from "./motion";
 
 const BASE_URL = "https://shikshafinder.com/";
 
