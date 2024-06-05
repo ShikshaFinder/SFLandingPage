@@ -50,7 +50,9 @@ function Form() {
   }
 
   function Reload() {
-    router.reload();
+    setTimeout(() => {
+      router.reload();
+    }, 3000);
   }
 
   const [states, setStates] = useState<State[]>(state.states);
