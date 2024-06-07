@@ -87,7 +87,7 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("coaching")
           .select(
-            "videolink,website,coachingname,location,locationlink,discription,mobile,user_id,img,exam"
+            "videolink,website,coachingname,location,locationlink,discription,mobile,user_id,img,medium"
           )
           .eq("user_id", coachingname);
 
@@ -222,7 +222,7 @@ function IntroSchool() {
           location={userData && userData[0] ? userData[0].location : ""}
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
           discription={userData && userData[0] ? userData[0].discription : ""}
-          exam={userData && userData[0] ? userData[0].exam : ""}
+          exam={userData && userData[0] ? userData[0].medium : ""}
         />
 
         {useVote && useVote[0]?.extracurricular != 0 ? (
