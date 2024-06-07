@@ -15,11 +15,13 @@ function InfoTeacher({
   location,
   discription,
   locationlink,
+  exam,
 }: {
   TeacherName: string;
   location?: string;
   discription: string;
   locationlink?: string;
+  exam?: string;
 }) {
   return (
     <>
@@ -46,6 +48,10 @@ function InfoTeacher({
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {location}
               </Link>
             </Box>
+            <Heading size="md">Exams</Heading>
+            <Text pt="2" fontSize="sm">
+              {exam}
+            </Text>
           </Stack>
         </CardBody>
       </Card>
