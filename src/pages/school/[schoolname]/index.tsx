@@ -14,6 +14,7 @@ import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import Nouser from "../../../components/Nouser";
 import { useAuthContext } from "@/context";
+import { set } from "react-hook-form";
 
 
 
@@ -146,9 +147,9 @@ function IntroSchool() {
     }
   }
 
-   if (!user.email ) {
+   setTimeout(() => { if (!user.email ) {
      return <Nouser />;
-   }
+   }}, 2000);
 
   useEffect(() => {
     getStandard();
@@ -229,7 +230,16 @@ function IntroSchool() {
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
           location={userData && userData[0] ? userData[0].location : ""}
           discription={userData && userData[0] ? userData[0].discription : ""}
-          exam={userData && userData[0] ? userData[0].exam : ""}
+          exam={
+            userData && userData[0]
+              ? userData[0].exam
+              : "exams not mentioned by the institutes"
+          }
+          medium={
+            userData && userData[0]
+              ? userData[0].medium
+              : "exams not mentioned by the institutes"
+          }
         />
         <br />
         {useVote && useVote[0]?.extracurricular != 0 ? (
