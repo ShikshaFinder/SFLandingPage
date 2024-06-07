@@ -11,7 +11,7 @@ function Nouser() {
     // Simulate loading for 1 second
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);

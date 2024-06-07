@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
 import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";  
+import { useAuthContext } from "@/context";
+import Nouser from "../../../components/Nouser";
 
 const cards = [
   {
@@ -32,7 +34,7 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { onlineplatformname } = router.query;
-
+  const { user } = useAuthContext();
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userData, setUserData] = useState<any[] | null>(null);
@@ -132,6 +134,12 @@ async function getVote() {
       console.log("Caught Error:", error);
     }
   }
+
+if(!user.email || !userData){
+  return <Nouser />
+
+}
+
   useEffect(() => {
     getSchool();
   }, [onlineplatformname]);

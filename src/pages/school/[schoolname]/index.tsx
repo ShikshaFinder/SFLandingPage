@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
 import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
+import Nouser from "../../../components/Nouser";
+import { useAuthContext } from "@/context";
+
 
 
 // import { useAuthContext } from "@/context";
@@ -35,7 +38,7 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { schoolname } = router.query;
-
+  const { user } = useAuthContext();
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userData, setUserData] = useState<any[] | null>(null);
@@ -142,6 +145,10 @@ function IntroSchool() {
       console.log("Caught Error:", error);
     }
   }
+
+   if (!user.email || !userData) {
+     return <Nouser />;
+   }
 
   useEffect(() => {
     getStandard();

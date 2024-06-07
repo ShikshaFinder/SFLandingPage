@@ -15,6 +15,8 @@ import Nouser from "@/components/Nouser";
 import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 
+
+
 const cards = [
   {
     name: "Vigyasa",
@@ -153,7 +155,7 @@ function IntroSchool() {
     updateView();
   }, []);
 
-  if (!user.email) {
+  if (!user.email || !userData) {
     return <Nouser />;
   }
 
