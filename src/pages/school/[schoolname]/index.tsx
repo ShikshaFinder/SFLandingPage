@@ -146,7 +146,7 @@ function IntroSchool() {
     }
   }
 
-   if (!user.email || !userData) {
+   if (!user.email ) {
      return <Nouser />;
    }
 

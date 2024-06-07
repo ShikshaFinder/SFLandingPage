@@ -135,7 +135,7 @@ async function getVote() {
     }
   }
 
-if(!user.email || !userData){
+if(!user.email){
   return <Nouser />
 
 }

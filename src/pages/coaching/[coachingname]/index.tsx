@@ -155,7 +155,7 @@ function IntroSchool() {
     updateView();
   }, []);
 
-  if (!user.email || !userData) {
+  if (!user.email) {
     return <Nouser />;
   }
 
