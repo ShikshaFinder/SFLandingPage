@@ -11,7 +11,6 @@ import Videoo from "../../../components/videoad";
 import { useUser } from "@/store";
 import Nodata from "@/components/Nodata";
 import { BiShareAlt } from "react-icons/bi";
-import { NextSeo } from "next-seo";
 import Head from "next/head";
 
 
@@ -159,7 +158,7 @@ export default function Skillclass() {
     try {
       let { data, error } = await supabase
         .from("skillclass")
-        .select("skillclassname, ratingofskillclass, img, user_id")
+        .select("skillclassname, city, img, user_id")
         .match({ State: userStore.State, city: userStore.city })
         .range(offset, offset + 3);
 
@@ -241,7 +240,7 @@ export default function Skillclass() {
               (
                 skillclass: {
                   skillclassname: string;
-                  ratingofskillclass: number;
+                  city: string;
                   link: string;
                   img: string;
                   user_id: string;
@@ -251,7 +250,7 @@ export default function Skillclass() {
                 <Card
                   key={index} // Ensure unique key for each Card
                   name={skillclass.skillclassname}
-                  rating={skillclass.ratingofskillclass}
+                  rating={skillclass.city}
                   link={`/skillclass/${skillname}/${skillclass.user_id}`}
                   imgsrc={
                     skillclass.img

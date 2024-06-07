@@ -242,7 +242,7 @@ export default function skillclass() {
               (
                 coaching: {
                   coachingname: string;
-                  ratingofcoaching: number;
+                  ratingofcoaching: string;
                   link: string;
                   img: string;
                   user_id: string;

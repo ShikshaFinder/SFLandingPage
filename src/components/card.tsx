@@ -5,6 +5,7 @@ import {
   Stack,
   useColorModeValue,
   Img,
+  Text,
 } from "@chakra-ui/react";
 import { Badge } from "@chakra-ui/react";
 import Link from "next/link";
@@ -44,7 +45,7 @@ const Index = ({
             </Box>
 
             <Stack direction="row">
-              <Badge colorScheme="green">{rating}</Badge>
+              <Text> Subdistrict : {rating}</Text>
             </Stack>
           </Box>
         </Box>

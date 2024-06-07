@@ -158,7 +158,7 @@ export default function skillclass() {
     try {
       let { data, error } = await supabase
         .from("School")
-        .select("schoolname, ratingofschool, img, user_id")
+        .select("schoolname, subdistrict, img, user_id")
         .match({ State: userStore.State, District: userStore.city })
         .range(offset, offset + 3);
 
@@ -248,7 +248,7 @@ export default function skillclass() {
               (
                 school: {
                   schoolname: string;
-                  ratingofschool: number;
+                  subdistrict: string;
                   link: string;
                   img: string;
                   user_id: string;
@@ -258,7 +258,7 @@ export default function skillclass() {
                 <Card
                   key={index} // Ensure unique key for each Card
                   name={school.schoolname}
-                  rating={school.ratingofschool}
+                  rating={school.subdistrict}
                   link={`/school/${school.user_id}`}
                   imgsrc={
                     school.img
