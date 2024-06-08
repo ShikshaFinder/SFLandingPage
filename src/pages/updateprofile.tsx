@@ -16,7 +16,7 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import supabase from "../../supabase";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, set } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
 import { state } from "@/components/state";
@@ -48,6 +48,9 @@ function Form() {
       duration: 3000,
       isClosable: true,
     });
+
+    setTimeout(() => {router.reload()}, 3000);
+      
     router.push("/profile");
   };
 
