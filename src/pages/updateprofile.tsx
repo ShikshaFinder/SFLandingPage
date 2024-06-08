@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -117,6 +117,7 @@ function Form() {
                 {...register("State", { required: true })}
                 name="State"
                 placeholder="Select State"
+                defaultValue={useUse && useUse.State}
               >
                 {states.map((stateObj) => (
                   <option key={stateObj.state} value={stateObj.state}>
@@ -132,6 +133,7 @@ function Form() {
                 {...register("city", { required: true })}
                 name="city"
                 placeholder="Select District"
+                defaultValue={useUse && useUse.city}
               >
                 {districts.map((district) => (
                   <option key={district} value={district}>
@@ -147,6 +149,7 @@ function Form() {
                 {...register("subDistrict", { required: true })}
                 name="subDistrict"
                 placeholder="If its main district than just put City name here also"
+                defaultValue={useUse && useUse.subDistrict}
               />
             </FormControl>
             <br />{" "}
@@ -156,6 +159,7 @@ function Form() {
                 {...register("Standard", { required: true })}
                 name="Standard"
                 placeholder="Standard"
+                defaultValue={useUse && useUse.Standard}
               >
                 <option value="Nursery">Nursery</option>
                 <option value="1">Standard 1</option>
@@ -193,7 +197,7 @@ function Form() {
               <Controller
                 name="Board"
                 control={control}
-                defaultValue="Native"
+                defaultValue={useUse && useUse.Board}
                 rules={{ required: true }}
                 render={({ field }) => (
                   <RadioGroup {...field}>
@@ -218,6 +222,7 @@ function Form() {
                 {...register("standardcategory", { required: true })}
                 name="standardcategory"
                 placeholder="standardcategory"
+                defaultValue={useUse && useUse.standardcategory}
               >
                 <option value="Nursery">Kinder Garden</option>
                 <option value="1">1-10</option>
@@ -232,7 +237,7 @@ function Form() {
               <Controller
                 name="medium"
                 control={control}
-                defaultValue="Native"
+                defaultValue={useUse && useUse.medium}
                 rules={{ required: true }}
                 render={({ field }) => (
                   <RadioGroup {...field}>
