@@ -49,8 +49,8 @@ function Form() {
       isClosable: true,
     });
 
-    setTimeout(() => {router.reload()}, 3000);
-      
+    setTimeout(() => {router.reload()}, 3000);  
+
     router.push("/profile");
   };
 
