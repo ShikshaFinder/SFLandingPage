@@ -147,9 +147,9 @@ function IntroSchool() {
     }
   }
 
-   setTimeout(() => { if (!user.email ) {
+   if (!user.email ) {
      return <Nouser />;
-   }}, 2000);
+   }
 
   useEffect(() => {
     getStandard();

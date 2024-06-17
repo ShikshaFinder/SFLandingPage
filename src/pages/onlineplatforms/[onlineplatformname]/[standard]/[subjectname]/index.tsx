@@ -38,11 +38,11 @@ function IntroSchool() {
     const [useView, setUseView] = React.useState<any[] | null>(null);
 
 
-  setTimeout(() => {
+ 
     if (!user.email) {
       return <Nouser />;
     }
-  }, 2000);
+
 
   async function getStandard1() {
     try {

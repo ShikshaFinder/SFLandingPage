@@ -36,11 +36,11 @@ function IntroSchool() {
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
 
-  setTimeout(() => {
+ 
     if (!user.email) {
       return <Nouser />;
     }
-  }, 2000);
+  
   async function getStandard1() {
     try {
       if (typeof subjectname === "string") {

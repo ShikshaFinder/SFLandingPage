@@ -40,11 +40,11 @@ function IntroSchool() {
 
 
 
-  setTimeout(() => {
+  
     if (!user.email) {
       return <Nouser />;
     }
-  }, 2000);
+
   async function getStandard1() {
     try {
       if (typeof subjectname === "string") {

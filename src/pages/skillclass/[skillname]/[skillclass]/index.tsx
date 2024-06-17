@@ -139,11 +139,11 @@ function IntroSchool() {
     }
   }
 
- setTimeout(() => {
+
    if (!user.email) {
      return <Nouser />;
    }
- }, 2000);
+ 
 
   useEffect(() => {
     getSchool();

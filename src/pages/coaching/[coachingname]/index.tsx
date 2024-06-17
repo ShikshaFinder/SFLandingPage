@@ -155,11 +155,11 @@ function IntroSchool() {
     updateView();
   }, []);
 
- setTimeout(() => {
+
    if (!user.email) {
      return <Nouser />;
    }
- }, 2000);
+
 
   return (
     <>
