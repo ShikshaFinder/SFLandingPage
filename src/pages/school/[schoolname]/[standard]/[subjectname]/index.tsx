@@ -10,6 +10,8 @@ import React from "react";
 import InfoSubject from "../../../../../components/infosubject";
 import ShareButton from "../../../../../components/shareButton";
 import Subject from "@/components/subject";
+import Nouser from "@/components/Nouser";
+import { useAuthContext } from "@/context";
 
 const cards = [
   {
@@ -30,11 +32,16 @@ const cards = [
 function IntroSchool() {
   const router = useRouter();
   const { subjectname, standard, schoolname } = router.query;
-
+  const { user } = useAuthContext();
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
 
+  setTimeout(() => {
+    if (!user.email) {
+      return <Nouser />;
+    }
+  }, 2000);
   async function getStandard1() {
     try {
       if (typeof subjectname === "string") {
