@@ -136,9 +136,7 @@ async function getVote() {
   }
 
 
-  if (!user.email) {
-    return <Nouser />;
-  }
+  
 
 
   useEffect(() => {

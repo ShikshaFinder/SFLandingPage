@@ -156,9 +156,7 @@ function IntroSchool() {
   }, []);
 
 
-   if (!user.email) {
-     return <Nouser />;
-   }
+  
 
 
   return (

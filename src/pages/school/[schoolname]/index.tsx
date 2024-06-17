@@ -147,9 +147,7 @@ function IntroSchool() {
     }
   }
 
-   if (!user.email ) {
-     return <Nouser />;
-   }
+   
 
   useEffect(() => {
     getStandard();

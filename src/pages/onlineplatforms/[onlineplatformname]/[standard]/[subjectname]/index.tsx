@@ -39,9 +39,7 @@ function IntroSchool() {
 
 
  
-    if (!user.email) {
-      return <Nouser />;
-    }
+ 
 
 
   async function getStandard1() {

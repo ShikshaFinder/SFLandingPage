@@ -37,9 +37,7 @@ function IntroSchool() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
 
  
-    if (!user.email) {
-      return <Nouser />;
-    }
+    
   
   async function getStandard1() {
     try {
