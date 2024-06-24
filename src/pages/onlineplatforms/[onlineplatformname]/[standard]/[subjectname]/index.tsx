@@ -220,7 +220,9 @@ function IntroSchool() {
         </Stack>
         <Admissionform
           name={useStandard && useStandard[0] ? useStandard[0].user_id : ""}
-          phoneNumber={7984140706}
+          phoneNumber={
+            useStandard && useStandard[0] ? useStandard[0].mobile : ""
+          }
         />
       </Box>
     </>

@@ -254,7 +254,7 @@ async function getVote() {
         </Stack>
         <Admissionform
           name={userData && userData[0] ? userData[0].user_id : ""}
-          phoneNumber={userData && userData[0] ? userData[0].mobile1 : ""}
+          phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
         />
       </Box>
     </>
