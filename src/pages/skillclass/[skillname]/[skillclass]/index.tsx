@@ -221,7 +221,11 @@ function IntroSchool() {
           // Experience={"12 years"}
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
           location={userData && userData[0] ? userData[0].location : ""}
-          discription={userData && userData[0] ? userData[0].discription : ""}
+          discription={
+            userData && userData[0]
+              ? userData[0].discription
+              : "The Data is on its way ,Thank you for your patience"
+          }
         />
         {useVote && useVote[0]?.extracurricular != 0 ? (
           <Chart

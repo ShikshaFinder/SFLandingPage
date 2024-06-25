@@ -227,7 +227,11 @@ function IntroSchool() {
           TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
           location={userData && userData[0] ? userData[0].location : ""}
-          discription={userData && userData[0] ? userData[0].discription : ""}
+          discription={
+            userData && userData[0]
+              ? userData[0].discription
+              : "The Data is on its way ,Thank you for your patience"
+          }
           exam={
             userData && userData[0]
               ? userData[0].exam

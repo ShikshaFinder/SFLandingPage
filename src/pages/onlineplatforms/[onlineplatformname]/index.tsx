@@ -216,7 +216,11 @@ async function getVote() {
           TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
           // Experience={"12 years"}
 
-          discription={userData && userData[0] ? userData[0].discription : ""}
+          discription={
+            userData && userData[0]
+              ? userData[0].discription
+              : "The Data is on its way ,Thank you for your patience"
+          }
         />
 
         {useVote && useVote[0]?.extracurricular != 0 ? (
@@ -230,7 +234,6 @@ async function getVote() {
         ) : (
           <Alert status="info">
             <AlertIcon />
-            
             This institute has not participated in shiksha star contest yet
           </Alert>
         )}

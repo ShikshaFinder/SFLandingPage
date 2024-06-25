@@ -204,10 +204,10 @@ export default function skillclass() {
   return (
     <>
       <Layoutt>
-        {/* <NextSeo
-          title={`top schools in ${userStore.city}`}
-          description={`Which is the most affordable school in ${userStore.city},how to find best school in ${userStore.city},best school in ${userStore.city} for your child, top schools`}
-        /> */}
+        <NextSeo
+          title={`top schools in `}
+          description={`Which is the most affordable school in },how to find best school in ,best school in  for your child, top schools`}
+        />
         <Head>
           <meta
             name={`Shiksha Finder Schools In `}

@@ -196,7 +196,9 @@ function IntroSchool() {
             useStandard && useStandard[0] ? useStandard[0].Teachername : ""
           }
           discription={
-            useStandard && useStandard[0] ? useStandard[0].discription : ""
+            useStandard && useStandard[0]
+              ? useStandard[0].discription
+              : "The Data is on its way ,Thank you for your patience"
           }
         />
 
