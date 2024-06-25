@@ -57,7 +57,7 @@ function InfoTeacher({
             </Text>
             <br />
             <Heading size="md">Medium</Heading>
-            <Text pt="2" fontSize="sm">
+            <Text pt="2" fontSize="sm" noOfLines={7}>
               {medium}
             </Text>
           </Stack>
