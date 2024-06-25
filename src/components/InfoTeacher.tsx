@@ -30,7 +30,7 @@ function InfoTeacher({
   const readMore = () => {
     setLines(100);
   };
- 
+
   return (
     <>
       <Card boxShadow={"2xl"} rounded={"md"}>
@@ -43,7 +43,10 @@ function InfoTeacher({
             <Text pt="2" fontSize="sm" noOfLines={lines}>
               {discription}
             </Text>
-            <b onClick={readMore}>Read more</b>
+            <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+              {" "}
+              <Text onClick={readMore}>Read more</Text>
+            </div>
             {/* </Box> */}
             <br />
             <Box>

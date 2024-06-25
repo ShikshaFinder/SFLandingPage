@@ -18,7 +18,7 @@ function InfoTeacher({
   discription: string;
 }) {
 
-  const [lines, setLines] = React.useState(6);
+  const [lines, setLines] = React.useState(8);
   const readMore = () => {
     setLines(100);
   };
@@ -42,7 +42,9 @@ function InfoTeacher({
             <Text pt="2" fontSize="sm" noOfLines={lines}>
               {discription}
             </Text>
-            <b onClick={readMore}>Read more</b>
+            <div style={{display:"flex", flexDirection:"row-reverse"}}>
+              <Text onClick={readMore}>Read more</Text>
+            </div>
           </Stack>
         </CardBody>
       </Card>
