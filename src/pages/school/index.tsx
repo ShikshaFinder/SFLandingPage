@@ -279,15 +279,19 @@ export default function skillclass() {
             <BiShareAlt />
           </Button>
           <br />
-          <ImgAd
-            src={
-              (userAd && userAd[0]?.img) ||
-              "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300"
-            }
-            link={
-              (userAd && userAd[0]?.redirecturl) || "https://www.vigyasa.live/"
-            }
-          />
+          <button onClick={updateClick} >
+            {" "}
+            <ImgAd
+              src={
+                (userAd && userAd[0]?.img) ||
+                "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300"
+              }
+              link={
+                (userAd && userAd[0]?.redirecturl) ||
+                "https://www.vigyasa.live/"
+              }
+            />
+          </button>
         </Stack>
       </Layoutt>
     </>

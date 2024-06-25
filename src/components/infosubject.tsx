@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardBody,
   Text,
-  Box,
+  Button,
   Stack,
   Heading,
   StackDivider,
@@ -17,6 +17,11 @@ function InfoTeacher({
   TeacherName: string;
   discription: string;
 }) {
+
+  const [lines, setLines] = React.useState(6);
+  const readMore = () => {
+    setLines(100);
+  };
   return (
     <>
       <Card
@@ -34,9 +39,10 @@ function InfoTeacher({
           <Stack divider={<StackDivider />} spacing="1">
             {/* <Box> */}
             <Heading size="md">Description</Heading>
-            <Text pt="2" fontSize="sm" noOfLines={6}>
+            <Text pt="2" fontSize="sm" noOfLines={lines}>
               {discription}
             </Text>
+            <b onClick={readMore}>Read more</b>
           </Stack>
         </CardBody>
       </Card>

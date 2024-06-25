@@ -5,6 +5,7 @@ import {
   CardBody,
   Text,
   Box,
+  Button,
   Stack,
   Heading,
   StackDivider,
@@ -25,6 +26,11 @@ function InfoTeacher({
   exam?: string;
   medium?: string;
 }) {
+  const [lines, setLines] = React.useState(6);
+  const readMore = () => {
+    setLines(100);
+  };
+ 
   return (
     <>
       <Card boxShadow={"2xl"} rounded={"md"}>
@@ -34,10 +40,12 @@ function InfoTeacher({
         <CardBody>
           <Stack divider={<StackDivider />} spacing="1">
             <Heading size="md">Description</Heading>
-            <Text pt="2" fontSize="sm">
+            <Text pt="2" fontSize="sm" noOfLines={lines}>
               {discription}
             </Text>
+            <b onClick={readMore}>Read more</b>
             {/* </Box> */}
+            <br />
             <Box>
               <Link href={locationlink ?? ""}>
                 <Box height={"10px"}>
@@ -57,7 +65,7 @@ function InfoTeacher({
             </Text>
             <br />
             <Heading size="md">Medium</Heading>
-            <Text pt="2" fontSize="sm" noOfLines={7}>
+            <Text pt="2" fontSize="sm">
               {medium}
             </Text>
           </Stack>
