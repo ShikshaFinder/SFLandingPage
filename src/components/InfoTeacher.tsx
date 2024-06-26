@@ -45,7 +45,7 @@ function InfoTeacher({
             </Text>
             <div style={{ display: "flex", flexDirection: "row-reverse" }}>
               {" "}
-              <Text onClick={readMore}>Read more</Text>
+              <Button onClick={readMore} size={"sm"}>Read more</Button>
             </div>
             {/* </Box> */}
             <br />
