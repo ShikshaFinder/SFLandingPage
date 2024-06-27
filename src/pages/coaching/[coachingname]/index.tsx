@@ -15,24 +15,22 @@ import Nouser from "@/components/Nouser";
 import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 
-
-
-const cards = [
-  {
-    name: "Vigyasa",
-    imgsrc:
-      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
-    rating: "5.0",
-    link: "https://www.vigyasa.live/",
-  },
-  {
-    name: " Computer technology foundation",
-    imgsrc:
-      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
-    rating: "5",
-    link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
-  },
-];
+// const cards = [
+//   {
+//     name: "Vigyasa",
+//     imgsrc:
+//       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
+//     rating: "5.0",
+//     link: "https://www.vigyasa.live/",
+//   },
+//   {
+//     name: " Computer technology foundation",
+//     imgsrc:
+//       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
+//     rating: "5",
+//     link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
+//   },
+// ];
 function IntroSchool() {
   const router = useRouter();
 
@@ -43,7 +41,7 @@ function IntroSchool() {
   const [useVote, setVote] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userData, setUserData] = useState<any[] | null>(null);
-
+  const [ad, setAd] = useState<any[] | null>(null);
   async function getVote() {
     try {
       if (typeof coachingname === "string") {
@@ -56,6 +54,24 @@ function IntroSchool() {
         if (error) throw error;
       } else {
         console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+  async function customizedAd() {
+    try {
+      if (typeof coachingname === "string") {
+        let { data, error } = await supabase
+          .from("marketingDetails")
+          .select("*")
+          .range(0, 2);
+
+        setAd(data);
+        console.log("ad", data);
+        if (error) throw error;
+      } else {
+        console.log("No coaching ad found");
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -143,6 +159,10 @@ function IntroSchool() {
     getSchool();
   }, [coachingname]);
 
+    useEffect(() => {
+      customizedAd();
+    }, [coachingname]);
+
   useEffect(() => {
     getStandard();
   }, [coachingname]);
@@ -154,10 +174,6 @@ function IntroSchool() {
   useEffect(() => {
     updateView();
   }, []);
-
-
-  
-
 
   return (
     <>
@@ -221,7 +237,11 @@ function IntroSchool() {
           TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
           location={userData && userData[0] ? userData[0].location : ""}
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
-          discription={userData && userData[0] ? userData[0].discription : "The Data is on its way ,Thank you for your patience"}
+          discription={
+            userData && userData[0]
+              ? userData[0].discription
+              : "The Data is on its way ,Thank you for your patience"
+          }
           exam={userData && userData[0] ? userData[0].medium : ""}
         />
 
@@ -247,15 +267,31 @@ function IntroSchool() {
           px={6}
           direction={"row"}
         >
-          {cards.map(({ name, imgsrc, rating, link }, index) => (
-            <Card
-              key={index}
-              name={name}
-              imgsrc={imgsrc}
-              rating={rating}
-              link={link}
-            />
-          ))}
+          {ad &&
+            ad.map(
+              (
+                marketingDetails: {
+                  name: string;
+                  District: string;
+                  redirecturl: string;
+                  img: string;
+                  user_id: string;
+                },
+                index: number
+              ) => (
+                <Card
+                  key={index} // Ensure unique key for each Card
+                  name={marketingDetails.name}
+                  rating={marketingDetails.District}
+                  link={`/coaching/${marketingDetails.user_id}`}
+                  imgsrc={
+                    marketingDetails.img
+                      ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`
+                      : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  }
+                />
+              )
+            )}
         </Stack>
 
         <Admissionform

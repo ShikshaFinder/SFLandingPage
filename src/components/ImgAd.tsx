@@ -36,6 +36,7 @@ function video({ src, link }: { src: string; link: string }) {
             _hover={{ shadow: "lg" }}
             src={src}
             alt="Promotion Image"
+            loading="lazy"
           />
         </Link>
       </Stack>

@@ -1,9 +1,15 @@
-import React from 'react'
-import { Box, Button, Stack, useColorMode } from '@chakra-ui/react'
-import { MdOutlineDynamicForm, MdCall } from 'react-icons/md'
-import Link from 'next/link'
+import React from "react";
+import { Box, Button, Stack, useColorMode } from "@chakra-ui/react";
+import { MdOutlineDynamicForm, MdCall } from "react-icons/md";
+import Link from "next/link";
 
-function AdmissionFormLink({ name, phoneNumber }: { name: string, phoneNumber: number }) {
+function AdmissionFormLink({
+  name,
+  phoneNumber,
+}: {
+  name: string;
+  phoneNumber: number;
+}) {
   const { colorMode } = useColorMode();
 
   return (
@@ -14,16 +20,16 @@ function AdmissionFormLink({ name, phoneNumber }: { name: string, phoneNumber: n
         left={0}
         right={0}
         p={4}
-        bg={colorMode === 'light' ? 'gray.100' : 'gray.800'}
+        bg={colorMode === "light" ? "gray.100" : "gray.800"}
         borderTopWidth="1px"
         zIndex={20}
-        borderColor={colorMode === 'light' ? 'gray.400' : 'gray.600'}
+        borderColor={colorMode === "light" ? "gray.400" : "gray.600"}
       >
-        <Stack direction="row" spacing={12}>
+        <Stack direction="row" spacing={12} align="center" justify="center">
           <Link href={`/admissionform/${name}`}>
             <Button
               leftIcon={<MdOutlineDynamicForm />}
-              colorScheme={colorMode === 'light' ? 'blue' : 'teal'}
+              colorScheme={colorMode === "light" ? "blue" : "teal"}
               variant="solid"
             >
               Admission form
@@ -32,7 +38,7 @@ function AdmissionFormLink({ name, phoneNumber }: { name: string, phoneNumber: n
           <a href={`tel:${phoneNumber}`}>
             <Button
               rightIcon={<MdCall />}
-              colorScheme={colorMode === 'light' ? 'green' : 'green'}
+              colorScheme={colorMode === "light" ? "green" : "green"}
               variant="outline"
             >
               Call Now
