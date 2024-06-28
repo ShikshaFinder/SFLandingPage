@@ -7,13 +7,7 @@ import ImgAd from "../../components/ImgAd";
 import Videoo from "../../components/videoad";
 import { useUser } from "@/store";
 import { BiShareAlt } from "react-icons/bi";
-import {
-  Grid,
-  Stack,
-  Box,
-  Text,
-  Button,
-} from "@chakra-ui/react";
+import { Grid, Stack, Box, Text, Button } from "@chakra-ui/react";
 import Nouser from "../../components/Nouser";
 import Nodata from "../../components/Nodata";
 import { NextSeo } from "next-seo";
@@ -28,26 +22,24 @@ export default function skillclass() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
-   const handleShare = () => {
-     let slugs = window.location.pathname.split("/");
-     slugs = slugs.filter((slug) => slug !== "");
-     let shareUrl = "https://shikshafinder.com/";
+  const handleShare = () => {
+    let slugs = window.location.pathname.split("/");
+    slugs = slugs.filter((slug) => slug !== "");
+    let shareUrl = "https://shikshafinder.com/";
 
-     if (navigator.share) {
-       navigator
-         .share({
-           title: "Shiksha Finder",
-           text: "I found this website named shiksha finder ,it might be help for you too.",
-           url: shareUrl,
-         })
-         .then(() => console.log("Successful share"))
-         .catch((error) => console.log("Error sharing", error));
-     } else {
-       console.log("Web Share API not supported");
-     }
-   };
- 
-
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Shiksha Finder",
+          text: "I found this website named shiksha finder ,it might be help for you too.",
+          url: shareUrl,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      console.log("Web Share API not supported");
+    }
+  };
 
   async function getAd() {
     try {
@@ -137,43 +129,42 @@ export default function skillclass() {
     }
   }
 
-   async function updateClick() {
-     try {
-       if (userAd && userAd[0]?.videolink) {
-         let { data, error } = await supabase
-           .from("banneradview")
-           .select("click")
-           .eq("user_id", userAd?.[0]?.user_id);
+  async function updateClick() {
+    try {
+      if (userAd && userAd[0]?.videolink) {
+        let { data, error } = await supabase
+          .from("banneradview")
+          .select("click")
+          .eq("user_id", userAd?.[0]?.user_id);
 
-         setUseView(data);
-         console.log("data view", userAd?.[0]?.user_id);
+        setUseView(data);
+        console.log("data view", userAd?.[0]?.user_id);
 
-         if (error) throw error;
+        if (error) throw error;
 
-         if (data && data[0].click !== null) {
-           // Increment the 'view' column value
-           const newViewValue = data[0].click + 1;
-           // console.log("newViewValue", newViewValue);
+        if (data && data[0].click !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].click + 1;
+          // console.log("newViewValue", newViewValue);
 
-           // Update the 'view' column with the new value
-           const { error: updateError } = await supabase
-             .from("banneradview")
-             .update({ click: newViewValue })
-             .eq("user_id", userAd?.[0]?.user_id);
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("banneradview")
+            .update({ click: newViewValue })
+            .eq("user_id", userAd?.[0]?.user_id);
 
-           console.log("view incremented bdvkb");
-           // console.log("updateError", updateError);
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
 
-           if (updateError) {
-             throw updateError;
-           }
-         }
-       }
-     } catch (error) {
-       console.log("Caught Error:", error);
-     }
-   }
-
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
   useEffect(() => {
     if (userStore && userStore.State) {
@@ -228,7 +219,15 @@ export default function skillclass() {
             <Nodata />
           </Box>
         ) : (
-          <Stack spacing={8} mx={"auto"} maxW={"lg"} px={6}>
+          <Stack
+            spacing={8}
+            mx={{
+              base: "auto",
+              lg: "-0.5",
+            }}
+            maxW={"lg"}
+            px={6}
+          >
             <Text as="b">Top Online Platforms</Text>
           </Stack>
         )}

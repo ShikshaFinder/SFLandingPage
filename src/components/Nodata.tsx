@@ -1,12 +1,9 @@
 
 import React, { useState, useEffect } from "react";
 import { Button, Stack, Spinner, Box } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { Alert, AlertIcon, Text } from "@chakra-ui/react";
+import {  Text } from "@chakra-ui/react";
 
 function Nouser() {
-  const [isLoading, setIsLoading] = useState(true);
-  const Router = useRouter();
 
  
  

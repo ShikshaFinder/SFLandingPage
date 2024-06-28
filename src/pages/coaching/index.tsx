@@ -220,7 +220,15 @@ export default function skillclass() {
             <Nodata />
           </Box>
         ) : (
-          <Stack spacing={8} mx={"auto"} maxW={"lg"} px={6}>
+          <Stack
+            spacing={8}
+            mx={{
+              base: "auto",
+              lg: "-0.5",
+            }}
+            maxW={"lg"}
+            px={6}
+          >
             <Text as="b">Top Coaching classes in {userStore.city}</Text>
           </Stack>
         )}

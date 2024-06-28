@@ -1,6 +1,5 @@
 import {
   chakra,
- 
   Stack,
   Box,
   useColorModeValue,
@@ -85,7 +84,7 @@ const Index = () => {
               <Button
                 leftIcon={<AiOutlineTwitter />}
                 as={Link}
-                href={"/"}
+                href={"https://x.com/shiksha_finder"}
                 rounded="md"
                 color="white"
                 bg="twitter.400"
