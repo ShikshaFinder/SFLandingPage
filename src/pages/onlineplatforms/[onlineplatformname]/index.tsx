@@ -39,6 +39,8 @@ function IntroSchool() {
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userData, setUserData] = useState<any[] | null>(null);
   const [useVote, setVote] = React.useState<any[] | null>(null);
+    const [ad, setAd] = useState<any[] | null>(null);
+
 
   async function getStandard() {
     try {
@@ -53,6 +55,25 @@ function IntroSchool() {
         // if (error) throw error;
       } else {
         console.log("No onlineplatformname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+  
+  async function customizedAd() {
+    try {
+      if (typeof onlineplatformname === "string") {
+        let { data, error } = await supabase
+          .from("marketingDetails")
+          .select("*")
+          .range(0, 2);
+
+        setAd(data);
+        console.log("ad", data);
+        if (error) throw error;
+      } else {
+        console.log("No coaching ad found");
       }
     } catch (error) {
       console.log("Caught Error:", error);
@@ -136,6 +157,9 @@ async function getVote() {
   }
 
 
+    useEffect(() => {
+      customizedAd();
+    }, [onlineplatformname]);
   
 
 
@@ -245,16 +269,33 @@ async function getVote() {
           px={6}
           direction={"row"}
         >
-          {cards.map(({ name, imgsrc, rating, link }, index) => (
-            <Card
-              key={index}
-              name={name}
-              imgsrc={imgsrc}
-              rating={rating}
-              link={link}
-            />
-          ))}
+          {ad &&
+            ad.map(
+              (
+                marketingDetails: {
+                  name: string;
+                  District: string;
+                  redirecturl: string;
+                  img: string;
+                  user_id: string;
+                },
+                index: number
+              ) => (
+                <Card
+                  key={index} // Ensure unique key for each Card
+                  name={marketingDetails.name}
+                  rating={marketingDetails.District}
+                  link={marketingDetails.redirecturl}
+                  imgsrc={
+                    marketingDetails.img
+                      ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`
+                      : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  }
+                />
+              )
+            )}
         </Stack>
+
         <Admissionform
           name={userData && userData[0] ? userData[0].user_id : ""}
           phoneNumber={userData && userData[0] ? userData[0].mobile : ""}

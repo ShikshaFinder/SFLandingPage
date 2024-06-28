@@ -283,7 +283,7 @@ function IntroSchool() {
                   key={index} // Ensure unique key for each Card
                   name={marketingDetails.name}
                   rating={marketingDetails.District}
-                  link={`/coaching/${marketingDetails.user_id}`}
+                  link={marketingDetails.redirecturl}
                   imgsrc={
                     marketingDetails.img
                       ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`

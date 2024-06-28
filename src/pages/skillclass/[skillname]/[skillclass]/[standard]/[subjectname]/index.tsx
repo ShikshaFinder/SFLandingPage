@@ -4,30 +4,14 @@ import Card from "../../../../../../components/card";
 import Videoo from "../../../../../../components/video";
 import { useRouter } from "next/router";
 import supabase from "../../../../../../../supabase";
-import { useEffect } from "react";
+import { use, useEffect, useState } from "react";
 import React from "react";
 import InfoSubject from "../../../../../../components/infosubject";
 import ShareButton from "../../../../../../components/shareButton";
 import Subject from "@/components/subject";
-import Nouser from "@/components/Nouser";
 import { useAuthContext } from "@/context";
 
-const cards = [
-  {
-    name: "Vigyasa",
-    imgsrc:
-      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
-    rating: "5.0",
-    link: "https://www.vigyasa.live/",
-  },
-  {
-    name: "Computer technology foundation",
-    imgsrc:
-      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
-    rating: "5",
-    link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
-  },
-];
+
 function IntroSchool() {
   const router = useRouter();
   const { subjectname, standard, skillclass } = router.query;
@@ -35,7 +19,7 @@ function IntroSchool() {
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
   const [useView, setUseView] = React.useState<any[] | null>(null);
-
+  const [ad, setAd] = useState<any[] | null>(null);
  
     
   
@@ -129,6 +113,32 @@ function IntroSchool() {
     updateView();
   }, [subjectname]);
 
+
+
+  
+  async function customizedAd() {
+    try {
+      if (typeof skillclass === "string") {
+        let { data, error } = await supabase
+          .from("marketingDetails")
+          .select("*")
+          .range(0, 2);
+
+        setAd(data);
+        console.log("ad", data);
+        if (error) throw error;
+      } else {
+        console.log("No coaching ad found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
+  useEffect(() => {
+    customizedAd();
+  }, [skillclass]);
+
   return (
     <>
       <Box
@@ -197,22 +207,39 @@ function IntroSchool() {
           mx={"auto"}
           maxW={"lg"}
           py={12}
-          px={4}
+          px={6}
           direction={"row"}
         >
-          {cards.map(({ name, imgsrc, rating, link }, index) => (
-            <Card
-              key={index}
-              name={name}
-              imgsrc={imgsrc}
-              rating={rating}
-              link={link}
-            />
-          ))}
+          {ad &&
+            ad.map(
+              (
+                marketingDetails: {
+                  name: string;
+                  District: string;
+                  redirecturl: string;
+                  img: string;
+                  user_id: string;
+                },
+                index: number
+              ) => (
+                <Card
+                  key={index} // Ensure unique key for each Card
+                  name={marketingDetails.name}
+                  rating={marketingDetails.District}
+                  link={marketingDetails.redirecturl}
+                  imgsrc={
+                    marketingDetails.img
+                      ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`
+                      : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  }
+                />
+              )
+            )}
         </Stack>
+
         <Admissionform
           name={useStandard && useStandard[0] ? useStandard[0].user_id : ""}
-          phoneNumber={7984140706}
+          phoneNumber={useStandard && useStandard[0] ? useStandard[0].mobile : ""}
         />
       </Box>
     </>
