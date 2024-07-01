@@ -19,18 +19,18 @@ const testimonials = [
       "https://media.licdn.com/dms/image/D4D03AQHvarl05uK6UQ/profile-displayphoto-shrink_400_400/0/1710650766496?e=1723075200&v=beta&t=uSBQYXSlbB2RHU7-trUgasaOKwY9mK1ltfz-CqEP8lU",
   },
   {
-    name: "Dhruvil Moradiya",
-    role: "Parent",
+    name: "Gyan Guru Classes",
+    role: "School",
     content:
-      "As a parent, I was worried about finding the right educational institutions for my child. Shiksha Finder made the process easy and stress-free. Thank you!",
+      "As a school owner, I'm always looking for ways to improve the quality of education we provide. Shiksha Finder has been a game-changer for us!",
     avatar:
-      "https://media.licdn.com/dms/image/D4D03AQE-ollbTQptAA/profile-displayphoto-shrink_400_400/0/1695454519141?e=1723075200&v=beta&t=vf_J9ixqJQlhjL4gA5FGHAsfz9kSWcemPWQgJlBSNr8",
+      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1717654999162_postar.png&h=300",
   },
   {
     name: "Vigyasa",
     role: "Edtech",
     content:
-      "Shiksha Finder is a valuable tool for educators. It helps connect students with the best learning resources. I use it regularly in my teaching.",
+      "Shiksha Finder is a valuable tool for educators. It helps connect students with the best learning resources. I highly recommend it!",
     avatar: "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75",
   },
   {
