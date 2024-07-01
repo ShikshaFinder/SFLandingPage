@@ -27,12 +27,11 @@ const testimonials = [
       "https://media.licdn.com/dms/image/D4D03AQE-ollbTQptAA/profile-displayphoto-shrink_400_400/0/1695454519141?e=1723075200&v=beta&t=vf_J9ixqJQlhjL4gA5FGHAsfz9kSWcemPWQgJlBSNr8",
   },
   {
-    name: "Nishtha Joshi",
-    role: "Teacher",
+    name: "Vigyasa",
+    role: "Edtech",
     content:
       "Shiksha Finder is a valuable tool for educators. It helps connect students with the best learning resources. I use it regularly in my teaching.",
-    avatar:
-      "https://media.licdn.com/dms/image/D5603AQFd0xnadln6xw/profile-displayphoto-shrink_400_400/0/1712243120888?e=1723075200&v=beta&t=H-Au-eEMWKT0GpgkG1KVy8PoTJj_TfyegYmruFwJM0k",
+    avatar: "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75",
   },
   {
     name: "Shree Swaminarayan Gurukul ,Sardar Nagar Bhavnagar",
