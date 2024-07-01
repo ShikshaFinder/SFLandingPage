@@ -24,14 +24,14 @@ const testimonials = [
     content:
       "As a school owner, I'm always looking for ways to improve the quality of education we provide. Shiksha Finder has been a game-changer for us!",
     avatar:
-      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1717654999162_postar.png&h=300",
+      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1717654999162_postar.png&h=100",
   },
   {
     name: "Vigyasa",
     role: "Edtech",
     content:
       "Shiksha Finder is a valuable tool for educators. It helps connect students with the best learning resources. I highly recommend it!",
-    avatar: "https://www.vigyasa.live/_next/image?url=%2Fsfv1.png&w=256&q=75",
+    avatar: "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716473830318_vigysalogo.png&h=100",
   },
   {
     name: "Shree Swaminarayan Gurukul ,Sardar Nagar Bhavnagar",
