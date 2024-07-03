@@ -233,10 +233,15 @@ export default function skillclass() {
         ) : (
           <h1>
             {" "}
-            <Stack spacing={8} mx={{
-              base: "auto",
-              lg: "-0.5",
-            }} maxW={"lg"} px={6}>
+            <Stack
+              spacing={8}
+              mx={{
+                base: "auto",
+                lg: "-0.5",
+              }}
+              maxW={"lg"}
+              px={6}
+            >
               <Text as="b">Top Schools in {userStore.city}</Text>
             </Stack>
           </h1>
@@ -281,8 +286,12 @@ export default function skillclass() {
             Share &nbsp;
             <BiShareAlt />
           </Button>
+          <a href="/detailsSchool">
+            {" "}
+            <Button>Visit all schools in Gujrat</Button>
+          </a>
           <br />
-          <button onClick={updateClick} >
+          <button onClick={updateClick}>
             {" "}
             <ImgAd
               src={

@@ -1,6 +1,6 @@
+import { NextSeo } from "next-seo";
 import Head from "next/head";
 import Footer from "../components/footer";
-import { NextSeo } from "next-seo";
 import CompanyReview from "../components/companyreview";
 import GetStarted from "../components/getstarted";
 import { useAuthContext } from "@/context";
