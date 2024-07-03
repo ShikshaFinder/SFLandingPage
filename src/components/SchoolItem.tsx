@@ -42,9 +42,6 @@ const SchoolItem: React.FC<Props> = ({ school }) => {
           <Stack mt="6" spacing="3">
             <Heading size="md">{school.schoolName}</Heading>
             <Text>Address: {school.address}</Text>
-            <Text color="blue.600">
-              Board: {school.board}
-            </Text>
             <Text color="blue.600" >
               Board: {school.board}
             </Text>
