@@ -288,7 +288,7 @@ export default function skillclass() {
           </Button>
           <a href="/detailsSchool">
             {" "}
-            <Button>Visit all schools in Gujrat</Button>
+            <Button>Visit all schools in Gujarat</Button>
           </a>
           <br />
           <button onClick={updateClick}>
