@@ -286,7 +286,7 @@ export default function skillclass() {
             Share &nbsp;
             <BiShareAlt />
           </Button>
-          <a href="/detailsSchool">
+          <a href="/detailsSchool" style={{display:"block"}}>
             {" "}
             <Button>Visit all schools in Gujrat</Button>
           </a>
