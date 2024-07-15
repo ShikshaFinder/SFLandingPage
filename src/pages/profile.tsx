@@ -51,7 +51,7 @@ function Profile() {
         <Tabs>
           <TabList>
             <CustomTab>Profile</CustomTab>
-            <CustomTab>Leaderbord</CustomTab>
+            <CustomTab>Leaderboard</CustomTab>
           </TabList>
           <TabPanels>
             <TabPanel>
