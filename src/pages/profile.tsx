@@ -16,7 +16,7 @@ import { useUser } from "../store";
 import Schoolleaderbord from "@/components/schoolleaderbord";
 import Nouser from "@/components/Nouser";
 import Profilee from "../components/profile";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 function Profile() {
   const { user } = useAuthContext();
@@ -39,8 +39,6 @@ function Profile() {
     );
   });
 
-
-
   if (!user.email) {
     return <Nouser />;
   }
@@ -60,7 +58,7 @@ function Profile() {
                 name={useUse?.name || "Shiksha Finder"}
                 email={useUse?.email || "ceo@shikshafinder.com"}
                 board={useUse?.Board || "CBSE"}
-                medium={useUse?.medium || "English" }
+                medium={useUse?.medium || "English"}
                 standard={useUse?.Standard || "10th"}
                 city={useUse?.city || "Delhi"}
                 state={useUse?.State || "Delhi"}
@@ -84,13 +82,3 @@ function Profile() {
 }
 
 export default Profile;
-
-export async function getServerSideProps(context: any) {
-  let content = "shiksha finder"; // Fetch the data here
-
-  return {
-    props: {
-      content, // will be passed to the page component as props
-    },
-  };
-}
