@@ -15,10 +15,10 @@ import {
   Select,
   Wrap,
 } from "@chakra-ui/react";
-import supabase from "../../supabase";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
+import supabase from "../../supabase";
 import { state } from "@/components/state";
 import Nouser from "@/components/Nouser";
 

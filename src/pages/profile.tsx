@@ -55,13 +55,13 @@ function Profile() {
             <TabPanel>
               {" "}
               <Profilee
-                name={useUse?.name || "Shiksha Finder"}
-                email={useUse?.email || "ceo@shikshafinder.com"}
-                board={useUse?.Board || "CBSE"}
-                medium={useUse?.medium || "English"}
-                standard={useUse?.Standard || "10th"}
-                city={useUse?.city || "Delhi"}
-                state={useUse?.State || "Delhi"}
+                name={useUse?.name || "Your Name"}
+                email={useUse?.email || "email@gmail.com"}
+                board={useUse?.Board || "Your Board"}
+                medium={useUse?.medium || "medium"}
+                standard={useUse?.Standard || "standard"}
+                city={useUse?.city || "city"}
+                state={useUse?.State || "state"}
                 coins={useUse?.Coins || 30}
               />
             </TabPanel>
