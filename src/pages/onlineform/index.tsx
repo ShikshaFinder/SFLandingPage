@@ -181,7 +181,7 @@ export default function skillclass() {
   }, [userAd]);
 
   const handleLoadMore = () => {
-    setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+    setDataOffset((prevOffset) => prevOffset + 4); // Increment offset by 3
   };
 
   if (!user.email) {
@@ -252,7 +252,7 @@ export default function skillclass() {
                   key={index} // Ensure unique key for each Card
                   name={coaching.coachingname}
                   rating={coaching.ratingofcoaching}
-                  link={`/onlineplatforms/${coaching.user_id}`}
+                  link={`/onlineform/${coaching.user_id}`}
                   imgsrc={
                     coaching.img
                       ? ` //wsrv.nl/?url=${coaching.img}&h=300`

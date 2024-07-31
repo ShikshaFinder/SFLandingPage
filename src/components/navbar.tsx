@@ -263,7 +263,7 @@ const MobileNav = () => {
             />
             <Text fontSize={"sm"}>Coaching</Text>
           </Link>
-          <Link href={"/onlineplatforms"}>
+          <Link href={"/onlineform"}>
             <FaGlobe
               size={19}
               color={
@@ -330,7 +330,7 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Online Platform",
         subLabel: "Find Out The  Best!",
-        href: "../onlineplatforms",
+        href: "../onlineform",
       },
     ],
   },
