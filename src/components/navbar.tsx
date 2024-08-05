@@ -353,6 +353,10 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "./aboutus",
   },
   {
+    label: "Exams",
+    href: "./exams",
+  },
+  {
     label: "profile",
     href: "/profile",
   },
