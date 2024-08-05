@@ -4,6 +4,7 @@ import {
   FaChalkboardTeacher,
   FaPaintBrush,
   FaGlobe,
+  FaWpforms,
 } from "react-icons/fa";
 import ThemeButton from "@/components/ThemButton";
 import { Show } from "@chakra-ui/react";
@@ -288,6 +289,19 @@ const MobileNav = () => {
               onClick={() => handleClick("skillclass")}
             />{" "}
             <Text fontSize={"sm"}>Skills</Text>
+          </Link>
+          <Link href={"/exams"}>
+            <FaWpforms
+              size={19}
+              color={
+                useStore.getState().selectedIcon === "exams"
+                  ? "blue"
+                  : "initial"
+              }
+              style={{ marginInline: "auto" }}
+              onClick={() => handleClick("exams")}
+            />{" "}
+            <Text fontSize={"sm"}>Exams</Text>
           </Link>
         </Stack>
       </Box>
