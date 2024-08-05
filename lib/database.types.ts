@@ -188,6 +188,80 @@ export type Database = {
         }
         Relationships: []
       }
+      exams: {
+        Row: {
+          Board: string | null
+          city: string | null
+          discription: string
+          email: string | null
+          examsname: string
+          id: number
+          img: string | null
+          location: string | null
+          locationlink: string | null
+          medium: string | null
+          mobile: string | null
+          Standard: string | null
+          State: string | null
+          stream: string | null
+          subdistrict: string | null
+          user_id: string
+          videolink: string | null
+          view: number | null
+          website: string | null
+        }
+        Insert: {
+          Board?: string | null
+          city?: string | null
+          discription: string
+          email?: string | null
+          examsname: string
+          id?: never
+          img?: string | null
+          location?: string | null
+          locationlink?: string | null
+          medium?: string | null
+          mobile?: string | null
+          Standard?: string | null
+          State?: string | null
+          stream?: string | null
+          subdistrict?: string | null
+          user_id: string
+          videolink?: string | null
+          view?: number | null
+          website?: string | null
+        }
+        Update: {
+          Board?: string | null
+          city?: string | null
+          discription?: string
+          email?: string | null
+          examsname?: string
+          id?: never
+          img?: string | null
+          location?: string | null
+          locationlink?: string | null
+          medium?: string | null
+          mobile?: string | null
+          Standard?: string | null
+          State?: string | null
+          stream?: string | null
+          subdistrict?: string | null
+          user_id?: string
+          videolink?: string | null
+          view?: number | null
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exams_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       marketingDetails: {
         Row: {
           Board: string | null
@@ -198,6 +272,7 @@ export type Database = {
           img: string | null
           medium: string | null
           mobile: number
+          name: string
           paid: boolean | null
           redirecturl: string | null
           Standard: string | null
@@ -214,6 +289,7 @@ export type Database = {
           img?: string | null
           medium?: string | null
           mobile: number
+          name: string
           paid?: boolean | null
           redirecturl?: string | null
           Standard?: string | null
@@ -230,6 +306,7 @@ export type Database = {
           img?: string | null
           medium?: string | null
           mobile?: number
+          name?: string
           paid?: boolean | null
           redirecturl?: string | null
           Standard?: string | null
@@ -587,6 +664,39 @@ export type Database = {
         }
         Relationships: []
       }
+      vedAI: {
+        Row: {
+          city: string
+          created_at: string
+          email: string
+          id: number
+          mobile: string
+          name: string
+          standardcategory: string
+          State: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          email: string
+          id?: number
+          mobile: string
+          name: string
+          standardcategory: string
+          State: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          email?: string
+          id?: number
+          mobile?: string
+          name?: string
+          standardcategory?: string
+          State?: string
+        }
+        Relationships: []
+      }
       viewcoaching: {
         Row: {
           created_at: string
@@ -610,6 +720,44 @@ export type Database = {
           view?: number | null
         }
         Relationships: []
+      }
+      viewexams: {
+        Row: {
+          banneradviews: number | null
+          cadview: number | null
+          created_at: string
+          demolecturesView: number | null
+          id: number
+          user_id: string
+          view: number | null
+        }
+        Insert: {
+          banneradviews?: number | null
+          cadview?: number | null
+          created_at?: string
+          demolecturesView?: number | null
+          id?: never
+          user_id: string
+          view?: number | null
+        }
+        Update: {
+          banneradviews?: number | null
+          cadview?: number | null
+          created_at?: string
+          demolecturesView?: number | null
+          id?: never
+          user_id?: string
+          view?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "viewexams_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       viewonline: {
         Row: {
