@@ -14,7 +14,7 @@ import { useAuthContext } from "@/context";
 
 function IntroSchool() {
   const router = useRouter();
-  const { subjectname, standard, examsname } = router.query;
+  const { subjectname, exam, examsname } = router.query;
   const { user } = useAuthContext();
   const [useStandard, setStandard] = React.useState<any[] | null>(null);
   const [useStandard1, setStandard1] = React.useState<any[] | null>(null);
@@ -29,7 +29,7 @@ function IntroSchool() {
           .from("schoolDemo")
           .select("subject,Standard")
           .match({
-            Standard: standard,
+            Standard: exam,
             user_id: examsname,
           });
 
@@ -54,11 +54,11 @@ function IntroSchool() {
         let { data, error } = await supabase
           .from("schoolDemo")
           .select("discription,Teachername,videolink,user_id ")
-        //   .match({
-        //     Standard: standard,
-        //     user_id: examsname,
-        //     subject: subjectname,
-        //   });
+          .match({
+            Standard: exam,
+            user_id: examsname,
+            subject: subjectname,
+          });
 
         setStandard(data);
 
