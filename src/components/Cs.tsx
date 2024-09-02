@@ -27,7 +27,7 @@ export default function ProductSimple({St}:{St:String}) {
         pos={"relative"}
         zIndex={1}
       >
-        <img src={IMAGE} />
+        {/* <img src={IMAGE} /> */}
         <Stack pt={10} align={"center"}>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
             {St} Standard
