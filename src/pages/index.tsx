@@ -160,7 +160,7 @@ export default function Home() {
                 overflow={"hidden"}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/sf.webp"
                   alt="Shiksha Finder image"
                   width={600}
                   height={300}
