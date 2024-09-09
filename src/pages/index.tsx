@@ -5,7 +5,7 @@ import CompanyReview from "../components/companyreview";
 import GetStarted from "../components/getstarted";
 import { useAuthContext } from "@/context";
 import Link from "next/link";
-import Faq from "../components/Faq"
+import Faq from "../components/Faq";
 import {
   Container,
   Stack,
@@ -55,7 +55,7 @@ export default function Home() {
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
-          />                  
+          />
         </Head>
         <Container maxW={"7xl"}>
           <Stack
@@ -170,6 +170,7 @@ export default function Home() {
           </Stack>
         </Container>
         <CompanyReview />
+        <br />
         <Faq />
         <Footer />
       </Layout>
