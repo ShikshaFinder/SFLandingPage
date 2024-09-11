@@ -6,13 +6,12 @@ import Layoutt from "../Layout";
 import supabase from "../../../supabase";
 import { useAuthContext } from "@/context";
 import Nodata from "@/components/Nodata";
-import { Grid, Toast, Stack, Button,Text } from "@chakra-ui/react";
+import { Grid, Toast, Stack, Button, Text } from "@chakra-ui/react";
 import { useUser } from "@/store";
 import Nouser from "@/components/Nouser";
 import { BiShareAlt } from "react-icons/bi";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
-
 
 export default function skillclass() {
   const { user } = useAuthContext();
@@ -22,29 +21,31 @@ export default function skillclass() {
   const userStore = useUser((state) => state.user);
 
   // console.log(userStore);
+  const [isLoading, setIsLoading] = useState(false); // Initialize loading state
 
   const [useView, setUseView] = React.useState<any[] | null>(null);
   const [userAd, setUserAd] = React.useState<any[] | null>(null);
 
-   const handleShare = () => {
-     let slugs = window.location.pathname.split("/");
-     slugs = slugs.filter((slug) => slug !== "");
-     let shareUrl = "https://shikshafinder.com/";
+  
 
-     if (navigator.share) {
-       navigator
-         .share({
-           title: "Shiksha Finder",
-           text: "I found this website named shiksha finder ,it might be help for you too.",
-           url: shareUrl,
-         })
-         .then(() => console.log("Successful share"))
-         .catch((error) => console.log("Error sharing", error));
-     } else {
-       console.log("Web Share API not supported");
-     }
-   };
- 
+  const handleShare = () => {
+    let slugs = window.location.pathname.split("/");
+    slugs = slugs.filter((slug) => slug !== "");
+    let shareUrl = "https://shikshafinder.com/";
+
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Shiksha Finder",
+          text: "I found this website named shiksha finder ,it might be help for you too.",
+          url: shareUrl,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      console.log("Web Share API not supported");
+    }
+  };
 
   async function getAd() {
     try {
@@ -116,43 +117,42 @@ export default function skillclass() {
     }
   }
 
-   async function updateClick() {
-     try {
-       if (userAd && userAd[0]?.videolink) {
-         let { data, error } = await supabase
-           .from("banneradview")
-           .select("click")
-           .eq("user_id", userAd?.[0]?.user_id);
+  async function updateClick() {
+    try {
+      if (userAd && userAd[0]?.videolink) {
+        let { data, error } = await supabase
+          .from("banneradview")
+          .select("click")
+          .eq("user_id", userAd?.[0]?.user_id);
 
-         setUseView(data);
-         console.log("data view", userAd?.[0]?.user_id);
+        setUseView(data);
+        console.log("data view", userAd?.[0]?.user_id);
 
-         if (error) throw error;
+        if (error) throw error;
 
-         if (data && data[0].click !== null) {
-           // Increment the 'view' column value
-           const newViewValue = data[0].click + 1;
-           // console.log("newViewValue", newViewValue);
+        if (data && data[0].click !== null) {
+          // Increment the 'view' column value
+          const newViewValue = data[0].click + 1;
+          // console.log("newViewValue", newViewValue);
 
-           // Update the 'view' column with the new value
-           const { error: updateError } = await supabase
-             .from("banneradview")
-             .update({ click: newViewValue })
-             .eq("user_id", userAd?.[0]?.user_id);
+          // Update the 'view' column with the new value
+          const { error: updateError } = await supabase
+            .from("banneradview")
+            .update({ click: newViewValue })
+            .eq("user_id", userAd?.[0]?.user_id);
 
-           console.log("view incremented bdvkb");
-           // console.log("updateError", updateError);
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
 
-           if (updateError) {
-             throw updateError;
-           }
-         }
-       }
-     } catch (error) {
-       console.log("Caught Error:", error);
-     }
-   }
-
+          if (updateError) {
+            throw updateError;
+          }
+        }
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
 
   async function getSchool(offset: number) {
     try {
@@ -192,8 +192,17 @@ export default function skillclass() {
       getSchool(dataOffset);
     }
   }, [userStore, dataOffset]); // Update effect dependencies
-  const handleLoadMore = () => {
-    setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+  const handleLoadMore = async () => {
+    setIsLoading(true); // Start loading state
+
+    try {
+      await getSchool(dataOffset); // Fetch more data
+      setDataOffset((prevOffset) => prevOffset + 3); // Increment offset by 3
+    } catch (error) {
+      console.error("Error loading more schools:", error);
+    }
+
+    setIsLoading(false); // End loading state
   };
 
   if (!user.email) {
@@ -248,8 +257,12 @@ export default function skillclass() {
         )}
 
         <Grid
-          templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(4, 1fr)" }}
-          gap={1}
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
+          }}
+          gap={6}
         >
           {userData &&
             userData.map(
@@ -280,13 +293,24 @@ export default function skillclass() {
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           {" "}
           {userData && userData.length > 0 && (
-            <Button onClick={handleLoadMore}>Load More</Button>
+            <Button
+              onClick={handleLoadMore}
+              isLoading={isLoading}
+              loadingText="Loading..."
+              colorScheme="teal"
+            >
+              Load More Schools
+            </Button>
           )}
-          <Button colorScheme="teal" onClick={handleShare}>
-            Share &nbsp;
-            <BiShareAlt />
+          <Button
+            colorScheme="blue"
+            onClick={handleShare}
+            leftIcon={<BiShareAlt />}
+            size="lg"
+          >
+            Share this page
           </Button>
-          <a href="/detailsSchool" style={{display:"block"}}>
+          <a href="/detailsSchool" style={{ display: "block" }}>
             {" "}
             <Button>Visit all schools in Gujarat</Button>
           </a>
