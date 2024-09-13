@@ -12,7 +12,6 @@ function VideoAd({ src, link }: { src: string; link: string }) {
       rounded="lg"
       borderWidth="1px"
       shadow="md"
-      bg="white"
       borderRadius="md"
       overflow="hidden"
       _hover={{ shadow: "xl" }}
