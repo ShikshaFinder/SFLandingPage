@@ -357,7 +357,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "./exams",
   },
   {
-    label: "profile",
-    href: "/profile",
+    label: "Contact Us",
+    href: "/contactus",
   },
 ];

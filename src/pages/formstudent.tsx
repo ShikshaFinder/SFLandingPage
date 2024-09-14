@@ -14,6 +14,7 @@ import {
   Stack,
   Select,
   Wrap,
+  Container,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthContext } from "@/context";
@@ -83,6 +84,8 @@ function Form() {
 
   return (
     <>
+          <Container as={Stack} maxW={"6xl"} py={10}>
+
       <Stack spacing="4">
         <Card variant="outline">
           <CardBody>
@@ -243,6 +246,7 @@ function Form() {
           </CardBody>
         </Card>
       </Stack>
+    </Container>
     </>
   );
 }
