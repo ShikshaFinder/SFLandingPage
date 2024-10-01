@@ -160,7 +160,7 @@ export default function Home() {
                 overflow={"hidden"}
               >
                 <Image
-                  src="/sf.webp"
+                  src="https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/sf.webp&w=600&h=300&mode=crop"
                   alt="Shiksha Finder image"
                   width={600}
                   height={300}
