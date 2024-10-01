@@ -5,118 +5,20 @@ import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/InfoTeacher";
 import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
-import React, { use } from "react";
-import { useRouter } from "next/router";
-import supabase from "../../../../supabase";
-import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
-import { useAuthContext } from "@/context";
-import Nouser from "@/components/Nouser";
-import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
+import Image from "../../../components/image";
+import supabase from "../../../../supabase";
+import React, { useEffect, useState } from "react";
 
-// const cards = [
-//   {
-//     name: "Vigyasa",
-//     imgsrc:
-//       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
-//     rating: "5.0",
-//     link: "https://www.vigyasa.live/",
-//   },
-//   {
-//     name: " Computer technology foundation",
-//     imgsrc:
-//       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
-//     rating: "5",
-//     link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
-//   },
-// ];
-function IntroSchool() {
-  const router = useRouter();
-
-  const { coachingname } = router.query;
-  const { user } = useAuthContext();
-
-  const [useStandard, setStandard] = React.useState<any[] | null>(null);
-  const [useVote, setVote] = React.useState<any[] | null>(null);
-  const [useView, setUseView] = React.useState<any[] | null>(null);
-  const [userData, setUserData] = useState<any[] | null>(null);
-  const [ad, setAd] = useState<any[] | null>(null);
-  async function getVote() {
-    try {
-      if (typeof coachingname === "string") {
-        let { data, error } = await supabase
-          .from("votes")
-          .select("*")
-          .eq("user_id", coachingname);
-
-        setVote(data);
-        if (error) throw error;
-      } else {
-        console.log("No schoolname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-  async function customizedAd() {
-    try {
-      if (typeof coachingname === "string") {
-        let { data, error } = await supabase
-          .from("marketingDetails")
-          .select("*")
-          .range(0, 2);
-
-        setAd(data);
-        console.log("ad", data);
-        if (error) throw error;
-      } else {
-        console.log("No coaching ad found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
-  async function getStandard() {
-    try {
-      if (typeof coachingname === "string") {
-        let { data, error } = await supabase
-          .from("schoolDemo")
-          .select("Standard,subject")
-          .eq("user_id", coachingname);
-
-        setStandard(data);
-
-        // if (error) throw error;
-      } else {
-        console.log("No schoolname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
-  async function getSchool() {
-    try {
-      if (typeof coachingname === "string") {
-        let { data, error } = await supabase
-          .from("coaching")
-          .select(
-            "videolink,website,coachingname,location,locationlink,discription,mobile,user_id,img,medium"
-          )
-          .eq("user_id", coachingname);
-
-        if (error) throw error;
-
-        setUserData(data);
-      } else {
-        console.log("coachingname is not a string:", coachingname);
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
+const IntroSchool = ({
+  userData,
+  useStandard,
+  useVote,
+  ad,
+  coachingname,
+}: any) => {
+  const [useView, setUseView] = useState<any[] | null>(null);
 
   async function updateView() {
     try {
@@ -129,10 +31,12 @@ function IntroSchool() {
         setUseView(data);
         if (error) throw error;
 
+        console.log("view", data);
+
         if (data && data[0].view !== null) {
           // Increment the 'view' column value
           const newViewValue = data[0].view + 1;
-          // console.log("newViewValue", newViewValue);
+          console.log("newViewValue", useView);
 
           // Update the 'view' column with the new value
           const { error: updateError } = await supabase
@@ -140,8 +44,8 @@ function IntroSchool() {
             .update({ view: newViewValue })
             .eq("user_id", coachingname);
 
-          console.log("view incremented in coaching");
-          // console.log("updateError", updateError);
+          console.log("view incremented bdvkb");
+          console.log("updateError", updateError);
 
           if (updateError) {
             throw updateError;
@@ -156,151 +60,179 @@ function IntroSchool() {
   }
 
   useEffect(() => {
-    getSchool();
-  }, [coachingname]);
-
-    useEffect(() => {
-      customizedAd();
-    }, [coachingname]);
-
-  useEffect(() => {
-    getStandard();
-  }, [coachingname]);
-
-  useEffect(() => {
-    getVote();
-  }, [coachingname]);
-
-  useEffect(() => {
     updateView();
   }, []);
 
   return (
-    <>
-      <Box
-        p={{
-          md: "2rem",
-          lg: "2rem",
-          xl: "2rem",
-        }}
-        m={{
-          md: "1rem",
-          lg: "1rem",
-          xl: "1rem",
-        }}
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
+    <Box
+      p={{
+        md: "2rem",
+        lg: "2rem",
+        xl: "2rem",
+      }}
+      m={{
+        md: "1rem",
+        lg: "1rem",
+        xl: "1rem",
+      }}
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Stack
+        spacing={4}
+        direction="row"
+        align="center"
+        overflowX="auto"
+        whiteSpace="nowrap"
       >
-        <Stack
-          spacing={4}
-          direction="row"
-          align="center"
-          overflowX="auto"
-          whiteSpace="nowrap"
-        >
-          {useStandard &&
-            useStandard.map(
-              (
-                standardItem: {
-                  Standard: string;
-                  schoolname: any;
-                  subject: string;
-                },
-                index: number
-              ) => (
-                <>
-                  <Standard
-                    key={index}
-                    name={standardItem.Standard}
-                    Standard={standardItem.Standard}
-                    schoolname={coachingname}
-                    Subject={standardItem.subject}
-                  />
-                </>
-              )
-            )}
-        </Stack>
+        {useStandard &&
+          useStandard.map(
+            (
+              standardItem: {
+                Standard: string;
+                subject: string;
+              },
+              index: number
+            ) => (
+              <Standard
+                key={index}
+                name={standardItem.Standard}
+                Standard={standardItem.Standard}
+                schoolname={coachingname}
+                Subject={standardItem.subject}
+              />
+            )
+          )}
+      </Stack>
 
-        <br />
-        {userData && userData[0] && userData[0].videolink ? (
-          <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
-        ) : (
-          <Image src={userData && userData[0] ? userData[0].img : ""} />
-        )}
-        <br />
-        <ShareButton
-          link={userData && userData[0] ? userData[0].website : ""}
-        />
-        <br />
-        <InfoTeacher
-          TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
-          location={userData && userData[0] ? userData[0].location : ""}
-          locationlink={userData && userData[0] ? userData[0].locationlink : ""}
-          discription={
-            userData && userData[0]
-              ? userData[0].discription
-              : "The Data is on its way ,Thank you for your patience"
-          }
-          exam={userData && userData[0] ? userData[0].medium : ""}
-        />
+      <br />
+      {userData && userData[0]?.videolink ? (
+        <Videoo src={userData[0]?.videolink} />
+      ) : (
+        <Image src={userData[0]?.img} />
+      )}
+      <br />
+      <ShareButton link={userData[0]?.website} />
+      <br />
+      <InfoTeacher
+        TeacherName={userData[0]?.coachingname}
+        location={userData[0]?.location}
+        locationlink={userData[0]?.locationlink}
+        discription={
+          userData[0]?.discription ||
+          "The Data is on its way, Thank you for your patience"
+        }
+        exam={userData[0]?.medium}
+      />
 
-        {useVote && useVote[0]?.extracurricular != 0 ? (
-          <Chart
-            extra={useVote[0]?.extracurricular}
-            quality={useVote[0]?.qualityofeducation}
-            management={useVote[0]?.management}
-            facilities={useVote[0]?.facilityprovided}
-            view={useVote[0]?.view}
-          />
-        ) : (
-          <Alert status="info">
-            <AlertIcon />
-            This institute has not participated in shiksha star contest yet
-          </Alert>
-        )}
-        <Stack
-          spacing={8}
-          mx={"auto"}
-          maxW={"lg"}
-          py={12}
-          px={6}
-          direction={"row"}
-        >
-          {ad &&
-            ad.map(
-              (
-                marketingDetails: {
-                  name: string;
-                  District: string;
-                  redirecturl: string;
-                  img: string;
-                  user_id: string;
-                },
-                index: number
-              ) => (
-                <Card
-                  key={index} // Ensure unique key for each Card
-                  name={marketingDetails.name}
-                  rating={marketingDetails.District}
-                  link={marketingDetails.redirecturl}
-                  imgsrc={
-                    marketingDetails.img
-                      ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`
-                      : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  }
-                />
-              )
-            )}
-        </Stack>
-
-        <Admissionform
-          name={userData && userData[0] ? userData[0].user_id : ""}
-          phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+      {useVote && useVote[0]?.extracurricular != 0 ? (
+        <Chart
+          extra={useVote[0]?.extracurricular}
+          quality={useVote[0]?.qualityofeducation}
+          management={useVote[0]?.management}
+          facilities={useVote[0]?.facilityprovided}
+          view={useVote[0]?.view}
         />
-      </Box>
-    </>
+      ) : (
+        <Alert status="info">
+          <AlertIcon />
+          This institute has not participated in the shiksha star contest yet.
+        </Alert>
+      )}
+
+      <Stack
+        spacing={8}
+        mx={"auto"}
+        maxW={"lg"}
+        py={12}
+        px={6}
+        direction={"row"}
+      >
+        {ad &&
+          ad.map((marketingDetails: any, index: number) => (
+            <Card
+              key={index}
+              name={marketingDetails.name}
+              rating={marketingDetails.District}
+              link={marketingDetails.redirecturl}
+              imgsrc={
+                marketingDetails.img
+                  ? `//wsrv.nl/?url=${marketingDetails.img}&h=300`
+                  : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop"
+              }
+            />
+          ))}
+      </Stack>
+
+      <Admissionform
+        name={userData[0]?.user_id}
+        phoneNumber={userData[0]?.mobile}
+      />
+    </Box>
   );
+};
+
+// This function runs on the server before rendering the page
+export async function getServerSideProps(context: any) {
+  const { coachingname } = context.query;
+
+  // Fetch data from Supabase (server-side)
+  let userData = null;
+  let useStandard = null;
+  let useVote = null;
+  let ad = null;
+
+  try {
+    if (typeof coachingname === "string") {
+      // Fetch coaching data
+      const { data: coachingData } = await supabase
+        .from("coaching")
+        .select(
+          "videolink,website,coachingname,location,locationlink,discription,mobile,user_id,img,medium"
+        )
+        .eq("user_id", coachingname);
+
+      userData = coachingData;
+
+      // Fetch standard data
+      const { data: standardData } = await supabase
+        .from("schoolDemo")
+        .select("Standard,subject")
+        .eq("user_id", coachingname);
+
+      useStandard = standardData;
+
+      // Fetch votes
+      const { data: voteData } = await supabase
+        .from("votes")
+        .select("*")
+        .eq("user_id", coachingname);
+
+      useVote = voteData;
+
+      // Fetch ads
+      const { data: adData } = await supabase
+        .from("marketingDetails")
+        .select("*")
+        .range(0, 2);
+
+      ad = adData;
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  // Pass the data to the component via props
+  return {
+    props: {
+      userData,
+      useStandard,
+      useVote,
+      ad,
+      coachingname,
+    },
+  };
 }
 
 export default IntroSchool;
