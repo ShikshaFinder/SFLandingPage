@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import { Stack, Box } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
@@ -5,16 +6,12 @@ import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/infosubject";
 import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
-import React, { use } from "react";
-import { useRouter } from "next/router";
-import supabase from "../../../../supabase";
-import { useEffect, useState } from "react";
+import React from "react";
 import ShareButton from "../../../components/shareButton";
 import Image from "../../../components/image";
-import { Alert, AlertIcon } from "@chakra-ui/react";  
-import { useAuthContext } from "@/context";
-import Nouser from "../../../components/Nouser";
-
+import { Alert, AlertIcon } from "@chakra-ui/react";
+import supabase from "../../../../supabase";
+import { useEffect, useState } from "react";
 const cards = [
   {
     name: "Vigyasa",
@@ -24,99 +21,23 @@ const cards = [
     link: "https://www.vigyasa.live/",
   },
   {
-    name: " Computer technology foundation",
+    name: "Computer technology foundation",
     imgsrc:
       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
     rating: "5",
     link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
   },
 ];
-function IntroSchool() {
-  const router = useRouter();
-  const { onlineplatformname } = router.query;
-  const { user } = useAuthContext();
-  const [useStandard, setStandard] = React.useState<any[] | null>(null);
-  const [useView, setUseView] = React.useState<any[] | null>(null);
-  const [userData, setUserData] = useState<any[] | null>(null);
-  const [useVote, setVote] = React.useState<any[] | null>(null);
-    const [ad, setAd] = useState<any[] | null>(null);
 
+function IntroSchool({
+  useStandard,
+  userData,
+  useVote,
+  ad,
+  onlineplatformname,
+}: any) {
+  const [useView, setUseView] = useState<any[] | null>(null);
 
-  async function getStandard() {
-    try {
-      if (typeof onlineplatformname === "string") {
-        let { data, error } = await supabase
-          .from("schoolDemo")
-          .select("Standard,subject")
-          .eq("user_id", onlineplatformname);
-
-        setStandard(data);
-
-        // if (error) throw error;
-      } else {
-        console.log("No onlineplatformname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-  
-  async function customizedAd() {
-    try {
-      if (typeof onlineplatformname === "string") {
-        let { data, error } = await supabase
-          .from("marketingDetails")
-          .select("*")
-          .range(0, 2);
-
-        setAd(data);
-        console.log("ad", data);
-        if (error) throw error;
-      } else {
-        console.log("No coaching ad found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
-async function getVote() {
-    try {
-      if (typeof onlineplatformname === "string") {
-        let { data, error } = await supabase
-          .from("votes")
-          .select("*")
-          .eq("user_id", onlineplatformname);
-
-        setVote(data);
-        if (error) throw error;
-      } else {
-        console.log("No onlineplatformname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
-
-  async function getSchool() {
-    try {
-      if (typeof onlineplatformname === "string") {
-        let { data, error } = await supabase
-          .from("onlineform")
-          .select("*")
-          .eq("user_id", onlineplatformname);
-
-        if (error) throw error;
-
-        setUserData(data);
-      } else {
-        console.log("No onlineplatformname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
   async function updateView() {
     try {
       if (typeof onlineplatformname === "string") {
@@ -156,42 +77,14 @@ async function getVote() {
     }
   }
 
-
-    useEffect(() => {
-      customizedAd();
-    }, [onlineplatformname]);
-  
-
-
-  useEffect(() => {
-    getSchool();
-  }, [onlineplatformname]);
-
-  useEffect(() => {
-    getStandard();
-  }, [onlineplatformname]);
-
-  useEffect(() => {
-    getVote();
-  }, [onlineplatformname]);
-
   useEffect(() => {
     updateView();
   }, []);
-
   return (
     <>
       <Box
-        p={{
-          md: "2rem",
-          lg: "2rem",
-          xl: "2rem",
-        }}
-        m={{
-          md: "1rem",
-          lg: "1rem",
-          xl: "1rem",
-        }}
+        p="2rem"
+        m="1rem"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
@@ -204,50 +97,33 @@ async function getVote() {
           whiteSpace="nowrap"
         >
           {useStandard &&
-            useStandard.map(
-              (
-                standardItem: {
-                  Standard: string;
-                  onlineplatformname: any;
-                  subject: string;
-                },
-                index: number
-              ) => (
-                <>
-                  <Standard
-                    key={index}
-                    name={standardItem.Standard}
-                    Standard={standardItem.Standard}
-                    schoolname={onlineplatformname}
-                    Subject={standardItem.subject}
-                  />
-                </>
-              )
-            )}
+            useStandard.map((standardItem: any, index: number) => (
+              <Standard
+                key={index}
+                name={standardItem.Standard}
+                Standard={standardItem.Standard}
+                schoolname={userData[0]?.user_id}
+                Subject={standardItem.subject}
+              />
+            ))}
         </Stack>
         <br />
-        {userData && userData[0] && userData[0].videolink ? (
-          <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+        {userData && userData[0]?.videolink ? (
+          <Videoo src={userData[0]?.videolink} />
         ) : (
-          <Image src={userData && userData[0] ? userData[0].img : ""} />
+          <Image src={userData[0]?.img} />
         )}
         <br />
-        <ShareButton
-          link={userData && userData[0] ? userData[0].website : ""}
-        />
+        <ShareButton link={userData[0]?.website} />
         <br />
         <InfoTeacher
-          TeacherName={userData && userData[0] ? userData[0].coachingname : ""}
-          // Experience={"12 years"}
-
+          TeacherName={userData[0]?.coachingname || ""}
           discription={
-            userData && userData[0]
-              ? userData[0].discription
-              : "The Data is on its way ,Thank you for your patience"
+            userData[0]?.discription ||
+            "The Data is on its way, Thank you for your patience"
           }
         />
-
-        {useVote && useVote[0]?.extracurricular != 0 ? (
+        {useVote && useVote[0]?.extracurricular !== 0 ? (
           <Chart
             extra={useVote[0]?.extracurricular}
             quality={useVote[0]?.qualityofeducation}
@@ -261,48 +137,50 @@ async function getVote() {
             This institute has not participated in shiksha star contest yet
           </Alert>
         )}
-        <Stack
-          spacing={8}
-          mx={"auto"}
-          maxW={"lg"}
-          py={12}
-          px={6}
-          direction={"row"}
-        >
+        <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6} direction="row">
           {ad &&
-            ad.map(
-              (
-                marketingDetails: {
-                  name: string;
-                  District: string;
-                  redirecturl: string;
-                  img: string;
-                  user_id: string;
-                },
-                index: number
-              ) => (
-                <Card
-                  key={index} // Ensure unique key for each Card
-                  name={marketingDetails.name}
-                  rating={marketingDetails.District}
-                  link={marketingDetails.redirecturl}
-                  imgsrc={
-                    marketingDetails.img
-                      ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`
-                      : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  }
-                />
-              )
-            )}
+            ad.map((marketingDetails: any, index: number) => (
+              <Card
+                key={index}
+                name={marketingDetails.name}
+                rating={marketingDetails.District}
+                link={marketingDetails.redirecturl}
+                imgsrc={`//wsrv.nl/?url=${marketingDetails.img}&h=300`}
+              />
+            ))}
         </Stack>
-
         <Admissionform
-          name={userData && userData[0] ? userData[0].user_id : ""}
-          phoneNumber={userData && userData[0] ? userData[0].mobile : ""}
+          name={userData[0]?.user_id}
+          phoneNumber={userData[0]?.mobile}
         />
       </Box>
     </>
   );
+}
+
+// Fetch data server-side
+export async function getServerSideProps(context: any) {
+  const { onlineplatformname } = context.query;
+
+  const [schoolData, standardData, voteData, adData] = await Promise.all([
+    supabase.from("onlineform").select("*").eq("user_id", onlineplatformname),
+    supabase
+      .from("schoolDemo")
+      .select("Standard,subject")
+      .eq("user_id", onlineplatformname),
+    supabase.from("votes").select("*").eq("user_id", onlineplatformname),
+    supabase.from("marketingDetails").select("*").range(0, 2),
+  ]);
+
+  return {
+    props: {
+      useStandard: standardData.data || null,
+      userData: schoolData.data || null,
+      useVote: voteData.data || null,
+      ad: adData.data || null,
+      onlineplatformname,
+    },
+  };
 }
 
 export default IntroSchool;

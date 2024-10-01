@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { Box, Stack } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
@@ -6,91 +8,26 @@ import InfoTeacher from "../../../components/InfoTeacher";
 import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
 import React from "react";
-import { useRouter } from "next/router";
-import supabase from "../../../../supabase";
-import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
 import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
-import { useAuthContext } from "@/context";
+import supabase from "../../../../supabase";
+import { useEffect, useState } from "react";
 
-
-// import { useAuthContext } from "@/context";
-
-function IntroSchool() {
-  const router = useRouter();
-  const { schoolname } = router.query;
-  const { user } = useAuthContext();
-  const [useStandard, setStandard] = React.useState<any[] | null>(null);
-  const [useView, setUseView] = React.useState<any[] | null>(null);
-  const [userData, setUserData] = useState<any[] | null>(null);
-  const [useVote, setVote] = React.useState<any[] | null>(null);      
-  const[ad,setAd]=useState<any[]|null>(null)
-
-
-  async function getStandard() {
-    try {
-      if (typeof schoolname === "string") {
-        let { data, error } = await supabase
-          .from("schoolDemo")
-          .select("Standard,subject")
-          .eq("user_id", schoolname);
-
-        setStandard(data);
-
-        // if (error) throw error;
-      } else {
-        console.log("No schoolname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
-  async function getVote() {
-    try {
-      if (typeof schoolname === "string") {
-        let { data, error } = await supabase
-          .from("votes")
-          .select(
-            "qualityofeducation,facilityprovided,management,extracurricular,view"
-          )
-          .eq("user_id", schoolname);
-
-        setVote(data);
-
-        // if (error) throw error;
-      } else {
-        console.log("No schoolname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
-  async function getSchool() {
-    try {
-      if (typeof schoolname === "string") {
-        let { data, error } = await supabase
-          .from("School")
-          .select(
-            "schoolname, website, locationlink, location, discription, mobile1, user_id,img,videolink,exam,medium"
-          )
-          .eq("user_id", schoolname);
-
-        if (error) throw error;
-
-        setUserData(data);
-        // console.log("view", data && data[0].view);
-        // Check if 'view' is not null
-      } else {
-        console.log("No schoolname found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-
+function IntroSchool({
+  userData,
+  useStandard,
+  useVote,
+  ad,
+  schoolname,
+}: {
+  userData: any;
+  useStandard: any;
+  useVote: any;
+  ad: any;
+  schoolname: any;
+}) {
+  const [useView, setUseView] = useState<any[] | null>(null);
   async function updateView() {
     try {
       if (typeof schoolname === "string") {
@@ -129,48 +66,9 @@ function IntroSchool() {
       console.log("Caught Error:", error);
     }
   }
-
-  
-  async function customizedAd() {
-    try {
-      if (typeof schoolname === "string") {
-        let { data, error } = await supabase
-          .from("marketingDetails")
-          .select("*")
-          .range(0, 2);
-
-        setAd(data);
-        console.log("ad", data);
-        if (error) throw error;
-      } else {
-        console.log("No coaching ad found");
-      }
-    } catch (error) {
-      console.log("Caught Error:", error);
-    }
-  }
-   
-  
-    useEffect(() => {
-      customizedAd();
-    }, [schoolname]);
-
-  useEffect(() => {
-    getStandard();
-  }, [schoolname]);
-
-  useEffect(() => {
-    getSchool();
-  }, [schoolname]);
-
-  useEffect(() => {
-    getVote();
-  }, [schoolname]);
-
   useEffect(() => {
     updateView();
   }, []);
-
   return (
     <>
       <Box
@@ -205,48 +103,35 @@ function IntroSchool() {
                 },
                 index: number
               ) => (
-                <>
-                  <Standard
-                    key={index}
-                    name={standardItem.Standard}
-                    Standard={standardItem.Standard}
-                    schoolname={schoolname}
-                    Subject={standardItem.subject}
-                  />
-                </>
+                <Standard
+                  key={index}
+                  name={standardItem.Standard}
+                  Standard={standardItem.Standard}
+                  schoolname={standardItem.schoolname}
+                  Subject={standardItem.subject}
+                />
               )
             )}
         </Stack>
         <br />
         {userData && userData[0] && userData[0].videolink ? (
-          <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
+          <Videoo src={userData[0].videolink} />
         ) : (
-          <Image src={userData && userData[0] ? userData[0].img : ""} />
+          <Image src={userData[0]?.img || ""} />
         )}
         <br />
-        <ShareButton
-          link={userData && userData[0] ? userData[0].website : ""}
-        />
+        <ShareButton link={userData[0]?.website || ""} />
         <br />
         <InfoTeacher
-          TeacherName={userData && userData[0] ? userData[0].schoolname : ""}
-          locationlink={userData && userData[0] ? userData[0].locationlink : ""}
-          location={userData && userData[0] ? userData[0].location : ""}
+          TeacherName={userData[0]?.schoolname || ""}
+          locationlink={userData[0]?.locationlink || ""}
+          location={userData[0]?.location || ""}
           discription={
-            userData && userData[0]
-              ? userData[0].discription
-              : "The Data is on its way ,Thank you for your patience"
+            userData[0]?.discription ||
+            "The Data is on its way ,Thank you for your patience"
           }
-          exam={
-            userData && userData[0]
-              ? userData[0].exam
-              : "exams not mentioned by the institutes"
-          }
-          medium={
-            userData && userData[0]
-              ? userData[0].medium
-              : "exams not mentioned by the institutes"
-          }
+          exam={userData[0]?.exam || "exams not mentioned by the institutes"}
+          medium={userData[0]?.medium || "medium not mentioned"}
         />
         <br />
         {useVote && useVote[0]?.extracurricular != 0 ? (
@@ -260,9 +145,9 @@ function IntroSchool() {
         ) : (
           <Alert status="info">
             <AlertIcon />
-            This institute has not participated in shiksha star contest yet
+            This institute has not participated in the shiksha star contest yet.
           </Alert>
-        )}{" "}
+        )}
         <Stack
           spacing={8}
           mx={"auto"}
@@ -272,38 +157,86 @@ function IntroSchool() {
           direction={"row"}
         >
           {ad &&
-            ad.map(
-              (
-                marketingDetails: {
-                  name: string;
-                  District: string;
-                  redirecturl: string;
-                  img: string;
-                  user_id: string;
-                },
-                index: number
-              ) => (
-                <Card
-                  key={index} // Ensure unique key for each Card
-                  name={marketingDetails.name}
-                  rating={marketingDetails.District}
-                  link={marketingDetails.redirecturl}
-                  imgsrc={
-                    marketingDetails.img
-                      ? ` //wsrv.nl/?url=${marketingDetails.img}&h=300`
-                      : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  }
-                />
-              )
-            )}
+            ad.map((marketingDetails: any, index: number) => (
+              <Card
+                key={index}
+                name={marketingDetails.name}
+                rating={marketingDetails.District}
+                link={marketingDetails.redirecturl}
+                imgsrc={
+                  marketingDetails.img
+                    ? `//wsrv.nl/?url=${marketingDetails.img}&h=300`
+                    : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop"
+                }
+              />
+            ))}
         </Stack>
         <Admissionform
-          name={userData && userData[0] ? userData[0].user_id : ""}
-          phoneNumber={userData && userData[0] ? userData[0].mobile1 : ""}
+          name={userData[0]?.user_id || ""}
+          phoneNumber={userData[0]?.mobile1 || ""}
         />
-      </Box>{" "}
+      </Box>
     </>
   );
+}
+
+// Fetching data server-side
+export async function getServerSideProps(context: any) {
+  const { schoolname } = context.query;
+
+  let userData = null;
+  let useStandard = null;
+  let useVote = null;
+  let ad = null;
+
+  try {
+    if (typeof schoolname === "string") {
+      // Fetch school data
+      const { data: schoolData } = await supabase
+        .from("School")
+        .select(
+          "schoolname, website, locationlink, location, discription, mobile1, user_id,img,videolink,exam,medium"
+        )
+        .eq("user_id", schoolname);
+      userData = schoolData;
+
+      // Fetch standard data
+      const { data: standardData } = await supabase
+        .from("schoolDemo")
+        .select("Standard,subject")
+        .eq("user_id", schoolname);
+      useStandard = standardData;
+
+      // Fetch vote data
+      const { data: voteData } = await supabase
+        .from("votes")
+        .select(
+          "qualityofeducation,facilityprovided,management,extracurricular,view"
+        )
+        .eq("user_id", schoolname);
+      useVote = voteData;
+
+      // Fetch ads
+      const { data: adData } = await supabase
+        .from("marketingDetails")
+        .select("*")
+        .range(0, 2);
+      ad = adData;
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  // Pass the fetched data as props to the component
+  return {
+    props: {
+      userData,
+      useStandard,
+      useVote,
+      ad,
+      schoolname,
+    },
+  };
 }
 
 export default IntroSchool;
