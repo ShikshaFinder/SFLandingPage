@@ -9,6 +9,7 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: [
       "wsrv.nl",
@@ -19,6 +20,6 @@ module.exports = withPWA({
     ],
   },
   experimental: {
-    runtime: "edge",
+    runtime: "experimental-edge",
   },
 });
