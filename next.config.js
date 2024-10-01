@@ -7,7 +7,8 @@ const withPWA = require("next-pwa")({
   //...
 });
 
-module.exports = withPWA({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -19,7 +20,6 @@ module.exports = withPWA({
       "source.unsplash",
     ],
   },
-  experimental: {
-    runtime: "experimental-edge",
-  },
-});
+};
+
+module.exports = withPWA(nextConfig);

@@ -1,4 +1,4 @@
-export const runtime = "edge";
+export const runtime = "experimental-edge";
 
 import { Box, Stack } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
