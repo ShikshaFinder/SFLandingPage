@@ -35,7 +35,9 @@ function Chatbot() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputText), // Send input text as JSON
+        body: JSON.stringify({
+          msg: inputText,
+        }), // Send input text as JSON
       });
 
       const data = await response.json();
@@ -80,7 +82,7 @@ function Chatbot() {
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Type here..."
-                borderColor="gray.300"
+                borderColor="gray.100"
                 focusBorderColor="blue.400"
               />
             </FormControl>
