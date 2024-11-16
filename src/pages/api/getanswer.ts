@@ -2,7 +2,7 @@
 import { AzureOpenAI } from "openai";
 import dotenv from "dotenv";
 import { NextApiRequest, NextApiResponse } from "next";
-// export const runtime = "edge";
+export const runtime = "edge";
 
 dotenv.config();
 
