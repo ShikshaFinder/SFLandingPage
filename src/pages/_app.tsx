@@ -9,7 +9,7 @@ import AuthContextProvider from "@/context";
 import Head from "next/head";
 // const { BlobServiceClient } = require("@azure/storage-blob");
 // const { v1: uuidv1 } = require("uuid");
-require("dotenv").config();
+// require("dotenv").config();
 
 const inter = Inter({ subsets: ["latin"] });
 const supabaseUrl = "https://qgkjakomwapzuhvnrvgr.supabase.co";

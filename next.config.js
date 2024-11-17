@@ -19,7 +19,5 @@ module.exports = withPWA({
       "source.unsplash",
     ],
   },
-  experimental: {
-    runtime: "experimental-edge",
-  },
+  experimental: {},
 });
