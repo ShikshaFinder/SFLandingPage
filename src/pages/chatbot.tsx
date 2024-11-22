@@ -27,12 +27,12 @@ const markdownComponents = {
   h2: (props: any) => (
     <Heading as="h2" size="lg" mt={3} mb={2} color="blue.500" {...props} />
   ),
-  p: (props: any) => <Text mt={2} color="gray.800" {...props} />,
+  p: (props: any) => <Text mt={2} color="black" {...props} />,
   strong: (props: any) => (
     <Text as="strong" fontWeight="bold" color="black" {...props} />
   ),
   ul: (props: any) => (
-    <List styleType="disc" pl={6} color="gray.800" {...props} />
+    <List styleType="disc" pl={6} color="black" {...props} />
   ),
   li: (props: any) => <ListItem mb={1} {...props} />,
 };
@@ -93,6 +93,7 @@ const Chatbot = () => {
               size="lg"
               bgGradient="linear(to-r, blue.600, purple.600)"
               bgClip="text"
+              color="black"
             >
               Science & Math Explorer
             </Heading>
