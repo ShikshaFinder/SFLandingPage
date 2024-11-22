@@ -1,34 +1,60 @@
 import React, { useState } from "react";
-import Nouser from "@/components/Nouser";
-import supabase from "../../supabase";
-import { useAuthContext } from "@/context";
+import ReactMarkdown from "react-markdown";
+import { List, ListItem } from "@chakra-ui/react";
+import remarkGfm from "remark-gfm";
+
 import {
   Box,
   Button,
   Center,
+  CircularProgress,
   Container,
-  FormControl,
+  Flex,
   Heading,
+  Icon,
   Input,
-  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { AlertCircle, Send, Sparkles } from "lucide-react";
 
-function Chatbot() {
-  const { user } = useAuthContext();
+
+
+const markdownComponents = {
+  h1: (props: any) => (
+    <Heading as="h1" size="xl" mt={4} mb={2} color="blue.600" {...props} />
+  ),
+  h2: (props: any) => (
+    <Heading as="h2" size="lg" mt={3} mb={2} color="blue.500" {...props} />
+  ),
+  p: (props: any) => <Text mt={2} color="gray.800" {...props} />,
+  strong: (props: any) => (
+    <Text as="strong" fontWeight="bold" color="black" {...props} />
+  ),
+  ul: (props: any) => (
+    <List styleType="disc" pl={6} color="gray.800" {...props} />
+  ),
+  li: (props: any) => <ListItem mb={1} {...props} />,
+};
+
+const Chatbot = () => {
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
-  async function storeResponce() {}
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  interface ApiResponse {
+    messages: { content: string }[];
+    error?: string;
+  }
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     setLoading(true);
-    setSummary(""); // Clear any previous summary
+    setSummary("");
 
     try {
-      // Send the user's input text to the API route
       const response = await fetch("/api/getanswer", {
         method: "POST",
         headers: {
@@ -36,10 +62,10 @@ function Chatbot() {
         },
         body: JSON.stringify({
           msg: inputText,
-        }), // Send input text as JSON
+        }),
       });
 
-      const data = await response.json();
+      const data: ApiResponse = await response.json();
 
       if (response.ok) {
         setSummary(data.messages[0]?.content || "No summary found.");
@@ -55,56 +81,110 @@ function Chatbot() {
     }
   };
 
-  if (!user.email) {
-    return <Nouser />;
-  }
   return (
-    <Center
-      minH="100vh"
-      bgGradient="linear(to-br, blue.100, purple.200)"
-      px={4}
-    >
-      <Container maxW="lg" bg="white" boxShadow="lg" borderRadius="xl" p={6}>
-        <VStack spacing={6} textAlign="center">
-          <Heading as="h2" size="lg" color="blue.600" mb={4}>
-            Know About Science & Maths
-          </Heading>
-          <Text color="gray.500" fontSize={{ base: "sm", sm: "md" }}>
-            Get to know the world around you with shikshafinder !
+    <Center minH="100vh" bgGradient="linear(to-br, blue.50, purple.100)" p={4}>
+      <Container maxW="lg" bg="white" rounded="2xl" shadow="xl" p={6}>
+        {/* Header */}
+        <VStack spacing={2} textAlign="center">
+          <Flex alignItems="center" justifyContent="center" gap={2}>
+            <Icon as={Sparkles} boxSize={8} color="blue.600" />
+            <Heading
+              as="h2"
+              size="lg"
+              bgGradient="linear(to-r, blue.600, purple.600)"
+              bgClip="text"
+            >
+              Science & Math Explorer
+            </Heading>
+          </Flex>
+          <Text color="gray.500">
+            Discover the wonders of science and mathematics with ShikshaFinder
           </Text>
         </VStack>
-        <form onSubmit={handleSubmit}>
-          <VStack spacing={4} mt={4}>
-            <FormControl id="inputText">
+
+        {/* Input Form */}
+        <Box position="relative">
+          <Flex>
+            <Box as="form" onSubmit={handleSubmit}>
               <Input
-                type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                placeholder="Type here..."
-                borderColor="gray.100"
-                focusBorderColor="blue.400"
+                placeholder="Ask anything about science or math..."
+                pr="3rem"
+                borderColor="gray.200"
+                focusBorderColor="blue.500"
+                rounded="lg"
+                color="gray.800"
+                bg="white"
               />
-            </FormControl>
+            </Box>
             <Button
               type="submit"
-              isLoading={loading}
-              loadingText="Loading..."
+              isDisabled={loading || !inputText.trim()}
+              position="absolute"
+              right={2}
+              top="50%"
+              transform="translateY(-50%)"
               colorScheme="blue"
-              width="full"
-              spinner={<Spinner size="sm" />}
+              rounded="full"
+              px={4}
+              onClick={() =>
+                document
+                  .querySelector("form")
+                  ?.dispatchEvent(
+                    new Event("submit", { cancelable: true, bubbles: true })
+                  )
+              }
             >
-              Submit
+              {loading ? (
+                <CircularProgress isIndeterminate size="24px" color="white" />
+              ) : (
+                <Icon as={Send} boxSize={5} />
+              )}
             </Button>
-          </VStack>
-        </form>
+          </Flex>
+        </Box>
+        {/* Response Box */}
         {summary && (
-          <Box mt={4} p={4} bg="gray.100" borderRadius="lg" shadow="inner">
-            <Text color="gray.800">{summary}</Text>
+          <Box>
+            <Flex align="start" gap={4}>
+              <Center boxSize={8} bg="blue.600" rounded="full" color="white">
+                <Icon as={Sparkles} boxSize={5} />
+              </Center>
+              <List>
+                <MarkdownBox content={summary} />
+              </List>
+            </Flex>
           </Box>
+        )}
+
+        {/* Error State */}
+        {summary && summary.includes("error") && (
+          <Flex align="center" gap={2} color="red.600">
+            <Icon as={AlertCircle} boxSize={5} />
+            <Text>Something went wrong. Please try again.</Text>
+          </Flex>
         )}
       </Container>
     </Center>
   );
-}
-
+};
 export default Chatbot;
+
+const MarkdownBox = ({ content }: { content: string }) => {
+  return (
+    <Box
+      bgGradient="linear(to-r, blue.50, purple.50)"
+      p={6}
+      rounded="xl"
+      shadow="inner"
+    >
+      <ReactMarkdown
+        components={markdownComponents}
+        remarkPlugins={[remarkGfm]}
+      >
+        {content}
+      </ReactMarkdown>
+    </Box>
+  );
+};
