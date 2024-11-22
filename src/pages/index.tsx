@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import CompanyReview from "../components/companyreview";
 import GetStarted from "../components/getstarted";
 import { useAuthContext } from "@/context";
+import GridListWithCTA from "@/components/chatbotintro";
 import Link from "next/link";
 import Faq from "../components/Faq";
 import {
@@ -172,6 +173,9 @@ export default function Home() {
         <CompanyReview />
         <br />
         <Faq />
+        <br />
+        <GridListWithCTA />
+        
         <Footer />
       </Layout>
     </>
