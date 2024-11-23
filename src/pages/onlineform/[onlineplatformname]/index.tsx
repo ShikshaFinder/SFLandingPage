@@ -83,8 +83,16 @@ function IntroSchool({
   return (
     <>
       <Box
-        p="2rem"
-        m="1rem"
+        p={{
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
+        m={{
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
