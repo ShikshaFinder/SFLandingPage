@@ -1,7 +1,7 @@
 // pages/api/getanswer.ts
 import { NextRequest } from "next/server";
 
-export const runtime = "edge"; // Ensure this API route runs on the edge
+export const runtime = "experimental-edge"; // Ensure this API route runs on the edge
 
 export default async function handler(req: NextRequest) {
   try {
