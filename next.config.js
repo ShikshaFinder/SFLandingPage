@@ -19,5 +19,9 @@ module.exports = withPWA({
       "source.unsplash",
     ],
   },
+  env: {
+    AZURE_OPENAI_ENDPOINT: process.env.AZURE_OPENAI_ENDPOINT,
+    AZURE_OPENAI_API_KEY: process.env.AZURE_OPENAI_API_KEY,
+  },
   experimental: {},
 });
