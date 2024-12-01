@@ -109,35 +109,6 @@ function Form() {
                 />
               </FormControl>{" "}
               <br />
-              <FormControl isRequired>
-                <FormLabel>State</FormLabel>
-                <Select
-                  {...register("State", { required: true })}
-                  name="State"
-                  placeholder="Select State"
-                >
-                  {states.map((stateObj) => (
-                    <option key={stateObj.state} value={stateObj.state}>
-                      {stateObj.state}
-                    </option>
-                  ))}
-                </Select>
-              </FormControl>
-              <br />
-              <FormControl isRequired>
-                <FormLabel>District/city</FormLabel>
-                <Select
-                  {...register("city", { required: true })}
-                  name="city"
-                  placeholder="Select District"
-                >
-                  {districts.map((district) => (
-                    <option key={district} value={district}>
-                      {district}
-                    </option>
-                  ))}
-                </Select>
-              </FormControl>{" "}
               <br />
               <FormControl isRequired>
                 <FormLabel> Sub-District</FormLabel>
