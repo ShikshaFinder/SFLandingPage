@@ -8,8 +8,9 @@ export default async function handler(req: NextRequest) {
     const { msg } = await req.json();
 
     // Environment variables
-    const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-    const apiKey = process.env.AZURE_OPENAI_API_KEY;
+    const endpoint = "https://ai-shiksha076844560258.openai.azure.com";
+    const apiKey =
+      "AhmAjyCTxBZaLiCmOUcVAtFAXLYw57uPt8FnrnxVA5w4F7P4QWQ6JQQJ99AKACYeBjFXJ3w3AAAAACOGGkjN";
     if (!apiKey) {
       throw new Error(
         "AZURE_OPENAI_API_KEY environment variable is not defined"
