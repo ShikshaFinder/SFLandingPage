@@ -18,8 +18,8 @@ export default async function handler(req: NextRequest) {
     const apiVersion = "2024-08-01-preview"; // Verify the correct API version
     const deployment = "gpt-4o"; // Your deployment name
 
-     const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${apiVersion}`;
-    
+    const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${apiVersion}`;
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -63,7 +63,13 @@ export default async function handler(req: NextRequest) {
   } catch (err) {
     // throw err;
     console.error(err);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+
+    if (err instanceof Error) {
+      return new Response(JSON.stringify({ error: err.message }), {
+        status: 500,
+      });
+    }
+    return new Response(JSON.stringify({ error: err }), {
       status: 500,
     });
   }
