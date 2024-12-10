@@ -5,9 +5,9 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "xyz.appmaker.kcohgg",
+      "package_name": "dev.pages.sflandingpage.twa.twa",
       "sha256_cert_fingerprints": [
-        "3F:C2:51:F6:35:48:30:34:8C:AD:91:02:72:6A:9C:E8:6F:4E:4F:B8:F0:16:1A:47:F1:AC:D2:26:11:EA:30:FE"
+        "26:73:0A:97:F0:81:B7:48:4B:FC:95:BB:FB:B2:E7:3C:74:14:01:2D:B0:9C:87:8A:BD:4F:76:F9:EE:50:82:A3"
       ]
     }
   }
