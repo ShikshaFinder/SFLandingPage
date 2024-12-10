@@ -17,7 +17,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { AlertCircle, Send, Sparkles } from "lucide-react";
-
+import supabase from "../../supabase";
 
 
 const markdownComponents = {
@@ -41,6 +41,28 @@ const Chatbot = () => {
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
+
+  async function saveResponse() {
+   
+const { data, error } = await supabase
+  .from("chatbot")
+  .insert([{ message: inputText, response: summary , user_id: "1" }]);
+          
+    if (error) {
+      console.error("Error saving response:", error);
+    } else {
+      console.log("Response saved:", data);
+    }
+  }
+
+async function getHistory() {
+  
+let { data: chatbot, error } = await supabase
+  .from("chatbot")
+  .select("message");
+  
+  console.log(chatbot);
+}
 
   interface ApiResponse {
     messages: { content: string }[];
@@ -66,9 +88,10 @@ const Chatbot = () => {
       });
 
       const data: ApiResponse = await response.json();
-
+        await saveResponse();
       if (response.ok) {
         setSummary(data.messages[0]?.content || "No summary found.");
+        saveResponse();
       } else {
         console.error("Failed to get summary:", data.error);
         setSummary("Error fetching summary.");
