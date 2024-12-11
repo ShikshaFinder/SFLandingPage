@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { List, ListItem } from "@chakra-ui/react";
 import remarkGfm from "remark-gfm";
-
+import { useAuthContext } from "@/context";
 import {
   Box,
   Button,
@@ -19,7 +19,6 @@ import {
 import { AlertCircle, Send, Sparkles } from "lucide-react";
 import supabase from "../../supabase";
 
-
 const markdownComponents = {
   h1: (props: any) => (
     <Heading as="h1" size="xl" mt={4} mb={2} color="blue.600" {...props} />
@@ -31,9 +30,7 @@ const markdownComponents = {
   strong: (props: any) => (
     <Text as="strong" fontWeight="bold" color="black" {...props} />
   ),
-  ul: (props: any) => (
-    <List styleType="disc" pl={6} color="black" {...props} />
-  ),
+  ul: (props: any) => <List styleType="disc" pl={6} color="black" {...props} />,
   li: (props: any) => <ListItem mb={1} {...props} />,
 };
 
@@ -41,13 +38,15 @@ const Chatbot = () => {
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
+  const [Data, setData] = useState([]);
 
+
+  const { user } = useAuthContext();
   async function saveResponse() {
-   
-const { data, error } = await supabase
-  .from("chatbot")
-  .insert([{ message: inputText, response: summary , user_id: "1" }]);
-          
+    const { data, error } = await supabase
+      .from("chatbot")
+      .insert([{ message: inputText, response: summary,user_id: user?.id }]);
+
     if (error) {
       console.error("Error saving response:", error);
     } else {
@@ -55,14 +54,15 @@ const { data, error } = await supabase
     }
   }
 
-async function getHistory() {
-  
-let { data: chatbot, error } = await supabase
-  .from("chatbot")
-  .select("message");
-  
-  console.log(chatbot);
-}
+  async function getHistory() {
+    let { data, error } = await supabase.from("chatbot").select("message");
+
+    console.log("chatbot history saved:", data);
+  }
+
+  useEffect(() => {
+    getHistory();
+  }, [summary]);
 
   interface ApiResponse {
     messages: { content: string }[];
@@ -88,7 +88,7 @@ let { data: chatbot, error } = await supabase
       });
 
       const data: ApiResponse = await response.json();
-        await saveResponse();
+      await saveResponse();
       if (response.ok) {
         setSummary(data.messages[0]?.content || "No summary found.");
         saveResponse();

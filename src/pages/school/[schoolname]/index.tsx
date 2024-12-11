@@ -12,6 +12,7 @@ import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import supabase from "../../../../supabase";
 import { useEffect, useState } from "react";
+import EmbedVR from "@/components/EmbedVR";
 
 function IntroSchool({
   userData,
@@ -131,7 +132,8 @@ function IntroSchool({
           }
           exam={userData[0]?.exam || "exams not mentioned by the institutes"}
           medium={userData[0]?.medium || "medium not mentioned"}
-        />
+        /><br/>
+        <EmbedVR />
         <br />
         {useVote && useVote[0]?.extracurricular != 0 ? (
           <Chart

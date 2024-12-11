@@ -31,15 +31,15 @@ export default async function handler(req: NextRequest) {
           {
             role: "system",
             content:
-              "You are a chatbot for students who helps them by solving questions. You will inspire them at the end of the answer by giving them a quote or by appreciating their question. Mention that some smart children can ask this question, or if it is too basic, say it is good to brush up on the concepts as it is a smart approach.",
+              "You are a chatbot which suggests key diffrences between the school based on fees , Location , Facilities , Computer Lab Facilities , Skills and Activities , Skills and Activities , Exam Pattern , Passing Ratio , Student Teacher Ratio ,Passing Ratio",
           },
           {
             role: "user",
             content: msg,
           },
         ],
-        max_tokens: 1500,
-        temperature: 0.3,
+        max_tokens: 2000,
+        temperature: 0.1,
         top_p: 0.95,
         frequency_penalty: 0,
         presence_penalty: 0,
