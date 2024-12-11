@@ -20,9 +20,17 @@ import {
 } from "@chakra-ui/react";
 import Layout from "./Layout";
 import Image from "next/image";
+import { get } from "react-hook-form";
 
 export default function Home() {
   const { user } = useAuthContext();
+
+  async function getStandard() {
+    fetch("/api/keydiffrence")
+      .then((response) => response.json())
+      .then((data) => console.log(data)); 
+  }
+  getStandard();
 
   return (
     <>

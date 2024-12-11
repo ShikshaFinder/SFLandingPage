@@ -40,14 +40,14 @@ export default function App({
           crossOrigin="anonymous"
         ></script>
       </Head>
-      <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
-      <noscript>
+      {/* <Script src="https://scripts.simpleanalyticscdn.com/latest.js" /> */}
+      {/* <noscript>
         <img
           src="https://queue.simpleanalyticscdn.com/noscript.gif"
           alt="script"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      </noscript>
+      </noscript> */}
 
       <SessionContextProvider
         supabaseClient={supabaseClient}
