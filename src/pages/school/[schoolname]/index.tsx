@@ -28,6 +28,26 @@ function IntroSchool({
   schoolname: any;
 }) {
   const [useView, setUseView] = useState<any[] | null>(null);
+  const[votes,setVotes]=useState<any[]>([]);
+
+  async function getVotes() {
+    // Fetch vote data
+    const { data } = await supabase
+      .from("votes")
+      .select("*")
+      .eq("user_id", schoolname);
+
+      if (data) {
+        setVotes(data);
+      }
+  
+         // Fetch ads
+    const { data: adData } = await supabase
+      .from("marketingDetails")
+      .select("*")
+      .range(0, 2);
+    ad = adData;
+  }
   async function updateView() {
     try {
       if (typeof schoolname === "string") {
@@ -132,23 +152,24 @@ function IntroSchool({
           }
           exam={userData[0]?.exam || "exams not mentioned by the institutes"}
           medium={userData[0]?.medium || "medium not mentioned"}
-        /><br/>
-        <EmbedVR />
+        />
         <br />
-        {useVote && useVote[0]?.extracurricular != 0 ? (
+       
           <Chart
-            extra={useVote[0]?.extracurricular}
+            extra={useVote[0]?.extracurricular }
             quality={useVote[0]?.qualityofeducation}
             management={useVote[0]?.management}
             facilities={useVote[0]?.facilityprovided}
             view={useVote[0]?.view}
           />
-        ) : (
+        ) 
           <Alert status="info">
             <AlertIcon />
             This institute has not participated in the shiksha star contest yet.
           </Alert>
-        )}
+      
+        <EmbedVR />
+
         <Stack
           spacing={8}
           mx={"auto"}
@@ -187,8 +208,7 @@ export async function getServerSideProps(context: any) {
 
   let userData = null;
   let useStandard = null;
-  let useVote = null;
-  let ad = null;
+
 
   try {
     if (typeof schoolname === "string") {
@@ -208,21 +228,6 @@ export async function getServerSideProps(context: any) {
         .eq("user_id", schoolname);
       useStandard = standardData;
 
-      // Fetch vote data
-      const { data: voteData } = await supabase
-        .from("votes")
-        .select(
-          "qualityofeducation,facilityprovided,management,extracurricular,view"
-        )
-        .eq("user_id", schoolname);
-      useVote = voteData;
-
-      // Fetch ads
-      const { data: adData } = await supabase
-        .from("marketingDetails")
-        .select("*")
-        .range(0, 2);
-      ad = adData;
     }
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -233,8 +238,6 @@ export async function getServerSideProps(context: any) {
     props: {
       userData,
       useStandard,
-      useVote,
-      ad,
       schoolname,
     },
   };

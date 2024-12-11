@@ -1,12 +1,16 @@
 // pages/api/getanswer.ts
 import { NextRequest } from "next/server";
+import supabase from "../../../supabase";
 
 export const runtime = "edge"; // Ensure this API route runs on the edge
 
 export default async function handler(req: NextRequest) {
+  async function Name() {
+    let { data: schools, error } = await supabase.from("schools").select("*");
+    console.log(schools);
+  }
+  Name();
   try {
-    const { msg } = await req.json();
-
     // Environment variables
     const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
     const apiKey = process.env.AZURE_OPENAI_API_KEY;
@@ -35,7 +39,7 @@ export default async function handler(req: NextRequest) {
           },
           {
             role: "user",
-            content: msg,
+            content: "msg",
           },
         ],
         max_tokens: 2000,
