@@ -190,9 +190,6 @@ const Chatbot = () => {
   // Move ChatSidebar outside of main component to prevent re-renders
   const ChatSidebarContent = () => (
     <VStack align="stretch" h="100%" p={4} bg="white" shadow="md">
-      <Heading size="md" mb={4}>
-        Chat History
-      </Heading>
       <VStack
         align="stretch"
         spacing={4}
