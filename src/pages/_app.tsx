@@ -25,7 +25,7 @@ export default function App({
     createPagesBrowserClient({ supabaseUrl, supabaseKey })
   );
   const config: ThemeConfig = {
-    initialColorMode: "light",
+    initialColorMode: "system",
     useSystemColorMode: true,
   };
 
