@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { List, ListItem } from "@chakra-ui/react";
 import remarkGfm from "remark-gfm";
 import { useAuthContext } from "@/context";
 import {
@@ -9,70 +8,137 @@ import {
   Center,
   CircularProgress,
   Container,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
+  Grid,
+  GridItem,
   Heading,
   Icon,
+  IconButton,
   Input,
+  List,
+  ListItem,
   Text,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { AlertCircle, Send, Sparkles } from "lucide-react";
+import { AlertCircle, Menu, Send, Sparkles } from "lucide-react";
 import supabase from "../../supabase";
 
 const markdownComponents = {
   h1: (props: any) => (
-    <Heading as="h1" size="xl" mt={4} mb={2} color="blue.600" {...props} />
+    <Heading as="h1" size="xl" mt={4} mb={2} color="black" {...props} />
   ),
   h2: (props: any) => (
-    <Heading as="h2" size="lg" mt={3} mb={2} color="blue.500" {...props} />
+    <Heading as="h2" size="lg" mt={3} mb={2} color="black" {...props} />
   ),
   p: (props: any) => <Text mt={2} color="black" {...props} />,
   strong: (props: any) => (
     <Text as="strong" fontWeight="bold" color="black" {...props} />
   ),
-  ul: (props: any) => <List styleType="disc" pl={6} color="black" {...props} />,
-  li: (props: any) => <ListItem mb={1} {...props} />,
+  ul: ({ children }: any) => (
+    <List styleType="disc" pl={6} mt={2} spacing={2} color="black">
+      {children}
+    </List>
+  ),
+  ol: ({ children }: any) => (
+    <List as="ol" styleType="decimal" pl={6} mt={2} spacing={2} color="black">
+      {children}
+    </List>
+  ),
+  li: (props: any) => <ListItem color="black" {...props} />,
 };
+
+interface ChatMessage {
+  id: string;
+  message: string;
+  response: string;
+  created_at: string;
+  title: string;
+  user_id: string;
+}
 
 const Chatbot = () => {
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
-  const [Data, setData] = useState([]);
-
-
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuthContext();
-  async function saveResponse() {
-    const { data, error } = await supabase
-      .from("chatbot")
-      .insert([{ message: inputText, response: summary,user_id: user?.id }]);
 
-    if (error) {
+  // Add state for client-side rendering
+  const [isClient, setIsClient] = useState(false);
+
+  async function saveResponse(messageText: string, responseText: string) {
+    try {
+      if (!user?.id) {
+        console.log("No user ID found when saving");
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("chat_history")
+        .insert([
+          {
+            message: messageText,
+            response: responseText,
+            user_id: user.id,
+          },
+        ])
+        .select();
+
+      if (error) {
+        console.error("Error saving to Supabase:", error);
+        throw error;
+      }
+
+      // Fetch updated history after successful save
+      await getHistory();
+    } catch (error) {
       console.error("Error saving response:", error);
-    } else {
-      console.log("Response saved:", data);
     }
   }
 
   async function getHistory() {
-    let { data, error } = await supabase.from("chatbot").select("message");
+    try {
+      if (!user?.id) return;
 
-    console.log("chatbot history saved:", data);
+      const { data, error } = await supabase
+        .from("chat_history")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+
+      setChatHistory(data || []);
+    } catch (error) {
+      console.error("Error fetching history:", error);
+    }
   }
 
+  // Update useEffect to handle client-side mounting
   useEffect(() => {
-    getHistory();
-  }, [summary]);
+    setIsClient(true);
+    if (user?.id) {
+      getHistory();
+    }
+  }, [user?.id]);
 
   interface ApiResponse {
     messages: { content: string }[];
     error?: string;
   }
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputText.trim()) return;
+
     setLoading(true);
     setSummary("");
 
@@ -87,11 +153,13 @@ const Chatbot = () => {
         }),
       });
 
-      const data: ApiResponse = await response.json();
-      await saveResponse();
+      const data = await response.json();
+
       if (response.ok) {
-        setSummary(data.messages[0]?.content || "No summary found.");
-        saveResponse();
+        const responseContent =
+          data.messages[0]?.content || "No summary found.";
+        setSummary(responseContent);
+        await saveResponse(inputText, responseContent);
       } else {
         console.error("Failed to get summary:", data.error);
         setSummary("Error fetching summary.");
@@ -104,104 +172,204 @@ const Chatbot = () => {
     }
   };
 
-  return (
-    <Center minH="100vh" bgGradient="linear(to-br, blue.50, purple.100)" p={4}>
-      <Container maxW="lg" bg="white" rounded="2xl" shadow="xl" p={6}>
-        {/* Header */}
-        <VStack spacing={2} textAlign="center">
-          <Flex alignItems="center" justifyContent="center" gap={2}>
-            <Icon as={Sparkles} boxSize={8} color="blue.600" />
-            <Heading
-              as="h2"
-              size="lg"
-              bgGradient="linear(to-r, blue.600, purple.600)"
-              bgClip="text"
-              color="black"
-            >
-              Science & Math Explorer
-            </Heading>
-          </Flex>
-          <Text color="gray.500">
-            Discover the wonders of science and mathematics with ShikshaFinder
-          </Text>
-        </VStack>
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
+  };
 
-        {/* Input Form */}
-        <Box position="relative">
-          <Flex>
-            <Box as="form" onSubmit={handleSubmit}>
-              <Input
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder="Ask anything about science or math..."
-                pr="3rem"
-                borderColor="gray.200"
-                focusBorderColor="blue.500"
-                rounded="lg"
-                color="gray.800"
-                bg="white"
-              />
-            </Box>
-            <Button
-              type="submit"
-              isDisabled={loading || !inputText.trim()}
-              position="absolute"
-              right={2}
-              top="50%"
-              transform="translateY(-50%)"
-              colorScheme="blue"
-              rounded="full"
-              px={4}
-              onClick={() =>
-                document
-                  .querySelector("form")
-                  ?.dispatchEvent(
-                    new Event("submit", { cancelable: true, bubbles: true })
-                  )
-              }
+  // Move ChatSidebar outside of main component to prevent re-renders
+  const ChatSidebarContent = () => (
+    <VStack align="stretch" h="100%" p={4} bg="white" shadow="md">
+      <Heading size="md" mb={4}>
+        Chat History
+      </Heading>
+      <VStack
+        align="stretch"
+        spacing={4}
+        overflowY="auto"
+        maxH="calc(100vh - 100px)"
+      >
+        {!isClient ? null : chatHistory.length === 0 ? (
+          <Text color="gray.500" textAlign="center">
+            No chat history yet
+          </Text>
+        ) : (
+          chatHistory.map((chat) => (
+            <Box
+              key={chat.id}
+              p={4}
+              bg="gray.50"
+              rounded="md"
+              cursor="pointer"
+              _hover={{ bg: "gray.100" }}
+              onClick={() => {
+                setSummary(chat.response);
+                setInputText(chat.message);
+                onClose(); // Close drawer after selection on mobile
+              }}
             >
-              {loading ? (
-                <CircularProgress isIndeterminate size="24px" color="white" />
-              ) : (
-                <Icon as={Send} boxSize={5} />
-              )}
+              <Text fontWeight="bold" fontSize="sm" color="gray.700">
+                {chat.title || chat.message.substring(0, 50)}
+              </Text>
+              <Text fontSize="xs" color="gray.500">
+                {isClient ? new Date(chat.created_at).toLocaleString() : ""}
+              </Text>
+            </Box>
+          ))
+        )}
+      </VStack>
+    </VStack>
+  );
+
+  if (!isClient) {
+    return null; // Prevent initial flash during hydration
+  }
+
+  return (
+    <Grid
+      minH="100vh"
+      templateColumns={{ base: "1fr", md: "300px 1fr" }}
+      bg="gray.50"
+    >
+      {/* Sidebar - Hidden on mobile */}
+      <GridItem display={{ base: "none", md: "block" }}>
+        <ChatSidebarContent />
+      </GridItem>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        size="full" // Make drawer full screen on mobile
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton size="lg" /> {/* Make close button bigger */}
+          <DrawerHeader borderBottomWidth="1px">Chat History</DrawerHeader>
+          <DrawerBody p={0}>
+            <ChatSidebarContent />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
+      {/* Main Content */}
+      <GridItem>
+        <Container
+          maxW={{ base: "100%", md: "4xl" }}
+          py={{ base: 4, md: 8 }}
+          px={{ base: 4, md: 6 }}
+        >
+          {/* Mobile Header with Menu Button */}
+          <Flex
+            justify="space-between"
+            align="center"
+            mb={6}
+            display={{ base: "flex", md: "none" }}
+          >
+            <Button onClick={onOpen} color="black" size="md" variant="outline">
+              <Icon as={Menu} />
             </Button>
           </Flex>
-        </Box>
-        {/* Response Box */}
-        {summary && (
-          <Box>
-            <Flex align="start" gap={4}>
-              <Center boxSize={8} bg="blue.600" rounded="full" color="white">
-                <Icon as={Sparkles} boxSize={5} />
-              </Center>
-              <List>
-                <MarkdownBox content={summary} />
-              </List>
-            </Flex>
-          </Box>
-        )}
 
-        {/* Error State */}
-        {summary && summary.includes("error") && (
-          <Flex align="center" gap={2} color="red.600">
-            <Icon as={AlertCircle} boxSize={5} />
-            <Text>Something went wrong. Please try again.</Text>
-          </Flex>
-        )}
-      </Container>
-    </Center>
+          {/* Header */}
+          <VStack spacing={4} mb={8}>
+            <Flex align="center" gap={2}>
+              <Icon as={Sparkles} boxSize={6} color="blue.500" />
+              <Heading size="lg" color="black">
+                Science & Math Explorer
+              </Heading>
+            </Flex>
+            <Text color="gray.600" textAlign="center">
+              Discover the wonders of science and mathematics with ShikshaFinder
+            </Text>
+          </VStack>
+
+          {/* Chat Input */}
+          <Box position="relative" mb={8}>
+            <form onSubmit={handleSubmit}>
+              <Flex gap={2}>
+                <Input
+                  value={inputText}
+                  onChange={handleInputChange}
+                  placeholder="Ask anything about science or math..."
+                  size="md"
+                  bg="white"
+                  color="black"
+                  borderColor="gray.200"
+                  _focus={{ borderColor: "blue.500" }}
+                />
+                <Button
+                  type="submit"
+                  variant="solid"
+                  colorScheme="blue"
+                  isDisabled={loading || !inputText.trim()}
+                  size="md"
+                >
+                  {loading ? (
+                    <CircularProgress
+                      size="24px"
+                      color="black"
+                      isIndeterminate
+                    />
+                  ) : (
+                    <Icon as={Send} stroke="black" />
+                  )}
+                </Button>
+              </Flex>
+            </form>
+          </Box>
+
+          {/* Response */}
+          {summary && (
+            <Box bg="white" rounded="md" shadow="sm" p={4}>
+              <Flex
+                gap={3}
+                direction={{ base: "column", md: "row" }}
+                align={{ base: "flex-start", md: "start" }}
+              >
+                <Center
+                  boxSize={8}
+                  bg="blue.500"
+                  rounded="full"
+                  flexShrink={0}
+                  ml={{ base: 2, md: 0 }}
+                >
+                  <Icon as={Sparkles} color="white" />
+                </Center>
+                <Box flex={1} w="full">
+                  <MarkdownBox content={summary} />
+                </Box>
+              </Flex>
+            </Box>
+          )}
+
+          {/* Error State */}
+          {summary && summary.includes("error") && (
+            <Flex
+              align="center"
+              gap={2}
+              color="red.600"
+              mt={4}
+              fontSize={{ base: "sm", md: "md" }}
+            >
+              <Icon as={AlertCircle} />
+              <Text>Something went wrong. Please try again.</Text>
+            </Flex>
+          )}
+        </Container>
+      </GridItem>
+    </Grid>
   );
 };
-export default Chatbot;
 
 const MarkdownBox = ({ content }: { content: string }) => {
   return (
     <Box
-      bgGradient="linear(to-r, blue.50, purple.50)"
-      p={6}
-      rounded="xl"
-      shadow="inner"
+      bg="white"
+      paddingInline={2}
+      rounded="md"
+      fontSize={{ base: "sm", md: "md" }}
+      color="black"
     >
       <ReactMarkdown
         components={markdownComponents}
@@ -212,3 +380,5 @@ const MarkdownBox = ({ content }: { content: string }) => {
     </Box>
   );
 };
+
+export default Chatbot;
