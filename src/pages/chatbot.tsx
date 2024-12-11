@@ -26,8 +26,9 @@ import {
   Text,
   useDisclosure,
   VStack,
+  Spinner,
 } from "@chakra-ui/react";
-import { AlertCircle, Menu, Send, Sparkles } from "lucide-react";
+import { AlertCircle, Menu, Send, Sparkles, Plus } from "lucide-react";
 import supabase from "../../supabase";
 
 const markdownComponents = {
@@ -73,6 +74,7 @@ const Chatbot = () => {
 
   // Add state for client-side rendering
   const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function saveResponse(messageText: string, responseText: string) {
     try {
@@ -105,6 +107,7 @@ const Chatbot = () => {
   }
 
   async function getHistory() {
+    setIsLoading(true);
     try {
       if (!user?.id) return;
 
@@ -119,6 +122,8 @@ const Chatbot = () => {
       setChatHistory(data || []);
     } catch (error) {
       console.error("Error fetching history:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -176,6 +181,12 @@ const Chatbot = () => {
     setInputText(e.target.value);
   };
 
+  const handleNewChat = () => {
+    setInputText("");
+    setSummary("");
+    onClose(); // Close drawer if open
+  };
+
   // Move ChatSidebar outside of main component to prevent re-renders
   const ChatSidebarContent = () => (
     <VStack align="stretch" h="100%" p={4} bg="white" shadow="md">
@@ -188,7 +199,20 @@ const Chatbot = () => {
         overflowY="auto"
         maxH="calc(100vh - 100px)"
       >
-        {!isClient ? null : chatHistory.length === 0 ? (
+        {!isClient ? null : isLoading ? (
+          <VStack py={8}>
+            <Spinner
+              thickness="3px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="md"
+            />
+            <Text color="gray.500" fontSize="sm">
+              Loading chats...
+            </Text>
+          </VStack>
+        ) : chatHistory.length === 0 ? (
           <Text color="gray.500" textAlign="center">
             No chat history yet
           </Text>
@@ -219,6 +243,25 @@ const Chatbot = () => {
       </VStack>
     </VStack>
   );
+
+  if (isLoading) {
+    return (
+      <Center minH="100vh" bg="gray.50">
+        <VStack spacing={4}>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+          <Text color="gray.600" fontSize="lg">
+            Loading your chats...
+          </Text>
+        </VStack>
+      </Center>
+    );
+  }
 
   if (!isClient) {
     return null; // Prevent initial flash during hydration
@@ -259,25 +302,45 @@ const Chatbot = () => {
           py={{ base: 4, md: 8 }}
           px={{ base: 4, md: 6 }}
         >
-          {/* Mobile Header with Menu Button */}
+          {/* Mobile Header with Menu and New Chat Buttons */}
           <Flex
             justify="space-between"
             align="center"
             mb={6}
             display={{ base: "flex", md: "none" }}
+            gap={2}
           >
-            <Button onClick={onOpen} color="black" size="md" variant="outline">
+            <Button onClick={onOpen} colorScheme="blue" size="md">
               <Icon as={Menu} />
+            </Button>
+            <Button
+              onClick={handleNewChat}
+              colorScheme="blue"
+              size="md"
+              leftIcon={<Icon as={Plus} />}
+            >
+              New Chat
             </Button>
           </Flex>
 
-          {/* Header */}
+          {/* Desktop Header with New Chat Button */}
           <VStack spacing={4} mb={8}>
-            <Flex align="center" gap={2}>
-              <Icon as={Sparkles} boxSize={6} color="blue.500" />
-              <Heading size="lg" color="black">
-                Science & Math Explorer
-              </Heading>
+            <Flex align="center" gap={2} w="full" justify="space-between">
+              <Flex align="center" gap={2}>
+                <Icon as={Sparkles} boxSize={6} color="blue.500" />
+                <Heading size="lg" color="black">
+                  Science & Math Explorer
+                </Heading>
+              </Flex>
+              <Button
+                onClick={handleNewChat}
+                colorScheme="blue"
+                size="md"
+                display={{ base: "none", md: "flex" }}
+                leftIcon={<Icon as={Plus} />}
+              >
+                New Chat
+              </Button>
             </Flex>
             <Text color="gray.600" textAlign="center">
               Discover the wonders of science and mathematics with ShikshaFinder
