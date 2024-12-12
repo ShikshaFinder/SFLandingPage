@@ -9,6 +9,10 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   reactStrictMode: true,
+  i18n: {
+    locales: ["en", "fr", "es"], // Add the languages you support
+    defaultLocale: "en", // Set a default language
+  },
   swcMinify: true,
   images: {
     domains: [
