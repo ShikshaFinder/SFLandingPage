@@ -342,6 +342,7 @@ const Chatbot = () => {
             <Text color="gray.600" textAlign="center">
               Discover the best Educational Institutions around you. Ask any questions related to schools , filter the best Institutions based on your requirements.
             </Text>
+            <a href="/keydiffrence">Visit KeyDiffrence</a>
           </VStack>
 
           {/* Chat Input */}

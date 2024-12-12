@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useAuthContext } from "@/context";
+import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -28,7 +29,7 @@ import {
   VStack,
   Spinner,
 } from "@chakra-ui/react";
-import { AlertCircle, Menu, Send, Sparkles, Plus } from "lucide-react";
+import { AlertCircle, Menu, Send, Sparkles, Plus, Router } from "lucide-react";
 import supabase from "../../supabase";
 
 const markdownComponents = {
@@ -75,7 +76,7 @@ const Chatbot = () => {
   // Add state for client-side rendering
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const Router = useRouter();
   async function saveResponse(messageText: string, responseText: string) {
     try {
       if (!user?.id) {
@@ -319,7 +320,16 @@ const Chatbot = () => {
               New Chat
             </Button>
           </Flex>
-
+          <Button
+            onClick={()=>{
+              Router.push('/schoolfilter')
+            }}
+            colorScheme="blue"
+            size="md"
+            leftIcon={<Icon as={Plus} />}
+          >
+            Find The Best Institutions
+          </Button><br /><br />
           {/* Desktop Header with New Chat Button */}
           <VStack spacing={4} mb={8}>
             <Flex align="center" gap={2} w="full" justify="space-between">
