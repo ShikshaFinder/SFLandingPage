@@ -33,30 +33,37 @@ export default async function handler(req: NextRequest) {
 
     const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${apiVersion}`;
 
+    // Extract user query from the request
+    const { msg } = await req.json();
+
     // Make a request to Azure OpenAI
     const response = await fetch(url, {
       method: "POST",
       headers: {
-      "Content-Type": "application/json",
-      "api-key": apiKey,
+        "Content-Type": "application/json",
+        "api-key": apiKey,
       },
       body: JSON.stringify({
-      messages: [
-        {
-        role: "system",
-        content:
-          "You Generate json format like  name: \"Green Valley High School\", fees: \"$5000/year\", course: \"Science, Arts\", subject: \"Math, Physics, Chemistry\", review: \"4.5/5\", admissionCriteria: \"90% in Grade 10\"",
-        },
-        {
-        role: "user",
-        content: schools.map((school: any) => school.schoolname).join(", "),
-        },
-      ],
-      max_tokens: 2000,
-      temperature: 0,
-      top_p: 0.95,
-      frequency_penalty: 0,
-      presence_penalty: 0,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a helpful assistant that provides information about schools.",
+          },
+          {
+            role: "user",
+            content: msg,
+          },
+          {
+            role: "system",
+            content: `Here is the data we have: ${JSON.stringify(schools)}`,
+          },
+        ],
+        max_tokens: 1500,
+        temperature: 0,
+        top_p: 0.95,
+        frequency_penalty: 0,
+        presence_penalty: 0,
       }),
     });
 
