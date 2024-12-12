@@ -271,6 +271,7 @@ const Chatbot = () => {
       templateColumns={{ base: "1fr", md: "300px 1fr" }}
       bg="gray.50"
     >
+      <a href="/scholarship">Scholarship</a>
       {/* Sidebar - Hidden on mobile */}
       <GridItem display={{ base: "none", md: "block" }}>
         <ChatSidebarContent />

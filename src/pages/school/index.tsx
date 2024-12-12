@@ -13,6 +13,7 @@ import { BiShareAlt } from "react-icons/bi";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
 
+
 export default function skillclass() {
   const { user } = useAuthContext();
 
@@ -255,7 +256,9 @@ export default function skillclass() {
             </Stack>
           </h1>
         )}
-
+        <br />
+<a href="/yt">Compare Demo Lectures</a>
+<br />
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
