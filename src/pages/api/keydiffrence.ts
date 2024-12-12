@@ -12,7 +12,10 @@ const supabase = createClient(
 export default async function handler(req: NextRequest) {
   try {
     // Fetch data from the Supabase `schools` table
-    const { data: schools, error } = await supabase.from("School").select("user_id,discription,schoolname").eq("District", "Amreli");
+    const { data: schools, error } = await supabase
+      .from("School")
+      .select("user_id,discription,schoolname")
+      .eq("District", "Amreli");
     if (error) {
       throw new Error(`Supabase Error: ${error.message}`);
     }
@@ -72,7 +75,7 @@ export default async function handler(req: NextRequest) {
     }
 
     const data = await response.json();
-    
+
     console.log("Azure OpenAI Response:", data);
     const messages = data.choices.map((choice: any) => choice.message);
 

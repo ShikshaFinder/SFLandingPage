@@ -11,9 +11,9 @@ import {
   Container,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import {MotionBox} from "./motion";
+import { MotionBox } from "./motion";
 
-const BASE_URL = "https://shikshafinder.com/";
+const BASE_URL = "https://shikshafinder.com";
 
 const posts = [
   {
@@ -66,7 +66,7 @@ const FeaturedArticles = () => {
                 >
                   <HStack justifyContent="space-between" isInline>
                     <Heading fontSize="lg" mt={0}>
-                      <NextLink href={`${BASE_URL}/${slug}`} passHref>
+                      <NextLink href={`${BASE_URL}${slug}`} passHref>
                         <Text as={Link} color={linkColor}>
                           {title}
                         </Text>

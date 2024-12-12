@@ -25,12 +25,12 @@ import { get } from "react-hook-form";
 export default function Home() {
   const { user } = useAuthContext();
 
-  async function getStandard() {
-    fetch("/api/keydiffrence")
-      .then((response) => response.json())
-      .then((data) => console.log(data)); 
-  }
-  getStandard();
+  // async function getStandard() {
+  //   fetch("/api/keydiffrence")
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data));
+  // }
+  // getStandard();
 
   return (
     <>
@@ -183,7 +183,7 @@ export default function Home() {
         <Faq />
         <br />
         <GridListWithCTA />
-        
+
         <Footer />
       </Layout>
     </>
