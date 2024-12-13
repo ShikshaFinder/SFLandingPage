@@ -1,6 +1,5 @@
 import { ChakraProvider, extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import { type AppProps } from "next/app";
 import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
