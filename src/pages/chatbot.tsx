@@ -3,6 +3,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useAuthContext } from "@/context";
 import { useRouter } from "next/router";
+// import { useAuthContext } from "@/context";
+import Nouser from "@/components/Nouser";
 import {
   Box,
   Button,
@@ -66,17 +68,22 @@ interface ChatMessage {
 }
 
 const Chatbot = () => {
+ 
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuthContext();
+  if (!user) {
+    return <Nouser />;
+  }
 
   // Add state for client-side rendering
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const Router = useRouter();
+
   async function saveResponse(messageText: string, responseText: string) {
     try {
       if (!user?.id) {
@@ -244,8 +251,9 @@ const Chatbot = () => {
 
   if (isLoading) {
     return (
-      <Center minH="100vh" bg="gray.50">
+      <Center minH="100vh">
         <VStack spacing={4}>
+          <Nouser />
           <Spinner
             thickness="4px"
             speed="0.65s"
@@ -254,7 +262,7 @@ const Chatbot = () => {
             size="xl"
           />
           <Text color="gray.600" fontSize="lg">
-            Loading your chats...
+            Loading your chats,
           </Text>
         </VStack>
       </Center>
@@ -271,7 +279,7 @@ const Chatbot = () => {
       templateColumns={{ base: "1fr", md: "300px 1fr" }}
       bg="gray.50"
     >
-      <a href="/scholarship">Scholarship</a>
+      {/* <a href="/scholarship">Scholarship</a> */}
       {/* Sidebar - Hidden on mobile */}
       <GridItem display={{ base: "none", md: "block" }}>
         <ChatSidebarContent />
@@ -322,15 +330,17 @@ const Chatbot = () => {
             </Button>
           </Flex>
           <Button
-            onClick={()=>{
-              Router.push('/schoolfilter')
+            onClick={() => {
+              Router.push("/schoolfilter");
             }}
             colorScheme="blue"
             size="md"
             leftIcon={<Icon as={Plus} />}
           >
             Find The Best Institutions
-          </Button><br /><br />
+          </Button>
+          <br />
+          <br />
           {/* Desktop Header with New Chat Button */}
           <VStack spacing={4} mb={8}>
             <Flex align="center" gap={2} w="full" justify="space-between">

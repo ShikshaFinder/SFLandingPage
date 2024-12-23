@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useAuthContext } from "@/context";
+import Nouser from "@/components/Nouser";
 import {
   Box,
   Button,
@@ -75,6 +76,7 @@ const Chatbot = () => {
   // Add state for client-side rendering
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
 
   async function saveResponse(messageText: string, responseText: string) {
     try {
@@ -205,6 +207,7 @@ const Chatbot = () => {
               color="blue.500"
               size="md"
             />
+
             <Text color="gray.500" fontSize="sm">
               Loading chats...
             </Text>
@@ -243,8 +246,10 @@ const Chatbot = () => {
 
   if (isLoading) {
     return (
-      <Center minH="100vh" bg="gray.50">
+      <Center minH="100vh">
         <VStack spacing={4}>
+          <Nouser />
+
           <Spinner
             thickness="4px"
             speed="0.65s"
@@ -342,7 +347,7 @@ const Chatbot = () => {
             <Text color="gray.600" textAlign="center">
               Discover the best Educational Institutions around you. Ask any questions related to schools , filter the best Institutions based on your requirements.
             </Text>
-            <a href="/keydiffrence">Visit KeyDiffrence</a>
+            {/* <a href="/keydiffrence">Visit KeyDiffrence</a> */}
           </VStack>
 
           {/* Chat Input */}

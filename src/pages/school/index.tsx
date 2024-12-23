@@ -257,8 +257,8 @@ export default function skillclass() {
           </h1>
         )}
         <br />
-<a href="/yt">Compare Demo Lectures</a>
-<br />
+{/* <a href="/yt">Compare Demo Lectures</a> */}
+{/* <br /> */}
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",

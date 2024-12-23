@@ -1,11 +1,11 @@
 // components/EmbedVR.js
 import React from "react";
 
-const EmbedVR = () => {
+const EmbedVR = ({vrurl}:{vrurl:string}) => {
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       <iframe
-        src="https://immeshers.com/projects/360/RoyalArtCollege/"
+        src={vrurl}
         style={{
           width: "100%",
           height: "100%",

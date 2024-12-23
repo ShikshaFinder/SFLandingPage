@@ -1,4 +1,3 @@
-export const runtime = "experimental-edge";
 import { Box, Stack } from "@chakra-ui/react";
 import Admissionform from "../../../components/admissionformlink";
 import Card from "../../../components/card";
@@ -6,118 +5,156 @@ import Videoo from "../../../components/video";
 import InfoTeacher from "../../../components/InfoTeacher";
 import Standard from "../../../components/Standard";
 import Chart from "../../../components/Chart";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useRouter } from "next/router";
+import supabase from "../../../../supabase";
+import { useEffect, useState } from "react";
 import ShareButton from "../../../components/shareButton";
 import Image from "../../../components/image";
 import { Alert, AlertIcon } from "@chakra-ui/react";
-import supabase from "../../../../supabase";
+import { useAuthContext } from "@/context";
 import EmbedVR from "@/components/EmbedVR";
 
-interface UserData {
-  schoolname: string;
-  website: string;
-  locationlink: string;
-  location: string;
-  discription: string;
-  mobile1: string;
-  user_id: string;
-  img: string;
-  videolink: string;
-  exam: string;
-  medium: string;
-}
+// import { useAuthContext } from "@/context";
 
-interface StandardData {
-  Standard: string;
-  subject: string;
-}
+const cards = [
+  {
+    name: "Vigyasa",
+    imgsrc:
+      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
+    rating: "Online",
+    link: "https://www.vigyasa.live/",
+  },
+  {
+    name: "Computer technology foundation",
+    imgsrc:
+      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
+    rating: "Ahmedabad",
+    link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
+  },
+];
+function IntroSchool() {
+  const router = useRouter();
+  const { schoolname } = router.query;
+  const { user } = useAuthContext();
+  const [useStandard, setStandard] = React.useState<any[] | null>(null);
+  const [useView, setUseView] = React.useState<any[] | null>(null);
+  const [userData, setUserData] = useState<any[] | null>(null);
+  const [useVote, setVote] = React.useState<any[] | null>(null);
 
-interface VoteData {
-  extracurricular: number;
-  qualityofeducation: number;
-  management: number;
-  facilityprovided: number;
-  view: number;
-}
-
-interface AdData {
-  name: string;
-  District: string;
-  redirecturl: string;
-  img: string;
-}
-
-interface IntroSchoolProps {
-  userData: UserData[];
-  useStandard: StandardData[];
-  useVote: VoteData[];
-  ad: AdData[];
-  schoolname: string;
-}
-
-function IntroSchool({ userData, useStandard, useVote, ad, schoolname }: IntroSchoolProps) {
-  const [useView, setUseView] = useState<{ view: number | null }[] | null>(null);
-  const [votes, setVotes] = useState<VoteData[]>([]);
-
-  async function getVotes() {
+  async function getStandard() {
     try {
-      // Fetch vote data
-      const { data, error } = await supabase
-        .from("votes")
-        .select("*")
-        .eq("user_id", schoolname);
+      if (typeof schoolname === "string") {
+        let { data, error } = await supabase
+          .from("schoolDemo")
+          .select("Standard,subject")
+          .eq("user_id", schoolname);
 
-      if (error) throw error;
-      if (data) {
-        const transformedData = data.map((item) => ({
-          extracurricular: item.extracurricular ?? 0,
-          qualityofeducation: item.qualityofeducation ?? 0,
-          management: item.management ?? 0,
-          facilityprovided: item.facilityprovided ?? 0,
-          view: item.view ?? 0,
-        }));
-        setVotes(transformedData);
+        setStandard(data);
+
+        // if (error) throw error;
+      } else {
+        console.log("No schoolname found");
       }
-
-      // Fetch ads
-      const { data: adData, error: adError } = await supabase
-        .from("marketingDetails")
-        .select("*")
-        .range(0, 2);
-
-      if (adError) throw adError;
     } catch (error) {
-      console.error("Error fetching votes or ads:", error);
+      console.log("Caught Error:", error);
+    }
+  }
+
+  async function getVote() {
+    try {
+      if (typeof schoolname === "string") {
+        let { data, error } = await supabase
+          .from("votes")
+          .select(
+            "qualityofeducation,facilityprovided,management,extracurricular,view"
+          )
+          .eq("user_id", schoolname);
+
+        setVote(data);
+
+        // if (error) throw error;
+      } else {
+        console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
+    }
+  }
+
+  async function getSchool() {
+    try {
+      if (typeof schoolname === "string") {
+        let { data, error } = await supabase
+          .from("School")
+          .select(
+            "schoolname, website, locationlink, location, discription, mobile1, user_id,img,videolink,exam,medium"
+          )
+          .eq("user_id", schoolname);
+
+        if (error) throw error;
+
+        setUserData(data);
+        // console.log("view", data && data[0].view);
+        // Check if 'view' is not null
+      } else {
+        console.log("No schoolname found");
+      }
+    } catch (error) {
+      console.log("Caught Error:", error);
     }
   }
 
   async function updateView() {
     try {
       if (typeof schoolname === "string") {
-        const { data, error } = await supabase
+        let { data, error } = await supabase
           .from("viewschool")
           .select("view")
           .eq("user_id", schoolname);
 
-        if (error) throw error;
         setUseView(data);
+        if (error) throw error;
 
-        if (data && data[0]?.view != null) {
+        console.log("view", data);
+
+        if (data && data[0].view !== null) {
+          // Increment the 'view' column value
           const newViewValue = data[0].view + 1;
+          // console.log("newViewValue", newViewValue);
+
+          // Update the 'view' column with the new value
           const { error: updateError } = await supabase
             .from("viewschool")
             .update({ view: newViewValue })
             .eq("user_id", schoolname);
 
-          if (updateError) throw updateError;
+          console.log("view incremented bdvkb");
+          // console.log("updateError", updateError);
+
+          if (updateError) {
+            throw updateError;
+          }
         }
       } else {
-        console.error("schoolname is not a string");
+        console.log("string error");
       }
     } catch (error) {
-      console.error("Caught Error while updating view:", error);
+      console.log("Caught Error:", error);
     }
   }
+
+  useEffect(() => {
+    getStandard();
+  }, [schoolname]);
+
+  useEffect(() => {
+    getSchool();
+  }, [schoolname]);
+
+  useEffect(() => {
+    getVote();
+  }, [schoolname]);
 
   useEffect(() => {
     updateView();
@@ -126,8 +163,16 @@ function IntroSchool({ userData, useStandard, useVote, ad, schoolname }: IntroSc
   return (
     <>
       <Box
-        p={{ md: "1rem", lg: "1rem", xl: "1rem" }}
-        m={{ md: "1rem", lg: "1rem", xl: "1rem" }}
+        p={{
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
+        m={{
+          md: "1rem",
+          lg: "1rem",
+          xl: "1rem",
+        }}
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
@@ -140,38 +185,64 @@ function IntroSchool({ userData, useStandard, useVote, ad, schoolname }: IntroSc
           whiteSpace="nowrap"
         >
           {useStandard &&
-            useStandard.map((standardItem, index) => (
-              <Standard
-                key={index}
-                name={standardItem.Standard}
-                Standard={standardItem.Standard}
-                schoolname={schoolname}
-                Subject={standardItem.subject}
-              />
-            ))}
+            useStandard.map(
+              (
+                standardItem: {
+                  Standard: string;
+                  schoolname: any;
+                  subject: string;
+                },
+                index: number
+              ) => (
+                <>
+                  <Standard
+                    key={index}
+                    name={standardItem.Standard}
+                    Standard={standardItem.Standard}
+                    schoolname={schoolname}
+                    Subject={standardItem.subject}
+                  />
+                </>
+              )
+            )}
         </Stack>
         <br />
-        {userData && userData[0]?.videolink ? (
-          <Videoo src={userData[0].videolink} />
+        {userData && userData[0] && userData[0].videolink ? (
+          <Videoo src={userData && userData[0] ? userData[0].videolink : ""} />
         ) : (
-          <Image src={userData[0]?.img || ""} />
+          <Image src={userData && userData[0] ? userData[0].img : ""} />
         )}
+
         <br />
-        <ShareButton link={userData[0]?.website || ""} />
-        <br />
-        <InfoTeacher
-          TeacherName={userData[0]?.schoolname || ""}
-          locationlink={userData[0]?.locationlink || ""}
-          location={userData[0]?.location || ""}
-          discription={
-            userData[0]?.discription ||
-            "The Data is on its way, Thank you for your patience"
-          }
-          exam={userData[0]?.exam || "exams not mentioned by the institutes"}
-          medium={userData[0]?.medium || "medium not mentioned"}
+        <ShareButton
+          link={userData && userData[0] ? userData[0].website : ""}
         />
         <br />
-        {useVote && useVote[0] ? (
+        <InfoTeacher
+          TeacherName={
+            userData && userData[0] ? userData[0].schoolname : "Loading..."
+          }
+          locationlink={userData && userData[0] ? userData[0].locationlink : ""}
+          location={userData && userData[0] ? userData[0].location : ""}
+          discription={
+            userData && userData[0]
+              ? userData[0].discription
+              : "The Data is on the way , thank your for your patience"
+          }
+          exam={
+            userData && userData[0]
+              ? userData[0].exam
+              : "exams not mentioned by the institutes"
+          }
+          medium={
+            userData && userData[0]
+              ? userData[0].medium
+              : "exams not mentioned by the institutes"
+          }
+        />
+
+        <br />
+        {useVote && useVote[0]?.extracurricular != 0 ? (
           <Chart
             extra={useVote[0]?.extracurricular}
             quality={useVote[0]?.qualityofeducation}
@@ -182,81 +253,45 @@ function IntroSchool({ userData, useStandard, useVote, ad, schoolname }: IntroSc
         ) : (
           <Alert status="info">
             <AlertIcon />
-            This institute has not participated in the shiksha star contest yet.
+            This institute has not participated in shiksha star contest yet
           </Alert>
         )}
-        <EmbedVR />
+        <br />
+        {userData && userData[0] && userData[0].vrurl ? (
+          <EmbedVR vrurl={userData[0].vrurl} />
+        ) : (
+          <Alert status="info">
+            <AlertIcon />
+            This institute has not provided a VR experience yet
+          </Alert>
+        )}<br />
         <Stack
           spacing={8}
           mx={"auto"}
           maxW={"lg"}
           py={12}
           px={6}
-          direction={"row"}
+          direction={{ base: "column", md: "row" }}
+          alignItems="center"
         >
-          {ad &&
-            ad.map((marketingDetails, index) => (
-              <Card
-                key={index}
-                name={marketingDetails.name}
-                rating={marketingDetails.District}
-                link={marketingDetails.redirecturl}
-                imgsrc={
-                  marketingDetails.img
-                    ? `//wsrv.nl/?url=${marketingDetails.img}&h=300`
-                    : "https://images.unsplash.com/photo-1595528573972-a6e4c0d71f1b?q=80&w=1974&auto=format&fit=crop"
-                }
-              />
-            ))}
+          {cards.map(({ name, imgsrc, rating, link }, index) => (
+            <Card
+              key={index}
+              name={name}
+              imgsrc={imgsrc}
+              rating={rating}
+              link={link}
+            />
+          ))}
         </Stack>
+
         <Admissionform
-          name={userData[0]?.user_id || ""}
-          phoneNumber={userData[0]?.mobile1 ? Number(userData[0].mobile1) : 0}
+          name={userData && userData[0] ? userData[0].user_id : ""}
+          phoneNumber={userData && userData[0] ? userData[0].mobile1 : ""}
         />
-      </Box>
+      </Box>{" "}
     </>
   );
-}
-
-export async function getServerSideProps(context: { query: { schoolname: any; }; }) {
-  const { schoolname } = context.query;
-
-  let userData = null;
-  let useStandard = null;
-
-  try {
-    if (typeof schoolname === "string") {
-      // Fetch school data
-      const { data: schoolData, error: schoolError } = await supabase
-        .from("School")
-        .select(
-          "schoolname, website, locationlink, location, discription, mobile1, user_id,img,videolink,exam,medium"
-        )
-        .eq("user_id", schoolname);
-
-      if (schoolError) throw schoolError;
-      userData = schoolData;
-
-      // Fetch standard data
-      const { data: standardData, error: standardError } = await supabase
-        .from("schoolDemo")
-        .select("Standard,subject")
-        .eq("user_id", schoolname);
-
-      if (standardError) throw standardError;
-      useStandard = standardData;
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-
-  return {
-    props: {
-      userData,
-      useStandard,
-      schoolname,
-    },
-  };
 }
 
 export default IntroSchool;
