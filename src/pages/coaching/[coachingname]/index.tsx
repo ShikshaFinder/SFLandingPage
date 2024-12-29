@@ -209,7 +209,8 @@ function IntroSchool() {
           location={userData && userData[0] ? userData[0].location : ""}
           locationlink={userData && userData[0] ? userData[0].locationlink : ""}
           discription={userData && userData[0] ? userData[0].discription : ""}
-          exam={userData && userData[0] ? userData[0].medium : ""}
+          medium={userData && userData[0] ? userData[0].medium : ""}
+          // exam={userData && userData[0] ? userData[0].exam : ""}
         />
 
         {useVote && useVote[0]?.extracurricular != 0 ? (
