@@ -20,7 +20,7 @@ const cards = [
     name: "Vigyasa",
     imgsrc:
       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
-    rating: "5.0",
+    rating: "Online Classes",
     link: "https://www.vigyasa.live/",
   }
 ];
