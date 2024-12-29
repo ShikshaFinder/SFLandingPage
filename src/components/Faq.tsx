@@ -14,18 +14,18 @@ import {
 const articles = [
   {
     id: 1,
-    title: "Is it true that shiksha finder is and will be free forever?",
-    content: `Yes! Shiksha Finder is and will always be free to use for finding best educational platform. We believe that quality education should be accessible to all. `,
+    title: "Is it true that Shiksha Finder is and will be free forever?",
+    content: `Yes! Shiksha Finder is and will always be free to use for finding the best educational platform as well as for registering your educational institutions. We believe that quality education should be accessible to all.`,
   },
   {
     id: 2,
-    title: "What i can find on shiksha finder?",
-    content: `You can find schools,coaching centers,home tutors,SKill classes,educational platforms,online tutors and many more on shiksha finder`,
+    title: "What can I find on Shiksha Finder?",
+    content: `You can find schools, coaching centers, home tutors, skill classes, educational platforms, online tutors, and many more on Shiksha Finder.`,
   },
   {
     id: 3,
-    title: "If i get any problem using shiksha finder,how can i contact you?",
-    content: `We are open to solve your queries and problems, you can contact us on contact us page or you can mail us at founder@shikshafinder.in`,
+    title: "If I encounter any problems using Shiksha Finder, how can I contact you?",
+    content: `We are open to solving your queries and problems. You can contact us on the contact us page or you can mail us at founder@shikshafinder.in.`,
   },
 ];
 
