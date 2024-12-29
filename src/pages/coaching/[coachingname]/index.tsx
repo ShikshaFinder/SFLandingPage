@@ -22,14 +22,7 @@ const cards = [
       "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1714766849103_vigysalogo.png&h=300",
     rating: "5.0",
     link: "https://www.vigyasa.live/",
-  },
-  {
-    name: " Computer technology foundation",
-    imgsrc:
-      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716878654154_New_CTF_Logo%20(1).png&h=300",
-    rating: "5",
-    link: "https://shikshafinder.com/skillclass/coding/e81f95a8-00e2-4141-ac6c-7be3af2ed470",
-  },
+  }
 ];
 function IntroSchool() {
   const router = useRouter();
