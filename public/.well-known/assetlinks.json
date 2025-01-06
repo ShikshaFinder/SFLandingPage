@@ -1,13 +1,15 @@
 [
   {
     "relation": [
-      "delegate_permission/common.handle_all_urls"
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
     ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.shikshafinder.twa",
       "sha256_cert_fingerprints": [
-        "6E:24:77:7F:F2:FB:26:14:3F:4A:34:0D:1E:C1:09:2F:D4:5E:70:7B:8E:76:C0:EF:03:8C:95:C2:D6:10:89:50"
+        "6E:24:77:7F:F2:FB:26:14:3F:4A:34:0D:1E:C1:09:2F:D4:5E:70:7B:8E:76:C0:EF:03:8C:95:C2:D6:10:89:50",
+        "32:E4:15:D4:B0:8C:57:DB:E4:38:2E:88:B8:76:71:D1:91:EF:D9:EA:6B:73:49:4E:B2:56:41:01:41:5A:4F:7B"
       ]
     }
   }
