@@ -52,7 +52,6 @@ function IntroSchool() {
 
         setStandard(data);
 
-        // if (error) throw error;
       } else {
         console.log("No schoolname found");
       }
