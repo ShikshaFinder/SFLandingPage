@@ -8,6 +8,7 @@ import {
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -15,8 +16,7 @@ const testimonials = [
     role: "Student",
     content:
       "Shiksha Finder is amazing! It helped me find the perfect school and coaching class for my needs. I highly recommend it!",
-    avatar:
-      "https://media.licdn.com/dms/image/D4D03AQHvarl05uK6UQ/profile-displayphoto-shrink_400_400/0/1710650766496?e=1723075200&v=beta&t=uSBQYXSlbB2RHU7-trUgasaOKwY9mK1ltfz-CqEP8lU",
+    avatar: "/img.jpg",
   },
   {
     name: "Gyan Guru Classes",
@@ -31,7 +31,8 @@ const testimonials = [
     role: "Edtech",
     content:
       "Shiksha Finder is a valuable tool for educators. It helps connect students with the best learning resources. I highly recommend it!",
-    avatar: "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716473830318_vigysalogo.png&h=100",
+    avatar:
+      "https://wsrv.nl/?url=https://blobimageshikshafinder.blob.core.windows.net/shikshafinder/1716473830318_vigysalogo.png&h=100",
   },
   {
     name: "Shree Swaminarayan Gurukul ,Sardar Nagar Bhavnagar",
@@ -39,7 +40,7 @@ const testimonials = [
     content:
       "I'm impressed with Shiksha Finder's ability to streamline the school selection process. It's an invaluable resource for students and parents alike.",
     avatar:
-      "https://lh3.googleusercontent.com/p/AF1QipP3xwSU6u7iDc1AqMPSarj5GaJVyFaNcZ8GJlkO=s1360-w1360-h1020",
+      "/ssgsb.avif",
   },
 ];
 
@@ -173,7 +174,8 @@ export default function Aboutus() {
           <chakra.strong color={useColorModeValue("gray.700", "gray.50")}>
             Is a Platform for
           </chakra.strong>{" "}
-          bridging the gap between Educational Platform and students by taking the quality of education at our first priority.
+          bridging the gap between Educational Platform and students by taking
+          the quality of education at our first priority.
         </chakra.h2>
       </Box>
       <SimpleGrid
