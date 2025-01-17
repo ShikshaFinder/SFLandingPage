@@ -57,10 +57,14 @@ export default function Navbar() {
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.900", "white")}
-            
             fontSize="inherit"
           >
-            <Link href={"/"}>ShikshaFinder</Link>
+            <Link
+              href={"/"}
+              style={{ textDecoration: "none", display: "inline-block" }}
+            >
+              ShikshaFinder
+            </Link>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -113,10 +117,12 @@ export default function Navbar() {
                 fontSize={"sm"}
                 fontWeight={600}
                 color={"white"}
-                bg={"blue"}
+                bg={"blue.500"}
                 _hover={{
-                  bg: "blue.300",
+                  bg: "blue.600",
                 }}
+                px={6}
+                py={2}
               >
                 Sign Up
               </Button>
@@ -135,15 +141,14 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Stack direction={"row"} spacing={6}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
+          <Popover trigger={"hover"} placement={"bottom-start"} isLazy>
             <PopoverTrigger>
               <Box
                 as={Link}
-                href={navItem.href ?? "../school"}
-                passHref
+                href={navItem.href ?? "#"}
                 p={2}
                 fontSize={"sm"}
                 fontWeight={500}
@@ -152,6 +157,7 @@ const DesktopNav = () => {
                   textDecoration: "none",
                   color: linkHoverColor,
                 }}
+                cursor="pointer"
               >
                 {navItem.label}
               </Box>
@@ -235,73 +241,103 @@ const MobileNav = () => {
         bg={boxColor}
         zIndex={10}
         borderTopWidth="1px"
-        borderColor="gray"
+        borderColor={useColorModeValue("gray.200", "gray.900")}
       >
-        <Stack direction={"row"} spacing={"8%"}>
-          <Link href={"/school"}>
-            <FaSchool
-              size={19}
-              color={
-                useStore.getState().selectedIcon === "school"
-                  ? "blue"
-                  : "initial"
-              }
-              style={{ marginInline: "auto" }}
-              onClick={() => handleClick("school")}
-            />
-            <Text fontSize={"sm"}>Schools</Text>
+        <Stack direction={"row"} justify="space-around" align="center">
+          <Link
+            href={"/school"}
+            style={{ textAlign: "center", textDecoration: "none" }}
+          >
+            <Flex direction="column" align="center">
+              <FaSchool
+                size={19}
+                color={
+                  useStore.getState().selectedIcon === "school"
+                    ? "blue"
+                    : "currentColor"
+                }
+                onClick={() => handleClick("school")}
+              />
+              <Text fontSize={"sm"} mt={1}>
+                Schools
+              </Text>
+            </Flex>
           </Link>
-          <Link href={"/coaching"}>
-            <FaChalkboardTeacher
-              size={19}
-              color={
-                useStore.getState().selectedIcon === "coaching"
-                  ? "blue"
-                  : "initial"
-              }
-              style={{ marginInline: "auto" }}
-              onClick={() => handleClick("coaching")}
-            />
-            <Text fontSize={"sm"}>Coaching</Text>
+          <Link
+            href={"/coaching"}
+            style={{ textAlign: "center", textDecoration: "none" }}
+          >
+            <Flex direction="column" align="center">
+              <FaChalkboardTeacher
+                size={19}
+                color={
+                  useStore.getState().selectedIcon === "coaching"
+                    ? "blue"
+                    : "currentColor"
+                }
+                onClick={() => handleClick("coaching")}
+              />
+              <Text fontSize={"sm"} mt={1}>
+                Coaching
+              </Text>
+            </Flex>
           </Link>
-          <Link href={"/onlineform"}>
-            <FaGlobe
-              size={19}
-              color={
-                useStore.getState().selectedIcon === "online"
-                  ? "blue"
-                  : "initial"
-              }
-              style={{ marginInline: "auto" }}
-              onClick={() => handleClick("online")}
-            />
-            <Text fontSize={"sm"}>Online</Text>
+          <Link
+            href={"/onlineform"}
+            style={{ textAlign: "center", textDecoration: "none" }}
+          >
+            <Flex direction="column" align="center">
+              <FaGlobe
+                size={19}
+                color={
+                  useStore.getState().selectedIcon === "online"
+                    ? "blue"
+                    : "currentColor"
+                }
+                onClick={() => handleClick("online")}
+              />
+              <Text fontSize={"sm"} mt={1}>
+                Online
+              </Text>
+            </Flex>
           </Link>
-          <Link href={"/skillclass"}>
-            <FaPaintBrush
-              size={19}
-              color={
-                useStore.getState().selectedIcon === "skillclass"
-                  ? "blue"
-                  : "initial"
-              }
-              style={{ marginInline: "auto" }}
-              onClick={() => handleClick("skillclass")}
-            />{" "}
-            <Text fontSize={"sm"}>Skills</Text>
+          <Link
+            href={"/skillclass"}
+            style={{ textAlign: "center", textDecoration: "none" }}
+          >
+            <Flex direction="column" align="center">
+              <FaPaintBrush
+                size={19}
+                color={
+                  useStore.getState().selectedIcon === "skillclass"
+                    ? "blue"
+                    : "currentColor"
+                }
+                onClick={() => handleClick("skillclass")}
+              />
+              <Text fontSize={"sm"} mt={1}>
+                Skills
+              </Text>
+            </Flex>
           </Link>
-          <Link href={"/exams"}>
-            <FaWpforms
-              size={19}
-              color={
-                useStore.getState().selectedIcon === "exams"
-                  ? "blue"
-                  : "initial"
-              }
-              style={{ marginInline: "auto" }}
-              onClick={() => handleClick("exams")}
-            />{" "}
-            <Text fontSize={"sm"}>Exams</Text>
+          <Link
+            href={"/exams"}
+            style={{ textAlign: "center", textDecoration: "none" }}
+          >
+            <Flex direction="column" align="center">
+              <FaWpforms
+                size={19}
+                color={
+                  useStore.getState().selectedIcon === "exams"
+                    ? "blue"
+                    : "currentColor"
+                }
+                onClick={() => handleClick("exams")}
+              />
+              <Text fontSize={"sm"} mt={1}>
+                Exams
+              </Text>
+            </Flex>
           </Link>
         </Stack>
       </Box>
