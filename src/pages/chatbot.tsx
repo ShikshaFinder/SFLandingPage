@@ -30,8 +30,19 @@ import {
   useDisclosure,
   VStack,
   Spinner,
+  Image,
 } from "@chakra-ui/react";
-import { AlertCircle, Menu, Send, Sparkles, Plus, Router } from "lucide-react";
+import {
+  AlertCircle,
+  Menu,
+  Send,
+  Sparkles,
+  Plus,
+  Router,
+  Image as ImageIcon,
+  X,
+  Clock,
+} from "lucide-react";
 import supabase from "../../supabase";
 
 const markdownComponents = {
@@ -67,14 +78,24 @@ interface ChatMessage {
   user_id: string;
 }
 
+interface ConversationMessage {
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+}
+
 const Chatbot = () => {
- 
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [currentConversation, setCurrentConversation] = useState<
+    ConversationMessage[]
+  >([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuthContext();
+  const [streamingMessage, setStreamingMessage] = useState("");
+  const [isStreaming, setIsStreaming] = useState(false);
   if (!user) {
     return <Nouser />;
   }
@@ -83,6 +104,9 @@ const Chatbot = () => {
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const Router = useRouter();
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   async function saveResponse(messageText: string, responseText: string) {
     try {
@@ -125,7 +149,7 @@ const Chatbot = () => {
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
+      if (error) throw error; 
 
       setChatHistory(data || []);
     } catch (error) {
@@ -148,14 +172,53 @@ const Chatbot = () => {
     error?: string;
   }
 
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeSelectedImage = () => {
+    setSelectedImage(null);
+    setImagePreviewUrl("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputText.trim()) return;
+    if (!inputText.trim() && !selectedImage) return;
 
     setLoading(true);
-    setSummary("");
+    setIsStreaming(true);
+    setStreamingMessage("");
 
     try {
+      let imageUrl = "";
+
+      if (selectedImage) {
+        setUploadingImage(true);
+        const reader = new FileReader();
+        imageUrl = await new Promise((resolve, reject) => {
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(selectedImage);
+        });
+        setUploadingImage(false);
+      }
+
+      // Add user message to conversation
+      const userMessage: ConversationMessage = {
+        role: "user",
+        content: inputText,
+        timestamp: new Date().toISOString(),
+      };
+      setCurrentConversation((prev) => [...prev, userMessage]);
+
       const response = await fetch("/api/getanswer", {
         method: "POST",
         headers: {
@@ -163,25 +226,63 @@ const Chatbot = () => {
         },
         body: JSON.stringify({
           msg: inputText,
+          imageUrl: imageUrl,
+          conversationHistory: currentConversation,
         }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        const responseContent =
-          data.messages[0]?.content || "No summary found.";
-        setSummary(responseContent);
-        await saveResponse(inputText, responseContent);
-      } else {
-        console.error("Failed to get summary:", data.error);
-        setSummary("Error fetching summary.");
+      if (!response.ok) {
+        throw new Error("Failed to get response");
       }
+
+      const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error("No reader available");
+      }
+
+      let accumulatedResponse = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        // Decode the stream chunk and process it
+        const chunk = new TextDecoder().decode(value);
+        const lines = chunk.split("\n").filter((line) => line.trim() !== "");
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              if (data.content) {
+                accumulatedResponse += data.content;
+                setStreamingMessage(accumulatedResponse);
+              }
+            } catch (e) {
+              console.error("Error parsing chunk:", e);
+            }
+          }
+        }
+      }
+
+      // After streaming is complete, add the message to conversation
+      const assistantMessage: ConversationMessage = {
+        role: "assistant",
+        content: accumulatedResponse,
+        timestamp: new Date().toISOString(),
+      };
+      setCurrentConversation((prev) => [...prev, assistantMessage]);
+      await saveResponse(inputText, accumulatedResponse);
+
+      removeSelectedImage();
+      setInputText("");
     } catch (error) {
       console.error("Error during request:", error);
-      setSummary("An error occurred. Please try again later.");
+      setStreamingMessage("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
+      setIsStreaming(false);
+      setUploadingImage(false);
     }
   };
 
@@ -192,56 +293,145 @@ const Chatbot = () => {
   const handleNewChat = () => {
     setInputText("");
     setSummary("");
-    onClose(); // Close drawer if open
+    setCurrentConversation([]);
+    onClose();
   };
 
   // Move ChatSidebar outside of main component to prevent re-renders
   const ChatSidebarContent = () => (
-    <VStack align="stretch" h="100%" p={4} bg="white" shadow="md">
+    <VStack align="stretch" h="100%" spacing={0} bg="white">
+      {/* Header Section */}
+      <Box p={4} borderBottom="1px" borderColor="gray.200">
+        <Heading size="md" color="gray.700">
+          Chat History
+        </Heading>
+      </Box>
+
+      {/* Content Section */}
       <VStack
         align="stretch"
-        spacing={4}
+        spacing={3}
         overflowY="auto"
         maxH="calc(100vh - 100px)"
+        p={4}
+        css={{
+          "&::-webkit-scrollbar": {
+            width: "4px",
+          },
+          "&::-webkit-scrollbar-track": {
+            width: "6px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "gray.200",
+            borderRadius: "24px",
+          },
+        }}
       >
         {!isClient ? null : isLoading ? (
-          <VStack py={8}>
-            <Spinner
-              thickness="3px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="blue.500"
-              size="md"
-            />
-            <Text color="gray.500" fontSize="sm">
-              Loading chats...
-            </Text>
-          </VStack>
+          <Center py={8}>
+            <VStack spacing={4}>
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="lg"
+              />
+              <Text color="gray.500" fontSize="sm" fontWeight="medium">
+                Loading your conversations...
+              </Text>
+            </VStack>
+          </Center>
         ) : chatHistory.length === 0 ? (
-          <Text color="gray.500" textAlign="center">
-            No chat history yet
-          </Text>
+          <Center py={12}>
+            <VStack spacing={3}>
+              <Icon as={AlertCircle} boxSize={8} color="gray.400" />
+              <Text color="gray.500" fontSize="md" textAlign="center">
+                No chat history yet
+              </Text>
+              <Text color="gray.400" fontSize="sm" textAlign="center">
+                Start a new conversation to see it here
+              </Text>
+            </VStack>
+          </Center>
         ) : (
           chatHistory.map((chat) => (
             <Box
               key={chat.id}
               p={4}
-              bg="gray.50"
-              rounded="md"
+              bg="white"
+              rounded="lg"
               cursor="pointer"
-              _hover={{ bg: "gray.100" }}
+              borderWidth="1px"
+              borderColor="gray.200"
+              transition="all 0.2s"
+              _hover={{
+                bg: "blue.50",
+                borderColor: "blue.200",
+                transform: "translateY(-1px)",
+                shadow: "md",
+              }}
               onClick={() => {
-                setSummary(chat.response);
-                setInputText(chat.message);
-                onClose(); // Close drawer after selection on mobile
+                setCurrentConversation([
+                  {
+                    role: "user",
+                    content: chat.message,
+                    timestamp: chat.created_at,
+                  },
+                  {
+                    role: "assistant",
+                    content: chat.response,
+                    timestamp: chat.created_at,
+                  },
+                ]);
+                onClose();
               }}
             >
-              <Text fontWeight="bold" fontSize="sm" color="gray.700">
-                {chat.title || chat.message.substring(0, 50)}
-              </Text>
-              <Text fontSize="xs" color="gray.500">
-                {isClient ? new Date(chat.created_at).toLocaleString() : ""}
-              </Text>
+              <VStack align="stretch" spacing={3}>
+                {/* Question Section */}
+                <Box>
+                  <Flex align="center" gap={2} mb={2}>
+                    <Icon as={Send} boxSize={3} color="green.500" />
+                    <Text fontSize="xs" fontWeight="medium" color="gray.600">
+                      Question
+                    </Text>
+                  </Flex>
+                  <Text fontSize="sm" color="gray.700" noOfLines={2}>
+                    {chat.message}
+                  </Text>
+                </Box>
+
+                {/* Response Preview */}
+                <Box borderTopWidth="1px" borderColor="gray.100" pt={2}>
+                  <Flex align="center" gap={2} mb={2}>
+                    <Icon as={Sparkles} boxSize={3} color="blue.500" />
+                    <Text fontSize="xs" fontWeight="medium" color="gray.600">
+                      Response
+                    </Text>
+                  </Flex>
+                  <Text fontSize="sm" color="gray.600" noOfLines={2}>
+                    {chat.response}
+                  </Text>
+                </Box>
+
+                {/* Timestamp */}
+                <Flex align="center" gap={2} mt={1}>
+                  <Icon as={Clock} boxSize={3} color="gray.400" />
+                  <Text fontSize="xs" color="gray.500">
+                    {isClient
+                      ? new Date(chat.created_at).toLocaleDateString(
+                          undefined,
+                          {
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )
+                      : ""}
+                  </Text>
+                </Flex>
+              </VStack>
             </Box>
           ))
         )}
@@ -368,61 +558,156 @@ const Chatbot = () => {
           {/* Chat Input */}
           <Box position="relative" mb={8}>
             <form onSubmit={handleSubmit}>
-              <Flex gap={2}>
-                <Input
-                  value={inputText}
-                  onChange={handleInputChange}
-                  placeholder="Ask anything about science or math..."
-                  size="md"
-                  bg="white"
-                  color="black"
-                  borderColor="gray.200"
-                  _focus={{ borderColor: "blue.500" }}
-                />
-                <Button
-                  type="submit"
-                  variant="solid"
-                  colorScheme="blue"
-                  isDisabled={loading || !inputText.trim()}
-                  size="md"
-                >
-                  {loading ? (
-                    <CircularProgress
-                      size="24px"
-                      color="black"
-                      isIndeterminate
+              <VStack spacing={4} align="stretch">
+                {imagePreviewUrl && (
+                  <Box position="relative" width="fit-content">
+                    <Image
+                      src={imagePreviewUrl}
+                      alt="Selected image"
+                      maxH="200px"
+                      rounded="md"
                     />
-                  ) : (
-                    <Icon as={Send} stroke="black" />
-                  )}
-                </Button>
-              </Flex>
+                    <IconButton
+                      icon={<Icon as={X} />}
+                      aria-label="Remove image"
+                      position="absolute"
+                      top={2}
+                      right={2}
+                      size="sm"
+                      colorScheme="red"
+                      onClick={removeSelectedImage}
+                    />
+                  </Box>
+                )}
+                <Flex gap={2}>
+                  <Input
+                    value={inputText}
+                    onChange={handleInputChange}
+                    placeholder="Ask anything about science or math..."
+                    size="md"
+                    bg="white"
+                    color="black"
+                    borderColor="gray.200"
+                    _focus={{ borderColor: "blue.500" }}
+                  />
+                  <label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageSelect}
+                      style={{ display: "none" }}
+                    />
+                    <IconButton
+                      as="span"
+                      aria-label="Upload image"
+                      icon={<Icon as={ImageIcon} />}
+                      colorScheme="gray"
+                      cursor="pointer"
+                    />
+                  </label>
+                  <Button
+                    type="submit"
+                    variant="solid"
+                    colorScheme="blue"
+                    isDisabled={
+                      loading ||
+                      uploadingImage ||
+                      (!inputText.trim() && !selectedImage)
+                    }
+                    size="md"
+                  >
+                    {loading || uploadingImage ? (
+                      <CircularProgress
+                        size="24px"
+                        color="black"
+                        isIndeterminate
+                      />
+                    ) : (
+                      <Icon as={Send} stroke="black" />
+                    )}
+                  </Button>
+                </Flex>
+              </VStack>
             </form>
           </Box>
 
           {/* Response */}
-          {summary && (
-            <Box bg="white" rounded="md" shadow="sm" p={4}>
-              <Flex
-                gap={3}
-                direction={{ base: "column", md: "row" }}
-                align={{ base: "flex-start", md: "start" }}
+          <Box flex={1} overflowY="auto" mb={4}>
+            {currentConversation.map((message, index) => (
+              <Box
+                key={index}
+                bg="white"
+                rounded="md"
+                shadow="sm"
+                p={4}
+                mb={4}
+                ml={message.role === "assistant" ? 0 : "auto"}
+                mr={message.role === "assistant" ? "auto" : 0}
+                maxW="80%"
               >
-                <Center
-                  boxSize={8}
-                  bg="blue.500"
-                  rounded="full"
-                  flexShrink={0}
-                  ml={{ base: 2, md: 0 }}
+                <Flex
+                  gap={3}
+                  direction={{ base: "column", md: "row" }}
+                  align={{ base: "flex-start", md: "start" }}
                 >
-                  <Icon as={Sparkles} color="white" />
-                </Center>
-                <Box flex={1} w="full">
-                  <MarkdownBox content={summary} />
-                </Box>
-              </Flex>
-            </Box>
-          )}
+                  <Center
+                    boxSize={8}
+                    bg={message.role === "assistant" ? "blue.500" : "green.500"}
+                    rounded="full"
+                    flexShrink={0}
+                    ml={{ base: 2, md: 0 }}
+                  >
+                    <Icon
+                      as={message.role === "assistant" ? Sparkles : Send}
+                      color="white"
+                    />
+                  </Center>
+                  <Box flex={1} w="full">
+                    <MarkdownBox content={message.content} />
+                    <Text fontSize="xs" color="gray.500" mt={2}>
+                      {new Date(message.timestamp).toLocaleString()}
+                    </Text>
+                  </Box>
+                </Flex>
+              </Box>
+            ))}
+
+            {/* Streaming message */}
+            {isStreaming && streamingMessage && (
+              <Box
+                bg="white"
+                rounded="md"
+                shadow="sm"
+                p={4}
+                mb={4}
+                ml={0}
+                mr="auto"
+                maxW="80%"
+              >
+                <Flex
+                  gap={3}
+                  direction={{ base: "column", md: "row" }}
+                  align={{ base: "flex-start", md: "start" }}
+                >
+                  <Center
+                    boxSize={8}
+                    bg="blue.500"
+                    rounded="full"
+                    flexShrink={0}
+                    ml={{ base: 2, md: 0 }}
+                  >
+                    <Icon as={Sparkles} color="white" />
+                  </Center>
+                  <Box flex={1} w="full">
+                    <MarkdownBox content={streamingMessage} />
+                    <Text fontSize="xs" color="gray.500" mt={2}>
+                      Typing...
+                    </Text>
+                  </Box>
+                </Flex>
+              </Box>
+            )}
+          </Box>
 
           {/* Error State */}
           {summary && summary.includes("error") && (
