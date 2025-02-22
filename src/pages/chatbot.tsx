@@ -149,7 +149,7 @@ const Chatbot = () => {
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
-      if (error) throw error; 
+      if (error) throw error;
 
       setChatHistory(data || []);
     } catch (error) {
@@ -241,38 +241,57 @@ const Chatbot = () => {
       }
 
       let accumulatedResponse = "";
+      let isComplete = false;
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+      // Create a promise that resolves when streaming is complete
+      const streamPromise = new Promise<string>(async (resolve, reject) => {
+        try {
+          while (!isComplete) {
+            const { done, value } = await reader.read();
 
-        // Decode the stream chunk and process it
-        const chunk = new TextDecoder().decode(value);
-        const lines = chunk.split("\n").filter((line) => line.trim() !== "");
+            if (done) {
+              isComplete = true;
+              break;
+            }
 
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            try {
-              const data = JSON.parse(line.slice(6));
-              if (data.content) {
-                accumulatedResponse += data.content;
-                setStreamingMessage(accumulatedResponse);
+            // Decode the stream chunk and process it
+            const chunk = new TextDecoder().decode(value);
+            const lines = chunk
+              .split("\n")
+              .filter((line) => line.trim() !== "");
+
+            for (const line of lines) {
+              if (line.startsWith("data: ")) {
+                try {
+                  const data = JSON.parse(line.slice(6));
+                  if (data.content) {
+                    accumulatedResponse += data.content;
+                    setStreamingMessage(accumulatedResponse);
+                  }
+                } catch (e) {
+                  console.error("Error parsing chunk:", e);
+                }
               }
-            } catch (e) {
-              console.error("Error parsing chunk:", e);
             }
           }
+          resolve(accumulatedResponse);
+        } catch (error) {
+          reject(error);
         }
-      }
+      });
 
-      // After streaming is complete, add the message to conversation
+      // Wait for the complete response
+      const finalResponse = await streamPromise;
+
+      // After streaming is complete and we have the full response, update conversation and save
       const assistantMessage: ConversationMessage = {
         role: "assistant",
-        content: accumulatedResponse,
+        content: finalResponse as string,
         timestamp: new Date().toISOString(),
       };
+
       setCurrentConversation((prev) => [...prev, assistantMessage]);
-      await saveResponse(inputText, accumulatedResponse);
+      await saveResponse(inputText, finalResponse);
 
       removeSelectedImage();
       setInputText("");

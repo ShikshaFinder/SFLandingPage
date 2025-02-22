@@ -104,6 +104,7 @@ export default async function handler(req: NextRequest) {
           if (line.startsWith("data: ")) {
             const data = line.slice(6);
             if (data === "[DONE]") {
+              controller.enqueue(encoder.encode("data: [DONE]\n\n"));
               return;
             }
             try {
@@ -114,11 +115,19 @@ export default async function handler(req: NextRequest) {
                   encoder.encode(`data: ${JSON.stringify({ content })}\n\n`)
                 );
               }
+              // Check if this is the last message
+              if (json.choices[0]?.finish_reason === "stop") {
+                controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+              }
             } catch (e) {
               console.error("Error parsing JSON:", e);
+              controller.error(e);
             }
           }
         }
+      },
+      flush(controller) {
+        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
       },
     });
 
