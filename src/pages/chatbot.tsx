@@ -263,6 +263,10 @@ const Chatbot = () => {
             for (const line of lines) {
               if (line.startsWith("data: ")) {
                 try {
+                  if (line.includes("[DONE]")) {
+                    isComplete = true;
+                    break;
+                  }
                   const data = JSON.parse(line.slice(6));
                   if (data.content) {
                     accumulatedResponse += data.content;
@@ -270,38 +274,58 @@ const Chatbot = () => {
                   }
                 } catch (e) {
                   console.error("Error parsing chunk:", e);
+                  // Don't reject on parse error, continue processing
+                  continue;
                 }
               }
             }
           }
-          resolve(accumulatedResponse);
+          resolve(
+            accumulatedResponse ||
+              "Sorry, there was an error generating the response."
+          );
         } catch (error) {
+          console.error("Stream reading error:", error);
           reject(error);
+        } finally {
+          reader.releaseLock();
         }
       });
 
-      // Wait for the complete response
-      const finalResponse = await streamPromise;
+      try {
+        // Wait for the complete response with a timeout
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error("Response timeout")), 60000); // 60 second timeout
+        });
 
-      // After streaming is complete and we have the full response, update conversation and save
-      const assistantMessage: ConversationMessage = {
-        role: "assistant",
-        content: finalResponse as string,
-        timestamp: new Date().toISOString(),
-      };
+        const finalResponse = (await Promise.race([
+          streamPromise,
+          timeoutPromise,
+        ])) as string;
 
-      setCurrentConversation((prev) => [...prev, assistantMessage]);
-      await saveResponse(inputText, finalResponse);
+        // After streaming is complete and we have the full response, update conversation and save
+        const assistantMessage: ConversationMessage = {
+          role: "assistant",
+          content: finalResponse,
+          timestamp: new Date().toISOString(),
+        };
 
-      removeSelectedImage();
-      setInputText("");
+        setCurrentConversation((prev) => [...prev, assistantMessage]);
+        await saveResponse(inputText, finalResponse);
+
+        removeSelectedImage();
+        setInputText("");
+      } catch (error) {
+        console.error("Error during request:", error);
+        setStreamingMessage("An error occurred. Please try again later.");
+      } finally {
+        setLoading(false);
+        setIsStreaming(false);
+        setUploadingImage(false);
+      }
     } catch (error) {
       console.error("Error during request:", error);
       setStreamingMessage("An error occurred. Please try again later.");
-    } finally {
-      setLoading(false);
-      setIsStreaming(false);
-      setUploadingImage(false);
     }
   };
 

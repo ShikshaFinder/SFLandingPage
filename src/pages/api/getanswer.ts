@@ -96,11 +96,9 @@ export default async function handler(req: NextRequest) {
     const stream = new TransformStream({
       async transform(chunk, controller) {
         const text = decoder.decode(chunk);
-        // Split the text into lines and process each line
         const lines = text.split("\n").filter((line) => line.trim() !== "");
 
         for (const line of lines) {
-          // Remove "data: " prefix and parse the JSON
           if (line.startsWith("data: ")) {
             const data = line.slice(6);
             if (data === "[DONE]") {
@@ -115,26 +113,31 @@ export default async function handler(req: NextRequest) {
                   encoder.encode(`data: ${JSON.stringify({ content })}\n\n`)
                 );
               }
-              // Check if this is the last message
               if (json.choices[0]?.finish_reason === "stop") {
                 controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+                return;
               }
             } catch (e) {
               console.error("Error parsing JSON:", e);
-              controller.error(e);
+              // Don't throw error, just log it and continue
+              continue;
             }
           }
         }
       },
-      flush(controller) {
-        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+      async flush(controller) {
+        try {
+          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+        } catch (e) {
+          console.error("Error in flush:", e);
+        }
       },
     });
 
     return new Response(response.body?.pipeThrough(stream), {
       headers: {
         "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
+        "Cache-Control": "no-cache, no-transform",
         Connection: "keep-alive",
       },
     });
