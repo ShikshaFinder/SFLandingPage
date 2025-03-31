@@ -26,7 +26,7 @@ function MicrosoftFoundersHub() {
             Microsoft Founders Hub Proof of Domain
           </Heading>
           <Image
-            src="/microsoft_foundershub.png"
+            src="/domain_verification.png"
             alt="Microsoft Founders Hub"
             mx="auto"
             maxW="300px"
@@ -59,7 +59,10 @@ function MicrosoftFoundersHub() {
             </ListItem>
 
             <ListItem display="flex" alignItems="center">
-              <Text>Address: M6/7518,Satyanarayn Society, Gayatrinagar, Bhavanagar, Gujarat(Student at LD Collge of engineering)</Text>
+              <Text>
+                Address: M6/7518,Satyanarayn Society, Gayatrinagar, Bhavanagar,
+                Gujarat(Student at LD Collge of engineering)
+              </Text>
             </ListItem>
 
             <ListItem display="flex" alignItems="center">
