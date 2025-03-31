@@ -313,7 +313,7 @@ const Chatbot = () => {
         setCurrentConversation((prev) => [...prev, assistantMessage]);
         await saveResponse(inputText, finalResponse);
 
-        removeSelectedImage();
+        removeSelectedImage();  
         setInputText("");
       } catch (error) {
         console.error("Error during request:", error);
